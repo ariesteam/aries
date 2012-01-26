@@ -18,15 +18,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <presentation>
 
-  <title>Sediment regulation: Delivery of beneficial sediment to farmers or avoided undesirable sedimentation of farmland</title>
-  <runninghead>Values resulting from sediment regulation by ecosystems in providing beneficial or detrimental sediment to floodplain farmland</runninghead>
+  <title>Sediment regulation: Delivery of beneficial sediment to
+  farmers or avoided undesirable sedimentation of farmland</title>
+  <runninghead>Values resulting from sediment regulation by ecosystems
+  in providing beneficial or detrimental sediment to floodplain farmland</runninghead>
   <description>Values resulting from erosion prevention and natural
-  sediment deposition by ecosystems, and accounting for the delivery
-  of beneficial sediment or the prevention of detrimental
-  sedimentation to farmland. Flow models are used to attribute
-  beneficial or detrimental sources of sediment or "sinks" that
-  promote sediment deposition in relation to their human
-  beneficiaries.</description>
+  sediment deposition by ecosystems, and accounting for the delivery of
+  beneficial sediment or the prevention of detrimental sedimentation to
+  farmland. Flow models are used to attribute beneficial or detrimental
+  sources of sediment or "sinks" that promote sediment deposition in
+  relation to their human beneficiaries.</description>
 
   <!-- The concept of the main observation (the top-level model). -->
   <concept>soilRetentionService:FarmlandSoilDeposition</concept>
@@ -58,12 +59,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Farmland susceptible to sediment deposition</runninghead>
     <group></group>
     <description>
-      This model considers floodplain farmland as a potential beneficiary of sediment regulation.
-      Depending on the crops and timing of sedimentation, this process can be beneficial, delivering
-      new fertile sediment, or detrimental, causing crop damage.  These models map flows from sediment
-      sources (areas of erosion), sinks (areas where deposition occurs), and beneficiary groups and
-      link these via a flow model accounting for the downstream movement of sediment.  To map farms
-      susceptible to sedimentation, farmland and floodplain extents data are intersected.
+      This model considers floodplain farmland as a potential
+      beneficiary of sediment regulation. Depending on the crops and timing
+      of sedimentation, this process can be beneficial, delivering new
+      fertile sediment, or detrimental, causing crop damage. These models
+      map flows from sediment sources (areas of erosion), sinks (areas where
+      deposition occurs), and beneficiary groups and link these via a flow
+      model accounting for the downstream movement of sediment. To map farms
+      susceptible to sedimentation, farmland and floodplain extents data are
+      intersected.
     </description>
     <see-also><![CDATA[
     <p>
@@ -90,19 +94,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     href="http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm"
     target="_blank">Computing composite CN and runoff
     coefficients</a>.</p>
-    <h1>Role in models</h1>
-    <p>Soils are classified from group A (highest infiltraiton
-    capacity) to D (lowest infiltration capacity); group accounts 
-    for maximum yearly wetness, degree of soil freezing, bare soil 
-    surface, and swelling of clays, but does not account for slope.  
-    HSG is used along with slope, slope stability, and soil texture 
-    data to estimate soil erodibility in probabilistic erosion models.  
-    Greater erodibility is assumed in soils with higher infiltration 
+    <h1>Role in models</h1> <p>Soils are classified from group A
+    (highest infiltraiton capacity) to D (lowest infiltration capacity);
+    group accounts for maximum yearly wetness, degree of soil freezing,
+    bare soil surface, and swelling of clays, but does not account for
+    slope. HSG is used along with slope, slope stability, and soil texture
+    data to estimate soil erodibility in probabilistic erosion models.
+    Greater erodibility is assumed in soils with higher infiltration
     capacity.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical.</p>
-    <h1>Source</h1>
-    <p>SSURGO soils data (U.S.); University of Vermont Spatial Analysis Lab, derived from FAO soils data (global).</p>
+    <h1>Representation</h1> <p>Data are categorical.</p>
+    <h1>Source</h1> <p>SSURGO soils data (U.S.); University of Vermont
+    Spatial Analysis Lab, derived from FAO soils data (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -126,17 +128,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>source</group>
     <units>degrees slope</units>
     <description><![CDATA[
-    <p>Slope strongly affects potential erosion by influencing slope stability and runoff speed.</p>
-    <h1>Role in models</h1>
-    <p>Since hydrologic soils group classifications do not account for
-    slope, slope is used along with hydrologic soils group, slope
-    stability, and soil texture data to estimate soil erodibility in 
-    probabilistic erosion models.  Greater erodibility is assumed on 
-    steep slopes where runoff occurs quickly.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of degrees slope.</p>
-    <h1>Source</h1>
-    <p>Derived from a global 90-m SRTM digital elevation model.</p>
+    <p>Slope strongly affects potential erosion by influencing slope
+    stability and runoff speed.</p>
+    <h1>Role in models</h1> <p>Since hydrologic soils group
+    classifications do not account for slope, slope is used along with
+    hydrologic soils group, slope stability, and soil texture data to
+    estimate soil erodibility in probabilistic erosion models. Greater
+    erodibility is assumed on steep slopes where runoff occurs
+    quickly.</p>
+    <h1>Representation</h1> <p>Data are in physical units of degrees
+    slope.</p>
+    <h1>Source</h1> <p>Derived from a global 90-m SRTM digital
+    elevation model.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -160,13 +163,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>source</group>
     <description><![CDATA[
     <p>A classification of the mechanical stability of slopes.</p>
-    <h1>Role in models</h1>
-    <p>Slope stability data, where available, can be used to probabilistically estimate soil erodibility.
-    Unstable slopes are particularly prone to erosion.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical.</p>
-    <h1>Source</h1>
-    <p>Washington State Department of Natural Resources.</p>
+    <h1>Role in models</h1> <p>Slope stability data, where available,
+    can be used to probabilistically estimate soil erodibility. Unstable
+    slopes are particularly prone to erosion.</p>
+    <h1>Representation</h1> <p>Data are categorical.</p>
+    <h1>Source</h1> <p>Washington State Department of Natural
+    Resources.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -190,13 +192,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>source</group>
     <description><![CDATA[
     <p>Soil texture can influence its erodibility.</p>
-    <h1>Role in models</h1>
-    <p>Soil texture data can be used to probabilistically estimate soil erodibility.
-    Greater erodibility is assumed for finer-textued soils.</p>
-    <h1>Representation</h1>
-    <p>The data are categorical.</p>
-    <h1>Source</h1>
-    <p>SSURGO soils data (U.S.); FAO soils data (global).</p>
+    <h1>Role in models</h1> <p>Soil texture data can be used to
+    probabilistically estimate soil erodibility. Greater erodibility is
+    assumed for finer-textued soils.</p>
+    <h1>Representation</h1> <p>The data are categorical.</p>
+    <h1>Source</h1> <p>SSURGO soils data (U.S.); FAO soils data
+    (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -219,17 +220,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Soil erodibility</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>Soil erodibility coefficients used in the Revised Universal Soil Loss Equation.</p>
-    <h1>Role in models</h1>
-    <p>Soil erodibility estimates can either be directly used to estimate erosion using RUSLE or can
-    be used to train Bayesian networks in probabilistic erosion models for cases where
-    RUSLE's use is inappropriate.</p>
-    <h1>Representation</h1>
-    <p>Data are unitless estimates of erodibility used in the Revised Universal Soil Loss Equation.</p>
-    <h1>Source</h1>
-    <p>USGS Effects of Energy Development in the Rocky Mountain Area
-    (EERMA) Project (Colorado-New Mexico); U.S. EPA EMAP-West Metric Browser (U.S.); Yang, D., et al. 2003. Global potential soil erosion with
-    reference to land use and climate changes. Hydrological Processes 17: 2913-2928 (global).</p>
+    <p>Soil erodibility coefficients used in the Revised Universal
+    Soil Loss Equation.</p>
+    <h1>Role in models</h1> <p>Soil erodibility estimates can either
+    be directly used to estimate erosion using RUSLE or can be used to
+    train Bayesian networks in probabilistic erosion models for cases
+    where RUSLE's use is inappropriate.</p>
+    <h1>Representation</h1> <p>Data are unitless estimates of
+    erodibility used in the Revised Universal Soil Loss Equation.</p>
+    <h1>Source</h1> <p>USGS Effects of Energy Development in the Rocky
+    Mountain Area (EERMA) Project (Colorado-New Mexico); U.S. EPA
+    EMAP-West Metric Browser (U.S.); Yang, D., et al. 2003. Global
+    potential soil erosion with reference to land use and climate changes.
+    Hydrological Processes 17: 2913-2928 (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -256,15 +259,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <units>mm/year</units>
     <description><![CDATA[
     <p>Annual precipitation.</p>
-    <h1>Role in models</h1>
-    <p>Precipitation data are used along with soil erodiblity and vegetative maturity to estimate overall
-    erosion in the probabilistic erosion source models.  In regions susceptible to tropical storms and with steep
-    slopes, tropical storm probability is added as an additional influence on runoff, since
-    these extreme storm events can cause larger event-based episodes of erosion.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of millimeters of precipitation per year.</p>
-    <h1>Source</h1>
-    <p>PRISM Climate Group, Oregon State University (U.S.); WorldClim (global).</p>
+    <h1>Role in models</h1> <p>Precipitation data are used along with
+    soil erodiblity and vegetative maturity to estimate overall erosion in
+    the probabilistic erosion source models. In regions susceptible to
+    tropical storms and with steep slopes, tropical storm probability is
+    added as an additional influence on runoff, since these extreme storm
+    events can cause larger event-based episodes of erosion.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of precipitation per year.</p>
+    <h1>Source</h1> <p>PRISM Climate Group, Oregon State University
+    (U.S.); WorldClim (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -288,15 +292,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>source</group>
     <description><![CDATA[
     <p>Decile estimates of tropical storm risk.</p>
-    <h1>Role in models</h1>
-    <p>In regions susceptible to tropical storms and with steep slopes, tropical storm probability
-    is included with annual precipitation as an influence on runoff, since these extreme storm events
-    can cause larger event-based episodes of erosion.  Runoff estimates are then used along with soil
-    erodiblity and vegetative maturity to estimate overall erosion in probabilistic erosion source models</p>
-    <h1>Representation</h1>
-    <p>Data are in deciles of tropical storm risk.</p>
-    <h1>Source</h1>
-    <p>CIESIN Hazards Data.</p>
+    <h1>Role in models</h1> <p>In regions susceptible to tropical
+    storms and with steep slopes, tropical storm probability is included
+    with annual precipitation as an influence on runoff, since these
+    extreme storm events can cause larger event-based episodes of erosion.
+    Runoff estimates are then used along with soil erodiblity and
+    vegetative maturity to estimate overall erosion in probabilistic
+    erosion source models.</p>
+    <h1>Representation</h1> <p>Data are in deciles of tropical storm
+    risk.</p>
+    <h1>Source</h1> <p>CIESIN Hazards Data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -320,14 +325,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>source</group>
     <units>mm/year</units>
     <description><![CDATA[
-    <p>Runoff as used to estimate soil erosion, along with soil and vegetation characteristics.</p>
-    <h1>Role in models</h1>
-    <p>Runoff estimates can be used to train Bayesian networks when using probabilistic models
-    of erosion.</p>
-    <h1>Representation</h1>
-    <p>Data are physical units of millimeters of runoff per year.</p>
-    <h1>Source</h1>
-    <p>UNH GRDC Composite Runoff Data.</p>
+    <p>Runoff as used to estimate soil erosion, along with soil and
+    vegetation characteristics.</p>
+    <h1>Role in models</h1> <p>Runoff estimates can be used to train
+    Bayesian networks when using probabilistic models of erosion.</p>
+    <h1>Representation</h1> <p>Data are physical units of millimeters
+    of runoff per year.</p>
+    <h1>Source</h1> <p>UNH GRDC Composite Runoff Data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -350,15 +354,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Vegetation type</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes including
-    vegetation height, life form, rooting depth and density.</p>
-    <h1>Role in models</h1>
-    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
-    in reducing soil erosion.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from land cover classes.</p>
-    <h1>Source</h1>
-    <p>Southwest Regional GAP Analysis Land Cover data.</p>
+    <p>Different vegetation types have different abilities to reduce
+    soil erosion, based on attributes including vegetation height, life
+    form, rooting depth and density.</p>
+    <h1>Role in models</h1> <p>Vegetation type is used as input into a
+    probabilistic model estimating the contribution of vegetation in
+    reducing soil erosion.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from land
+    cover classes.</p>
+    <h1>Source</h1> <p>Southwest Regional GAP Analysis Land Cover
+    data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -383,15 +388,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Vegetation type</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes including
-    vegetation height, life form, rooting depth and density.</p>
-    <h1>Role in models</h1>
-    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
-    in reducing soil erosion.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from land cover classes.</p>
-    <h1>Source</h1>
-    <p>Deutsche Gesellschaft fur Technische Zuaammenarbeit (GTZ).</p>
+    <p>Different vegetation types have different abilities to reduce
+    soil erosion, based on attributes including vegetation height, life
+    form, rooting depth and density.</p>
+    <h1>Role in models</h1> <p>Vegetation type is used as input into a
+    probabilistic model estimating the contribution of vegetation in
+    reducing soil erosion.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from land
+    cover classes.</p>
+    <h1>Source</h1> <p>Deutsche Gesellschaft fur Technische
+    Zuaammenarbeit (GTZ).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -413,15 +419,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Vegetation type</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes including
-    vegetation height, life form, rooting depth and density.</p>
-    <h1>Role in models</h1>
-    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
-    in reducing soil erosion.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from land cover classes.</p>
-    <h1>Source</h1>
-    <p>Foiben-Taosarintanin'i Madagasikara (FTM), Madagsacar national land cover.</p>
+    <p>Different vegetation types have different abilities to reduce
+    soil erosion, based on attributes including vegetation height, life
+    form, rooting depth and density.</p>
+    <h1>Role in models</h1> <p>Vegetation type is used as input into a
+    probabilistic model estimating the contribution of vegetation in
+    reducing soil erosion.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from land
+    cover classes.</p>
+    <h1>Source</h1> <p>Foiben-Taosarintanin'i Madagasikara (FTM),
+    Madagsacar national land cover.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -444,15 +451,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Vegetation type</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>Different vegetation types have different abilities to reduce soil erosion, based on attributes including
-    vegetation height, life form, rooting depth and density.</p>
-    <h1>Role in models</h1>
-    <p>Vegetation type is used as input into a probabilistic model estimating the contribution of vegetation
-    in reducing soil erosion.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from land cover classes.</p>
-    <h1>Source</h1>
-    <p>National Land Cover Dataset (NLCD).</p>
+    <p>Different vegetation types have different abilities to reduce
+    soil erosion, based on attributes including vegetation height, life
+    form, rooting depth and density.</p>
+    <h1>Role in models</h1> <p>Vegetation type is used as input into a
+    probabilistic model estimating the contribution of vegetation in
+    reducing soil erosion.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from land
+    cover classes.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -475,17 +482,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Mountain pine beetle damage class</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>Mountain pine beetle (_Dendroctonus ponderosae_), a native beetle
-    in western North America, can cause changes to forest structure in
-    beetle-infested forests.</p>
-    <h1>Role in models</h1>
-    <p>Mountain pine beetle-induced death in western forests causes changes to forest structure and
-    hydrologic processes.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from aerial surveys of mountain
-    pine beetle damage.</p>
-    <h1>Source</h1>
-    <p>Derived from USDA-Forest Service aerial survey data.</p>
+    <p>Mountain pine beetle (_Dendroctonus ponderosae_), a native
+    beetle in western North America, can cause changes to forest structure
+    in beetle-infested forests.</p>
+    <h1>Role in models</h1> <p>Mountain pine beetle-induced death in
+    western forests causes changes to forest structure and hydrologic
+    processes.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from
+    aerial surveys of mountain pine beetle damage.</p>
+    <h1>Source</h1> <p>Derived from USDA-Forest Service aerial survey
+    data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -513,14 +519,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description><![CDATA[
     <p>Percent tree canopy cover.</p>
     <h1>Role in models</h1>
-    <p>Tree canopy cover is used as input into a probabilistic model estimating the contribution of vegetation
-    in reducing soil erosion.  All else being equal, greater
-    protection from soil erosion is expected under
-    higher tree canopy cover.</p>
-    <h1>Representation</h1>
-    <p>Data show the percentage of the land surface under tree canopy cover.</p>
-    <h1>Source</h1>
-    <p>National Land Cover Dataset (NLCD, U.S.); University of Maryland - Global Land Cover Facility (global).</p>
+    <p>Tree canopy cover is used as input into a probabilistic model
+    estimating the contribution of vegetation in reducing soil erosion.
+    All else being equal, greater protection from soil erosion is expected
+    under higher tree canopy cover.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the land
+    surface under tree canopy cover.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD, U.S.);
+    University of Maryland - Global Land Cover Facility (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -543,17 +549,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Successional stage</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>Forest successional stage influences attributes such as vegetation height, tree canopy cover, root
-    densities, and litter and woody debris cover, all of which can potentially reduce soil erosion.</p>
-    <h1>Role in models</h1>
-    <p>Successional stage is used as input into a probabilistic model estimating the contribution of vegetation
-    in reducing soil erosion.  All else being equal, later
-    successional forests are expected to provide greater
-    protection from soil erosion.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical.</p>
-    <h1>Source</h1>
-    <p>BLM Interagency Vegetation Mapping Project (WA/OR); LANDFIRE (U.S.).</p>
+    <p>Forest successional stage influences attributes such as
+    vegetation height, tree canopy cover, root densities, and litter and
+    woody debris cover, all of which can potentially reduce soil
+    erosion.</p>
+    <h1>Role in models</h1> <p>Successional stage is used as input
+    into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion. All else being equal, later successional
+    forests are expected to provide greater protection from soil
+    erosion.</p>
+    <h1>Representation</h1> <p>Data are categorical.</p>
+    <h1>Source</h1> <p>BLM Interagency Vegetation Mapping Project
+    (WA/OR); LANDFIRE (U.S.).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -582,23 +589,24 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <units>t/ha</units>
     <description><![CDATA[
     <p>Annual soil erosion from the landscape.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of a probabilistic model accounting for the influence of vegetation, soils, and
-    precipitation on erosion.  These data are passed to the sediment flow model, which calculates actual
-    sediment delivered to beneficiaries, given erosion levels, the activity of sinks, and the location of
+    <h1>Role in models</h1> <p>This is the output of a probabilistic
+    model accounting for the influence of vegetation, soils, and
+    precipitation on erosion. These data are passed to the sediment flow
+    model, which calculates actual sediment delivered to beneficiaries,
+    given erosion levels, the activity of sinks, and the location of
     beneficiaries of sedimentation or avoided sedimentation.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of tons of sediment eroded per year.   As the output of the models is
-    probabilistic, each point contains the probability distribution of the amount of sediment eroded.
-    The distribution can be visualized by clicking on the map; the mean value and the coefficient of variation
+    <h1>Representation</h1> <p>Data are in physical units of tons of
+    sediment eroded per year. As the output of the models is
+    probabilistic, each point contains the probability distribution of the
+    amount of sediment eroded. The distribution can be visualized by
+    clicking on the map; the mean value and the coefficient of variation
     are reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and calibrated by the ARIES
-    server for the selected area.  U.S. EPA EMAP-West Metric Browser data
-    (U.S.) and Yang, D., et al. 2003. Global potential soil erosion with
-    reference to land use and climate changes. Hydrological Processes
-    17: 2913-2928 (global) were used for Bayesian
-    network training.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area. U.S. EPA EMAP-West Metric Browser data (U.S.) and Yang,
+    D., et al. 2003. Global potential soil erosion with reference to land
+    use and climate changes. Hydrological Processes 17: 2913-2928 (global)
+    were used for Bayesian network training.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -621,16 +629,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Reservoir presence</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Reservoirs stop the downstream movement of sediment by trapping it in the reservoir and releasing
-    low-sediment water downstream.</p>
-    <h1>Role in models</h1>
-    <p>Reservoir locations enter into a probabilistic model to estimate sediment sink values.  Deposition
-    values in reservoirs are always set to high in the probabilistic model.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of reservoirs.</p>
-    <h1>Source</h1>
-    <p>National Atlas of the United States, Major Dams of the United States (U.S.); FAO AQUASTAT (Africa);
-    Global Database of Dams (global).</p>
+    <p>Reservoirs stop the downstream movement of sediment by trapping
+    it in the reservoir and releasing low-sediment water downstream.</p>
+    <h1>Role in models</h1> <p>Reservoir locations enter into a
+    probabilistic model to estimate sediment sink values. Deposition
+    values in reservoirs are always set to high in the probabilistic
+    model.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    reservoirs.</p>
+    <h1>Source</h1> <p>National Atlas of the United States, Major Dams
+    of the United States (U.S.); FAO AQUASTAT (Africa); Global Database of
+    Dams (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -654,15 +663,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>sink</group>
     <units>degrees slope</units>
     <description><![CDATA[
-    <p>Stream gradient helps dictate the speed of floodwater flows, causing sediment to either be deposited
-    or remain suspended as it flows downstream.</p>
-    <h1>Role in models</h1>
-    <p>Stream gradient enters into a probabilistic model to estimate sediment sink values.  Deposition values
-    are assumed to be higher along low-gradient streams, where slower-flowing water promotes deposition.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of degrees slope.</p>
-    <h1>Source</h1>
-    <p>Derived from local hydrography data and SRTM slope data.</p>
+    <p>Stream gradient helps dictate the speed of floodwater flows,
+    causing sediment to either be deposited or remain suspended as it
+    flows downstream.</p>
+    <h1>Role in models</h1> <p>Stream gradient enters into a
+    probabilistic model to estimate sediment sink values. Deposition
+    values are assumed to be higher along low-gradient streams, where
+    slower-flowing water promotes deposition.</p>
+    <h1>Representation</h1> <p>Data are in physical units of degrees
+    slope.</p>
+    <h1>Source</h1> <p>Derived from local hydrography data and SRTM
+    slope data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -684,16 +695,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Floodplain tree canopy cover</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>Well-vegetatated floodplains can better trap sediment by slowing the flow of floodwater and providing
-    microtopography where sediment can be deposited.</p>
-    <h1>Role in models</h1>
-    <p>Floodplain tree canopy cover enters into a probabilistic model to estimate sediment sink values.
-    Deposition values are assumed to be higher in more forested floodplains, where vegetation can better
-    trap sediment.</p>
-    <h1>Representation</h1>
-    <p>Data show the percentage of the floodplain under tree canopy cover.</p>
-    <h1>Source</h1>
-    <p>National Land Cover Dataset (NLCD, U.S.); University of Maryland - Global Land Cover Facility (global).</p>
+    <p>Well-vegetatated floodplains can better trap sediment by
+    slowing the flow of floodwater and providing microtopography where
+    sediment can be deposited.</p>
+    <h1>Role in models</h1> <p>Floodplain tree canopy cover enters
+    into a probabilistic model to estimate sediment sink values.
+    Deposition values are assumed to be higher in more forested
+    floodplains, where vegetation can better trap sediment.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the
+    floodplain under tree canopy cover.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD, U.S.);
+    University of Maryland - Global Land Cover Facility (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -717,15 +729,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>sink</group>
     <units>m</units>
     <description><![CDATA[
-    <p>Wider floodplains can promote sediment deposition by slowing the flow of sediment-carrying floodwater.</p>
-    <h1>Role in models</h1>
-    <p>Floodplain width is used as input data for a probabilistic model to estimate sediment sink values.
-    Deposition values are assumed to be higher in wide floodplains, where floodwater can spread out and
-    move more slowly, leading to deposition.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of meters of floodplain width.</p>
-    <h1>Source</h1>
-    <p>Derived from FEMA Q3 Flood Data (U.S.); Dartmouth Flood Observatory (global).</p>
+    <p>Wider floodplains can promote sediment deposition by slowing
+    the flow of sediment-carrying floodwater.</p>
+    <h1>Role in models</h1> <p>Floodplain width is used as input data
+    for a probabilistic model to estimate sediment sink values. Deposition
+    values are assumed to be higher in wide floodplains, where floodwater
+    can spread out and move more slowly, leading to deposition.</p>
+    <h1>Representation</h1> <p>Data are in physical units of meters of
+    floodplain width.</p>
+    <h1>Source</h1> <p>Derived from FEMA Q3 Flood Data (U.S.);
+    Dartmouth Flood Observatory (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -750,19 +763,21 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <units>t/ha</units>
     <description><![CDATA[
     <p>The deposition of waterborne sediment in floodplains.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of a probabilistic model accounting for the influence of floodplain
-    characteristics on sediment deposition.  These data are passed to the sediment flow model,
-    which calculates actual sediment delivered to beneficiaries, given erosion levels, the activity
-    of sinks, and the location of beneficiaries of sedimentation or avoided sedimentation.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of tons of sediment deposited per year.   As the output of the models is
-    probabilistic, each point contains the probability distribution of the amount of sediment deposited.
-    The distribution can be visualized by clicking on the map; the mean value and the coefficient of variation
+    <h1>Role in models</h1> <p>This is the output of a probabilistic
+    model accounting for the influence of floodplain characteristics on
+    sediment deposition. These data are passed to the sediment flow model,
+    which calculates actual sediment delivered to beneficiaries, given
+    erosion levels, the activity of sinks, and the location of
+    beneficiaries of sedimentation or avoided sedimentation.</p>
+    <h1>Representation</h1> <p>Data are in physical units of tons of
+    sediment deposited per year. As the output of the models is
+    probabilistic, each point contains the probability distribution of the
+    amount of sediment deposited. The distribution can be visualized by
+    clicking on the map; the mean value and the coefficient of variation
     are reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and calibrated by the ARIES
-    server for the selected area.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -785,15 +800,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>use</group>
     <description><![CDATA[
     <p>The extent of the mapped or observed floodplain.</p>
-    <h1>Role in models</h1>
-    <p>Floodplain extents are used in the use models to identify farmland located
-    in the flood zone.  These are the beneficiaries of either beneficial sediment delievery or avoided
-    delivery of detrimental sediment.  Floodplain extents are also used in the flow models to distribute
-    sediment across the floodplain.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence map of floodplains.</p>
-    <h1>Source</h1>
-    <p>FEMA Q3 Flood Data (U.S.); Dartmouth Flood Observatory (global).</p>
+    <h1>Role in models</h1> <p>Floodplain extents are used in the use
+    models to identify farmland located in the flood zone. These are the
+    beneficiaries of either beneficial sediment delievery or avoided
+    delivery of detrimental sediment. Floodplain extents are also used in
+    the flow models to distribute sediment across the floodplain.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence map
+    of floodplains.</p>
+    <h1>Source</h1> <p>FEMA Q3 Flood Data (U.S.); Dartmouth Flood
+    Observatory (global).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -816,14 +831,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Farmland</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>Farmland can either benefit from or be harmed by sediment deposition.</p>
-    <h1>Role in models</h1>
-    <p>Farmland locations are intersected with floodplain extents data to map the potential beneficiaries
-    of sediment regulation.  The sediment flow model is then used to estimate actual sediment regulation values.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of farmland.</p>
-    <h1>Source</h1>
-    <p>Various national land cover datasets.</p>
+    <p>Farmland can either benefit from or be harmed by sediment
+    deposition.</p>
+    <h1>Role in models</h1> <p>Farmland locations are intersected with
+    floodplain extents data to map the potential beneficiaries of sediment
+    regulation. The sediment flow model is then used to estimate actual
+    sediment regulation values.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    farmland.</p>
+    <h1>Source</h1> <p>Various national land cover datasets.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -845,17 +861,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Deposition prone farmers</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>Farmland located in floodplains benefits from sediment regulation, either of avoided detrimental
-    sediment or delivery of beneficial sediment.</p>
-    <h1>Role in models</h1>
-    <p>This is one beneficiary group for sediment regulation.  The location of farmland susceptible to sedimentation
-    is passed to the flow model, which calculates actual sedimentation
-    levels, given upstream erosion levels and the
-    location of sinks that deposit sediment.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of floodplain farmland.</p>
-    <h1>Source</h1>
-    <p>Intersection of floodplain extents data and farmland cover data.</p>
+    <p>Farmland located in floodplains benefits from sediment
+    regulation, either of avoided detrimental sediment or delivery of
+    beneficial sediment.</p>
+    <h1>Role in models</h1> <p>This is one beneficiary group for
+    sediment regulation. The location of farmland susceptible to
+    sedimentation is passed to the flow model, which calculates actual
+    sedimentation levels, given upstream erosion levels and the location
+    of sinks that deposit sediment.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    floodplain farmland.</p>
+    <h1>Source</h1> <p>Intersection of floodplain extents data and
+    farmland cover data.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -879,14 +896,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <units>m</units>
     <description><![CDATA[
     <p>Elevation above sea level.</p>
-    <h1>Role in models</h1>
-    <p>A digital elevation model is used along with hydrography data to route sediment-carrying water across
-    the land surface.  The flow model moves precipitation downslope using elevation data until it reaches a
-    stream network, which water then follows through the stream network.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of meters above sea level.</p>
-    <h1>Source</h1>
-    <p>Global 90-m SRTM digital elevation model.</p>
+    <h1>Role in models</h1> <p>A digital elevation model is used along
+    with hydrography data to route sediment-carrying water across the land
+    surface. The flow model moves precipitation downslope using elevation
+    data until it reaches a stream network, which water then follows
+    through the stream network.</p>
+    <h1>Representation</h1> <p>Data are in physical units of meters
+    above sea level.</p>
+    <h1>Source</h1> <p>Global 90-m SRTM digital elevation model.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -910,17 +927,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description><![CDATA[
     <p>River and stream locations.</p>
-    <h1>Role in models</h1>
-    <p>Hydrography data are used to route sediment-carrying surface water.
-    The flow model moves precipitation downslope using elevation data until it reaches a stream network,
+    <h1>Role in models</h1> <p>Hydrography data are used to route
+    sediment-carrying surface water. The flow model moves precipitation
+    downslope using elevation data until it reaches a stream network,
     which water then follows through the stream network.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence map of rivers and streams.</p>
-    <h1>Source</h1>
-    <p>Digital Chart of the World (Dominican Republic); Foiben-Taosarintanin'i Madagasikara
-    (FTM, Madagascar); Colorado Department of Transportation
-    (Colorado, U.S.); Washington Department of Natural Resources
-    (Washington State, U.S.).</p>
+    <h1>Representation</h1> <p>Data show the presence or absence map
+    of rivers and streams.</p>
+    <h1>Source</h1> <p>Digital Chart of the World (Dominican
+    Republic); Foiben-Taosarintanin'i Madagasikara (FTM, Madagascar);
+    Colorado Department of Transportation (Colorado, U.S.); Washington
+    Department of Natural Resources (Washington State, U.S.).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -948,15 +964,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Levees</runninghead>
     <group>flow</group>
     <description><![CDATA[
-    <p>Levees restrict a river's flow to its channel, limiting the ability of floodwater to spread across
-    the floodplain and deposit sediment.</p>
-    <h1>Role in models</h1>
-    <p>Levee location data are used in the flow model to limit the spread of floodwater across the floodplain when
-    levees are present, eliminating the possibility of sediment deposition beyond levees.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of levees.</p>
-    <h1>Source</h1>
-    <p>County GIS offices (where available).</p>
+    <p>Levees restrict a river's flow to its channel, limiting the
+    ability of floodwater to spread across the floodplain and deposit
+    sediment.</p>
+    <h1>Role in models</h1> <p>Levee location data are used in the
+    flow model to limit the spread of floodwater across the floodplain
+    when levees are present, eliminating the possibility of sediment
+    deposition beyond levees.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    levees.</p>
+    <h1>Source</h1> <p>County GIS offices (where available).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -992,17 +1009,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Possible flow map</runninghead>
     <group>flow</group>
     <description>
-      *Possible flow maps* show the path that the carrier of the 
-      service would take if it was not intercepted by sinks.  
-      As such it considers source and use models and shows the 
-      maximum amount of flow. 
+      *Possible flow maps* show the path that the carrier of the
+      service would take if it was not intercepted by sinks. As such it
+      considers source and use models and shows the maximum amount of flow.
 
-      For provisioning services, this corresponds to the maximum 
-      potential benefit; for preventive services, the maximum
-      potential damage.
+      For provisioning services, this corresponds to the maximum
+      potential benefit; for preventive services, the maximum potential
+      damage.
 
-      This map shows downstream sediment movement when not accounting for sediment
-      sinks (i.e., areas of deposition).
+      This map shows downstream sediment movement when not accounting
+      for sediment sinks (i.e., areas of deposition).
     </description>
     <see-also><![CDATA[
     <p>
@@ -1023,25 +1039,23 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Possible source map</runninghead>
     <group>flow</group>
     <description>
-      *Possible source maps*, generated through flow analysis, show which
-      specific sources actually generate carriers that reach users,
-      independent of the existence of sinks but taking into account
-      use values and the carrier flow paths. Even in the absence of
-      sinks, not all of a source quantity can actually reach users, 
-      because of the route that an ecosystem service carrier moves 
-      across the landscape. 
+      *Possible source maps*, generated through flow analysis, show
+      which specific sources actually generate carriers that reach users,
+      independent of the existence of sinks but taking into account use
+      values and the carrier flow paths. Even in the absence of sinks, not
+      all of a source quantity can actually reach users, because of the
+      route that an ecosystem service carrier moves across the landscape.
 
-      For provisioning services, this corresponds to the source of 
-      benefits that has the potential of being actually useful. For 
-      preventive services, this corresponds to the sources that could 
-      actually cause damage to people. The location and strength of 
-      sinks determines how much of the source actually reaches the
-      users.
+      For provisioning services, this corresponds to the source of
+      benefits that has the potential of being actually useful. For
+      preventive services, this corresponds to the sources that could
+      actually cause damage to people. The location and strength of sinks
+      determines how much of the source actually reaches the users.
 
       This map shows areas which, based on sediment flows but when not
-      accounting for sinks (i.e., depositional areas), provide sediment which reaches
-      downstream users who either benefit from or are damaged by
-      sediment delivery.
+      accounting for sinks (i.e., depositional areas), provide sediment
+      which reaches downstream users who either benefit from or are damaged
+      by sediment delivery.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1062,19 +1076,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Possible use map</runninghead>
     <group>flow</group>
     <description>
-      *Possible use maps* show the locations of users that can receive a
-      benefit due to flow connections with a source of an ecosystem service carrier, but may
-      or may not actually receive the carrier due to the action of
-      sinks.  
+      *Possible use maps* show the locations of users that can receive
+      a benefit due to flow connections with a source of an ecosystem
+      service carrier, but may or may not actually receive the carrier due
+      to the action of sinks.
 
       For provisioning services, potential use identifies areas where
-      it is physically possible for a benefit to be received.  For 
-      preventive services, potential use identifies areas that may be 
-      damaged by a detrimental carrier if sinks do not prevent such
-      damage.
+      it is physically possible for a benefit to be received. For preventive
+      services, potential use identifies areas that may be damaged by a
+      detrimental carrier if sinks do not prevent such damage.
 
-      This map shows beneficiaries who receive beneficial or detrimental sedimentation when
-      accounting for flow paths but not sinks.
+      This map shows beneficiaries who receive beneficial or
+      detrimental sedimentation when accounting for flow paths but not
+      sinks.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1095,17 +1109,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <description>
-      *Actual flow maps* show the flow paths that deliver actual services to
-      beneficiaries. These are selected from the total flow density to only show these flow paths
-      that are not depleted by sinks and actually reach users.
+      *Actual flow maps* show the flow paths that deliver actual
+      services to beneficiaries. These are selected from the total flow
+      density to only show these flow paths that are not depleted by sinks
+      and actually reach users.
 
-      For provisioning services, these flow paths deliver valuable benefits to the
-      users and the density is proportional to the value accrued. For preventive services,
-      the flow paths show how much of the carrier reaches users, delivering actual
-      damage.
+      For provisioning services, these flow paths deliver valuable
+      benefits to the users and the density is proportional to the value
+      accrued. For preventive services, the flow paths show how much of the
+      carrier reaches users, delivering actual damage.
 
-      In this case, the density of actual flows shows the downstream movement of sediment
-      when accounting for sediment sinks (i.e., areas of deposition).
+      In this case, the density of actual flows shows the downstream
+      movement of sediment when accounting for sediment sinks (i.e., areas
+      of deposition).
     </description>
     <see-also><![CDATA[
     <p>
@@ -1127,17 +1143,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Actual source maps* show sources that actually provide a
-      service after accounting for sinks and flow dynamics. 
+      service after accounting for sinks and flow dynamics.
 
-      For provisioning services, this is the amount and location of a 
-      benefit that actually provides benefits to the users. For 
-      preventive services, it shows where the actual damage came 
-      from. Source regions that provided a damaging carrier that 
-      was neutralized by sinks are not shown.
+      For provisioning services, this is the amount and location of a
+      benefit that actually provides benefits to the users. For preventive
+      services, it shows where the actual damage came from. Source regions
+      that provided a damaging carrier that was neutralized by sinks are not
+      shown.
 
-      This map shows areas which, based on sediment flows and accounting
-      for sinks (i.e., depositional areas), provide sediment to downstream users who
-      either benefit from or are damaged by sediment delivery.
+      This map shows areas which, based on sediment flows and
+      accounting for sinks (i.e., depositional areas), provide sediment to
+      downstream users who either benefit from or are damaged by sediment
+      delivery.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1158,16 +1175,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual sink map</runninghead>
     <group>flow</group>
     <description>
-      *Actual sink maps* shows the sinks that actually contribute
-      to depleting a service carrier given its flow patterns. 
+      *Actual sink maps* shows the sinks that actually contribute to
+      depleting a service carrier given its flow patterns.
 
-      For provisioning services, such sinks reduce benefits to 
-      users compared to their possible value. For preventive 
-      services, such sinks provide the actual service because 
-      they prevent a damaging carrier from reaching users.
+      For provisioning services, such sinks reduce benefits to users
+      compared to their possible value. For preventive services, such sinks
+      provide the actual service because they prevent a damaging carrier
+      from reaching users.
 
-      This map shows depositional areas that undergo sedimentation, receiving
-      upstream sediment and actively performing a sediment trapping function.
+      This map shows depositional areas that undergo sedimentation,
+      receiving upstream sediment and actively performing a sediment
+      trapping function.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1188,12 +1206,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual use map</runninghead>
     <group>flow</group>
     <description>
-      *Actual use maps* show the level of use of a beneficial carrier for a provisioning
-      service or damage caused by a detrimental carrier for a preventive service, for
-      users.
+      *Actual use maps* show the level of use of a beneficial carrier
+      for a provisioning service or damage caused by a detrimental carrier
+      for a preventive service, for users.
 
-      This map shows beneficiaries who receive beneficial or detrimental sedimentation when
-      accounting for flow paths and sinks.
+      This map shows beneficiaries who receive beneficial or
+      detrimental sedimentation when accounting for flow paths and sinks.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1216,17 +1234,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Inaccessible source maps* show source areas whose values are
       irrelevant to ecosystem service delivery, because of a lack of flow
-      connections between sources and users. 
+      connections between sources and users.
 
-      For provisioning services, this is the portion of the value that 
-      must be subtracted from the total source map to define a maximum 
-      potential benefit for the users. For preventive services, it
-      shows those areas that have no potential of producing damage because the
-      flow dynamics prevent the carrier from impacting any significant
-      user.
+      For provisioning services, this is the portion of the value that
+      must be subtracted from the total source map to define a maximum
+      potential benefit for the users. For preventive services, it shows
+      those areas that have no potential of producing damage because the
+      flow dynamics prevent the carrier from impacting any significant user.
 
-      This map shows areas which, based on sediment flows, do not provide sediment
-      to downstream users who either benefit from or are damaged by sediment delivery.
+      This map shows areas which, based on sediment flows, do not
+      provide sediment to downstream users who either benefit from or are
+      damaged by sediment delivery.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1247,20 +1265,21 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Blocked flow map</runninghead>
     <group>flow</group>
     <description>
-      *Blocked flow maps* show flow paths that could have delivered 
-      an ecosystem service to humans based on the flow routes and 
-      source and user locations, but did not because of the action 
-      of sinks. These are selected from among all actual flows.
+      *Blocked flow maps* show flow paths that could have delivered an
+      ecosystem service to humans based on the flow routes and source and
+      user locations, but did not because of the action of sinks. These are
+      selected from among all actual flows.
 
       For provisioning services, these flow paths show the loss of
-      possible beneficial service flow to users, and their density 
-      is proportional to the value lost. For preventive services, 
-      the flow paths show the amount of the total flow that was 
-      prevented by natural features from causing damage.
+      possible beneficial service flow to users, and their density is
+      proportional to the value lost. For preventive services, the flow
+      paths show the amount of the total flow that was prevented by natural
+      features from causing damage.
 
-      This map shows the flow of sediment that does not reach downstream beneficiaries.
-      These beneficiaries either benefit from avoided detrimental
-      sedimentation or lose the delivery of beneficial sediment.
+      This map shows the flow of sediment that does not reach
+      downstream beneficiaries. These beneficiaries either benefit from
+      avoided detrimental sedimentation or lose the delivery of beneficial
+      sediment.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1281,18 +1300,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Blocked source map</runninghead>
     <group>flow</group>
     <description>
-      *Blocked source maps* show sources that had the possibility of 
-      reaching users given the location of users and flow dynamics, but
-      were blocked from doing so because of the action of sinks. 
+      *Blocked source maps* show sources that had the possibility of
+      reaching users given the location of users and flow dynamics, but were
+      blocked from doing so because of the action of sinks.
 
-      For provisioning services, this corresponds to value produced by the 
-      environment but lost before it could reach the users. For
+      For provisioning services, this corresponds to value produced by
+      the environment but lost before it could reach the users. For
       preventive services, it corresponds to damage that could have been
       inflicted on users but was blocked by natural features.
-
+      
       This map shows areas which, based on the deposition occurring in
-      sinks areas, do not provide sediment to downstream users who 
-      either benefit from or are damaged by sediment delivery.
+      sinks areas, do not provide sediment to downstream users who either
+      benefit from or are damaged by sediment delivery.
     </description>
     <see-also><![CDATA[
     <p>
@@ -1314,18 +1333,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Blocked use maps* show users that would have received a service
-      carrier based on source and flow dynamics, but did not because
-      of the action of sinks. 
+      carrier based on source and flow dynamics, but did not because of the
+      action of sinks.
 
       For provisioning services, the map shows possible value that
-      were prevented by sinks from reaching users; for preventive 
-      services, it shows actual value accrued by users from sinks 
-      that blocked damaging flows. For preventive services, therefore, 
-      this map is the ultimate quantification of value given the 
-      locations and quantity of users and sink features.
+      were prevented by sinks from reaching users; for preventive services,
+      it shows actual value accrued by users from sinks that blocked
+      damaging flows. For preventive services, therefore, this map is the
+      ultimate quantification of value given the locations and quantity of
+      users and sink features.
 
-      This map shows beneficiaries who receive less detrimental sediment as a result of
-      sinks where sediment deposition occurs.
+      This map shows beneficiaries who receive less detrimental
+      sediment as a result of sinks where sediment deposition occurs.
     </description>
     <see-also><![CDATA[
     <p>

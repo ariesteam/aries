@@ -19,18 +19,18 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 <presentation>
 
   <title>Recreation: Scenic viewsheds</title>
-  <runninghead>Values resulting from ecosystem contributions toward scenic viewsheds from mountains as a recreational activity</runninghead>
+  <runninghead>Values resulting from ecosystem contributions toward
+  scenic viewsheds from mountains as a recreational activity</runninghead>
   <description>Values resulting from the value of hiking to scenic
-  viewsheds on mountaintops as a recreational activity.  Source models 
-  map the potential quality for viewing high-quality scenic vistas
-  from mountains.  Flow models can be used to connect beneficiaries 
-  to areas where hiking can occur.</description>
+  viewsheds on mountaintops as a recreational activity. Source models
+  map the potential quality for viewing high-quality scenic vistas from
+  mountains. Flow models can be used to connect beneficiaries to areas
+  where hiking can occur.</description>
 
   <!-- The concept of the main observation (the top-level model). -->
   <concept>recreationService:MountainViewUse</concept>
 
-  <!-- All the models that apply and in which context.  Need to
-       separate out the different San Pedro rec models. -->
+  <!-- All the models that apply and in which context.  -->
 
   <!-- The Vermont viewsheds model needs to have its use model
        replaced.  While we should eventually incorporate it into the
@@ -51,10 +51,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Natural areas for scenic views</runninghead>
     <group></group>
     <description>
-      This storyline considers the value of views from mountain summits and overlooks for hikers.  View quality and
-      obstructions are modeled using a line-of-sight model, which identifies viewshed quality at alternative mountain
-      summits.  A transportation model using road networks and recreational preferences will be developed in the future
-      to identify spatial connections between people and their preferred recreational sites.
+      This storyline considers the value of views from mountain
+      summits and overlooks for hikers. View quality and obstructions are
+      modeled using a line-of-sight model, which identifies viewshed quality
+      at alternative mountain summits. A transportation model using road
+      networks and recreational preferences will be developed in the future
+      to identify spatial connections between people and their preferred
+      recreational sites.
     </description>
     <see-also><![CDATA[
     <p>
@@ -77,14 +80,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Lakes</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of lakes as aesthetically valued natural features to view from mountain summits.</p>
-    <h1>Role in models</h1>
-    <p>Lake presence is considered a high-quality view and used as an input to a probabilistic model
-    to estimate view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of lakes.</p>
-    <h1>Source</h1>
-    <p>National Hydrography Dataset.</p>
+    <p>The presence of lakes as aesthetically valued natural features
+    to view from mountain summits.</p>
+    <h1>Role in models</h1> <p>Lake presence is considered a
+    high-quality view and used as an input to a probabilistic model to
+    estimate view quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    lakes.</p>
+    <h1>Source</h1> <p>National Hydrography Dataset.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -107,14 +110,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Rivers and streams</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of rivers and streams as aesthetically valued natural features to view from mountain summits.</p>
-    <h1>Role in models</h1>
-    <p>Rivers and streams, which are less prominent water features on the landscape than lakes, are defined
-    as a lower-quality view and used as an input to a probabilistic model to estimate view quality.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of rivers and streams.</p>
-    <h1>Source</h1>
-    <p>National Hydrography Dataset.</p>
+    <p>The presence of rivers and streams as aesthetically valued
+    natural features to view from mountain summits.</p>
+    <h1>Role in models</h1> <p>Rivers and streams, which are less
+    prominent water features on the landscape than lakes, are defined as a
+    lower-quality view and used as an input to a probabilistic model to
+    estimate view quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    rivers and streams.</p>
+    <h1>Source</h1> <p>National Hydrography Dataset.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -137,14 +141,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Mountains</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of other mountains as aesthetically pleasing natural features to view from mountain summits.</p>
-    <h1>Role in models</h1>
-    <p>The view of other mountains, and their height, is used as an input to a probabilistic model to estimate
-    view quality from a given mountain summit.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of meters above sea level.</p>
-    <h1>Source</h1>
-    <p>Global 90-m SRTM digital elevation model.</p>
+    <p>The presence of other mountains as aesthetically pleasing
+    natural features to view from mountain summits.</p>
+    <h1>Role in models</h1> <p>The view of other mountains, and their
+    height, is used as an input to a probabilistic model to estimate view
+    quality from a given mountain summit.</p>
+    <h1>Representation</h1> <p>Data are in physical units of meters
+    above sea level.</p>
+    <h1>Source</h1> <p>Global 90-m SRTM digital elevation model.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -167,15 +171,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Open space type</runninghead>
     <group>source</group>
     <description><![CDATA[
-    <p>The presence of aesthetically valued land cover types as viewed from mountain summits, such as forests or
-    farmland.</p>
-    <h1>Role in models</h1>
-    <p>The view of natural land cover, such as forests or farmland, is used as an input to a probabilistic model to
+    <p>The presence of aesthetically valued land cover types as viewed
+    from mountain summits, such as forests or farmland.</p>
+    <h1>Role in models</h1> <p>The view of natural land cover, such as
+    forests or farmland, is used as an input to a probabilistic model to
     estimate view quality from a given mountain summit.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from NLCD land cover classes.</p>
-    <h1>Source</h1>
-    <p>National Land Cover Dataset (NLCD).</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from NLCD
+    land cover classes.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -199,18 +202,20 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>source</group>
     <description><![CDATA[
     <p>The quality of a potential view from a mountain summit.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of the viewshed source model, and estimates the relative quality
-    of different areas in providing aesthetically pleasing views, based on relevant input data.</p>
-    <h1>Representation</h1>
-    <p>The data are in abstract units from 0-100, representing relative suitability of different
-    parts of the landscape to provide aesthetically pleasing views. As the output of the models
-    is probabilistic, each point contains the probability distribution for potential view quality.
-    The distribution can be visualized by clicking on the map; the mean value and the coefficient
+    <h1>Role in models</h1> <p>This is the output of the viewshed
+    source model, and estimates the relative quality of different areas in
+    providing aesthetically pleasing views, based on relevant input
+    data.</p>
+    <h1>Representation</h1> <p>The data are in abstract units from
+    0-100, representing relative suitability of different parts of the
+    landscape to provide aesthetically pleasing views. As the output of
+    the models is probabilistic, each point contains the probability
+    distribution for potential view quality. The distribution can be
+    visualized by clicking on the map; the mean value and the coefficient
     of variation are reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
-    ARIES server for the selected area.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -232,15 +237,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Developed land</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The presence of aesthetically displeasing land cover types as viewed from mountain summits, such as
-    high density development.</p>
-    <h1>Role in models</h1>
-    <p>The view of aesthetically displeasing land cover, such as high-density developed land, is used as an
-    input to a probabilistic model to estimate visual blight visible from a given mountain summit.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, derived from NLCD land cover classes.</p>
-    <h1>Source</h1>
-    <p>National Land Cover Dataset (NLCD).</p>
+    <p>The presence of aesthetically displeasing land cover types as
+    viewed from mountain summits, such as high density development.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land cover, such as high-density developed land, is used as an input
+    to a probabilistic model to estimate visual blight visible from a
+    given mountain summit.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from NLCD
+    land cover classes.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -263,15 +268,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Transportation and energy infrastructure</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The presence of aesthetically displeasing land use types as viewed from mountain summits, such as
-    highways or transmission lines.</p>
-    <h1>Role in models</h1>
-    <p>The view of aesthetically displeasing land use, such as highways or transmission lines, is used as an
-    input to a probabilistic model to estimate visual blight visible from a given mountain summit.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of roads and transmission lines.</p>
-    <h1>Source</h1>
-    <p>Vermont Center for Geographic Information.</p>
+    <p>The presence of aesthetically displeasing land use types as
+    viewed from mountain summits, such as highways or transmission
+    lines.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land use, such as highways or transmission lines, is used as an input
+    to a probabilistic model to estimate visual blight visible from a
+    given mountain summit.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    roads and transmission lines.</p>
+    <h1>Source</h1> <p>Vermont Center for Geographic Information.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -294,20 +300,21 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Visual blight</runninghead>
     <group>sink</group>
     <description><![CDATA[
-    <p>The ability of parts of the landscape to degrade views, based on the presence of visually
-    unappealing features.</p>
-    <h1>Role in models</h1>
-    <p>This is the output of the viewshed sink model, and estimates the relative ability
-    of different areas to degrade high-quality views, based on relevant input data.</p>
-    <h1>Representation</h1>
-    <p>The data are in abstract units from 0-100, representing relative ability of different
-    parts of the landscape to degrade high-quality views. As the output of the models is probabilistic,
-    each point contains the probability distribution for potential visual blight.  The distribution
-    can be visualized by clicking on the map; the mean value and the coefficient of variation are
-    reported along with the probabilities.</p>
-    <h1>Source</h1>
-    <p>This map has been computed at your request by a Bayesian model built and calibrated by the
-    ARIES server for the selected area.</p>
+    <p>The ability of parts of the landscape to degrade views, based
+    on the presence of visually unappealing features.</p>
+    <h1>Role in models</h1> <p>This is the output of the viewshed sink
+    model, and estimates the relative ability of different areas to
+    degrade high-quality views, based on relevant input data.</p>
+    <h1>Representation</h1> <p>The data are in abstract units from
+    0-100, representing relative ability of different parts of the
+    landscape to degrade high-quality views. As the output of the models
+    is probabilistic, each point contains the probability distribution for
+    potential visual blight. The distribution can be visualized by
+    clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -332,17 +339,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Summits with views</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>The presence of mountain summits or overlooks with views of the surrounding landscape, as opposed to forested
-    summits with limited views.</p>
-    <h1>Role in models</h1>
-    <p>Viewsheds are calculated from all mountain summits or overlooks with views using a viewshed flow model, which
-    quantifies view quality for each summit or overlook.  View quality can then be used as the source value for a recreation
-    flow model that connects recreationists to mountain summits of interest.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of mountain summits or overlooks with views
-    of the surrounding landscape.</p>
-    <h1>Source</h1>
-    <p>Digitized based on Vermont hiking guides.</p>
+    <p>The presence of mountain summits or overlooks with views of the
+    surrounding landscape, as opposed to forested summits with limited
+    views.</p>
+    <h1>Role in models</h1> <p>Viewsheds are calculated from all
+    mountain summits or overlooks with views using a viewshed flow model,
+    which quantifies view quality for each summit or overlook. View
+    quality can then be used as the source value for a recreation flow
+    model that connects recreationists to mountain summits of
+    interest.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    mountain summits or overlooks with views of the surrounding
+    landscape.</p>
+    <h1>Source</h1> <p>Digitized based on Vermont hiking guides.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -364,18 +373,23 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual view quality</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>The actual quality of views from mountain summits and overlooks, when accounting for the source of high quality
-    views, visual blight that degrades views, and distance decay in viewsheds.  The viewshed flow model accounts for these
-    parameters, providing this map of acutal view quality from summits and overlooks.</p>
-    <h1>Role in models</h1>
-    <p>Viewsheds are calculated from all mountain summits or overlooks with views using a viewshed flow model, which
-    quantifies view quality for each summit or overlook.  View quality can then be used as the source value for a recreation
-    flow model that connects recreationists to mountain summits of interest.</p>
-    <h1>Representation</h1>
-    <p>The data are in abstract units from 0-100, representing relative view quality from a given summit or overlook.</p>
-    <h1>Source</h1>
-    <p>Calculated using the viewshed flow model, accounting for sources of high quality views and visual blight
-    that degrades views from mountain summits and overlooks.</p>
+    <p>The actual quality of views from mountain summits and
+    overlooks, when accounting for the source of high quality views,
+    visual blight that degrades views, and distance decay in viewsheds.
+    The viewshed flow model accounts for these parameters, providing this
+    map of acutal view quality from summits and overlooks.</p>
+    <h1>Role in models</h1> <p>Viewsheds are calculated from all
+    mountain summits or overlooks with views using a viewshed flow model,
+    which quantifies view quality for each summit or overlook. View
+    quality can then be used as the source value for a recreation flow
+    model that connects recreationists to mountain summits of
+    interest.</p>
+    <h1>Representation</h1> <p>The data are in abstract units from
+    0-100, representing relative view quality from a given summit or
+    overlook.</p>
+    <h1>Source</h1> <p>Calculated using the viewshed flow model,
+    accounting for sources of high quality views and visual blight that
+    degrades views from mountain summits and overlooks.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -398,15 +412,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>source</group>
     <description><![CDATA[
     <p>Areas with public access for recreational activities.</p>
-    <h1>Role in models</h1>
-    <p>Public access is a prerequisite for recreationists to engage in
-    their activity of interest on a given parcel of land. Public access data are combined with other appropriate
-    data to identify an area's suitability for the recreational activity of interest.</p>
-    <h1>Representation</h1>
-    <p>Data are categorical, and identify public land, private land with public access granted (e.g., nature preserves),
-    or private land without public access.</p>
-    <h1>Source</h1>
-    <p>Vermont Center for Geographic Information.</p>
+    <h1>Role in models</h1> <p>Public access is a prerequisite for
+    recreationists to engage in their activity of interest on a given
+    parcel of land. Public access data are combined with other appropriate
+    data to identify an area's suitability for the recreational activity
+    of interest.</p>
+    <h1>Representation</h1> <p>Data are categorical, and identify
+    public land, private land with public access granted (e.g., nature
+    preserves), or private land without public access.</p>
+    <h1>Source</h1> <p>Vermont Center for Geographic Information.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -429,15 +443,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Population density</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>Population density estimates can be used to map recreational use.</p>
-    <h1>Role in models</h1>
-    <p>Population density can be used along with recreational preference data, where available, to estimate
-    the number of potential recreational uesrs for a given activity in a particular area.  These data are thus
-    used in the recreational use model.</p>
-    <h1>Representation</h1>
-    <p>Data are in physical units of persons per square kilometer.</p>
-    <h1>Source</h1>
-    <p>U.S. Census Bureau population estimates and TIGER block group files.</p>
+    <p>Population density estimates can be used to map recreational
+    use.</p>
+    <h1>Role in models</h1> <p>Population density can be used along
+    with recreational preference data, where available, to estimate the
+    number of potential recreational uesrs for a given activity in a
+    particular area. These data are thus used in the recreational use
+    model.</p>
+    <h1>Representation</h1> <p>Data are in physical units of persons
+    per square kilometer.</p>
+    <h1>Source</h1> <p>U.S. Census Bureau population estimates and
+    TIGER block group files.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -461,13 +477,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>use</group>
     <description><![CDATA[
     <p>Roads used to travel to recreational areas.</p>
-    <h1>Role in models</h1>
-    <p>Roads are used in the recreation flow model to determine the accessibility of recreational areas
-    for potential users.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of roads.</p>
-    <h1>Source</h1>
-    <p>Vermont Center for Geographic Information.</p>
+    <h1>Role in models</h1> <p>Roads are used in the recreation flow
+    model to determine the accessibility of recreational areas for
+    potential users.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    roads.</p>
+    <h1>Source</h1> <p>Vermont Center for Geographic Information.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -490,15 +505,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Road travel capacity</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>The type of road, which determines how quickly users can travel to potential recreation areas.</p>
-    <h1>Role in models</h1>
-    <p>These data identify the type of road (e.g., interstate, state highway, arterial, unpaved), which
-    can be used by the recreation flow model to determine ease of access (e.g., travel cost to reach
-    different sites).</p>
-    <h1>Representation</h1>
-    <p>Data are categorical by road type.</p>
-    <h1>Source</h1>
-    <p>Vermont Center for Geographic Information.</p>
+    <p>The type of road, which determines how quickly users can travel
+    to potential recreation areas.</p>
+    <h1>Role in models</h1> <p>These data identify the type of road
+    (e.g., interstate, state highway, arterial, unpaved), which can be
+    used by the recreation flow model to determine ease of access (e.g.,
+    travel cost to reach different sites).</p>
+    <h1>Representation</h1> <p>Data are categorical by road type.</p>
+    <h1>Source</h1> <p>Vermont Center for Geographic Information.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -521,15 +535,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Trails</runninghead>
     <group>use</group>
     <description><![CDATA[
-    <p>Trails used by hikers, campers, and other recreational users.</p>
-    <h1>Role in models</h1>
-    <p>Trail data can be used in the recreation flow model to show recreational accessibility for certain parts of
-    a recreation area.  Without dedicated trail access, recreational use may be much lower.  Areas with easily-accessible
-    or high use trails offer a different visitor experience than more remote trails.</p>
-    <h1>Representation</h1>
-    <p>Data show the presence or absence of trails.</p>
-    <h1>Source</h1>
-    <p>Vermont Center for Geographic Information.</p>
+    <p>Trails used by hikers, campers, and other recreational
+    users.</p>
+    <h1>Role in models</h1> <p>Trail data can be used in the
+    recreation flow model to show recreational accessibility for certain
+    parts of a recreation area. Without dedicated trail access,
+    recreational use may be much lower. Areas with easily-accessible or
+    high use trails offer a different visitor experience than more remote
+    trails.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    trails.</p>
+    <h1>Source</h1> <p>Vermont Center for Geographic Information.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -557,18 +573,19 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual flow map</runninghead>
     <group>flow</group>
     <description>
-      *Actual flow maps* show the flow paths that deliver actual services to
-      beneficiaries. These are selected from the total flow density to only show these flow paths
-      that are not depleted by sinks and actually reach users.
+      *Actual flow maps* show the flow paths that deliver actual
+      services to beneficiaries. These are selected from the total flow
+      density to only show these flow paths that are not depleted by sinks
+      and actually reach users.
 
-      For provisioning services, these flow paths deliver valuable benefits to the
-      users and the density is proportional to the value accrued. For preventive services,
-      the flow paths show how much of the carrier reaches users, delivering actual
-      damage.
+      For provisioning services, these flow paths deliver valuable
+      benefits to the users and the density is proportional to the value
+      accrued. For preventive services, the flow paths show how much of the
+      carrier reaches users, delivering actual damage.
 
-      This map shows the movement of people toward recreation areas, based on
-      transportation networks, recreational preferences, site quality, and a distance decay
-      function.
+      This map shows the movement of people toward recreation areas,
+      based on transportation networks, recreational preferences, site
+      quality, and a distance decay function.
     </description>
     <see-also><![CDATA[
     <p>
@@ -590,15 +607,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <group>flow</group>
     <description>
       *Actual source maps* show sources that actually provide a
-      service after accounting for sinks and flow dynamics. For 
-      provisioning services, this is the amount and location of a 
-      benefit that actually provides benefits to the users. For 
-      preventive services, it shows where the actual damage came 
-      from. Source regions that provided a damaging carrier that 
-      was neutralized by sinks are not shown.
+      service after accounting for sinks and flow dynamics. For provisioning
+      services, this is the amount and location of a benefit that actually
+      provides benefits to the users. For preventive services, it shows
+      where the actual damage came from. Source regions that provided a
+      damaging carrier that was neutralized by sinks are not shown.
 
-      This map shows the amount of recreational use actually occurring at a recreation area
-      when accounting for demand and spatial flows of visitors.
+      This map shows the amount of recreational use actually occurring
+      at a recreation area when accounting for demand and spatial flows of
+      visitors.
     </description>
     <see-also><![CDATA[
     <p>
@@ -619,12 +636,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Actual use map</runninghead>
     <group>flow</group>
     <description>
-      *Actual use maps* show the level of use of a beneficial carrier for a provisioning
-      service or damage caused by a detrimental carrier for a preventive service, for
-      users.
+      *Actual use maps* show the level of use of a beneficial carrier
+      for a provisioning service or damage caused by a detrimental carrier
+      for a preventive service, for users.
 
-      This map shows the residential location of users who actually travel to sites
-      via “recreation flows” to engage in recreational activities at source areas.
+      This map shows the residential location of users who actually
+      travel to sites via “recreation flows” to engage in recreational
+      activities at source areas.
     </description>
     <see-also><![CDATA[
     <p>
@@ -647,18 +665,17 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description>
       *Inaccessible source maps* show source areas whose values are
       irrelevant to ecosystem service delivery, because of a lack of flow
-      connections between sources and users. 
+      connections between sources and users.
 
-      For provisioning services, this is the portion of the value that 
-      must be subtracted from the total source map to define a maximum 
-      potential benefit for the users. For preventive services, it
-      shows those areas that have no potential of producing damage because the
-      flow dynamics prevent the carrier from impacting any significant
-      user.
-
-      This map shows recreational areas whose current accessibility via transportation
-      networks makes their use level more limited than their attractiveness alone would
-      dictate.
+      For provisioning services, this is the portion of the value that
+      must be subtracted from the total source map to define a maximum
+      potential benefit for the users. For preventive services, it shows
+      those areas that have no potential of producing damage because the
+      flow dynamics prevent the carrier from impacting any significant user.
+      
+      This map shows recreational areas whose current accessibility
+      via transportation networks makes their use level more limited than
+      their attractiveness alone would dictate.
     </description>
     <see-also><![CDATA[
     <p>
@@ -679,14 +696,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <runninghead>Inaccessible use map</runninghead>
     <group>flow</group>
     <description>
-      *Inaccessible use maps* shows potential users that cannot receive a service
-      due to a lack of flow routes linking source and user locations. 
+      *Inaccessible use maps* shows potential users that cannot
+      receive a service due to a lack of flow routes linking source and user
+      locations.
 
       For provisioning services, this corresponds to value produced by
-      the environment that cannot be reached by users. For preventive 
-      services, it corresponds to damage that could have been
-      inflicted on users but is not due to a lack of flow connections
-      to users.
+      the environment that cannot be reached by users. For preventive
+      services, it corresponds to damage that could have been inflicted on
+      users but is not due to a lack of flow connections to users.
 
       This map shows users too distant from a recreational site to
       benefit from it.

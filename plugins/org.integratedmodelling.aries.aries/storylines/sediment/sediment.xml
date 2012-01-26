@@ -34,51 +34,63 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <name>Sediment regulation</name>
     <title>Model coverage and general information</title>
     <description><![CDATA[
-    <p>Erosion and sedimentation are major global problems that impose a high cost on
-    the functioning of ecosystems and ecosystem service delivery. Excessive erosion and
-    sedimentation have serious negative impacts on economic sectors including agriculture,
-    water supply, electric power generation, and navigation. Excessive sediment delivery
-    can also have negative impacts on coastal and nearshore marine ecosystems and the
-    services they provide.  At the same time, natural sediment delivery can be beneficial
-    process in some contexts, and the disruption of natural sediment delivery can thus have
-    negative impacts.  For example, reduced sediment delivery to deltas can lead to loss
-    of coastal wetlands and the critical services they provide.</p>
+    <p>Erosion and sedimentation are major global problems that impose
+    a high cost on the functioning of ecosystems and ecosystem service
+    delivery. Excessive erosion and sedimentation have serious negative
+    impacts on economic sectors including agriculture, water supply,
+    electric power generation, and navigation. Excessive sediment delivery
+    can also have negative impacts on coastal and nearshore marine
+    ecosystems and the services they provide. At the same time, natural
+    sediment delivery can be beneficial process in some contexts, and the
+    disruption of natural sediment delivery can thus have negative
+    impacts. For example, reduced sediment delivery to deltas can lead to
+    loss of coastal wetlands and the critical services they provide.</p>
 
-    <p>Spatial modeling of sedimentation has frequently used models such as the Universal
-    Soil Loss Equation (USLE), Revised Universal Soil Loss Equation (RUSLE), or Spatially
-    Explicit Delivery Model (SEDMOD).  USLE and RUSLE multiply five coefficients – rainfall
-    runoff erosivity, soil erodibility, slope steepness and length, cover management, and
-    conservation practice – to estimate soil loss over a given area and time (e.g., tons
-    sediment/ha-yr).  Spatial data for soil loss and RUSLE coefficients are available, and
-    using these deterministic models, where appropriate, can reduce our reliance on ad hoc
-    probabilistic models.  However, USLE and RUSLE have several well-known limitations:
-    1) they apply only to sheet erosion versus linear or mass erosion; 2) they have only been
-    tested in regions with 1-20% slopes and are inappropriate for areas with steeper slopes
-    or young mountains where greater erosion is possible; 3) energy-rainfall relationships
-    have been best tested for the U.S. Great Plains, meaning that locally appropriate rainfall
-    runoff erosivity coefficients must be carefully developed and applied; 4) data are not
-    valid for individual storms but averages; and 5) The equations simplify interactions
-    between factors to attempt to isolate the relative effects of each.  Thus USLE/RUSLE
-    are likely most appropriate in level to moderately hilly landscapes with similar physical
-    and ecological characteristics as the central United States; different models may be more
-    appropriate in other parts of the world.  By using ARIES' internal rule base to select the
-    appropriate models, we can apply the RUSLE model and data on more level landscapes and
-    regionally appropriate ad hoc erosion models for steeper slopes or areas where RUSLE
-    is known to be inadequate.</p>
+    <p>Spatial modeling of sedimentation has frequently used models
+    such as the Universal Soil Loss Equation (USLE), Revised Universal
+    Soil Loss Equation (RUSLE), or Spatially Explicit Delivery Model
+    (SEDMOD). USLE and RUSLE multiply five coefficients – rainfall runoff
+    erosivity, soil erodibility, slope steepness and length, cover
+    management, and conservation practice – to estimate soil loss over a
+    given area and time (e.g., tons sediment/ha-yr). Spatial data for soil
+    loss and RUSLE coefficients are available, and using these
+    deterministic models, where appropriate, can reduce our reliance on ad
+    hoc probabilistic models. However, USLE and RUSLE have several
+    well-known limitations: 1) they apply only to sheet erosion versus
+    linear or mass erosion; 2) they have only been tested in regions with
+    1-20% slopes and are inappropriate for areas with steeper slopes or
+    young mountains where greater erosion is possible; 3) energy-rainfall
+    relationships have been best tested for the U.S. Great Plains, meaning
+    that locally appropriate rainfall runoff erosivity coefficients must
+    be carefully developed and applied; 4) data are not valid for
+    individual storms but averages; and 5) The equations simplify
+    interactions between factors to attempt to isolate the relative
+    effects of each. Thus USLE/RUSLE are likely most appropriate in level
+    to moderately hilly landscapes with similar physical and ecological
+    characteristics as the central United States; different models may be
+    more appropriate in other parts of the world. By using ARIES' internal
+    rule base to select the appropriate models, we can apply the RUSLE
+    model and data on more level landscapes and regionally appropriate ad
+    hoc erosion models for steeper slopes or areas where RUSLE is known to
+    be inadequate.</p>
 
-    <p>Along with modeling and mapping sources of waterborne sediment, we model sink regions
-    where sediment deposition occurs, along with users who either value beneficial sediment
-    or would be harmed by either delivery of excess sediment or the presence of excessively
-    turbid waterways.  Sediment regulation can thus be classified as either a provisioning or
-    preventive service, depending on whether the user benefits from or is harmed by sediment
-    delivery.  Running the sediment flow model allows the user to map spatial connections
-    between sources of sediment, areas that promote sediment deposition, and users that benefit
-    from or are harmed by sediment delivery.  In addition to these beneficiaries, vegetation
-    can provide the in situ benefit of erosion control for farmers or other beneficiaries who
-    want to avoid soil loss from their lands.  This benefit can be estimated by simply running
-    the erosion source model in the present state and with either no vegetation or a planned
-    (scenario) vegetation type, without needing to run a flow model.  The influence of vegetation
-    on avoided soil erosion is thus calculated for these beneficiaries.</p>
+    <p>Along with modeling and mapping sources of waterborne sediment,
+    we model sink regions where sediment deposition occurs, along with
+    users who either value beneficial sediment or would be harmed by
+    either delivery of excess sediment or the presence of excessively
+    turbid waterways. Sediment regulation can thus be classified as either
+    a provisioning or preventive service, depending on whether the user
+    benefits from or is harmed by sediment delivery. Running the sediment
+    flow model allows the user to map spatial connections between sources
+    of sediment, areas that promote sediment deposition, and users that
+    benefit from or are harmed by sediment delivery. In addition to these
+    beneficiaries, vegetation can provide the in situ benefit of erosion
+    control for farmers or other beneficiaries who want to avoid soil loss
+    from their lands. This benefit can be estimated by simply running the
+    erosion source model in the present state and with either no
+    vegetation or a planned (scenario) vegetation type, without needing to
+    run a flow model. The influence of vegetation on avoided soil erosion
+    is thus calculated for these beneficiaries.</p>
 
     ]]></description>
     <see-also><![CDATA[

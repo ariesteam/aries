@@ -116,10 +116,10 @@
    2048
    "EPSG:4326 POLYGON ((-124.88 46.3, -124.88 49.0, -120.6 49.0, -120.6 46.3, -124.88 46.3))"))
 
-(defcontext puget400
+(defcontext puget375
   ""
   (grid
-   512
+   375
    "EPSG:4326 POLYGON ((-124.8 46.58, -124.8 49.0, -120.63 49.0, -120.63 46.58, -124.8 46.58))"))
 
 (defcontext puget512
@@ -144,6 +144,12 @@
   ""
   (grid
    4096
+   "EPSG:4326 POLYGON ((-124.8 46.58, -124.8 49.0, -120.63 49.0, -120.63 46.58, -124.8 46.58))"))
+
+(defcontext puget10000
+  ""
+  (grid
+   10000
    "EPSG:4326 POLYGON ((-124.8 46.58, -124.8 49.0, -120.63 49.0, -120.63 46.58, -124.8 46.58))"))
 
 ;; Contexts below are for flood and sediment in Puget Sound.  Problem:

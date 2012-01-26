@@ -4166,9 +4166,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+<!-- Past concept was "habitat:AnnualRecharge" - but changed it so it
+could be used in BN training. -->
   <measurement:Measurement id="groundwater_recharge">
     <observation:hasObservable>
-      <habitat:AnnualRecharge />
+      <waterSupplyService:SoilInfiltrationClass />
     </observation:hasObservable>
     <measurement:unit>mm</measurement:unit>
     <rdfs:comment>Data source: USGS WRD NDSI</rdfs:comment>
@@ -4197,10 +4199,12 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- below is "Deep percolation," as modeled with the GWAM model for
        West Coyote Hills.  Worth checking to make sure this is
        equivalent to groundwater recharge, though it makes sense that
-       it should be -->
+       it should be.   Past concept was "habitat:AnnualRecharge" - but 
+       changed it so it could be used in BN training. -->
+
   <measurement:Measurement id="california_percolation_wch">
     <observation:hasObservable>
-      <habitat:AnnualRecharge />
+      <waterSupplyService:SoilInfiltrationClass />
     </observation:hasObservable>
     <rdfs:comment>Data source: Mean annual deep percolation, 1951-2002, modeled
     using Los Angeles Basin Groundwater Augmentation Model Version 4.1.10</rdfs:comment>
