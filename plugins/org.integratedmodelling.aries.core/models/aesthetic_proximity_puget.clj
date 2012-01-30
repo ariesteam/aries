@@ -44,12 +44,12 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
-(defmodel lake-front Lakefront
+(defmodel lakefront Lakefront
   (classification (binary-coding LakefrontPresence)
     1          LakefrontPresent
     :otherwise LakefrontAbsent))
 
-(defmodel river-front Riverfront
+(defmodel riverfront Riverfront
   (classification (binary-coding RiverfrontPresence)
     1          RiverfrontPresent
     :otherwise RiverfrontAbsent))
@@ -122,7 +122,7 @@
 (defmodel source AestheticProximityProvision
   (bayesian AestheticProximityProvision
     :import  "aries.core::ProximitySourcePuget.xdsl"
-    :context [lake-front river-front beach forest woody-wetland
+    :context [lakefront riverfront beach forest woody-wetland
               emergent-wetland farmland park crime-potential
               water-quality formal-protection area]
     :keep    [TheoreticalProximitySource]

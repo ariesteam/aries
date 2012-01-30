@@ -227,32 +227,33 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <!-- Puget beaches -->
-  <measurement:BinaryCoding id="puget_pugetbeaches">
+  <measurement:BinaryCoding id="puget_beach_puget">
     <observation:hasObservable>
-      <aestheticService:BeachPresence />
+      <aestheticService:BeachPresence/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:beaches_puget</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:beach_puget</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>gridcode</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>341432.39480104897</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>602542.4124029671</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>1366881.9205084355</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>1233292.2512319256</geospace:hasLonUpperBound>
+        <geospace:hasLatLowerBound>54065.162819622325</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>505410.94349008636</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1385249.931050174</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>2612691.947172681</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
   <!-- Potential Crime, derived from boundaries of big cities -->
-  <observation:Categorization id="puget_pugetcities">
+  <observation:Categorization id="puget_cities_puget">
     <observation:hasObservable>
-      <geofeatures:City />
+      <geofeatures:City/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
@@ -263,32 +264,33 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>64837.072613952645</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>616557.6098079457</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>1370631.5128883347</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>2576704.1850025496</geospace:hasLonUpperBound>
+        <geospace:hasLatLowerBound>54065.162819622325</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>505410.94349008636</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1385249.931050174</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>2612691.947172681</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <!-- Puget parks -->
-  <measurement:BinaryCoding id="puget_pugetparks">
+  <measurement:BinaryCoding id="puget_parks_puget">
     <observation:hasObservable>
-      <aestheticService:ParkPresence />
+      <aestheticService:ParkPresence/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>puget:parks_puget</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>id</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>-238866.43825608978</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>639892.1412067211</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>762810.3312307579</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>1586270.971328112</geospace:hasLonUpperBound>
+        <geospace:hasLatLowerBound>-552951.8423464705</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>590410.7513931019</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>778648.5154654132</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>2705323.3449269873</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
@@ -598,9 +600,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <observation:Categorization id="puget_clearcuts_puget_new">
+  <observation:Categorization id="puget_clearcuts_puget">
     <observation:hasObservable>
-      <geofeatures:Clearcut />
+      <geofeatures:Clearcut/>
     </observation:hasObservable>
     <rdfs:comment>Data source: Washington State DNR</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -608,16 +610,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:clearcuts_puget_new</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:clearcuts_puget</geospace:hasCoverageId>
         <geospace:hasValueAttribute>timharv_fp</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>45.587703704834</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-124.663955688477</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>49.0023994445801</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-117.039825439453</geospace:hasLonUpperBound>
+        <geospace:hasLatLowerBound>45.5437240600586</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-124.860824584961</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>49.0024337768555</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-116.915229797363</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
@@ -1145,11 +1147,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!-- lakes in Puget sound from shape coverage, seen as a
-       presence/absence ranking -->
-  <measurement:BinaryCoding id="puget_lakes">
+  <measurement:BinaryCoding id="puget_lakes_puget">
     <observation:hasObservable>
-      <geofeatures:Lake />
+      <geofeatures:Lake/>
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from NLCD 2001</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -1157,23 +1157,25 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:lake_puget</geospace:hasCoverageId>
+        <geospace:hasCoverageId>puget:lakes_puget</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>carto_sym_</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>53990.659824060225</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>504712.15345714014</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1397024.2678548258</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>2655901.022999019</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
-        <geospace:hasLatLowerBound>102131.5</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>618565.375</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>1367281.5</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>2591186.75</geospace:hasLonUpperBound>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:BinaryCoding id="puget_pugetlakefront">
+  <measurement:BinaryCoding id="puget_lakefront_puget">
     <observation:hasObservable>
-      <aestheticService:LakefrontPresence />
+      <aestheticService:LakefrontPresence/>
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from NLCD 2001</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -1182,14 +1184,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>puget:lakefront_puget</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>carto_sym_</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>76129.6295966863</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>550339.3848230975</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>1395057.6838687493</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>2655014.7856741175</geospace:hasLonUpperBound>
+        <geospace:hasLatLowerBound>53990.40131689881</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>504702.33312480705</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1397188.8937222688</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>2656084.5322465436</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
@@ -1350,9 +1354,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
        that this is not the same info in the WDPA databases, of which
        I only added one but it's easy to add the others. Also
        UNEP-WCMC can give us KBA data. -->
-  <measurement:BinaryCoding id="puget_pugetformalprotection">
+  <measurement:BinaryCoding id="puget_formal_protection_puget">
     <observation:hasObservable>
-      <puget:ProtectedStatus />
+      <puget:ProtectedStatus/>
     </observation:hasObservable>
     <rdfs:comment>Derived from national, state, and local public lands layers</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -1360,14 +1364,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>puget:formal_protection_puget</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>id</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>-551303.1220662754</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>615871.2439393924</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>778663.8395426599</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>2705138.7912269174</geospace:hasLonUpperBound>
+        <geospace:hasLatLowerBound>-552951.8423464705</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>590410.7513931019</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>778648.5154654132</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>2705323.3449269873</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2926</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
@@ -1422,11 +1428,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding> 
+  </measurement:BinaryCoding>
 
-  <measurement:BinaryCoding id="puget_pugetriverfront">
+  <measurement:BinaryCoding id="puget_riverfront_puget">
     <observation:hasObservable>
-      <aestheticService:RiverfrontPresence />
+      <aestheticService:RiverfrontPresence/>
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from Washington DNR hydrography data</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -1435,14 +1441,16 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>puget:riverfront_puget</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>minor1</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>45.539</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-124.708</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>49.015</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-116.916</geospace:hasLonUpperBound>
+        <geospace:hasLatLowerBound>45.5388984680176</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-124.860824584961</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>49.0152702331543</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-116.915229797363</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
@@ -3749,9 +3757,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Ranking id="puget_pugetwaterquality">
+  <measurement:Ranking id="puget_water_quality_puget">
     <observation:hasObservable>
-      <aestheticService:WaterQualityAssessment />
+      <aestheticService:WaterQualityAssessment/>
     </observation:hasObservable>
     <rdfs:comment>Data source: Washington Department of Ecology 303(d) Water Quality Assessment</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -3766,10 +3774,10 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>54692.530961369725</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>545336.7573808122</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>1380301.6967513857</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>2599982.619737681</geospace:hasLonUpperBound>
+        <geospace:hasLatLowerBound>52854.77803696205</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>505343.04938647704</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1385249.931050174</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>2612750.106440477</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
