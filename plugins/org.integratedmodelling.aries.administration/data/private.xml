@@ -939,4 +939,616 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+  <measurement:BinaryCoding id="ontario_trails_alg">
+    <observation:hasObservable>
+      <infrastructure:Path/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:trails_alg</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>4965832.72753081</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>168089.04558170115</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5131989.039753073</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>330634.0820595514</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="ontario_roads_alg">
+    <observation:hasObservable>
+      <infrastructure:Road/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:roads_alg</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>5001845.527353507</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>190359.7103742665</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5118769.866802126</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>309064.96402938105</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="ontario_utility_lines_alg">
+    <observation:hasObservable>
+      <infrastructure:TransmissionLine/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:utility_lines_alg</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>4984374.147585963</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>190271.28959982173</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5121686.65535865</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>296371.42731081625</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="ontario_railway_alg">
+    <observation:hasObservable>
+      <infrastructure:Railway/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:railway_alg</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>5036892.459121983</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>187842.36433948897</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119010.350235519</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>335328.8752483957</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:Ranking id="nesting_habitat_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>nesting_habitat_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="communication_towers_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>communication_towers_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="deforestation_risk_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>deforestation_risk_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="spawning_habitat_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>spawning_habitat_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="hardwood_softwood_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>hardwood_softwood_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>1486</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>1312</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4996786.2</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>164249.7</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5128186.2</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>313049.7</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="lulc2000_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>lulc2000_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>5269</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>4632</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004068.498</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>175998.586</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119918.498</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307773.586</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="moose_habitat_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>moose_habitat_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="park_infrastructure_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>park_infrastructure_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="canopy_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>canopy_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>14873</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>13136</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4996791.863</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>164240.251</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5128171.863</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>312990.251</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="hydrography_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>hydrography_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>26785</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>18835</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4950120.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>177400.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5138490.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>445270.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="soil_drainage_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>soil_drainage_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>1316</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>1157</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.365</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176018.482</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119990.365</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307818.482</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="successional_stage_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>successional_stage_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="fire_frequency_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>fire_frequency_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="dams_low">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>dams_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>7606</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>5638</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5409700.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>343700.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5522500.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>495860.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="dem20m_low">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>dem20m_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>11019</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>10019</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5370020.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>339760.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5570440.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>560180.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="lulc2000_low">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>lulc2000_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>59430</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>58220</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>1.1970285114E7</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>165281.528</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1.3425835114E7</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>1651081.528</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>ESRI:102002</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="slope20m_low">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>slope20m_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>11019</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>10019</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5370020.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>339760.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5570440.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>560180.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="canopy_low">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>canopy_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>7606</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>5638</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5409700.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>343700.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5522500.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>495860.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="hydrography_low">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>hydrography_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>21892</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>20658</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5310340.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>339760.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5723540.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>777640.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="soil_drainage_low">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>soil_drainage_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>7470</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>5432</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>1.2510409929E7</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>197250.576</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1.2619089929E7</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>346690.576</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>ESRI:102002</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="successional_stage_low">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>successional_stage_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>7606</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>5638</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5409700.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>343700.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5522500.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>495860.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="dem10m_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>dem10m_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>16442</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>19355</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4975020.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>155810.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5168590.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>320250.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="slope10m_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>slope10m_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>16442</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>19355</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4975020.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>155810.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5168590.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>320250.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="deer_moose_wintering_alg">
+    <observation:hasObservable>
+      <representation:GenericQuantifiable/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasCoverageId>deer_moose_wintering_alg</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
 </kbox>
