@@ -902,6 +902,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+<!-- Old one, new is below.
   <measurement:Ranking id="mg_mgdeforestation">
     <observation:hasObservable>
       <carbonService:DeforestationRisk />
@@ -922,6 +923,32 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasLonLowerBound>40.272</geospace:hasLonLowerBound>
         <geospace:hasLatUpperBound>-0.214</geospace:hasLatUpperBound>
         <geospace:hasLonUpperBound>50.035</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:Ranking> -->
+
+  <measurement:Ranking id="mg_deforestation_mg">
+    <observation:hasObservable>
+      <carbonService:DeforestationRisk/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: GLCF (University of Maryland) MODIS Vegetative Cover Conversion</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://glcf.umiacs.umd.edu/data/vcc/description.shtml</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>-25.6071128845215</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>40.2718200683594</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>-0.213632225990295</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>50.4837532043457</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
@@ -5837,7 +5864,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:Ranking id="colorado_mpb_damage_co">
+<!--  <measurement:Ranking id="colorado_mpb_damage_co">
     <observation:hasObservable>
       <colorado:MountainPineBeetleDamageSeverity/>
     </observation:hasObservable>
@@ -5860,9 +5887,35 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Ranking> -->
 
-<!-- Commented out until Ferd enables acres as a legal unit in Thinklab.
+<measurement:Ranking id="colorado_mpb_damage_co">
+  <observation:hasObservable>
+    <colorado:MountainPineBeetleDamageSeverity/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>severity1</geospace:hasValueAttribute>
+      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>4054314.9302746835</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-88369.00514334359</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5176620.635050246</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>1453410.2569927606</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<!-- Commented out until Ferd enables acres as a legal unit in
+     Thinklab.  2nd one is the new one.
   <measurement:Count id="colorado_mpb_damage_co">
     <observation:hasObservable>
       <colorado:MountainPineBeetleDamageTreesPerAcre/>
@@ -5887,73 +5940,33 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Count> -->
-
-<measurement:Ranking id="colorado_mpb_damage_co">
-<observation:hasObservable>
-<colorado:MountainPineBeetleDamageSeverity/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
-<geospace:hasValueAttribute>severity1</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>4054314.9302746835</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-88369.00514334359</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>5176620.635050246</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>1453410.2569927606</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Ranking>
+  </measurement:Count>
 
 <measurement:Count id="colorado_mpb_damage_co">
-<observation:hasObservable>
-<colorado:MountainPineBeetleDamageTreesPerAcre/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
-<geospace:hasValueAttribute>tpa1</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>4054314.9302746835</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-88369.00514334359</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>5176620.635050246</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>1453410.2569927606</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Count>
-
-<measurement:Ranking id="mg_deforestation_mg">
-<observation:hasObservable>
-<carbonService:DeforestationRisk/>
-</observation:hasObservable>
-<observation:hasDataSource>
-<geospace:WFSDataSource>
-<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
-<geospace:hasValueAttribute>class</geospace:hasValueAttribute>
-</geospace:WFSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:ArealFeatureSet>
-<geospace:hasLatLowerBound>-25.6071128845215</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>40.2718200683594</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>-0.213632225990295</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>50.4837532043457</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:ArealFeatureSet>
-</observation:hasObservationExtent>
-</measurement:Ranking>
+  <observation:hasObservable>
+    <colorado:MountainPineBeetleDamageTreesPerAcre/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <measurement:unit>/ac</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>tpa1</geospace:hasValueAttribute>
+      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>4054314.9302746835</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-88369.00514334359</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>5176620.635050246</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>1453410.2569927606</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</measurement:Count> -->
 
   <measurement:NumericCoding id="mourning_240">
     <observation:hasObservable>
