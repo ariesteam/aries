@@ -37,74 +37,74 @@
 ;; bugs.
 ;; -----------------------------------------------------------------------------
 
-(def grand_county
+(def grand-county
   (shape "EPSG:4326 POLYGON((-106.66 40.5, -105.62 40.5, -105.62 39.67, -106.66 39.67, -106.66 40.5))")) ; Run this at 512
 
-(def grand_boulder_larimer
+(def grand-boulder-larimer
   (shape "EPSG:4326 POLYGON((-106.66 41.01, -104.93 41.01, -104.93 39.67, -106.66 39.67, -106.66 41.01))")) ; Run this at 1024
 
 (def blue
   (shape "EPSG:4326 POLYGON((-106.475 40.05, -105.76 40.05, -105.76 39.35, -106.475 39.35, -106.475 40.05))")) ; Intended to be run at 512
 
-(def upper_south_platte
+(def upper-south-platte
   (shape "EPSG:4326 POLYGON((-106.215 39.77, -104.8 39.77, -104.8 38.73, -106.215 38.73, -106.215 39.77))")) ; Intended to be run at 512
 
 (defcontext no-mountain-pine-beetle-carbon
   "Conditions with no pine beetle damage"
-  (grid resolution grand_boulder_larimer)
+  (grid resolution grand-boulder-larimer)
 ;; Changes to carbon model
   (transform 'colorado:MountainPineBeetleDamageClass 'colorado:NoDamage))
 
 (defcontext no-mountain-pine-beetle-aesthetic-view
   "Conditions with no pine beetle damage"
-  (grid resolution grand_county)
+  (grid resolution grand-county)
 ;; Changes to aesthetic view model
   (transform 'colorado:GrayBeetleKill 'colorado:GrayKillAbsent)  
   (transform 'colorado:GreenGrayBeetleKill 'colorado:GreenGrayKillAbsent))
 
 (defcontext no-mountain-pine-beetle-sediment
   "Conditions with no pine beetle damage"
-  (grid resolution grand_county) ; Can also sub blue or upper_south_platte
+  (grid resolution grand-county) ; Can also sub blue or upper-south-platte
 ;; Changes to sediment model
   (transform 'colorado:MountainPineBeetleDamageClass 'colorado:NoDamage))
 
-(defcontext co_grand_county400
+(defcontext co-grand-county400
   "Grand County, CO, for viewshed & sediment analysis"
   (grid
    400
    "EPSG:4326 POLYGON((-106.66 40.5, -105.62 40.5, -105.62 39.67, -106.66 39.67, -106.66 40.5))"))
 
-(defcontext co_grand_county512
+(defcontext co-grand-county512
   "Grand County, CO, for viewshed & sediment analysis"
   (grid
    512
    "EPSG:4326 POLYGON((-106.66 40.5, -105.62 40.5, -105.62 39.67, -106.66 39.67, -106.66 40.5))"))
 
-(defcontext co_blue
+(defcontext co-blue
   "Colorado Blue River watershed, including Dillon and Green Mountain Reservoirs, for sediment analysis"
   (grid
    512
    "EPSG:4326 POLYGON((-106.475 40.05, -105.76 40.05, -105.76 39.35, -106.475 39.35, -106.475 40.05))"))
 
-(defcontext upper_south_platte
+(defcontext upper-south-platte
   "Upper South Platte watershed, including several reservoirs, for sediment analysis"
   (grid
    512
    "EPSG:4326 POLYGON((-106.215 39.77, -104.8 39.77, -104.8 38.73, -106.215 38.73, -106.215 39.77))"))
 
-(defcontext co_grand_boulder_larimer
+(defcontext co-grand-boulder-larimer
   "Grand, Boulder, and Larimer counties, CO, for carbon analysis"
   (grid
    1024
    "EPSG:4326 POLYGON((-106.66 41.01, -104.93 41.01, -104.93 39.67, -106.66 39.67, -106.66 41.01))"))
 
-(defcontext co_south_platte
+(defcontext co-south-platte
   "Colorado Water Division 1 (South Platte River watershed), for water analysis"
   (grid
    1024
    "EPSG:4326 POLYGON((-106.25 41.01, -102.04 41.01, -102.04 38.63, -106.25 38.63, -106.25 41.01))"))
 
-(defcontext co_south_platte_lowres
+(defcontext co-south-platte-lowres
   "Colorado Water Division 1 (South Platte River watershed), for water analysis"
   (grid
    512

@@ -19,7 +19,7 @@
 ;;;
 ;;; Recreation model for Vermont
 ;;;
-;;; Valid Contexts: core.contexts.vermont/{vt,raven_ridge}*
+;;; Valid Contexts: core.contexts.vermont/{vt,raven-ridge}*
 ;;;
 ;;;-------------------------------------------------------------------
 

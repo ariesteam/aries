@@ -20,19 +20,19 @@
   (:refer modelling :only [defcontext model])
   (:refer geospace :only [grid]))
 
-(defcontext grr_tanzania
+(defcontext grr-tanzania
   "Great Ruaha River bounding box"
   (grid
    256
    "EPSG:4326 POLYGON((33.796 -7.086, 35.946 -7.086, 35.946 -9.41, 33.796 -9.41, 33.796 -7.086))"))
 
-(defcontext grr_tanzania_coarse
+(defcontext grr-tanzania-coarse
   "Great Ruaha River bounding box"
   (grid
    100
    "EPSG:4326 POLYGON((33.796 -7.086, 35.946 -7.086, 35.946 -9.41, 33.796 -9.41, 33.796 -7.086))"))
 
-(defcontext grr_tanzania_old
+(defcontext grr-tanzania-old
   "Great Ruaha River bounding box"
   (grid
    256

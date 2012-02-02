@@ -20,13 +20,13 @@
   (:refer modelling :only [defcontext model])
   (:refer geospace :only [grid]))
 
-(defcontext usa_bbox
+(defcontext usa-bbox
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-124.7625 24.5210, -66.9326  24.5210, -66.9326 49.3845, -124.7625 49.3845, -124.7625 24.5210))"))
 
-(defcontext europe_bbox
+(defcontext europe-bbox
   ""
   (grid
    256

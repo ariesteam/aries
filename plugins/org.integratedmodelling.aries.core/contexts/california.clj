@@ -20,43 +20,43 @@
   (:refer modelling :only [defcontext model])
   (:refer geospace :only [grid]))
 
-(defcontext san_joaquin512
+(defcontext san-joaquin512
   ""
   (grid
    512
    "EPSG:4326 POLYGON((-120.75 36.5, -118.75 36.5, -118.75 34.75, -119.5 34.75, -120.75 36.5))"))
 
-(defcontext san_joaquin1024
+(defcontext san-joaquin1024
   ""
   (grid
    1024
    "EPSG:4326 POLYGON((-120.75 36.5, -118.75 36.5, -118.75 34.75, -119.5 34.75, -120.75 36.5))"))
 
-(defcontext west_coyote_hills256
+(defcontext west-coyote-hills256
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-117.976828 33.907017, -117.976828  33.89560825, -117.940320  33.89560825, -117.940320 33.907017, -117.976828 33.907017))"))
 
-(defcontext san_gabriel256
+(defcontext san-gabriel256
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-118.2 34.03787, -117.724 34.03787, -117.724 33.739, -118.2 33.739, -118.2 34.03787))"))
 
-(defcontext san_gabriel512
+(defcontext san-gabriel512
   ""
   (grid
    512
    "EPSG:4326 POLYGON((-118.2 34.03787, -117.724 34.03787, -117.724 33.739, -118.2 33.739, -118.2 34.03787))"))
 
-(defcontext san_gabriel_watershed_simple
+(defcontext san-gabriel-watershed-simple
   ""
   (grid
    512
    "EPSG:4326 POLYGON((-117.97414409263494 34.33851756054109, -117.63621420612778 34.33348946360449, -117.73970965204218 33.91741213915004, -118.19369414171743 33.75813416086845, -117.97414409263494 34.33851756054109))"))
 
-(defcontext san_gabriel_watershed_real
+(defcontext san-gabriel-watershed-real
   ""
   (grid
    512

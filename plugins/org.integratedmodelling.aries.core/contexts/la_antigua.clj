@@ -15,24 +15,24 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns core.contexts.la_antigua
+(ns core.contexts.la-antigua
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defcontext model])
   (:refer geospace :only [grid]))
 
-(defcontext la_antigua1024
+(defcontext la-antigua1024
   ""
   (grid
    1024
    "EPSG:4326 POLYGON ((-97.2746372601786 19.142240226562222, -96.27930746109703 19.142240226562222, -96.27930746109703 19.576122241899572, -97.2746372601786 19.576122241899572,-97.2746372601786 19.142240226562222))"))
 
-(defcontext la_antigua800
+(defcontext la-antigua800
   ""
   (grid
    800
    "EPSG:4326 POLYGON ((-97.2746372601786 19.142240226562222, -96.27930746109703 19.142240226562222, -96.27930746109703 19.576122241899572, -97.2746372601786 19.576122241899572,-97.2746372601786 19.142240226562222))"))
 
-(defcontext la_antigua512
+(defcontext la-antigua512
   ""
   (grid
    512

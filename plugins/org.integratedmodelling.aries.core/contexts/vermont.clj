@@ -20,19 +20,19 @@
   (:refer modelling :only [defcontext model])
   (:refer geospace :only [grid]))
 
-(defcontext raven_ridge
+(defcontext raven-ridge
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-73.437902 45.016731, -71.465281 45.016731, -71.465281 42.727110, -73.437902 42.727110, -73.437902 45.016731))"))
 
-(defcontext raven_ridge_large
+(defcontext raven-ridge-large
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-74.439038 45.188716, -71.877970 45.188716, -71.877970 43.346402, -74.439038 43.346402,-74.439038 45.188716))"))
 
-(defcontext lye_brook
+(defcontext lye-brook
   ""
   (grid
    256
@@ -56,7 +56,7 @@
    256
    "EPSG:4326 POLYGON ((-73.151 44.27 ,-73.144  44.27 ,-73.144  44.286 , -73.151 44.286 ,-73.151  44.27 ))"))
 
-(defcontext vt_simple
+(defcontext vt-simple
   ""
   (grid
    512

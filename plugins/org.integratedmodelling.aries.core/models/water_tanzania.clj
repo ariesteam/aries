@@ -19,7 +19,7 @@
 ;;;
 ;;; Water supply model for the Great Ruaha River Basin, Tanzania
 ;;;
-;;; Valid Contexts: core.contexts.tanzania/grr_tanzania
+;;; Valid Contexts: core.contexts.tanzania/grr-tanzania
 ;;;
 ;;;-------------------------------------------------------------------
 

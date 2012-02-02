@@ -19,7 +19,7 @@
 ;;;
 ;;; Carbon model for Southern California
 ;;;
-;;; Valid Contexts: core.contexts.california/{san_gabriel,west_coyote_hills}*
+;;; Valid Contexts: core.contexts.california/{san-gabriel,west-coyote-hills}*
 ;;;
 ;;;-------------------------------------------------------------------
 
