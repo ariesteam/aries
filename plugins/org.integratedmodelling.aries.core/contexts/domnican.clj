@@ -15,25 +15,19 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns core.contexts.beta
+(ns core.contexts.dominican
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defcontext model])
   (:refer geospace :only [grid]))
 
-(defcontext usa_bbox
+(defcontext DR256
   ""
   (grid
    256
-   "EPSG:4326 POLYGON((-124.7625 24.5210, -66.9326  24.5210, -66.9326 49.3845, -124.7625 49.3845, -124.7625 24.5210))"))
+   "EPSG:4326 POLYGON((-71.7 19.9, -70.5 19.9, -70.5 18.85, -71.7 18.85, -71.7 19.9))"))
 
-(defcontext europe_bbox
+(defcontext DR512
   ""
   (grid
-   256
-   "EPSG:4326 POLYGON((-21.2660 27.6363, -21.2660 61.0088, 39.8693 61.0088, 39.8693 27.6363, -21.2660 27.6363))"))
-
-(defcontext agri
-  ""
-  (grid
-   256
-   "EPSG:4326 POLYGON((15.544968 40.455699, 15.919189 40.190414, 16.11557 40.336077, 15.770874 40.605612, 15.544968 40.455699))"))
+   512
+   "EPSG:4326 POLYGON((-71.7 19.9, -70.5 19.9, -70.5 18.85, -71.7 18.85, -71.7 19.9))"))

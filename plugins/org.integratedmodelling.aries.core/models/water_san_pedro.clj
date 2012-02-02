@@ -19,7 +19,7 @@
 ;;;
 ;;; Water supply model for San Pedro
 ;;;
-;;; Valid Contexts: core.contexts.beta/san_pedro_us*
+;;; Valid Contexts: core.contexts.san_pedro/san_pedro_us*
 ;;;
 ;;;-------------------------------------------------------------------
 

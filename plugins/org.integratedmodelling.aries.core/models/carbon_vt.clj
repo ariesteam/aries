@@ -19,7 +19,7 @@
 ;;;
 ;;; Carbon model for Vermont agricultural land
 ;;;
-;;; Valid Contexts: core.contexts.beta/vt*
+;;; Valid Contexts: core.contexts.vermont/vt*
 ;;;
 ;;;-------------------------------------------------------------------
 

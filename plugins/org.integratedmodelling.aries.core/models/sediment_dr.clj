@@ -19,7 +19,7 @@
 ;;;
 ;;; Sediment regulation model for Dominican Republic
 ;;;
-;;; Valid Contexts: core.contexts.beta/DR*
+;;; Valid Contexts: core.contexts.dominican/DR*
 ;;;
 ;;;-------------------------------------------------------------------
 

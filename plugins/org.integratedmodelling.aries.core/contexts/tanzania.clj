@@ -15,25 +15,25 @@
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
-(ns core.contexts.beta
+(ns core.contexts.tanzania
   (:refer-clojure :rename {count length})
   (:refer modelling :only [defcontext model])
   (:refer geospace :only [grid]))
 
-(defcontext usa_bbox
-  ""
+(defcontext grr_tanzania
+  "Great Ruaha River bounding box"
   (grid
    256
-   "EPSG:4326 POLYGON((-124.7625 24.5210, -66.9326  24.5210, -66.9326 49.3845, -124.7625 49.3845, -124.7625 24.5210))"))
+   "EPSG:4326 POLYGON((33.796 -7.086, 35.946 -7.086, 35.946 -9.41, 33.796 -9.41, 33.796 -7.086))"))
 
-(defcontext europe_bbox
-  ""
+(defcontext grr_tanzania_coarse
+  "Great Ruaha River bounding box"
   (grid
-   256
-   "EPSG:4326 POLYGON((-21.2660 27.6363, -21.2660 61.0088, 39.8693 61.0088, 39.8693 27.6363, -21.2660 27.6363))"))
+   100
+   "EPSG:4326 POLYGON((33.796 -7.086, 35.946 -7.086, 35.946 -9.41, 33.796 -9.41, 33.796 -7.086))"))
 
-(defcontext agri
-  ""
+(defcontext grr_tanzania_old
+  "Great Ruaha River bounding box"
   (grid
    256
-   "EPSG:4326 POLYGON((15.544968 40.455699, 15.919189 40.190414, 16.11557 40.336077, 15.770874 40.605612, 15.544968 40.455699))"))
+   "EPSG:4326 POLYGON((33.8 -7.087872, 35.934146 -7.087872, 35.934146 -9.407777, 33.8 -9.407777, 33.8 -7.087872))"))

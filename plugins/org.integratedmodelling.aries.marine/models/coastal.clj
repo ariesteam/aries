@@ -20,7 +20,7 @@
 ;;; UNEP marine project
 ;;; Models for coastal protection in Madagascar
 ;;;
-;;; Valid Contexts: core.contexts.beta/mg_coastal*
+;;; Valid Contexts: core.contexts.mg/mg_coastal*
 ;;;
 ;;;-------------------------------------------------------------------
 

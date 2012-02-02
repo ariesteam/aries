@@ -19,7 +19,7 @@
 ;;;
 ;;; Viewshed model for Colorado
 ;;;
-;;; Valid Contexts: core.contexts.beta/co*
+;;; Valid Contexts: core.contexts.colorado/co*
 ;;;
 ;;;-------------------------------------------------------------------
 

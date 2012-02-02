@@ -19,7 +19,7 @@
 ;;;
 ;;; Viewshed model for Western Washington
 ;;;
-;;; Valid Contexts: core.contexts.beta/{chehalis,wria9,viewshed,western_wa}*
+;;; Valid Contexts: core.contexts.puget/{chehalis,wria9,viewshed,western_wa}*
 ;;;
 ;;;-------------------------------------------------------------------
 

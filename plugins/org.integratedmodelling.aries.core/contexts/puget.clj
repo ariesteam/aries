@@ -92,6 +92,12 @@
    1024
    "EPSG:4326 POLYGON((-122.420446 47.464349, -121.759593 47.464349, -121.759593 46.85382, -122.420446 46.85382, -122.420446 47.464349))"))
 
+(defcontext wa_or_carbon
+  ""
+  (grid
+   2048
+   "EPSG:4326 POLYGON ((-124.88 42.0, -124.88 49.0, -120.6 49.0, -120.6 42.0, -124.88 42.0))"))
+
 (defcontext western_wa256
   ""
   (grid
@@ -152,16 +158,15 @@
    10000
    "EPSG:4326 POLYGON ((-124.8 46.58, -124.8 49.0, -120.63 49.0, -120.63 46.58, -124.8 46.58))"))
 
-(defcontext puget_watershed2048
+(defcontext puget_watershed_simple2048
   ""
   (grid
    2048
    "EPSG:4326 POLYGON ((-122.1956336343632 49.00242846720482, -120.85224765745494 49.00030106854812, -120.6546584345466 48.724406531177294, -120.7883245176284 48.62507854901189, -120.703253228564 48.52629470711416, -121.05617355315377 48.47748432932382, -120.90711550786222 48.163923756236, -121.15350326042456 48.04102462800999, -121.11132092350014 47.599333867079665, -121.46589541733044 47.368106259837056, -121.30331319319035 47.139005363002134, -121.99790510616054 46.59750028175123, -123.23999766048756 47.08579115672245, -123.52489181662602 47.50536170876596, -123.32928965734608 47.71809455252156, -123.53908976282644 47.69758487747296, -123.7301975737091 48.011062777447805, -124.38840765666374 48.09325041671069, -124.5919720649955 48.35332197142388, -124.82079491652578 48.38441693368334, -124.7272454810521 48.493443804046834, -123.67906443446776 48.239996824624015, -123.24843772103083 48.28401618092096, -123.11513843943023 48.422829725440366, -123.26787684622151 48.69399315217514, -123.00848534578388 48.83121831615527, -123.32223806098743 49.00206978955262, -122.1956336343632 49.00242846720482))"))
 
-;; Contexts below are for flood and sediment in Puget Sound.  Problem:
-;; if we run the models in several smaller contexts rather than just
-;; the entire extent, they will have different spatial resolutions -
-;; this is really bad if we want to stitch them back together!
+;; The six contexts below could be run independently and pieced
+;; together to give full coverage, though there will be overlap and
+;; extra coverage outside the watershed.
 (defcontext olympic_hydro2048
   ""
   (grid
@@ -198,11 +203,13 @@
    2048
    "EPSG:4326 POLYGON ((-123.25 47.85, -123.25 48.81, -122.31 48.81, -122.31 47.85, -123.25 47.85))"))
 
-(defcontext wa_or_carbon
-  ""
-  (grid
-   2048
-   "EPSG:4326 POLYGON ((-124.88 42.0, -124.88 49.0, -120.6 49.0, -120.6 42.0, -124.88 42.0))"))
+;; The following contexts are for the individual WRIAs in Puget Sound.
+;; If done at the same resolution they'd be OK to mosaic together or
+;; sum results, especially for hydrologic models.  Contexts are wria_x
+;; with possible values of x as: cedar, chambers, chehalis, deschutes,
+;; elwha, green, island, kennedy, kitsap, lyre, nisqually, noosack,
+;; puyallup, quilcene, sanjuan, skagit, skokomish, snohomish,
+;; stillaguamish.
 
 (defcontext wria_cedar
   ""

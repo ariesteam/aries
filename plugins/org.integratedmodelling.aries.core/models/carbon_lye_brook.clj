@@ -19,7 +19,7 @@
 ;;;
 ;;; Carbon model for Vermont forests
 ;;;
-;;; Valid Contexts: core.contexts.beta/{vt,lye_brook}*
+;;; Valid Contexts: core.contexts.vermont/{vt,lye_brook}*
 ;;;
 ;;;-------------------------------------------------------------------
 
