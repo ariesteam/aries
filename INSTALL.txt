@@ -19,7 +19,8 @@ and the (possibly remote) datasources that will supply them with
 values as needed.  We'll use PostgreSQL with the PostGIS extensions to
 set this up.
 
-1) Install PostgreSQL - http://www.postgresql.org/download/
+1) Install PostgreSQL - http://www.postgresql.org/download/ (make sure to use
+   v 9.0.x - 9.1 causes errors with "run aries.initdb")
 
 2) Install the PostGIS extensions into PostgreSQL (if your installer
    didn't do that already) - http://postgis.refractions.net/download/
@@ -34,25 +35,15 @@ set this up.
    these settings:
 
    Name: ariesdata
-   Encoding: UTF8
+   Encoding: 'UTF8'
    Template: template_postgis (you did remember to install PostGIS, right?)
    Owner: postgres (this is the default PostgreSQL administrator account)
 
    Name: <your_username>
-   Encoding: UTF8
+   Encoding: 'UTF8'
    Template: template_postgis
    Owner: postgres
 
-7) Next open
-   .thinklab/data/org.integratedmodelling.thinklab.sql/config/sql.properties
-   in your user's home directory (it's just a text file), and add
-   these lines to the end:
-
-     thinklab.sql.user=postgres
-     thinklab.sql.password=<your_database_administrator_password>
-     thinklab.sql.host=localhost
-
-   Save the file and exit.
 
 
 Set your Environment Variables
@@ -88,7 +79,19 @@ pull in the ARIES plugins like so:
 
   > pload aries
 
-To update your ARIES PostgreSQL database, type this as well:
+Exit from Thinklab by typing 'exit' at the command prompt.
+Next open
+   .thinklab/data/org.integratedmodelling.thinklab.sql/config/sql.properties
+   in your user's home directory (it's just a text file), and add
+   these lines to the end:
+
+     thinklab.sql.user=postgres
+     thinklab.sql.password=<your_database_administrator_password>
+     thinklab.sql.host=localhost
+
+   Save the file and exit.
+
+Restart Thinklab. To update your ARIES PostgreSQL database, type this:
 
   > pload administration
   > run aries.initdb
