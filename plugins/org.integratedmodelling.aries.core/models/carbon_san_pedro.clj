@@ -36,7 +36,8 @@
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService
-	(CarbonVegetationType (CarbonVegetationTypeOpen) (CarbonVegetationTypeConstrained)))
+	(CarbonVegetationType (CarbonVegetationTypeOpen) (CarbonVegetationTypeConstrained))
+ (FireThreat (VeryHighFireThreat) (HighFireThreat)(ModerateFireThreat) (LowFireThreat)))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
