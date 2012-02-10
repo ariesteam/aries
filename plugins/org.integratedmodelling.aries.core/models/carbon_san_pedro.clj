@@ -19,7 +19,7 @@
 ;;;
 ;;; Carbon model for San Pedro
 ;;;
-;;; Valid Contexts: core.contexts.beta/san_pedro_us*
+;;; Valid Contexts: core.contexts.san-pedro/san-pedro-us*
 ;;;
 ;;;-------------------------------------------------------------------
 
@@ -36,7 +36,8 @@
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService
-	(CarbonVegetationType (CarbonVegetationTypeOpen) (CarbonVegetationTypeConstrained)))
+	(CarbonVegetationType (CarbonVegetationTypeOpen) (CarbonVegetationTypeConstrained))
+ (FireThreat (VeryHighFireThreat) (HighFireThreat)(ModerateFireThreat) (LowFireThreat)))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models

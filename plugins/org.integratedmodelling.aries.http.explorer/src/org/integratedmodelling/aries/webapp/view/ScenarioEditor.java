@@ -458,7 +458,7 @@ public class ScenarioEditor extends ThinkcapComponent {
 		 			).align("left"),
 		 			ZK.div(
 		 				ZK.hbox(
-							ZK.imagebutton("/images/icons/edit.png")
+							ZK.imagebutton("/aries/images/icons/edit.png")
 								.id("scaddpolyg").
 								listener("onClick", new EventListener() {
 									@Override
@@ -469,7 +469,7 @@ public class ScenarioEditor extends ThinkcapComponent {
 									}
 								})
 								.tooltip("Draw a shape and add it to the selection"),
-							ZK.imagebutton("/images/icons/cut_disabled.png")
+							ZK.imagebutton("/aries/images/icons/cut_disabled.png")
 								.enable(false)
 								.id("scsubpolyg").
 								listener("onClick", new EventListener() {
@@ -481,7 +481,7 @@ public class ScenarioEditor extends ThinkcapComponent {
 									}
 								})
 								.tooltip("Draw a shape and subtract it from the selection"),
-							ZK.imagebutton("/images/icons/delete_disabled.png")
+							ZK.imagebutton("/aries/images/icons/delete_disabled.png")
 								.enable(false)
 								.id("scresetdraw").
 								listener("onClick", new EventListener() {
@@ -494,8 +494,8 @@ public class ScenarioEditor extends ThinkcapComponent {
 									}
 								})
 								.tooltip("Clear all selections made so far"),
-							ZK.image("/images/icons/separator.png"),
-							ZK.imagebutton("/images/icons/world.png").
+							ZK.image("/aries/images/icons/separator.png"),
+							ZK.imagebutton("/aries/images/icons/world.png").
 								listener("onClick", new EventListener() {
 									@Override
 									public void onEvent(Event arg0) throws Exception {
@@ -681,22 +681,22 @@ public class ScenarioEditor extends ThinkcapComponent {
 	void painting(boolean isScissors) {
 		
 		scaddpolyg.setImage(isScissors ? 
-				ZK.fixUrl("/images/icons/edit.png") :
-				ZK.fixUrl("/images/icons/edit_active.png"));
+				ZK.fixUrl("/aries/images/icons/edit.png") :
+				ZK.fixUrl("/aries/images/icons/edit_active.png"));
 		scsubpolyg.setImage(isScissors ? 
-				ZK.fixUrl("/images/icons/cut_active.png") :
-				ZK.fixUrl("/images/icons/cut_disabled.png"));
+				ZK.fixUrl("/aries/images/icons/cut_active.png") :
+				ZK.fixUrl("/aries/images/icons/cut_disabled.png"));
 		
 		scresetdraw.setImage(ZK.fixUrl("/images/icons/cancel_disabled.png"));
 	}
 	
 	void idle(boolean hasSelection) {
 
-		scaddpolyg.setImage(ZK.fixUrl("/images/icons/edit.png"));
+		scaddpolyg.setImage(ZK.fixUrl("/aries/images/icons/edit.png"));
 		scsubpolyg.setImage(hasSelection? 
-				ZK.fixUrl("/images/icons/cut.png") : ZK.fixUrl("/images/icons/cut_disabled.png"));
+				ZK.fixUrl("/aries/images/icons/cut.png") : ZK.fixUrl("/aries/images/icons/cut_disabled.png"));
 		scresetdraw.setImage(hasSelection? 
-				ZK.fixUrl("/images/icons/delete.png") : ZK.fixUrl("/images/icons/delete_disabled.png"));
+				ZK.fixUrl("/aries/images/icons/delete.png") : ZK.fixUrl("/aries/images/icons/delete_disabled.png"));
 				
 		scsubpolyg.setDisabled(!hasSelection);
 		scresetdraw.setDisabled(!hasSelection);

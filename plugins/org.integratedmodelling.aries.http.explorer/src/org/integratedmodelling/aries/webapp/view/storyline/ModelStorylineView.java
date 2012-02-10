@@ -331,7 +331,7 @@ public class ModelStorylineView extends StorylineView {
 										ZK.vbox(
 											ZK.spacer(8),
 											ZK.hbox(
-												ZK.imagebutton("/images/icons/camera_go.png").
+												ZK.imagebutton("/aries/images/icons/camera_go.png").
 													listener("onClick", new EventListener() {
 											
 														@Override
@@ -340,7 +340,7 @@ public class ModelStorylineView extends StorylineView {
 														}
 													}).
 													tooltip("Export the selected layer as a PNG image"),
-												ZK.imagebutton("/images/icons/folder_go.png").
+												ZK.imagebutton("/aries/images/icons/folder_go.png").
 													listener("onClick", new EventListener() {
 											
 														@Override
@@ -349,7 +349,7 @@ public class ModelStorylineView extends StorylineView {
 														}
 													}).
 													tooltip("Export the selected layer as a GeoTIFF file, suitable for GIS applications."),
-												ZK.imagebutton("/images/icons/google-earth.png").
+												ZK.imagebutton("/aries/images/icons/google-earth.png").
 													listener("onClick", new EventListener() {
 														@Override
 														public void onEvent(Event arg0) throws Exception {

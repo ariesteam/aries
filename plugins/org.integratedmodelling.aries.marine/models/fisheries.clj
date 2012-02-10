@@ -20,7 +20,7 @@
 ;;; UNEP marine project
 ;;; Models for subsistence fisheries in Madagascar
 ;;;
-;;; Valid Contexts: core.contexts.beta/mg*
+;;; Valid Contexts: core.contexts.mg/mg*
 ;;;
 ;;;-------------------------------------------------------------------
 

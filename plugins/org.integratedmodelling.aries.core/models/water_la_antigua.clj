@@ -19,7 +19,7 @@
 ;;;
 ;;; Water supply model for La Antigua, Veracruz, Mexico
 ;;;
-;;; Valid Contexts: core.contexts.beta/la_antigua*
+;;; Valid Contexts: core.contexts.la-antigua/la-antigua*
 ;;;
 ;;;-------------------------------------------------------------------
 

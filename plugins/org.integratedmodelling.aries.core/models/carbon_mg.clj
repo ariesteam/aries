@@ -19,7 +19,7 @@
 ;;;
 ;;; Carbon model for Madagascar
 ;;;
-;;; Valid Contexts: core.contexts.beta/mg*
+;;; Valid Contexts: core.contexts.mg/mg*
 ;;;
 ;;;-------------------------------------------------------------------
 
