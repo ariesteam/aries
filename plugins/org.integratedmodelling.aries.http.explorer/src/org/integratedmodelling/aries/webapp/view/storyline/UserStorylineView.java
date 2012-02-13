@@ -124,7 +124,7 @@ public class UserStorylineView extends StorylineView {
 			final Storyline m = (Storyline) storyline.getChildAt(i);
 			if (storyline.getContext() != null && m.isCovered())
 				badges.add(getBadge(220,
-						ZK.fixUrl("/images/icons/globe48c.png"), 
+						ZK.fixUrl("/aries/images/icons/globe48c.png"), 
 						m.getTemplate().getTitle(), 
 						m.getTemplate().getRunningHead(), 
 						"There are models and data available to compute " +
@@ -142,7 +142,7 @@ public class UserStorylineView extends StorylineView {
 			Storyline m = (Storyline) storyline.getChildAt(i);
 			if (storyline.getContext() == null || !m.isCovered())
 				badges.add(getBadge(220,
-						ZK.fixUrl("/images/icons/globe48.png"), 
+						ZK.fixUrl("/aries/images/icons/globe48.png"), 
 						m.getTemplate().getTitle(), 
 						m.getTemplate().getRunningHead(), 
 						"There is not enough information to compute " + 

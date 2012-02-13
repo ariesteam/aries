@@ -247,28 +247,28 @@ public class AriesBrowser extends ThinkcapCometComponent {
 							 * TODO
 							 * these should be re-enabled when they work.
 							 * 
-							ZK.imagebutton("/images/icons/folder_open.png")
+							ZK.imagebutton("/aries/images/icons/folder_open.png")
 								.tooltip("load a previously saved configuration"),
-							ZK.imagebutton("/images/icons/save.png")
+							ZK.imagebutton("/aries/images/icons/save.png")
 								.tooltip("save the current selection for future reference") */
 						)
 					).align("left"),	
 					ZK.div(
 						ZK.hbox(
-							ZK.image("/images/icons/separator.png"),
-							ZK.imagebutton("/images/icons/edit.png")
+							ZK.image("/aries/images/icons/separator.png"),
+							ZK.imagebutton("/aries/images/icons/edit.png")
 								.id("addpolyg")
 								.tooltip("Draw a shape and add it to the selection"),
-							ZK.imagebutton("/images/icons/cut_disabled.png")
+							ZK.imagebutton("/aries/images/icons/cut_disabled.png")
 								.enable(false)
 								.id("subpolyg")
 								.tooltip("Draw a shape and subtract it from the selection"),
-							ZK.imagebutton("/images/icons/delete_disabled.png")
+							ZK.imagebutton("/aries/images/icons/delete_disabled.png")
 								.enable(false)
 								.id("resetdraw")
 								.tooltip("Clear all selections made so far"),
-								ZK.image("/images/icons/separator.png"),
-							ZK.imagebutton("/images/icons/play_disabled.png")
+								ZK.image("/aries/images/icons/separator.png"),
+							ZK.imagebutton("/aries/images/icons/play_disabled.png")
 								.enable(false)
 								.id("run")
 								.tooltip("Accept selection and continue to assessment"))
@@ -281,33 +281,33 @@ public class AriesBrowser extends ThinkcapCometComponent {
 			
 			addpolyg.setImage( 
 					isScissors ? 
-							ZK.fixUrl("/images/icons/edit.png") :
-							ZK.fixUrl("/images/icons/edit_active.png"));
+							ZK.fixUrl("/aries/images/icons/edit.png") :
+							ZK.fixUrl("/aries/images/icons/edit_active.png"));
 			subpolyg.setImage(
 					isScissors ? 
-							ZK.fixUrl("/images/icons/cut_active.png") :
-							ZK.fixUrl("/images/icons/cut_disabled.png"));
+							ZK.fixUrl("/aries/images/icons/cut_active.png") :
+							ZK.fixUrl("/aries/images/icons/cut_disabled.png"));
 			
-			resetdraw.setImage(ZK.fixUrl("/images/icons/cancel_disabled.png"));
+			resetdraw.setImage(ZK.fixUrl("/aries/images/icons/cancel_disabled.png"));
 			
 		}
 		
 		void idle(boolean hasSelection) {
 
-			addpolyg.setImage(ZK.fixUrl("/images/icons/edit.png"));
+			addpolyg.setImage(ZK.fixUrl("/aries/images/icons/edit.png"));
 			subpolyg.setImage(
 					hasSelection? 
-							ZK.fixUrl("/images/icons/cut.png") : 
-							ZK.fixUrl("/images/icons/cut_disabled.png"));
+							ZK.fixUrl("/aries/images/icons/cut.png") : 
+							ZK.fixUrl("/aries/images/icons/cut_disabled.png"));
 			resetdraw.setImage( 
 					hasSelection? 
-							ZK.fixUrl("/images/icons/delete.png") : 
-							ZK.fixUrl("/images/icons/delete_disabled.png"));
+							ZK.fixUrl("/aries/images/icons/delete.png") : 
+							ZK.fixUrl("/aries/images/icons/delete_disabled.png"));
 			
 			run.setImage(
 					(hasSelection) ? 
-							ZK.fixUrl("/images/icons/play.png") : 
-							ZK.fixUrl("/images/icons/play_disabled.png"));
+							ZK.fixUrl("/aries/images/icons/play.png") : 
+							ZK.fixUrl("/aries/images/icons/play_disabled.png"));
 			
 			subpolyg.setDisabled(!hasSelection);
 			resetdraw.setDisabled(!hasSelection);

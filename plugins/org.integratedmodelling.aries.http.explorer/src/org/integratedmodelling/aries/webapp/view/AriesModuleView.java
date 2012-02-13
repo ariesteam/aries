@@ -79,7 +79,7 @@ public class AriesModuleView extends SidebarModule {
 					ZK.hbox(
 							ZK.spacer(4),
 							(browser.isContextSet() ? 
-								ZK.imagebutton("/images/icons/home.png").
+								ZK.imagebutton("/aries/images/icons/home.png").
 									tooltip("Show the storyline for this module in this region.").
 										listener("onClick", new EventListener() {
 											
@@ -92,8 +92,8 @@ public class AriesModuleView extends SidebarModule {
 								(browser.isContextSet() ? 
 									null : 
 										ZK.imagebutton(covShown ? 
-												"/images/icons/redeye.png" : 
-												"/images/icons/grayeye.png").
+												"/aries/images/icons/redeye.png" : 
+												"/aries/images/icons/grayeye.png").
 											tooltip(covShown ? 
 												"Hide the spatial coverage of this storyline." : 
 												"Show the spatial coverage of this storyline.").
