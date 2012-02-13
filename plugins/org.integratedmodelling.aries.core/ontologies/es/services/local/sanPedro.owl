@@ -15,14 +15,14 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/local/sanPedro.owl#"
      xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
         <owl:versionInfo rdf:datatype="&xsd;string">Created with TopBraid Composer</owl:versionInfo>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
@@ -789,6 +789,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SingleQuailSpeciesPresent">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltration">
+        <rdfs:subClassOf rdf:resource="&habitat;Infiltration"/>
     </owl:Class>
     
 
