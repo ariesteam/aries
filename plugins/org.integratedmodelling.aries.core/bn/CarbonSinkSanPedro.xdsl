@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="MeanAnnualPrecipitation">
+		<cpt id="AnnualPrecipitationClass">
 			<state id="HighMeanAnnualPrecipitation" />
 			<state id="ModerateMeanAnnualPrecipitation" />
 			<state id="LowMeanAnnualPrecipitation" />
@@ -55,7 +55,7 @@
 			<state id="LowVegetationStorage" />
 			<state id="VeryLowVegetationStorage" />
 			<state id="NoVegetationStorage" />
-			<parents>VegetationDensity MeanAnnualPrecipitation</parents>
+			<parents>VegetationDensity AnnualPrecipitationClass</parents>
 			<probabilities>0.7 0.15 0.1 0.05 0 0 0.5 0.3 0.15 0.05 0 0 0.2 0.3 0.3 0.15 0.05 0 0.6 0.2 0.15 0.05 0 0 0.4 0.4 0.15 0.05 0 0 0.1 0.4 0.3 0.15 0.05 0 0.1 0.3 0.3 0.2 0.1 0 0 0.15 0.5 0.15 0.2 0 0 0.05 0.45 0.3 0.2 0 0 0.05 0.3 0.4 0.25 0 0 0 0.2 0.5 0.3 0 0 0 0.1 0.55 0.35 0 0 0 0.1 0.4 0.5 0 0 0 0.05 0.25 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="SlopeClass">
@@ -161,8 +161,8 @@
 				<comment>+ aspect (more C on N-NE facing slope)</comment>
 				<barchart active="true" width="190" height="90" />
 			</node>
-			<node id="MeanAnnualPrecipitation">
-				<name>MeanAnnualPrecipitation</name>
+			<node id="AnnualPrecipitationClass">
+				<name>AnnualPrecipitationClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

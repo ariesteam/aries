@@ -49,13 +49,13 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-(defmodel percent-tree-canopy-cover PercentTreeCanopyCoverClass
+(defmodel percent-tree-canopy-cover colorado:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
-    [75 100 :inclusive] VeryHighCanopyCover
-    [50  75]            HighCanopyCover
-    [30  50]            ModerateCanopyCover
-    [10  30]            LowCanopyCover
-    [ 0  10]            VeryLowCanopyCover))
+    [75 100 :inclusive] colorado:VeryHighCanopyCover
+    [50  75]            colorado:HighCanopyCover
+    [30  50]            colorado:ModerateCanopyCover
+    [10  30]            colorado:LowCanopyCover
+    [ 0  10]            colorado:VeryLowCanopyCover))
 
 (defmodel vegetation-type colorado:CarbonVegetationType
   "Reclass of SWReGAP LULC"
@@ -74,13 +74,13 @@
 ;; include in carbon models in wetter regions, while annual precip
 ;; is far more important in water-limited regions.
 
-(defmodel annual-precipitation MeanAnnualPrecipitation
+(defmodel annual-precipitation colorado:AnnualPrecipitationClass
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [600  :>] HighMeanAnnualPrecipitation
-    [400 600] ModerateMeanAnnualPrecipitation
-    [:<  400] LowMeanAnnualPrecipitation))
+    [600  :>] colorado:HighMeanAnnualPrecipitation
+    [400 600] colorado:ModerateMeanAnnualPrecipitation
+    [:<  400] colorado:LowMeanAnnualPrecipitation))
 
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+(defmodel veg-soil-sequestration colorado:VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
     [10   20]    VeryHighSequestration
     [ 6   10]    HighSequestration
@@ -90,8 +90,8 @@
     [ 0    0.01] NoSequestration))
 
 ;; Bayesian source model
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel source colorado:CarbonSourceValue   
+  (bayesian colorado:CarbonSourceValue 
     :import  "aries.core::CarbonSourceColorado.xdsl"
     :context [vegetation-type percent-tree-canopy-cover annual-precipitation]
     :keep    [VegetationAndSoilCarbonSequestration]
@@ -118,32 +118,32 @@
     "Water"       colorado:Water))
 
 (defmodel beetle-kill colorado:MountainPineBeetleDamageClass
-  (classification (count colorado:MountainPineBeetleDamageTreesPerAcre "/ac")
-    [17.6 500]   colorado:SevereDamage
-    [ 2    17.6] colorado:ModerateDamage
-    [ 1     2]   colorado:LowDamage
-    :otherwise   colorado:NoDamage))
+  (classification (count colorado:MountainPineBeetleDamageTreesPerHectare "/ha")
+    [43 1236]  colorado:SevereDamage
+    [ 5   43]  colorado:ModerateDamage
+    [ 1    5]  colorado:LowDamage
+    :otherwise colorado:NoDamage))
 
-(defmodel fire-threat FireThreatClass ; This is actually fire return
+(defmodel fire-threat colorado:FireThreatClass ; This is actually fire return
                                       ; interval data, but uses
                                       ; student discretization.
   (classification (numeric-coding habitat:FireThreat) 
-    [ 2   9] VeryHighFireThreat
-    [ 9  12] HighFireThreat
-    [12  18] ModerateFireThreat
-    [18 133] LowFireThreat))
+    [ 2   9] colorado:VeryHighFireThreat
+    [ 9  12] colorado:HighFireThreat
+    [12  18] colorado:ModerateFireThreat
+    [18 133] colorado:LowFireThreat))
 
-(defmodel veg-storage VegetationCarbonStorage
+(defmodel veg-storage colorado:VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha" 
-    [89  127]    VeryHighVegetationStorage
-    [69   89]    HighVegetationStorage
-    [37   69]    ModerateVegetationStorage
-    [ 9.3 37]    LowVegetationStorage
-    [ 0.01 9.3]  VeryLowVegetationStorage
-    [ 0    0.01] NoVegetationStorage))
+    [89  127]    colorado:VeryHighVegetationStorage
+    [69   89]    colorado:HighVegetationStorage
+    [37   69]    colorado:ModerateVegetationStorage
+    [ 9.3 37]    colorado:LowVegetationStorage
+    [ 0.01 9.3]  colorado:VeryLowVegetationStorage
+    [ 0    0.01] colorado:NoVegetationStorage))
 
-(defmodel vegetation-carbon-storage VegetationCStorage 
-  (bayesian VegetationCStorage 
+(defmodel vegetation-carbon-storage colorado:VegetationCStorage 
+  (bayesian colorado:VegetationCStorage 
     :import  "aries.core::CarbonSinkColorado.xdsl"
     :context [percent-tree-canopy-cover vegetation-type beetle-kill]
     :keep    [VegetationCarbonStorage]
@@ -151,23 +151,23 @@
 
 ;; Hack; remove once a proper context model is working
 (defmodel vegetation-carbon-storage-no-beetle colorado:VegetationCStorageNoBeetle
-  (bayesian VegetationCStorage 
+  (bayesian colorado:VegetationCStorage 
     :import  "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
     :context [percent-tree-canopy-cover vegetation-type]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
-(defmodel soil-storage SoilCarbonStorage
+(defmodel soil-storage colorado:SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha" 
-    [69   108]    VeryHighSoilStorage
-    [46.6  69]    HighSoilStorage
-    [27    46.6]  ModerateSoilStorage
-    [10    27]    LowSoilStorage
-    [ 0.01 10]    VeryLowSoilStorage
-    [ 0     0.01] NoSoilStorage))
+    [69   108]    colorado:VeryHighSoilStorage
+    [46.6  69]    colorado:HighSoilStorage
+    [27    46.6]  colorado:ModerateSoilStorage
+    [10    27]    colorado:LowSoilStorage
+    [ 0.01 10]    colorado:VeryLowSoilStorage
+    [ 0     0.01] colorado:NoSoilStorage))
 
-(defmodel soil-carbon-storage SoilCStorage 
-  (bayesian SoilCStorage 
+(defmodel soil-carbon-storage colorado:SoilCStorage 
+  (bayesian colorado:SoilCStorage 
     :import  "aries.core::CarbonSinkColorado.xdsl"
     :context [soil-type annual-precipitation]
     :keep    [SoilCarbonStorage]
@@ -186,14 +186,14 @@
     :state   #(+ (if (nil? (:vegetation-c-storage-no-beetle %)) 0.0 (.getMean (:vegetation-c-storage-no-beetle %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
-(defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
+(defmodel veg-soil-storage colorado:VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage
-    [159   235]    VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [116   159]    HighStorage
-    [ 64   116]    ModerateStorage
-    [ 10    64]    LowStorage
-    [  0.02 10]    VeryLowStorage
-    [  0     0.02] NoStorage))
+    [159   235]    colorado:VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [116   159]    colorado:HighStorage
+    [ 64   116]    colorado:ModerateStorage
+    [ 10    64]    colorado:LowStorage
+    [  0.02 10]    colorado:VeryLowStorage
+    [  0     0.02] colorado:NoStorage))
 
 ;; One more hack for good measure
 (defmodel veg-soil-storage-no-beetle colorado:VegetationAndSoilCarbonStorageClassNoBeetle
@@ -205,17 +205,17 @@
     [  0.02 10]    colorado:VeryLowStorage
     [  0     0.02] colorado:NoStorage))
 
-(defmodel stored-carbon-release StoredCarbonRelease
+(defmodel stored-carbon-release colorado:StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-    [59   118]    VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
-    [29.5  59]    HighRelease
-    [14.8  29.5]  ModerateRelease
-    [ 7.4  14.8]  LowRelease
-    [ 0.02  7.4]  VeryLowRelease
-    [ 0     0.02] NoRelease))
+    [59   118]    colorado:VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
+    [29.5  59]    colorado:HighRelease
+    [14.8  29.5]  colorado:ModerateRelease
+    [ 7.4  14.8]  colorado:LowRelease
+    [ 0.02  7.4]  colorado:VeryLowRelease
+    [ 0     0.02] colorado:NoRelease))
 
-(defmodel sink CarbonSinkValue
-  (bayesian CarbonSinkValue
+(defmodel sink colorado:CarbonSinkValue
+  (bayesian colorado:CarbonSinkValue
     :import  "aries.core::CarbonSinkColorado.xdsl"
     :context [veg-soil-storage fire-threat]
     :keep    [StoredCarbonRelease]

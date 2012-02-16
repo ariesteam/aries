@@ -5864,31 +5864,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-<!--  <measurement:Ranking id="colorado_mpb_damage_co">
-    <observation:hasObservable>
-      <colorado:MountainPineBeetleDamageSeverity/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>severity1</geospace:hasValueAttribute>
-      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>4084477.379135117</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>37140.84674774384</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>5010596.768577957</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>897848.888465635</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Ranking> -->
-
 <measurement:Ranking id="colorado_mpb_damage_co">
   <observation:hasObservable>
     <colorado:MountainPineBeetleDamageSeverity/>
@@ -5914,47 +5889,20 @@ could be used in BN training. -->
   </observation:hasObservationExtent>
 </measurement:Ranking>
 
-<!-- Commented out until Ferd enables acres as a legal unit in
-     Thinklab.  2nd one is the new one.
-  <measurement:Count id="colorado_mpb_damage_co">
-    <observation:hasObservable>
-      <colorado:MountainPineBeetleDamageTreesPerAcre/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <measurement:unit>/ac</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>tpa1</geospace:hasValueAttribute>
-      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>4084477.379135117</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>37140.84674774384</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>5010596.768577957</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>897848.888465635</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Count>
-
 <measurement:Count id="colorado_mpb_damage_co">
   <observation:hasObservable>
-    <colorado:MountainPineBeetleDamageTreesPerAcre/>
+    <colorado:MountainPineBeetleDamageTreesPerHectare/>
   </observation:hasObservable>
   <rdfs:comment>Data source: USFS aerial survey data</rdfs:comment>
   <metadata:hasPriority>0</metadata:hasPriority>
-  <measurement:unit>/ac</measurement:unit>
+  <measurement:unit>/ha</measurement:unit>
   <observation:hasDataSource>
     <geospace:WFSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>colorado:mpb_damage_co</geospace:hasCoverageId>
       <geospace:hasValueAttribute>tpa1</geospace:hasValueAttribute>
       <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
+      <geospace:hasTransformation>self * 2.471</geospace:hasTransformation>
     </geospace:WFSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
@@ -5966,7 +5914,7 @@ could be used in BN training. -->
       <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
-</measurement:Count> -->
+</measurement:Count>
 
   <measurement:NumericCoding id="mourning_240">
     <observation:hasObservable>

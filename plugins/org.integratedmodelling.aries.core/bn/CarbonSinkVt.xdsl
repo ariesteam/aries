@@ -48,7 +48,7 @@
 			<parents>CarbonVegetationType SoilCNRatio BiomassResidueInput</parents>
 			<probabilities>0 0.7 0.3 0 0 0 0 0.75 0.25 0 0 0 0 0.8 0.2 0 0 0 0 0.6 0.4 0 0 0 0 0.65 0.35 0 0 0 0 0.7 0.3 0 0 0 0 0 0.5 0.5 0 0 0 0 0.6 0.4 0 0 0 0 0.7 0.3 0 0 0 0 0 0.5 0.5 0 0 0 0 0.6 0.4 0 0 0 0 0.7 0.3 0 0 0.8 0.2 0 0 0 0 0.85 0.15 0 0 0 0 0.9 0.1 0 0 0 0 0.7 0.3 0 0 0 0 0.75 0.25 0 0 0 0 0.8 0.2 0 0 0 0 0 0.6 0.4 0 0 0 0 0.7 0.3 0 0 0 0 0.8 0.2 0 0 0 0 0 0.6 0.4 0 0 0 0 0.7 0.3 0 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0 0 0.85 0.15 0 0 0 0 0.9 0.1 0 0 0 0 0.7 0.3 0 0 0 0 0.75 0.25 0 0 0 0 0.8 0.2 0 0 0 0 0 0.6 0.4 0 0 0 0 0.7 0.3 0 0 0 0 0.8 0.2 0 0 0 0 0 0.6 0.4 0 0 0 0 0.7 0.3 0 0 0 0 0.8 0.2 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999</probabilities>
 		</cpt>
-		<cpt id="MeanAnnualPrecipitation">
+		<cpt id="AnnualPrecipitationClass">
 			<state id="HighMeanAnnualPrecipitation" />
 			<state id="ModerateMeanAnnualPrecipitation" />
 			<state id="LowMeanAnnualPrecipitation" />
@@ -68,7 +68,7 @@
 			<state id="LowVegetationStorage" />
 			<state id="VeryLowVegetationStorage" />
 			<state id="NoVegetationStorage" />
-			<parents>CarbonVegetationType SummerHighWinterLow MeanAnnualPrecipitation</parents>
+			<parents>CarbonVegetationType SummerHighWinterLow AnnualPrecipitationClass</parents>
 			<probabilities>0 0 0.7 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0.2 0.8 0 0 0 0 0.6 0.4 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0.5 0.5 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0 1 0 0 0 0 0.3 0.7 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0.4 0.6 0 0 0 0 0.2000000000000001 0.7000000000000001 0.1 0 0 0 0 0.2 0.8 0 0 0 0.3 0.7 0 0 0 0 0.1 0.6 0.3 0 0 0 0 0.2 0.8 0 0 0 0.2000000000000001 0.7000000000000001 0.1 0 0 0 0 0.5 0.5 0 0 0 0 0.2 0.8 0 0 0 0 0.6 0.4 0 0 0 0 0.4 0.6 0 0 0 0 0 1 0 0 0 0 0.5 0.5 0 0 0 0 0.3 0.7 0 0 0 0 0 1 0 0 0.9 0.1 0 0 0 0 0.7 0.3 0 0 0 0 0.2 0.8 0 0 0 0 0 0.9 0.1 0 0 0 0 0.7 0.3 0 0 0 0 0.2 0.8 0 0 0 0 0.8 0.2 0 0 0 0 0.6 0.4 0 0 0 0 0.2 0.8 0 0 0 0 0.7 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0.2 0.8 0 0 0 0 0.6 0.4 0 0 0 0 0.4 0.6 0 0 0 0 0 1 0 0 0 0 0 0.7 0.3 0 0 0 0 0.5 0.5 0 0 0 0 0.2 0.8 0 0 0 0 0.6 0.4 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0.5 0.5 0 0 0 0 0.3 0.7 0 0 0 0 0 1 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0 1 0 0 0 0 0.3 0.7 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999 0 0 0 0 0.001 0.999</probabilities>
 		</cpt>
 		<cpt id="VegetationAndSoilCarbonStorageClass">
@@ -177,8 +177,8 @@
 				<comment>VegetationAndSoilCarbonStorage = VegetationCarbonStorage + SoilCarbonStorage</comment>
 				<barchart active="true" width="234" height="126" />
 			</node>
-			<node id="MeanAnnualPrecipitation">
-				<name>MeanAnnualPrecipitation</name>
+			<node id="AnnualPrecipitationClass">
+				<name>AnnualPrecipitationClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

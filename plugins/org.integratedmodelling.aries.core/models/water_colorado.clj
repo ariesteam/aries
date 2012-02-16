@@ -101,43 +101,43 @@
     #{111 112 115 117 125}                                                                             colorado:UrbanBarren
     114                                                                                                colorado:Agriculture))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+(defmodel percent-canopy-cover colorado:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60 80]             HighCanopyCover
-    [30 60]             ModerateCanopyCover
-    [ 5 30]             LowCanopyCover
-    [ 0  5]             VeryLowCanopyCover))
+    [80 100 :inclusive] colorado:VeryHighCanopyCover
+    [60 80]             colorado:HighCanopyCover
+    [30 60]             colorado:ModerateCanopyCover
+    [ 5 30]             colorado:LowCanopyCover
+    [ 0  5]             colorado:VeryLowCanopyCover))
 
-(defmodel slope SlopeClass
+(defmodel slope colorado:SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [    0  1.15] Level
-    [ 1.15  4.57] GentlyUndulating
-    [ 4.57 16.70] RollingToHilly
-    [16.70    :>] SteeplyDissectedToMountainous))
+    [    0  1.15] colorado:Level
+    [ 1.15  4.57] colorado:GentlyUndulating
+    [ 4.57 16.70] colorado:RollingToHilly
+    [16.70    :>] colorado:SteeplyDissectedToMountainous))
 
 ;; Global dataset values are in the range of 18-39 mm for Colorado.
-(defmodel evapotranspiration sanPedro:EvapotranspirationClass
-  (probabilistic-measurement sanPedro:EvapotranspirationClass "mm"
-    [30 40] sanPedro:HighEvapotranspiration
-    [24 30] sanPedro:ModerateEvapotranspiration
-    [18 24] sanPedro:LowEvapotranspiration))
+(defmodel evapotranspiration colorado:EvapotranspirationClass
+  (probabilistic-measurement waterSupplyService:EvapotranspirationClass "mm"
+    [30 40] colorado:HighEvapotranspiration
+    [24 30] colorado:ModerateEvapotranspiration
+    [18 24] colorado:LowEvapotranspiration))
 
-(defmodel infiltration sanPedro:SoilInfiltrationClass
-  (probabilistic-measurement sanPedro:SoilInfiltrationClass "mm"
-    [250 500] sanPedro:HighInfiltration
-    [ 50 250] sanPedro:ModerateInfiltration
-    [  0  50] sanPedro:LowInfiltration))
+(defmodel infiltration colorado:SoilInfiltrationClass
+  (probabilistic-measurement waterSupplyService:SoilInfiltrationClass "mm"
+    [250 500] colorado:HighInfiltration
+    [ 50 250] colorado:ModerateInfiltration
+    [  0  50] colorado:LowInfiltration))
 
-(defmodel et-sink Evapotranspiration
-  (bayesian Evapotranspiration
+(defmodel et-sink colorado:Evapotranspiration
+  (bayesian colorado:Evapotranspiration
     :import   "aries.core::SurfaceWaterSinkColorado.xdsl"
     :context  [slope vegetation-type percent-canopy-cover]
     :keep     [sanPedro:EvapotranspirationClass]
     :result   evapotranspiration))
 
-(defmodel infiltration-sink SoilInfiltration
-  (bayesian SoilInfiltration
+(defmodel infiltration-sink colorado:SoilInfiltration
+  (bayesian colorado:SoilInfiltration
     :import   "aries.core::SurfaceWaterSinkColorado.xdsl"
     :context  [slope vegetation-type percent-canopy-cover]
     :keep     [sanPedro:SoilInfiltrationClass]

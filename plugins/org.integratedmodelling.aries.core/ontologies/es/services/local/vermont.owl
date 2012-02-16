@@ -6,16 +6,24 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
+    <!ENTITY carbonService "http://www.integratedmodelling.org/ks/es/carbonService.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
+    <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#"
      xml:base="http://www.integratedmodelling.org/ks/aries/local/vermont.owl"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:carbonService="http://www.integratedmodelling.org/ks/es/carbonService.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
      xmlns:owl="http://www.w3.org/2002/07/owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
@@ -33,6 +41,34 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#AnnualPrecipitationClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#AnnualPrecipitationClass">
+        <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonSinkValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonSinkValue">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonSourceValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonSourceValue">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </owl:Class>
     
 
 
@@ -60,6 +96,206 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#GrowingSeason -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#GrowingSeason">
+        <rdfs:subClassOf rdf:resource="&habitat;ClimateQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighCNRatio -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighCNRatio">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCNRatio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighSOL -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighSOL">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SummerHighWinterLow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowCNRatio -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowCNRatio">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCNRatio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowSOL -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowSOL">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SummerHighWinterLow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateSOL -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateSOL">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SummerHighWinterLow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#OpenWater -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#OpenWater">
@@ -76,10 +312,176 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCNRatio -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCNRatio">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#StoredCarbonRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#StoredCarbonRelease">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SummerHighWinterLow -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SummerHighWinterLow">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#GrowingSeason"/>
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Unvegetated -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Unvegetated">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighCNRatio -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighCNRatio">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCNRatio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighSOL -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighSOL">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SummerHighWinterLow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryHighVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowCNRatio -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowCNRatio">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCNRatio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowSOL -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowSOL">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SummerHighWinterLow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VeryLowVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage"/>
     </owl:Class>
     
 
@@ -89,6 +491,14 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Wetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonVegetationType"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
+
+    <rdf:Description rdf:about="&thinklab-core;OrderedRangeMapping">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </rdf:Description>
 </rdf:RDF>
 
 

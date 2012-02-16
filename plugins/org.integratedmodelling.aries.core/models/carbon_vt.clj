@@ -59,26 +59,26 @@
 
 ;; No data here for "biomass residue input," "soil tillage" "biomass removal rate"- use priors
 
-(defmodel summer-high-winter-low SummerHighWinterLow
+(defmodel summer-high-winter-low vermont:SummerHighWinterLow
   (classification (ranking habitat:SummerHighWinterLow)
-    [44 :>] VeryHighSOL
-    [42 44] HighSOL
-    [40 42] ModerateSOL
-    [38 40] LowSOL
-    [:< 38] VeryLowSOL))
+    [44 :>] vermont:VeryHighSOL
+    [42 44] vermont:HighSOL
+    [40 42] vermont:ModerateSOL
+    [38 40] vermont:LowSOL
+    [:< 38] vermont:VeryLowSOL))
 
-(defmodel mean-annual-precip MeanAnnualPrecipitation
+(defmodel mean-annual-precip vermont:AnnualPrecipitationClass
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [1500   :>] HighMeanAnnualPrecipitation
-    [1000 1500] ModerateMeanAnnualPrecipitation
-    [:<   1000] LowMeanAnnualPrecipitation))
+    [1500   :>] vermont:HighMeanAnnualPrecipitation
+    [1000 1500] vermont:ModerateMeanAnnualPrecipitation
+    [:<   1000] vermont:LowMeanAnnualPrecipitation))
 
-(defmodel soil-CN-ratio SoilCNRatio
+(defmodel soil-CN-ratio vermont:SoilCNRatio
   (classification (ranking habitat:SoilCNRatio)
-    [25 :>]   VeryHighCNRatio
-    [17.5 25] HighCNRatio
-    [10 17.5] LowCNRatio
-    [:< 10]   VeryLowCNRatio))
+    [25 :>]   vermont:VeryHighCNRatio
+    [17.5 25] vermont:HighCNRatio
+    [10 17.5] vermont:LowCNRatio
+    [:< 10]   vermont:VeryLowCNRatio))
 
 (defmodel veg-type vermont:CarbonVegetationType
   (classification (ranking VegType)
@@ -98,18 +98,18 @@
     [16.70    :>] SteeplyDissectedToMountainous))
 
 ;; Ceiling based off highest local values from MODIS NPP data.
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+(defmodel veg-soil-sequestration vermont:VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-    [5 9]      VeryHighSequestration
-    [4 5]      HighSequestration
-    [3 4]      ModerateSequestration
-    [1.5 3]    LowSequestration
-    [0.01 1.5] VeryLowSequestration
-    [0 0.01]   NoSequestration))
+    [5 9]      vermont:VeryHighSequestration
+    [4 5]      vermont:HighSequestration
+    [3 4]      vermont:ModerateSequestration
+    [1.5 3]    vermont:LowSequestration
+    [0.01 1.5] vermont:VeryLowSequestration
+    [0 0.01]   vermont:NoSequestration))
 
 ;; Bayesian source model
-(defmodel source CarbonSourceValue
-  (bayesian CarbonSourceValue
+(defmodel source vermont:CarbonSourceValue
+  (bayesian vermont:CarbonSourceValue
     :import   "aries.core::CarbonSourceVt.xdsl"
     :context  [summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope]
     :required [SlopeClass]
@@ -127,33 +127,33 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-(defmodel veg-storage VegetationCarbonStorage
+(defmodel veg-storage vermont:VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha"
-    [100 300] VeryHighVegetationStorage ; High value bound from Smith et al. (2006); check with local experts.
-    [50 100]  HighVegetationStorage
-    [25 50]   ModerateVegetationStorage
-    [10 25]   LowVegetationStorage
-    [0.01 10] VeryLowVegetationStorage
-    [0 0.01]  NoVegetationStorage))
+    [100 300] vermont:VeryHighVegetationStorage ; High value bound from Smith et al. (2006); check with local experts.
+    [50 100]  vermont:HighVegetationStorage
+    [25 50]   vermont:ModerateVegetationStorage
+    [10 25]   vermont:LowVegetationStorage
+    [0.01 10] vermont:VeryLowVegetationStorage
+    [0 0.01]  vermont:NoVegetationStorage))
 
-(defmodel vegetation-carbon-storage VegetationCStorage
-  (bayesian VegetationCStorage
+(defmodel vegetation-carbon-storage vermont:VegetationCStorage
+  (bayesian vermont:VegetationCStorage
     :import  "aries.core::CarbonSinkVt.xdsl"
     :context [veg-type summer-high-winter-low mean-annual-precip]
     :keep    [VegetationCarbonStorage]
     :result   veg-storage))
 
-(defmodel soil-storage SoilCarbonStorage
+(defmodel soil-storage vermont:SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha"
-    [60 100] VeryHighSoilStorage  ; High value bound from Smith et al. (2006); check with local experts.
-    [35 60]  HighSoilStorage
-    [10 35]  ModerateSoilStorage
-    [5 10]   LowSoilStorage
-    [0.01 5] VeryLowSoilStorage
-    [0 0.01] NoSoilStorage))
+    [60 100] vermont:VeryHighSoilStorage  ; High value bound from Smith et al. (2006); check with local experts.
+    [35 60]  vermont:HighSoilStorage
+    [10 35]  vermont:ModerateSoilStorage
+    [5 10]   vermont:LowSoilStorage
+    [0.01 5] vermont:VeryLowSoilStorage
+    [0 0.01] vermont:NoSoilStorage))
 
-(defmodel soil-carbon-storage SoilCStorage
-  (bayesian SoilCStorage
+(defmodel soil-carbon-storage vermont:SoilCStorage
+  (bayesian vermont:SoilCStorage
     :import  "aries.core::CarbonSinkVt.xdsl"
     :context [veg-type soil-CN-ratio]
     :keep    [SoilCarbonStorage]
@@ -174,17 +174,17 @@
     [0.02 20] VeryLowStorage
     [0 0.02]  NoStorage))
 
-(defmodel stored-carbon-release StoredCarbonRelease
+(defmodel stored-carbon-release vermont:StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-    [75 200] VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
-    [30 75]  HighRelease
-    [15 30]  ModerateRelease
-    [5 15]   LowRelease
-    [0.01 5] VeryLowRelease
-    [0 0.01] NoRelease))
+    [75 200] vermont:VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
+    [30 75]  vermont:HighRelease
+    [15 30]  vermont:ModerateRelease
+    [5 15]   vermont:LowRelease
+    [0.01 5] vermont:VeryLowRelease
+    [0 0.01] vermont:NoRelease))
 
-(defmodel sink CarbonSinkValue
-  (bayesian CarbonSinkValue
+(defmodel sink vermont:CarbonSinkValue
+  (bayesian vermont:CarbonSinkValue
     :import   "aries.core::CarbonSinkVt.xdsl"
     :context  [veg-soil-storage]
     :required [SlopeClass]

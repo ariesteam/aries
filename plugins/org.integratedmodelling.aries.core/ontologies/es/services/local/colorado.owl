@@ -7,9 +7,11 @@
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
+    <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY colorado "http://www.integratedmodelling.org/ks/aries/local/colorado.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
 ]>
 
@@ -19,14 +21,17 @@
      xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
      xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
      xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:colorado="http://www.integratedmodelling.org/ks/aries/local/colorado.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
      xmlns:owl="http://www.w3.org/2002/07/owl#">
     <Ontology rdf:about="http://www.integratedmodelling.org/ks/aries/local/colorado.owl">
         <imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
+        <imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     </Ontology>
     
 
@@ -76,6 +81,51 @@
 
     <Class rdf:about="&colorado;Alfisols">
         <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#AnnualPrecipitationClass -->
+
+    <Class rdf:about="&colorado;AnnualPrecipitationClass">
+        <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#AnnualSedimentSource -->
+
+    <Class rdf:about="&colorado;AnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="&eserv;Source"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#AnnualSedimentSourceClass -->
+
+    <Class rdf:about="&colorado;AnnualSedimentSourceClass">
+        <rdfs:subClassOf rdf:resource="&eserv;Source"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#AnnualSedimentSourceFire -->
+
+    <Class rdf:about="&colorado;AnnualSedimentSourceFire">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualSedimentSource"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#AnnualSedimentSourceNoFire -->
+
+    <Class rdf:about="&colorado;AnnualSedimentSourceNoFire">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualSedimentSource"/>
     </Class>
     
 
@@ -136,6 +186,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#CarbonSinkValue -->
+
+    <Class rdf:about="&colorado;CarbonSinkValue">
+        <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#CarbonSinkValueNoBeetle -->
 
     <Class rdf:about="&colorado;CarbonSinkValueNoBeetle">
@@ -152,6 +210,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#CarbonSourceValue -->
+
+    <Class rdf:about="&colorado;CarbonSourceValue">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#CarbonVegetationType -->
 
     <Class rdf:about="&colorado;CarbonVegetationType">
@@ -164,6 +230,14 @@
 
     <Class rdf:about="&colorado;ClimateStabilityNoBeetle">
         <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#CoarseSoilTexture -->
+
+    <Class rdf:about="&colorado;CoarseSoilTexture">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilTextureClass"/>
     </Class>
     
 
@@ -264,10 +338,51 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#EarlySuccession -->
+
+    <Class rdf:about="&colorado;EarlySuccession">
+        <rdfs:subClassOf rdf:resource="&colorado;SuccessionalStage"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Entisols -->
 
     <Class rdf:about="&colorado;Entisols">
         <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Evapotranspiration -->
+
+    <Class rdf:about="&colorado;Evapotranspiration">
+        <rdfs:subClassOf rdf:resource="&habitat;Evapotranspiration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#EvapotranspirationClass -->
+
+    <Class rdf:about="&colorado;EvapotranspirationClass">
+        <rdfs:subClassOf rdf:resource="&habitat;Evapotranspiration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#FineSoilTexture -->
+
+    <Class rdf:about="&colorado;FineSoilTexture">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilTextureClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#FireThreatClass -->
+
+    <Class rdf:about="&colorado;FireThreatClass">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </Class>
     
 
@@ -293,6 +408,14 @@
     <Class rdf:about="&colorado;GenericDisturbance">
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;physical-object"/>
         <rdfs:comment>Includes mining, fires, and other disturbed and potentially transitional land use types.</rdfs:comment>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#GentlyUndulating -->
+
+    <Class rdf:about="&colorado;GentlyUndulating">
+        <rdfs:subClassOf rdf:resource="&colorado;SlopeClass"/>
     </Class>
     
 
@@ -369,6 +492,38 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighAnnualSedimentSource -->
+
+    <Class rdf:about="&colorado;HighAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualSedimentSourceClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighCanopyCover -->
+
+    <Class rdf:about="&colorado;HighCanopyCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentTreeCanopyCoverClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighEvapotranspiration -->
+
+    <Class rdf:about="&colorado;HighEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighFireThreat -->
+
+    <Class rdf:about="&colorado;HighFireThreat">
+        <rdfs:subClassOf rdf:resource="&colorado;FireThreatClass"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighGrassOrShrubs -->
 
     <Class rdf:about="&colorado;HighGrassOrShrubs">
@@ -409,10 +564,76 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighInfiltration -->
+
+    <Class rdf:about="&colorado;HighInfiltration">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilInfiltrationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighMeanAnnualPrecipitation -->
+
+    <Class rdf:about="&colorado;HighMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualPrecipitationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighRelease -->
+
+    <Class rdf:about="&colorado;HighRelease">
+        <rdfs:subClassOf rdf:resource="&colorado;StoredCarbonRelease"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighSequestration -->
+
+    <Class rdf:about="&colorado;HighSequestration">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonSequestration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighSoilErodibility -->
+
+    <Class rdf:about="&colorado;HighSoilErodibility">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilErodibilityClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighSoilStorage -->
+
+    <Class rdf:about="&colorado;HighSoilStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilCarbonStorage"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighStorage -->
 
     <Class rdf:about="&colorado;HighStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClass"/>
         <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighVegetationStorage -->
+
+    <Class rdf:about="&colorado;HighVegetationStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationCarbonStorage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HydrologicSoilsGroup -->
+
+    <Class rdf:about="&colorado;HydrologicSoilsGroup">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </Class>
     
 
@@ -421,6 +642,14 @@
 
     <Class rdf:about="&colorado;Inceptisols">
         <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Infiltration -->
+
+    <Class rdf:about="&colorado;Infiltration">
+        <rdfs:subClassOf rdf:resource="&owl;Thing"/>
     </Class>
     
 
@@ -441,6 +670,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LateSuccession -->
+
+    <Class rdf:about="&colorado;LateSuccession">
+        <rdfs:subClassOf rdf:resource="&colorado;SuccessionalStage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Level -->
+
+    <Class rdf:about="&colorado;Level">
+        <rdfs:subClassOf rdf:resource="&colorado;SlopeClass"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LodgepolePine -->
 
     <Class rdf:about="&colorado;LodgepolePine">
@@ -449,10 +694,42 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowAnnualSedimentSource -->
+
+    <Class rdf:about="&colorado;LowAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualSedimentSourceClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowCanopyCover -->
+
+    <Class rdf:about="&colorado;LowCanopyCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentTreeCanopyCoverClass"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowDamage -->
 
     <Class rdf:about="&colorado;LowDamage">
         <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetleDamageClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowEvapotranspiration -->
+
+    <Class rdf:about="&colorado;LowEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowFireThreat -->
+
+    <Class rdf:about="&colorado;LowFireThreat">
+        <rdfs:subClassOf rdf:resource="&colorado;FireThreatClass"/>
     </Class>
     
 
@@ -497,10 +774,99 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowInfiltration -->
+
+    <Class rdf:about="&colorado;LowInfiltration">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilInfiltrationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowMeanAnnualPrecipitation -->
+
+    <Class rdf:about="&colorado;LowMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualPrecipitationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowRelease -->
+
+    <Class rdf:about="&colorado;LowRelease">
+        <rdfs:subClassOf rdf:resource="&colorado;StoredCarbonRelease"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowSequestration -->
+
+    <Class rdf:about="&colorado;LowSequestration">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonSequestration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowSoilErodibility -->
+
+    <Class rdf:about="&colorado;LowSoilErodibility">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilErodibilityClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowSoilStorage -->
+
+    <Class rdf:about="&colorado;LowSoilStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilCarbonStorage"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowStorage -->
 
     <Class rdf:about="&colorado;LowStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClass"/>
         <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowVegetationStorage -->
+
+    <Class rdf:about="&colorado;LowVegetationStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationCarbonStorage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#MediumSoilTexture -->
+
+    <Class rdf:about="&colorado;MediumSoilTexture">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilTextureClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#MidSuccession -->
+
+    <Class rdf:about="&colorado;MidSuccession">
+        <rdfs:subClassOf rdf:resource="&colorado;SuccessionalStage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateAnnualSedimentSource -->
+
+    <Class rdf:about="&colorado;ModerateAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualSedimentSourceClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateCanopyCover -->
+
+    <Class rdf:about="&colorado;ModerateCanopyCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentTreeCanopyCoverClass"/>
     </Class>
     
 
@@ -513,10 +879,83 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateEvapotranspiration -->
+
+    <Class rdf:about="&colorado;ModerateEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="&colorado;EvapotranspirationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateFireThreat -->
+
+    <Class rdf:about="&colorado;ModerateFireThreat">
+        <rdfs:subClassOf rdf:resource="&colorado;FireThreatClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateInfiltration -->
+
+    <Class rdf:about="&colorado;ModerateInfiltration">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilInfiltrationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateMeanAnnualPrecipitation -->
+
+    <Class rdf:about="&colorado;ModerateMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualPrecipitationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateRelease -->
+
+    <Class rdf:about="&colorado;ModerateRelease">
+        <rdfs:subClassOf rdf:resource="&colorado;StoredCarbonRelease"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateSequestration -->
+
+    <Class rdf:about="&colorado;ModerateSequestration">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonSequestration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateSoilErodibility -->
+
+    <Class rdf:about="&colorado;ModerateSoilErodibility">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilErodibilityClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateSoilStorage -->
+
+    <Class rdf:about="&colorado;ModerateSoilStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilCarbonStorage"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateStorage -->
 
     <Class rdf:about="&colorado;ModerateStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClass"/>
         <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateVegetationStorage -->
+
+    <Class rdf:about="&colorado;ModerateVegetationStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationCarbonStorage"/>
     </Class>
     
 
@@ -553,10 +992,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#MountainPineBeetleDamageTreesPerAcre -->
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#MountainPineBeetleDamageTreesPerHectare -->
 
-    <Class rdf:about="&colorado;MountainPineBeetleDamageTreesPerAcre">
+    <Class rdf:about="&colorado;MountainPineBeetleDamageTreesPerHectare">
         <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoAnnualSedimentSource -->
+
+    <Class rdf:about="&colorado;NoAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualSedimentSourceClass"/>
     </Class>
     
 
@@ -569,10 +1016,59 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoRelease -->
+
+    <Class rdf:about="&colorado;NoRelease">
+        <rdfs:subClassOf rdf:resource="&colorado;StoredCarbonRelease"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoSequestration -->
+
+    <Class rdf:about="&colorado;NoSequestration">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonSequestration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoSoilStorage -->
+
+    <Class rdf:about="&colorado;NoSoilStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilCarbonStorage"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoStorage -->
 
     <Class rdf:about="&colorado;NoStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClass"/>
         <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoSuccession -->
+
+    <Class rdf:about="&colorado;NoSuccession">
+        <rdfs:subClassOf rdf:resource="&colorado;SuccessionalStage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#NoVegetationStorage -->
+
+    <Class rdf:about="&colorado;NoVegetationStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationCarbonStorage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#OldGrowth -->
+
+    <Class rdf:about="&colorado;OldGrowth">
+        <rdfs:subClassOf rdf:resource="&colorado;SuccessionalStage"/>
     </Class>
     
 
@@ -601,10 +1097,35 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#PercentTreeCanopyCoverClass -->
+
+    <Class rdf:about="&colorado;PercentTreeCanopyCoverClass">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#PoleSuccession -->
+
+    <Class rdf:about="&colorado;PoleSuccession">
+        <rdfs:subClassOf rdf:resource="&colorado;SuccessionalStage"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#PonderosaPine -->
 
     <Class rdf:about="&colorado;PonderosaPine">
         <rdfs:subClassOf rdf:resource="&colorado;SedimentVegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#RollingToHilly -->
+
+    <Class rdf:about="&colorado;RollingToHilly">
+        <rdfs:subClassOf rdf:resource="&colorado;SlopeClass"/>
     </Class>
     
 
@@ -673,6 +1194,98 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SlopeClass -->
+
+    <Class rdf:about="&colorado;SlopeClass">
+        <rdfs:subClassOf rdf:resource="&habitat;Slope"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilCStorage -->
+
+    <Class rdf:about="&colorado;SoilCStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilCarbonStorage -->
+
+    <Class rdf:about="&colorado;SoilCarbonStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilErodibilityClass -->
+
+    <Class rdf:about="&colorado;SoilErodibilityClass">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilGroupA -->
+
+    <Class rdf:about="&colorado;SoilGroupA">
+        <rdfs:subClassOf rdf:resource="&colorado;HydrologicSoilsGroup"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilGroupB -->
+
+    <Class rdf:about="&colorado;SoilGroupB">
+        <rdfs:subClassOf rdf:resource="&colorado;HydrologicSoilsGroup"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilGroupC -->
+
+    <Class rdf:about="&colorado;SoilGroupC">
+        <rdfs:subClassOf rdf:resource="&colorado;HydrologicSoilsGroup"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilGroupD -->
+
+    <Class rdf:about="&colorado;SoilGroupD">
+        <rdfs:subClassOf rdf:resource="&colorado;HydrologicSoilsGroup"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilInfiltration -->
+
+    <Class rdf:about="&colorado;SoilInfiltration">
+        <rdfs:subClassOf rdf:resource="&colorado;Infiltration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilInfiltrationClass -->
+
+    <Class rdf:about="&colorado;SoilInfiltrationClass">
+        <rdfs:subClassOf rdf:resource="&colorado;Infiltration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilTextureClass -->
+
+    <Class rdf:about="&colorado;SoilTextureClass">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SoilType -->
 
     <Class rdf:about="&colorado;SoilType">
@@ -685,6 +1298,33 @@
 
     <Class rdf:about="&colorado;SpruceFir">
         <rdfs:subClassOf rdf:resource="&colorado;SedimentVegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SteeplyDissectedToMountainous -->
+
+    <Class rdf:about="&colorado;SteeplyDissectedToMountainous">
+        <rdfs:subClassOf rdf:resource="&colorado;SlopeClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#StoredCarbonRelease -->
+
+    <Class rdf:about="&colorado;StoredCarbonRelease">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#SuccessionalStage -->
+
+    <Class rdf:about="&colorado;SuccessionalStage">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </Class>
     
 
@@ -722,6 +1362,24 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VegetationAndSoilCarbonSequestration -->
+
+    <Class rdf:about="&colorado;VegetationAndSoilCarbonSequestration">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VegetationAndSoilCarbonStorageClass -->
+
+    <Class rdf:about="&colorado;VegetationAndSoilCarbonStorageClass">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VegetationAndSoilCarbonStorageClassNoBeetle -->
 
     <Class rdf:about="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle">
@@ -739,6 +1397,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VegetationCStorage -->
+
+    <Class rdf:about="&colorado;VegetationCStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VegetationCStorageNoBeetle -->
 
     <Class rdf:about="&colorado;VegetationCStorageNoBeetle">
@@ -747,10 +1413,132 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VegetationCarbonStorage -->
+
+    <Class rdf:about="&colorado;VegetationCarbonStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighCanopyCover -->
+
+    <Class rdf:about="&colorado;VeryHighCanopyCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentTreeCanopyCoverClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighFireThreat -->
+
+    <Class rdf:about="&colorado;VeryHighFireThreat">
+        <rdfs:subClassOf rdf:resource="&colorado;FireThreatClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighMeanAnnualPrecipitation -->
+
+    <Class rdf:about="&colorado;VeryHighMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualPrecipitationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighRelease -->
+
+    <Class rdf:about="&colorado;VeryHighRelease">
+        <rdfs:subClassOf rdf:resource="&colorado;StoredCarbonRelease"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighSequestration -->
+
+    <Class rdf:about="&colorado;VeryHighSequestration">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonSequestration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighSoilErodibility -->
+
+    <Class rdf:about="&colorado;VeryHighSoilErodibility">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilErodibilityClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighSoilStorage -->
+
+    <Class rdf:about="&colorado;VeryHighSoilStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilCarbonStorage"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighStorage -->
 
     <Class rdf:about="&colorado;VeryHighStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClass"/>
         <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighVegetationStorage -->
+
+    <Class rdf:about="&colorado;VeryHighVegetationStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationCarbonStorage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowCanopyCover -->
+
+    <Class rdf:about="&colorado;VeryLowCanopyCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentTreeCanopyCoverClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowMeanAnnualPrecipitation -->
+
+    <Class rdf:about="&colorado;VeryLowMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualPrecipitationClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowRelease -->
+
+    <Class rdf:about="&colorado;VeryLowRelease">
+        <rdfs:subClassOf rdf:resource="&colorado;StoredCarbonRelease"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowSequestration -->
+
+    <Class rdf:about="&colorado;VeryLowSequestration">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonSequestration"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowSoilErodibility -->
+
+    <Class rdf:about="&colorado;VeryLowSoilErodibility">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilErodibilityClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowSoilStorage -->
+
+    <Class rdf:about="&colorado;VeryLowSoilStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilCarbonStorage"/>
     </Class>
     
 
@@ -758,7 +1546,16 @@
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowStorage -->
 
     <Class rdf:about="&colorado;VeryLowStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClass"/>
         <rdfs:subClassOf rdf:resource="&colorado;VegetationAndSoilCarbonStorageClassNoBeetle"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowVegetationStorage -->
+
+    <Class rdf:about="&colorado;VeryLowVegetationStorage">
+        <rdfs:subClassOf rdf:resource="&colorado;VegetationCarbonStorage"/>
     </Class>
     
 
@@ -793,6 +1590,30 @@
     <Class rdf:about="&colorado;Wetland">
         <rdfs:subClassOf rdf:resource="&colorado;CarbonVegetationType"/>
     </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality -->
+
+    <rdf:Description rdf:about="&habitat;EcosystemQuality">
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemSupportedResource -->
+
+    <rdf:Description rdf:about="&eserv;EcosystemSupportedResource">
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/science/representation.owl#Mass -->
+
+    <rdf:Description rdf:about="&representation;Mass">
+        <rdfs:subClassOf rdf:resource="&representation;ThermodynamicPotential"/>
+    </rdf:Description>
     
 
 

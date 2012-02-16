@@ -825,13 +825,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Excess sediment clouds the water, altering the coastal aquatic food chain. Accumulation of excess sediment can change aquatic communities by covering hard, rocky substrates with sediment.</rdfs:comment>
@@ -911,7 +911,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -923,7 +923,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Construction sites include areas of exposed soil that are highly susceptible to erosion.  Over the long term, increasing impervious area can  lead to alteration of stream geomorphic equilibrium, leading to downcutting, bank erosion, and downstream movement of sediment.</rdfs:comment>
@@ -1005,6 +1005,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#PercentTreeCanopyCoverClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1012,12 +1018,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#CanopyLayering"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Removal of trees from a region, generally as raw materials or to clear the land for other uses.</rdfs:comment>
@@ -1040,13 +1040,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>The natural flow of sediment from river systems is needed to maintain delta building processes.</rdfs:comment>
@@ -1414,13 +1414,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Excess sediment clouds the water, altering the freshwater food chain. Accumulation of excess sediment on stream and lake bottoms can change aquatic communities by covering hard, rocky substrates with sediment.</rdfs:comment>
@@ -1522,14 +1522,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HighAnnualPrecipitation -->
-
-    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HighAnnualPrecipitation">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HighAnnualRunoff -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HighAnnualRunoff">
@@ -1606,6 +1598,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HighHydroelectricUseLevel">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HydroelectricUseLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HighMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HighMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
     </owl:Class>
     
 
@@ -1984,14 +1984,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#LowAnnualPrecipitation -->
-
-    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#LowAnnualPrecipitation">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#LowAnnualRunoff -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#LowAnnualRunoff">
@@ -2036,6 +2028,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#LowFloodplainCanopyCover">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FloodplainTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#LowMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#LowMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
     </owl:Class>
     
 
@@ -2204,14 +2204,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ModerateAnnualPrecipitation -->
-
-    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ModerateAnnualPrecipitation">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ModerateAnnualRunoff -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ModerateAnnualRunoff">
@@ -2288,6 +2280,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ModerateHydroelectricUseLevel">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#HydroelectricUseLevel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ModerateMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ModerateMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
     </owl:Class>
     
 
@@ -2669,14 +2669,14 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SedimentProvisioning"/>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#DesirableSedimentMovement"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#DesirableSedimentMovement"/>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SedimentProvisioning"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Sediment is desirable where it is provided at rates consistent with natural sediment cycles.</rdfs:comment>
@@ -2697,13 +2697,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The gradual natural process of species turnover and community change, generally following disturbance.  Depending on the biome, disturbance type and intensity, this may include natural regrowth of trees.</rdfs:comment>
@@ -2727,6 +2727,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#CanopyLayering"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -2734,12 +2740,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#PercentTreeCanopyCoverClass"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Mechanically tilling the soil removes existing vegetation and exposes soil to greater erosion.  Frequency of plowing and when it occurs in relation to rainy periods are important determinants of how much erosion will occur.</rdfs:comment>
@@ -3161,13 +3161,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Provisioning of sediment is desirable to some locations (i.e., agricultural floodplains, river delta systems).</rdfs:comment>
@@ -3305,6 +3305,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilParentMaterial"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilOrganicMatter"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3317,13 +3323,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilStructure"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilDepthToBedrock"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilDepthToBedrock"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilStructure"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3336,12 +3342,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="&habitat;Slope"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilParentMaterial"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Soil erodibility may be due to several factors, including texture, compaction, root density, and vegetative cover.</rdfs:comment>
@@ -3488,6 +3488,12 @@
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#Precipitation"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VegetativeMaturity"/>
             </owl:Restriction>
@@ -3496,12 +3502,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#matters-in-event-of"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#Wind"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#Precipitation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The ability of a SoilRetainingEcosystem to provide the service of soil retention.</rdfs:comment>
@@ -3516,19 +3516,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ErosionProneFarmers"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#OtherInfrastructureUse"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3540,7 +3534,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FishermenUse"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ConsumersOfFishAndAgGoods"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ErosionProneFarmers"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Use of forests and other vegetation to reduce the erosive capacity of wind and water to hold soil in place.  Unless hydrologic are severe or the system is altered, soil retention capacity is generally maintained by an ecosystem over time.</rdfs:comment>
@@ -3554,12 +3554,6 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#Energy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#ExcessSedimentation"/>
             </owl:Restriction>
@@ -3567,7 +3561,25 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#NonErodedSystems"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#NonSedimentedSystems"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#Food"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilLoss"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3584,20 +3596,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#NonErodedSystems"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#Food"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#SoilLoss"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#Energy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>The retention of soils by forests or other vegetation, preventing them from washing into streams and adding sediment in undesirable locations.</rdfs:comment>
@@ -3829,12 +3829,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3844,15 +3838,13 @@
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#PercentTreeCanopyCoverClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Vegetation composition  beyond which more or less full hydrologic services are provided.</rdfs:comment>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryHighAnnualPrecipitation -->
-
-    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryHighAnnualPrecipitation">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
     </owl:Class>
     
 
@@ -3869,6 +3861,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryHighFloodplainCanopyCover">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FloodplainTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryHighMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryHighMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
     </owl:Class>
     
 
@@ -3897,14 +3897,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryLowAnnualPrecipitation -->
-
-    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryLowAnnualPrecipitation">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryLowAnnualRunoff -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryLowAnnualRunoff">
@@ -3917,6 +3909,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryLowFloodplainCanopyCover">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#FloodplainTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryLowMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#VeryLowMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#AnnualPrecipitationClass"/>
     </owl:Class>
     
 

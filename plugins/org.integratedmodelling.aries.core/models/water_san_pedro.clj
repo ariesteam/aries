@@ -114,24 +114,24 @@
 ;; Includes infiltration & evapotranspiration processes.  Deterministic
 ;; models could be used to replace this as appropriate.
 
-(defmodel mountain-front MountainFront 
+(defmodel mountain-front sanPedro:MountainFront 
   (classification (binary-coding geofeatures:MountainFront)
-    1           MountainFrontPresent
-    :otherwise  MountainFrontAbsent))
+    1           sanPedro:MountainFrontPresent
+    :otherwise  sanPedro:MountainFrontAbsent))
 
-(defmodel stream-channel StreamChannel
+(defmodel stream-channel sanPedro:StreamChannel
   (classification (binary-coding geofeatures:EphemeralStream) 
-    1           StreamChannelPresent
-    :otherwise  StreamChannelAbsent))
+    1           sanPedro:StreamChannelPresent
+    :otherwise  sanPedro:StreamChannelAbsent))
 
 ;; Global layer looks funny (when using for Mexico as well) -
 ;; discretization should be something like >38, 34-38, <34.  Clearly
 ;; these don't refer to identical concepts.
-(defmodel annual-temperature AnnualMaximumTemperature
+(defmodel annual-temperature sanPedro:AnnualMaximumTemperature
   (classification (measurement geophysics:AnnualMaximumGroundSurfaceTemperature "\u00b0C")
-    [28 :>]   VeryHighAnnualMaximumTemperature
-    [22 28]   HighAnnualMaximumTemperature
-    [:< 22]   ModerateAnnualMaximumTemperature)) 
+    [28 :>]   sanPedro:VeryHighAnnualMaximumTemperature
+    [22 28]   sanPedro:HighAnnualMaximumTemperature
+    [:< 22]   sanPedro:ModerateAnnualMaximumTemperature)) 
 
 (defmodel vegetation-type sanPedro:WaterSupplyVegetationType
   "Reclass of SWReGAP & CONABIO LULC layers"
@@ -153,13 +153,13 @@
     #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWater))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+(defmodel percent-canopy-cover sanPedro:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60 80]             HighCanopyCover
-    [40 60]             ModerateCanopyCover
-    [20 40]             LowCanopyCover
-    [0 20]              VeryLowCanopyCover))
+    [80 100 :inclusive] sanPedro:VeryHighCanopyCover
+    [60 80]             sanPedro:HighCanopyCover
+    [40 60]             sanPedro:ModerateCanopyCover
+    [20 40]             sanPedro:LowCanopyCover
+    [0 20]              sanPedro:VeryLowCanopyCover))
 
 ;; Global dataset values are in the range of 25-30 mm for the San
 ;; Pedro but (uncalibrated) SWAT model results say 99-482.  Need to
@@ -503,11 +503,11 @@
 
 (defscenario open-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
+  (model sanPedro:PercentTreeCanopyCoverClass
+    (classification sanPedro:PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'waterSupplyService:VeryLowCanopyCover)
+                  (conc 'sanPedro:VeryLowCanopyCover)
                   (:pcc %))))
   (model sanPedro:WaterSupplyVegetationType
     (classification sanPedro:WaterSupplyVegetationType
@@ -515,20 +515,20 @@
       :state   #(if (no-data? (:vto %))
                   (:vt %)
                   (:vto %))))
-  (model MountainFront
-    (classification MountainFront
+  (model sanPedro:MountainFront
+    (classification sanPedro:MountainFront
       :context [open-development-scenario :as od mountain-front :as mf]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'waterSupplyService:MountainFrontAbsent)
+                  (conc 'sanPedro:MountainFrontAbsent)
                   (:mf %)))))
 
 (defscenario constrained-development-water
   "Changes values in developed areas to very low vegetation cover, no fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
+  (model sanPedro:PercentTreeCanopyCoverClass
+    (classification sanPedro:PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'waterSupplyService:VeryLowCanopyCover)
+                  (conc 'sanPedro:VeryLowCanopyCover)
                   (:pcc %))))
   (model sanPedro:WaterSupplyVegetationType
     (classification sanPedro:WaterSupplyVegetationType
@@ -536,9 +536,9 @@
       :state   #(if (no-data? (:vtc %))
                   (:vt %)
                   (:vtc %))))
-  (model MountainFront
-    (classification MountainFront
+  (model sanPedro:MountainFront
+    (classification sanPedro:MountainFront
       :context [constrained-development-scenario :as cd mountain-front :as mf]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'waterSupplyService:MountainFrontAbsent)
+                  (conc 'sanPedro:MountainFrontAbsent)
                   (:mf %)))))

@@ -74,11 +74,11 @@
 (defmodel precipitation-annual AnnualPrecipitationClass
   "FIXME this is annual precipitation."
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [2200   :>]	VeryHighAnnualPrecipitation
-    [1800 2200]	HighAnnualPrecipitation
-    [1200 1800] ModerateAnnualPrecipitation
-    [ 600 1200]	LowAnnualPrecipitation
-	[:<    600]	VeryLowAnnualPrecipitation))
+    [2200   :>]	VeryHighMeanAnnualPrecipitation
+    [1800 2200]	HighMeanAnnualPrecipitation
+    [1200 1800] ModerateMeanAnnualPrecipitation
+    [ 600 1200]	LowMeanAnnualPrecipitation
+	[:<    600]	VeryLowMeanAnnualPrecipitation))
 
 ;; Tropical storm probability, use only in DR & Mg
 (defmodel storm-probability TropicalStormProbabilityClass

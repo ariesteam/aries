@@ -6,23 +6,31 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY lulc "http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#" >
     <!ENTITY observation "http://www.integratedmodelling.org/ks/science/observation.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY waterSupplyService "http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#" >
+    <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/local/sanPedro.owl#"
      xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#"
+     xmlns:waterSupplyService="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#">
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
         <owl:versionInfo rdf:datatype="&xsd;string">Created with TopBraid Composer</owl:versionInfo>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
@@ -71,6 +79,33 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AlpineAndCliff">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualMaximumTemperature -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualMaximumTemperature">
+        <rdfs:subClassOf rdf:resource="&habitat;AtmosphericTemperature"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualPrecipitationClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualPrecipitationClass">
+        <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnoxicSoils -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnoxicSoils">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilOxygenConditions"/>
     </owl:Class>
     
 
@@ -151,6 +186,24 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentationHalfMeterRise">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonSinkValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonSinkValue">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonSourceValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CarbonSourceValue">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
     </owl:Class>
     
 
@@ -268,6 +321,15 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#FireThreatClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#FireThreatClass">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Forest -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Forest">
@@ -317,6 +379,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#GentlyUndulating -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#GentlyUndulating">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SlopeClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Grassland -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Grassland">
@@ -342,10 +412,34 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighAnnualMaximumTemperature -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighAnnualMaximumTemperature">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualMaximumTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighEvapotranspiration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighEvapotranspiration">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighFireThreat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighFireThreat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#FireThreatClass"/>
     </owl:Class>
     
 
@@ -366,6 +460,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighPh -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighPh">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilPh"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianOrWetlandPresent -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianOrWetlandPresent">
@@ -378,6 +488,46 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianSpringWetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonStorageClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage"/>
     </owl:Class>
     
 
@@ -422,10 +572,34 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Level -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Level">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowEvapotranspiration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowEvapotranspiration">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowFireThreat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowFireThreat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#FireThreatClass"/>
     </owl:Class>
     
 
@@ -446,6 +620,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowPh -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowPh">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilPh"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianOrWetlandPresent -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianOrWetlandPresent">
@@ -458,6 +648,46 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianSpringWetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonStorageClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage"/>
     </owl:Class>
     
 
@@ -487,10 +717,34 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateAnnualMaximumTemperature -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateAnnualMaximumTemperature">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualMaximumTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateEvapotranspiration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateEvapotranspiration">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#EvapotranspirationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateFireThreat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateFireThreat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#FireThreatClass"/>
     </owl:Class>
     
 
@@ -511,6 +765,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModeratePh -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModeratePh">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilPh"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianOrWetlandPresent -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianOrWetlandPresent">
@@ -523,6 +793,71 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianSpringWetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonStorageClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MountainFront -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MountainFront">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
+        <rdfs:subClassOf rdf:resource="&DOLCE-Lite;spatial-location_q"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MountainFrontAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MountainFrontAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MountainFront"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MountainFrontPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MountainFrontPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MountainFront"/>
     </owl:Class>
     
 
@@ -575,6 +910,46 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonStorageClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NoVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#NotDevelopedConstrained -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#NotDevelopedConstrained">
@@ -620,6 +995,23 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Other">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#OxicSoils -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#OxicSoils">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilOxygenConditions"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -753,6 +1145,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RollingToHilly -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RollingToHilly">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SlopeClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScaledQuailHabitat -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScaledQuailHabitat">
@@ -793,6 +1193,33 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SlopeClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SlopeClass">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCarbonStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCarbonStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilInfiltration">
@@ -809,10 +1236,35 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilOxygenConditions -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilOxygenConditions">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilPh -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilPh">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilPh"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SouthwestRegionalGapAnalysisLULC -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SouthwestRegionalGapAnalysisLULC">
         <rdfs:subClassOf rdf:resource="&lulc;LandClassificationNumericMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SteeplyDissectedToMountainous -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SteeplyDissectedToMountainous">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SlopeClass"/>
     </owl:Class>
     
 
@@ -897,6 +1349,41 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#StoredCarbonRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StoredCarbonRelease">
+        <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSink"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#StreamChannel -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StreamChannel">
+        <rdfs:subClassOf rdf:resource="&habitat;RunningWater"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;BooleanRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#StreamChannelAbsent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StreamChannelAbsent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StreamChannel"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#StreamChannelPresent -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StreamChannelPresent">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StreamChannel"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanBarrenWater -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanBarrenWater">
@@ -941,6 +1428,155 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowthBaseline">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#UrbanGrowth"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonSequestration">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonStorageClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonStorageClass">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighAnnualMaximumTemperature -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighAnnualMaximumTemperature">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#AnnualMaximumTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighFireThreat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighFireThreat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#FireThreatClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonStorageClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowRelease -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowRelease">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#StoredCarbonRelease"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowSequestration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowSequestration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonSequestration"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowSoilStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowSoilStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SoilCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationAndSoilCarbonStorageClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowVegetationStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowVegetationStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage"/>
     </owl:Class>
     
 

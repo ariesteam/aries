@@ -50,13 +50,13 @@
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+(defmodel percent-canopy-cover sanPedro:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60  80]            HighCanopyCover
-    [40  60]            ModerateCanopyCover
-    [20  40]            LowCanopyCover
-    [ 0  20]            VeryLowCanopyCover))
+    [80 100 :inclusive] sanPedro:VeryHighCanopyCover
+    [60  80]            sanPedro:HighCanopyCover
+    [40  60]            sanPedro:ModerateCanopyCover
+    [20  40]            sanPedro:LowCanopyCover
+    [ 0  20]            sanPedro:VeryLowCanopyCover))
 
 ;; Add the Mexican layers in if/when cross-boundary data integration is enabled.
 (defmodel vegetation-type sanPedro:CarbonVegetationType
@@ -90,24 +90,24 @@
 ;; include in carbon models in wetter regions, while annual precip
 ;; is far more important in water-limited regions.
 
-(defmodel annual-precipitation MeanAnnualPrecipitation
+(defmodel annual-precipitation sanPedro:AnnualPrecipitationClass
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [500  :>] HighMeanAnnualPrecipitation
-    [400 500] ModerateMeanAnnualPrecipitation
-    [:<  400] LowMeanAnnualPrecipitation))
+    [500  :>] sanPedro:HighMeanAnnualPrecipitation
+    [400 500] sanPedro:ModerateMeanAnnualPrecipitation
+    [:<  400] sanPedro:LowMeanAnnualPrecipitation))
 
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+(defmodel veg-soil-sequestration sanPedro:VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-    [3 4.6]  VeryHighSequestration
-    [2 3]    HighSequestration
-    [1.5 2]  ModerateSequestration
-    [1 1.5]  LowSequestration
-    [0.01 1] VeryLowSequestration ; Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008); values can also be negative in dry years, should ideally account for that too.
-    [0 0.01] NoSequestration))
+    [3 4.6]  sanPedro:VeryHighSequestration
+    [2 3]    sanPedro:HighSequestration
+    [1.5 2]  sanPedro:ModerateSequestration
+    [1 1.5]  sanPedro:LowSequestration
+    [0.01 1] sanPedro:VeryLowSequestration ; Common annual values for desert scrub & desert grassland (Svejvcar et al. 2008); values can also be negative in dry years, should ideally account for that too.
+    [0 0.01] sanPedro:NoSequestration))
 
 ;; Bayesian source model
-(defmodel source CarbonSourceValue   
-  (bayesian CarbonSourceValue 
+(defmodel source sanPedro:CarbonSourceValue   
+  (bayesian sanPedro:CarbonSourceValue 
     :import  "aries.core::CarbonSourceSanPedro.xdsl"
     :context [vegetation-type percent-canopy-cover annual-precipitation]
     :keep    [VegetationAndSoilCarbonSequestration]
@@ -127,66 +127,66 @@
 ;; Using deep soil pH for grasslands and deserts, shallow for all
 ;; other ecosystem types This should work OK with both global & SSURGO
 ;; data, but check to make sure.
-(defmodel soil-ph SoilPh
+(defmodel soil-ph sanPedro:SoilPh
   (classification (ranking habitat:SoilPhDeep)
-    [7.3 :>]           HighPh
-    [5.5 7.3]          ModeratePh
-    [:exclusive 0 5.5] LowPh))
+    [7.3 :>]           sanPedro:HighPh
+    [5.5 7.3]          sanPedro:ModeratePh
+    [:exclusive 0 5.5] sanPedro:LowPh))
 
-(defmodel slope SlopeClass
+(defmodel slope sanPedro:SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [:<     1.15] Level
-    [ 1.15  4.57] GentlyUndulating
-    [ 4.57 16.70] RollingToHilly
-    [16.70    :>] SteeplyDissectedToMountainous))
+    [:<     1.15] sanPedro:Level
+    [ 1.15  4.57] sanPedro:GentlyUndulating
+    [ 4.57 16.70] sanPedro:RollingToHilly
+    [16.70    :>] sanPedro:SteeplyDissectedToMountainous))
 
 ;; Use NLCD or GLC layers to infer anoxic vs. oxic: no Mexican LULC
 ;; data (i.e., CONABIO) denote wetlands at least for Sonora.
-(defmodel oxygen SoilOxygenConditions 
+(defmodel oxygen sanPedro:SoilOxygenConditions 
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{90 95}   AnoxicSoils
-    :otherwise OxicSoils)
+    #{90 95}   sanPedro:AnoxicSoils
+    :otherwise sanPedro:OxicSoils)
   (classification (numeric-coding glc:GLCNumeric)
-    15         AnoxicSoils
-    :otherwise OxicSoils))
+    15         sanPedro:AnoxicSoils
+    :otherwise sanPedro:OxicSoils))
 
 ;; Per Schussman et al. (2006), the middle of each of these ranges is
 ;; around every 5 yrs for high frequency, 50 yrs for moderate, 200 yrs
 ;; for low.
-(defmodel fire-threat FireThreat
+(defmodel fire-threat sanPedro:FireThreatClass
   (classification (numeric-coding habitat:FireReturnInterval) 
-    1      VeryHighFireThreat
-    #{2 3} HighFireThreat ; includes "variable" fire frequency
-    4      ModerateFireThreat
-    #{5 6} LowFireThreat))
+    1      sanPedro:VeryHighFireThreat
+    #{2 3} sanPedro:HighFireThreat ; includes "variable" fire frequency
+    4      sanPedro:ModerateFireThreat
+    #{5 6} sanPedro:LowFireThreat))
 
-(defmodel veg-storage VegetationCarbonStorage
+(defmodel veg-storage sanPedro:VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha" 
-    [75 100] VeryHighVegetationStorage
-    [20 75]  HighVegetationStorage
-    [5 20]   ModerateVegetationStorage
-    [2 5]    LowVegetationStorage
-    [0.01 2] VeryLowVegetationStorage
-    [0 0.01] NoVegetationStorage))
+    [75 100] sanPedro:VeryHighVegetationStorage
+    [20 75]  sanPedro:HighVegetationStorage
+    [5 20]   sanPedro:ModerateVegetationStorage
+    [2 5]    sanPedro:LowVegetationStorage
+    [0.01 2] sanPedro:VeryLowVegetationStorage
+    [0 0.01] sanPedro:NoVegetationStorage))
 
-(defmodel vegetation-carbon-storage VegetationCStorage 
-  (bayesian VegetationCStorage 
+(defmodel vegetation-carbon-storage sanPedro:VegetationCStorage 
+  (bayesian sanPedro:VegetationCStorage 
     :import  "aries.core::CarbonSinkSanPedro.xdsl"
     :context [annual-precipitation percent-canopy-cover vegetation-type]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
-(defmodel soil-storage SoilCarbonStorage
+(defmodel soil-storage sanPedro:SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha" 
-    [40 80]        VeryHighSoilStorage
-    [20 40]        HighSoilStorage
-    [5 20]         ModerateSoilStorage
-    [2 5]          LowSoilStorage
-    [0.01 2]       VeryLowSoilStorage
-    [0 0.01]       NoSoilStorage))
+    [40 80]        sanPedro:VeryHighSoilStorage
+    [20 40]        sanPedro:HighSoilStorage
+    [5 20]         sanPedro:ModerateSoilStorage
+    [2 5]          sanPedro:LowSoilStorage
+    [0.01 2]       sanPedro:VeryLowSoilStorage
+    [0 0.01]       sanPedro:NoSoilStorage))
 
-(defmodel soil-carbon-storage SoilCStorage 
-  (bayesian SoilCStorage 
+(defmodel soil-carbon-storage sanPedro:SoilCStorage 
+  (bayesian sanPedro:SoilCStorage 
     :import  "aries.core::CarbonSinkSanPedro.xdsl"
     :context [soil-ph slope oxygen percent-canopy-cover vegetation-type]
     :keep    [SoilCarbonStorage]
@@ -202,26 +202,26 @@
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
-(defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
+(defmodel veg-soil-storage sanPedro:VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage
-    [50 180] VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [15 50]  HighStorage
-    [6 15]   ModerateStorage
-    [3 6]    LowStorage
-    [0.02 3] VeryLowStorage
-    [0 0.02] NoStorage))
+    [50 180] sanPedro:VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [15 50]  sanPedro:HighStorage
+    [6 15]   sanPedro:ModerateStorage
+    [3 6]    sanPedro:LowStorage
+    [0.02 3] sanPedro:VeryLowStorage
+    [0 0.02] sanPedro:NoStorage))
 
-(defmodel stored-carbon-release StoredCarbonRelease
+(defmodel stored-carbon-release sanPedro:StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-    [12 90]  VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
-    [9 12]   HighRelease
-    [6 9]    ModerateRelease
-    [3 6]    LowRelease
-    [0.02 3] VeryLowRelease
-    [0 0.02] NoRelease))
+    [12 90]  sanPedro:VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
+    [9 12]   sanPedro:HighRelease
+    [6 9]    sanPedro:ModerateRelease
+    [3 6]    sanPedro:LowRelease
+    [0.02 3] sanPedro:VeryLowRelease
+    [0 0.02] sanPedro:NoRelease))
 
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
+(defmodel sink sanPedro:CarbonSinkValue   
+  (bayesian sanPedro:CarbonSinkValue 
     :import  "aries.core::CarbonSinkSanPedro.xdsl"
     :context [veg-soil-storage fire-threat]
     :keep    [StoredCarbonRelease]
@@ -337,17 +337,17 @@
 (defscenario open-development-carbon
   "Changes values in developed areas to very low vegetation cover, no
 fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
+  (model sanPedro:PercentTreeCanopyCoverClass
+    (classification sanPedro:PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'carbonService:VeryLowCanopyCover)
+                  (conc 'sanPedro:VeryLowCanopyCover)
                   (:pcc %))))
-  (model FireThreat
-    (classification FireThreat
+  (model sanPedro:FireThreatClass
+    (classification sanPedro:FireThreatClass
       :context [open-development-scenario :as od fire-threat :as ff]
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
-                  (conc 'carbonService:LowFireThreat)    
+                  (conc 'sanPedro:LowFireThreat)    
                   (:ff %))))
   (model sanPedro:CarbonVegetationType
     (classification sanPedro:CarbonVegetationType
@@ -365,17 +365,17 @@ fire frequency, increased greenhouse gas emissions."
 (defscenario constrained-development-carbon
   "Changes values in developed areas to very low vegetation cover, no
 fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
+  (model sanPedro:PercentTreeCanopyCoverClass
+    (classification sanPedro:PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:VeryLowCanopyCover)
+                  (conc 'sanPedro:VeryLowCanopyCover)
                   (:pcc %))))
-  (model FireThreat
-    (classification FireThreat
+  (model sanPedro:FireThreatClass
+    (classification sanPedro:FireThreatClass
       :context [constrained-development-scenario :as cd fire-threat :as ff]
       :state   #(if (is? (:cd %) (conc 'sanPedro:DevelopedConstrained))
-                  (conc 'carbonService:LowFireThreat)
+                  (conc 'sanPedro:LowFireThreat)
                   (:ff %))))
   (model sanPedro:CarbonVegetationType
     (classification sanPedro:CarbonVegetationType

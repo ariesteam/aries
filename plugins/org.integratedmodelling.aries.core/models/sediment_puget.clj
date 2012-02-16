@@ -82,11 +82,11 @@
 
 (defmodel precipitation-annual AnnualPrecipitationClass
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [2200   :>] VeryHighAnnualPrecipitation
-    [1800 2200] HighAnnualPrecipitation
-    [1200 1800] ModerateAnnualPrecipitation
-    [ 600 1200] LowAnnualPrecipitation
-    [:<    600] VeryLowAnnualPrecipitation))
+    [2200   :>] VeryHighMeanAnnualPrecipitation
+    [1800 2200] HighMeanAnnualPrecipitation
+    [1200 1800] ModerateMeanAnnualPrecipitation
+    [ 600 1200] LowMeanAnnualPrecipitation
+    [:<    600] VeryLowMeanAnnualPrecipitation))
 
 (defmodel runoff AnnualRunoffClass
   (classification (measurement habitat:AnnualRunoff "mm")
