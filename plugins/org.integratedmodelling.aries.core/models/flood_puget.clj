@@ -258,7 +258,7 @@
 (defmodel gray-infrastructure-sink GrayInfrastructureSink 
   (measurement GrayInfrastructureSink "mm"
     :context [dam-storage detention-basin-storage]
-    :state   #(+ (or (:dam-storage %) 0.0) (or (:detention-basin %) 0.0))))
+    :state   #(+ (or (:dam-storage %) 0.0) (or (:detention-basin-storage %) 0.0))))
 
 ;; Flood sink probability, monthly (need a monthly flood sink undiscretizer here)
 ;;(defmodel sink-monthly MonthlyFloodSink
