@@ -54,41 +54,41 @@
 ;; statement and set the prior to its actual value from the data
 ;; (LowActualEvapotranspiration) - a good temporary solution for WCH
 ;; but change if you ran it again for Southern California.
-(defmodel actual-evapotranspiration ActualEvapotranspirationClass
+(defmodel actual-evapotranspiration california:ActualEvapotranspirationClass
   (classification (measurement habitat:ActualEvapotranspiration "mm")
-    [92 :>] VeryHighActualEvapotranspiration
-    [58 92] HighActualEvapotranspiration
-    [32 58] ModerateActualEvapotranspiration
-    [12 32] LowActualEvapotranspiration
-    [:< 12] VeryLowActualEvapotranspiration))
+    [92 :>] california:VeryHighActualEvapotranspiration
+    [58 92] california:HighActualEvapotranspiration
+    [32 58] california:ModerateActualEvapotranspiration
+    [12 32] california:LowActualEvapotranspiration
+    [:< 12] california:VeryLowActualEvapotranspiration))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+(defmodel percent-canopy-cover california:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
-    [80 100] VeryHighCanopyCover
-    [60  80] HighCanopyCover
-    [40  60] ModerateCanopyCover
-    [20  40] LowCanopyCover
-    [ 0  20] VeryLowCanopyCover))
+    [80 100] california:VeryHighCanopyCover
+    [60  80] california:HighCanopyCover
+    [40  60] california:ModerateCanopyCover
+    [20  40] california:LowCanopyCover
+    [ 0  20] california:VeryLowCanopyCover))
 
 ;; This does not account for barren, water, agriculture, or urban cover
 ;; (though these are accounted for in NLCD)
-(defmodel vegetation-type southernCalifornia:CarbonVegetationType
-  (classification (numeric-coding southernCalifornia:VegTypeSoCal)
-    1      southernCalifornia:HardwoodForest
-    #{4 7} southernCalifornia:MixedConifer
-    0      southernCalifornia:Shrub
-    3      southernCalifornia:Herbaceous))
+(defmodel vegetation-type california:CarbonVegetationType
+  (classification (numeric-coding california:VegTypeSoCal)
+    1      california:HardwoodForest
+    #{4 7} california:MixedConifer
+    0      california:Shrub
+    3      california:Herbaceous))
 
 ;; "Reclass of the NLCD land use for the purposes of carbon modeling"
-(defmodel land-use southernCalifornia:LandCover
+(defmodel land-use california:LandCover
   (classification (numeric-coding nlcd:NLCDNumeric)
-    11                southernCalifornia:OpenWater
-    #{90 95}          southernCalifornia:Wetland
-    #{41 42 43 51 52} southernCalifornia:ScrubAndForest
-    #{71 81 82}       southernCalifornia:GrasslandAndCultivated
-    21                southernCalifornia:OpenSpace
-    22                southernCalifornia:LowDensityDeveloped
-    #{23 24}          southernCalifornia:HighAndMedDensityDeveloped))
+    11                california:OpenWater
+    #{90 95}          california:Wetland
+    #{41 42 43 51 52} california:ScrubAndForest
+    #{71 81 82}       california:GrasslandAndCultivated
+    21                california:OpenSpace
+    22                california:LowDensityDeveloped
+    #{23 24}          california:HighAndMedDensityDeveloped))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea
@@ -96,18 +96,18 @@
     [:exclusive 0 :>] OnLand))
 
 ;; Ceiling based off highest local values from MODIS NPP data.
-(defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
+(defmodel veg-soil-sequestration california:VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-    [6   13]    VeryHighSequestration
-    [4    6]    HighSequestration
-    [3    4]    ModerateSequestration
-    [1.5  3]    LowSequestration
-    [0.01 1.5]  VeryLowSequestration
-    [0    0.01] NoSequestration))
+    [6   13]    california:VeryHighSequestration
+    [4    6]    california:HighSequestration
+    [3    4]    california:ModerateSequestration
+    [1.5  3]    california:LowSequestration
+    [0.01 1.5]  california:VeryLowSequestration
+    [0    0.01] california:NoSequestration))
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
-(defmodel source-sj CarbonSourceValue
-  (bayesian CarbonSourceValue
+(defmodel source-sj california:CarbonSourceValue
+  (bayesian california:CarbonSourceValue
     :import   "aries.core::CarbonSourceCa.xdsl"
     :context  [percent-canopy-cover land-use land-selector]
     :required [LandOrSea]
@@ -116,8 +116,8 @@
 
 ;; See above statement for AET: Add back in if you use it for wider
 ;; extents of Southern California
-(defmodel source CarbonSourceValue
-  (bayesian CarbonSourceValue
+(defmodel source california:CarbonSourceValue
+  (bayesian california:CarbonSourceValue
     :import   "aries.core::CarbonSourceCa.xdsl"
     :context  [percent-canopy-cover vegetation-type land-use land-selector]
     :required [LandOrSea]
@@ -137,60 +137,60 @@
 
 ;; Using deep soil pH for grasslands and deserts, shallow for all
 ;; other ecosystem types
-(defmodel soil-ph SoilPh
+(defmodel soil-ph california:SoilPh
   (classification (ranking habitat:SoilPhDeep)
-    [7.3 :>]           HighPh
-    [5.5 7.3]          ModeratePh
-    [:exclusive 0 5.5] LowPh))
+    [7.3 :>]           california:HighPh
+    [5.5 7.3]          california:ModeratePh
+    [:exclusive 0 5.5] california:LowPh))
 
 ;; use NLCD layers to infer anoxic vs. oxic
-(defmodel soil-oxygen-conditions SoilOxygenConditions 
+(defmodel soil-oxygen-conditions california:SoilOxygenConditions 
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{90 95}   AnoxicSoils
-    :otherwise OxicSoils))
+    #{90 95}   california:AnoxicSoils
+    :otherwise california:OxicSoils))
 
-(defmodel fire-threat FireThreatClass
+(defmodel fire-threat california:FireThreatClass
   (classification (ranking habitat:FireThreat) 
-    4        VeryHighFireThreat
-    3        HighFireThreat
-    2        ModerateFireThreat
-    #{1 255} LowFireThreat))
+    4        california:VeryHighFireThreat
+    3        california:HighFireThreat
+    2        california:ModerateFireThreat
+    #{1 255} california:LowFireThreat))
 
-(defmodel veg-storage VegetationCarbonStorage
+(defmodel veg-storage california:VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha" 
-    [150 315] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [80 150]  HighVegetationStorage
-    [30 80]   ModerateVegetationStorage
-    [10 30]   LowVegetationStorage
-    [0.01 10] VeryLowVegetationStorage
-    [0 0.01]  NoVegetationStorage))   
+    [150 315] california:VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [80 150]  california:HighVegetationStorage
+    [30 80]   california:ModerateVegetationStorage
+    [10 30]   california:LowVegetationStorage
+    [0.01 10] california:VeryLowVegetationStorage
+    [0 0.01]  california:NoVegetationStorage))
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
-(defmodel vegetation-carbon-storage-sj VegetationCStorage 
-  (bayesian VegetationCStorage
+(defmodel vegetation-carbon-storage-sj california:VegetationCStorage 
+  (bayesian california:VegetationCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [land-use percent-canopy-cover land-selector]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
-(defmodel vegetation-carbon-storage VegetationCStorage 
-  (bayesian VegetationCStorage 
+(defmodel vegetation-carbon-storage california:VegetationCStorage 
+  (bayesian california:VegetationCStorage 
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [vegetation-type land-use percent-canopy-cover land-selector]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
-(defmodel soil-storage SoilCarbonStorage
+(defmodel soil-storage california:SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha" 
-    [25 50]  VeryHighSoilStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [15 25]  HighSoilStorage
-    [5 15]   ModerateSoilStorage
-    [2 5]    LowSoilStorage
-    [0.01 2] VeryLowSoilStorage
-    [0 0.01] NoSoilStorage))
+    [25 50]  california:VeryHighSoilStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [15 25]  california:HighSoilStorage
+    [5 15]   california:ModerateSoilStorage
+    [2 5]    california:LowSoilStorage
+    [0.01 2] california:VeryLowSoilStorage
+    [0 0.01] california:NoSoilStorage))
 
-(defmodel soil-carbon-storage SoilCStorage 
-  (bayesian SoilCStorage
+(defmodel soil-carbon-storage california:SoilCStorage 
+  (bayesian california:SoilCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [soil-ph percent-canopy-cover soil-oxygen-conditions land-selector]
     :keep    [SoilCarbonStorage]
@@ -210,36 +210,36 @@
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
-(defmodel veg-soil-storage-sj VegetationAndSoilCarbonStorageClass
+(defmodel veg-soil-storage-sj california:VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage-sj
-    [160 365] VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [100 160] HighStorage
-    [40 100]  ModerateStorage
-    [15 40]   LowStorage
-    [0.01 15] VeryLowStorage
-    [0 0.01]  NoStorage))
+    [160 365] california:VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [100 160] california:HighStorage
+    [40 100]  california:ModerateStorage
+    [15 40]   california:LowStorage
+    [0.01 15] california:VeryLowStorage
+    [0 0.01]  california:NoStorage))
 
-(defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
+(defmodel veg-soil-storage california:VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage
-    [160 365] VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [100 160] HighStorage
-    [40 100]  ModerateStorage
-    [15 40]   LowStorage
-    [0.01 15] VeryLowStorage
-    [0 0.01]  NoStorage))
+    [160 365] california:VeryHighStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [100 160] california:HighStorage
+    [40 100]  california:ModerateStorage
+    [15 40]   california:LowStorage
+    [0.01 15] california:VeryLowStorage
+    [0 0.01]  california:NoStorage))
 
-(defmodel stored-carbon-release StoredCarbonRelease
+(defmodel stored-carbon-release california:StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"
-    [100 180] VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
-    [50 100]  HighRelease
-    [25 50]   ModerateRelease
-    [10 25]   LowRelease
-    [0.01 10] VeryLowRelease
-    [0 0.01]  NoRelease))
+    [100 180] california:VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
+    [50 100]  california:HighRelease
+    [25 50]   california:ModerateRelease
+    [10 25]   california:LowRelease
+    [0.01 10] california:VeryLowRelease
+    [0 0.01]  california:NoRelease))
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
-(defmodel sink-sj CarbonSinkValue   
-  (bayesian CarbonSinkValue 
+(defmodel sink-sj california:CarbonSinkValue   
+  (bayesian california:CarbonSinkValue 
     :import   "aries.core::CarbonSinkCa.xdsl"
     :context  [veg-soil-storage-sj fire-threat land-selector]
     :required [LandOrSea]
@@ -250,8 +250,8 @@
 ;; they're set to almost-zero, so it's a temporary fix.  For some
 ;; reason slope has value here in the ocean and using elevation as a
 ;; mask made the whole model disappear.
-(defmodel sink CarbonSinkValue   
-  (bayesian CarbonSinkValue 
+(defmodel sink california:CarbonSinkValue   
+  (bayesian california:CarbonSinkValue 
     :import   "aries.core::CarbonSinkCa.xdsl"
     :context  [veg-soil-storage fire-threat land-selector]
     :required [LandOrSea]
