@@ -9557,33 +9557,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:NumericCoding id="vegetation_type_ca">
-    <observation:hasObservable>
-      <california:VegTypeSoCal />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: USDA Forest Service Pacific Southwest Region Remote Sensing Lab</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://www.fs.fed.us/r5/rsl/clearinghouse/gis-download.shtml</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>california:vegetation_type_ca</geospace:hasCoverageId>
-        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>3222</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>2473</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>33.5646695</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-118.657153</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>34.3319195</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-117.657713</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:NumericCoding>
-
   <observation:Categorization id="usa_watersheds_us">
     <observation:hasObservable>
       <geofeatures:Watershed />
