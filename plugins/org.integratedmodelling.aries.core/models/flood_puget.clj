@@ -52,13 +52,13 @@
 (defmodel streams geofeatures:River
   (binary-coding geofeatures:River))
 
-(defmodel soil-group-puget HydrologicSoilsGroup
+(defmodel soil-group-puget puget:HydrologicSoilsGroup
   "Relevant soil group"
   (classification (ranking habitat:HydrologicSoilsGroup)
-    1 SoilGroupA
-    2 SoilGroupB
-    3 SoilGroupC
-    4 SoilGroupD))
+    1 puget:SoilGroupA
+    2 puget:SoilGroupB
+    3 puget:SoilGroupC
+    4 puget:SoilGroupD))
 
 ;; This layer has problems for now (see .xml) but not currently used.
 ;;(defmodel precipitation-monthly Precipitation
@@ -160,12 +160,12 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(defmodel slope SlopeClass
+(defmodel slope puget:SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [   :<  1.15] Level
-    [ 1.15  4.57] GentlyUndulating
-    [ 4.57 16.70] RollingToHilly
-    [16.70    :>] SteeplyDissectedToMountainous))
+    [   :<  1.15] puget:Level
+    [ 1.15  4.57] puget:GentlyUndulating
+    [ 4.57 16.70] puget:RollingToHilly
+    [16.70    :>] puget:SteeplyDissectedToMountainous))
 
 (defmodel vegetation-type puget:FloodVegetationType
   "Just a reclass of the NLCD land use layer"
@@ -174,39 +174,39 @@
     #{41 42 43 52 71} puget:ForestGrasslandShrubland
     #{21 22 23 24 82} puget:DevelopedCultivated))
 
-(defmodel vegetation-height VegetationHeight
+(defmodel vegetation-height puget:VegetationHeight
   (classification (measurement habitat:VegetationHeight "ft")
-    [120  :>] VeryHighVegetationHeight
-    [ 80 120] HighVegetationHeight
-    [ 50  80] ModerateVegetationHeight
-    [ 20  50] LowVegetationHeight
-    [ :<  20] VeryLowVegetationHeight))
+    [120  :>] puget:VeryHighVegetationHeight
+    [ 80 120] puget:HighVegetationHeight
+    [ 50  80] puget:ModerateVegetationHeight
+    [ 20  50] puget:LowVegetationHeight
+    [ :<  20] puget:VeryLowVegetationHeight))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+(defmodel percent-canopy-cover puget:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60  80]            HighCanopyCover
-    [40  60]            ModerateCanopyCover
-    [20  40]            LowCanopyCover
-    [ 0  20]            VeryLowCanopyCover))
+    [80 100 :inclusive] puget:VeryHighCanopyCover
+    [60  80]            puget:HighCanopyCover
+    [40  60]            puget:ModerateCanopyCover
+    [20  40]            puget:LowCanopyCover
+    [ 0  20]            puget:VeryLowCanopyCover))
 
-(defmodel successional-stage SuccessionalStage
+(defmodel successional-stage puget:SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
-    #{5 6}                           OldGrowth
-    4                                LateSuccession
-    3                                MidSuccession
-    2                                PoleSuccession
-    1                                EarlySuccession
-    #{21 22 23 24 25 26 27 28 40 41} NoSuccession))
+    #{5 6}                           puget:OldGrowth
+    4                                puget:LateSuccession
+    3                                puget:MidSuccession
+    2                                puget:PoleSuccession
+    1                                puget:EarlySuccession
+    #{21 22 23 24 25 26 27 28 40 41} puget:NoSuccession))
 
-(defmodel imperviousness PercentImperviousCoverClass
+(defmodel imperviousness puget:PercentImperviousCoverClass
   (classification (ranking habitat:PercentImperviousSurface)
-    [80 100 :inclusive] VeryHighImperviousCover
-    [50  80]            HighImperviousCover
-    [20  50]            ModeratelyHighImperviousCover
-    [10  20]            ModeratelyLowImperviousCover
-    [ 5  10]            LowImperviousCover
-    [ 0   5]            VeryLowImperviousCover))
+    [80 100 :inclusive] puget:VeryHighImperviousCover
+    [50  80]            puget:HighImperviousCover
+    [20  50]            puget:ModeratelyHighImperviousCover
+    [10  20]            puget:ModeratelyLowImperviousCover
+    [ 5  10]            puget:LowImperviousCover
+    [ 0   5]            puget:VeryLowImperviousCover))
 
 (defmodel evapotranspiration EvapotranspirationClass
   (classification (measurement habitat:ActualEvapotranspiration "mm")
@@ -216,6 +216,14 @@
     [12 30] LowEvapotranspiration
     [ 0 12] VeryLowEvapotranspiration))
 
+(defmodel infiltration puget:SoilInfiltrationClass
+  (classification (measurement waterSupplyService:SoilInfiltrationClass "mm")
+    [1250   :>]	puget:VeryHighSoilInfiltration
+    [ 600 1250]	puget:HighSoilInfiltration
+    [ 350  600]	puget:ModerateSoilInfiltration
+    [ 200  350]	puget:LowSoilInfiltration
+    [   0  200]	puget:VeryLowSoilInfiltration))
+
 (defmodel mean-days-precipitation-monthly MeanDaysPrecipitationPerMonth
   (classification (ranking habitat:JanuaryDaysOfPrecipitation)
     #{8 9}   VeryHighDaysPrecipitationPerMonth
@@ -223,12 +231,12 @@
     #{4 5}   LowDaysPrecipitationPerMonth
     #{1 2 3} VeryLowDaysPrecipitationPerMonth))
 
-(defmodel mean-days-precipitation-annual MeanDaysPrecipitationPerYear
+(defmodel mean-days-precipitation-annual puget:MeanDaysPrecipitationPerYear
   (classification (ranking habitat:AnnualDaysOfPrecipitation)
-    #{8 9}   VeryHighDaysPrecipitationPerYear
-    #{6 7}   HighDaysPrecipitationPerYear
-    #{4 5}   LowDaysPrecipitationPerYear
-    #{1 2 3} VeryLowDaysPrecipitationPerYear))
+    #{8 9}   puget:VeryHighDaysPrecipitationPerYear
+    #{6 7}   puget:HighDaysPrecipitationPerYear
+    #{4 5}   puget:LowDaysPrecipitationPerYear
+    #{1 2 3} puget:VeryLowDaysPrecipitationPerYear))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea
@@ -236,13 +244,13 @@
     [:exclusive 0 :>] OnLand))
 
 ;;Undiscretizer for GreenInfrastructureStorage
-(defmodel green-infrastructure-storage GreenInfrastructureStorage
+(defmodel green-infrastructure-storage puget:GreenInfrastructureStorage
   (probabilistic-measurement GreenInfrastructureStorage "mm" 
-    [115 320] VeryHighGreenStorage
-    [ 72 115] HighGreenStorage
-    [ 40  72] ModerateGreenStorage
-    [ 15  40] LowGreenStorage
-    [  0  15] VeryLowGreenStorage))
+    [115 320] puget:VeryHighGreenStorage
+    [ 72 115] puget:HighGreenStorage
+    [ 40  72] puget:ModerateGreenStorage
+    [ 15  40] puget:LowGreenStorage
+    [  0  15] puget:VeryLowGreenStorage))
 
 ;; Assumes that detention basins average 3 m, i.e., 3000 mm, in depth,
 ;; i.e., storage capacity when empty.  Can alter this as appropriate.
@@ -277,8 +285,8 @@
 ;; Flood sink probability, annual Comment veg height back in once the
 ;; layers been expanded to a meaningful extent OR Ferd's enabled
 ;; coexistence of small layers + priors for areas without evidence.
-(defmodel green-infrastructure-sink GreenInfrastructureSink 
-  (bayesian GreenInfrastructureSink
+(defmodel green-infrastructure-sink puget:GreenInfrastructureSink 
+  (bayesian puget:GreenInfrastructureSink
     :import  "aries.core::FloodSinkPugetAnnual.xdsl"
     :context  [soil-group-puget vegetation-type slope ; vegetation-height
                successional-stage imperviousness percent-canopy-cover 

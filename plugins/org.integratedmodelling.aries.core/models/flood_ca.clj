@@ -59,14 +59,14 @@
     [ 75 150] LowPrecipitation
     [:<   75] VeryLowPrecipitation))
 
-(defmodel imperviousness PercentImperviousCoverClass
+(defmodel imperviousness california:PercentImperviousCoverClass
   (classification (ranking habitat:PercentImperviousSurface)
-    [80 100 :inclusive]	VeryHighImperviousCover
-    [50  80]			HighImperviousCover
-    [20  50]			ModeratelyHighImperviousCover
-    [10  20]			ModeratelyLowImperviousCover
-    [ 5  10]			LowImperviousCover
-    [ 0   5]	   		VeryLowImperviousCover))
+    [80 100 :inclusive]	california:VeryHighImperviousCover
+    [50  80]			california:HighImperviousCover
+    [20  50]			california:ModeratelyHighImperviousCover
+    [10  20]			california:ModeratelyLowImperviousCover
+    [ 5  10]			california:LowImperviousCover
+    [ 0   5]	   		california:VeryLowImperviousCover))
 
 ;; Error in Ferd's code in handling this layer: removing from the
 ;; context list and setting the prior at a uniform level reflecting
@@ -127,35 +127,35 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(defmodel soil-group HydrologicSoilsGroup
+(defmodel soil-group california:HydrologicSoilsGroup
   "Relevant soil group"
   (classification (ranking habitat:HydrologicSoilsGroup)
-    1 SoilGroupA
-    2 SoilGroupB
-    3 SoilGroupC
-    4 SoilGroupD))
+    1 california:SoilGroupA
+    2 california:SoilGroupB
+    3 california:SoilGroupC
+    4 california:SoilGroupD))
 
-(defmodel slope SlopeClass
+(defmodel slope california:SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [:<     1.15] Level
-    [ 1.15  4.57] GentlyUndulating
-    [ 4.57 16.70] RollingToHilly
-    [16.70    :>] SteeplyDissectedToMountainous))
+    [:<     1.15] california:Level
+    [ 1.15  4.57] california:GentlyUndulating
+    [ 4.57 16.70] california:RollingToHilly
+    [16.70    :>] california:SteeplyDissectedToMountainous))
 
 ;;Use NLCD here, the Vegetation Type SoCal layer provided by Mark doesn't have enough categories to cover the discretization below.
-(defmodel vegetation-type southernCalifornia:FloodVegetationType
+(defmodel vegetation-type california:FloodVegetationType
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{90 95}		  southernCalifornia:Wetland
-    #{41 42 43 52 71} southernCalifornia:ForestGrasslandShrubland
-    #{21 22 23 24 82} southernCalifornia:DevelopedCultivated))
+    #{90 95}		  california:Wetland
+    #{41 42 43 52 71} california:ForestGrasslandShrubland
+    #{21 22 23 24 82} california:DevelopedCultivated))
 
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+(defmodel percent-canopy-cover california:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] VeryHighCanopyCover
-    [60  80]			HighCanopyCover
-    [40  60]		    ModerateCanopyCover
-    [20  40]			LowCanopyCover
-    [ 0  20]			VeryLowCanopyCover))
+    [80 100 :inclusive] california:VeryHighCanopyCover
+    [60  80]			california:HighCanopyCover
+    [40  60]		    california:ModerateCanopyCover
+    [20  40]			california:LowCanopyCover
+    [ 0  20]			california:VeryLowCanopyCover))
 
 ;; Problems with coarse-grain pixels; removed this from the bayesian
 ;; statement and set the prior to its actual value from the data
@@ -169,13 +169,13 @@
     [12 30] LowEvapotranspiration
     [ 0 12] VeryLowEvapotranspiration))
 
-(defmodel infiltration SoilInfiltrationClass
-  (classification (measurement habitat:AnnualInfiltration "mm")
-    [25 :>]	VeryHighSoilInfiltration
-    [13 25]	HighSoilInfiltration
-    [ 8 13]	ModerateSoilInfiltration
-    [ 3  8]	LowSoilInfiltration
-    [ 0  3]	VeryLowSoilInfiltration))
+(defmodel infiltration california:SoilInfiltrationClass
+  (classification (measurement waterSupplyService:SoilInfiltrationClass "mm")
+    [25 :>]	california:VeryHighSoilInfiltration
+    [13 25]	california:HighSoilInfiltration
+    [ 8 13]	california:ModerateSoilInfiltration
+    [ 3  8]	california:LowSoilInfiltration
+    [ 0  3]	california:VeryLowSoilInfiltration))
 
 ;; Doing this one like the detention basin model for Puget Sound.
 (defmodel dam-storage DamStorage
@@ -190,17 +190,17 @@
     [:exclusive 0 :>] OnLand))
 
 ;;Undiscretizer for GreenInfrastructureStorage
-(defmodel green-infrastructure-storage GreenInfrastructureStorage
+(defmodel green-infrastructure-storage california:GreenInfrastructureStorage
   (probabilistic-measurement GreenInfrastructureStorage "mm" 
-    [115 320] VeryHighGreenStorage
-    [ 72 115] HighGreenStorage
-    [ 40  72] ModerateGreenStorage
-    [ 15  40] LowGreenStorage
-    [  0  15] VeryLowGreenStorage))
+    [115 320] california:VeryHighGreenStorage
+    [ 72 115] california:HighGreenStorage
+    [ 40  72] california:ModerateGreenStorage
+    [ 15  40] california:LowGreenStorage
+    [  0  15] california:VeryLowGreenStorage))
 
 ;; Flood sink probability
-(defmodel green-infrastructure-sink GreenInfrastructureSink
-  (bayesian GreenInfrastructureSink 
+(defmodel green-infrastructure-sink california:GreenInfrastructureSink
+  (bayesian california:GreenInfrastructureSink 
     :import	  "aries.core::FloodSinkCa.xdsl"
     :context  [soil-group slope imperviousness percent-canopy-cover vegetation-type land-selector]
     :required [LandOrSea]

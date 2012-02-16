@@ -7,20 +7,28 @@
     <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
+    <!ENTITY floodService "http://www.integratedmodelling.org/ks/es/floodService.owl#" >
     <!ENTITY lulc "http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/aries/local/puget.owl#"
      xml:base="http://www.integratedmodelling.org/ks/aries/local/puget.owl"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:floodService="http://www.integratedmodelling.org/ks/es/floodService.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/floodService.owl"/>
@@ -173,6 +181,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#EarlySuccession -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#EarlySuccession">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType">
@@ -193,6 +209,48 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ForestGrasslandWetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SedimentVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#GentlyUndulating -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GentlyUndulating">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureSink -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureSink">
+        <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureStorage">
+        <rdfs:subClassOf rdf:resource="&floodService;FloodStorage"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighDaysPrecipitationPerYear -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighDaysPrecipitationPerYear">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#MeanDaysPrecipitationPerYear"/>
     </owl:Class>
     
 
@@ -221,6 +279,79 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighGreenStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighGreenStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighImperviousCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighImperviousCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighSoilInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighSoilInfiltration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilInfiltrationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighVegetationHeight -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighVegetationHeight">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VegetationHeight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HydrologicSoilsGroup -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HydrologicSoilsGroup">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LateSuccession -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LateSuccession">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#Level -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#Level">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDaysPrecipitationPerYear -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDaysPrecipitationPerYear">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#MeanDaysPrecipitationPerYear"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedConstrained -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedConstrained">
@@ -241,6 +372,63 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowDensityDevelopedPlans">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowGreenStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowGreenStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowImperviousCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowImperviousCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowSoilInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowSoilInfiltration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilInfiltrationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowVegetationHeight -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowVegetationHeight">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VegetationHeight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#MeanDaysPrecipitationPerYear -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#MeanDaysPrecipitationPerYear">
+        <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#MidSuccession -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#MidSuccession">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentTreeCanopyCoverClass"/>
     </owl:Class>
     
 
@@ -269,6 +457,54 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateGreenStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateGreenStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateSoilInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateSoilInfiltration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilInfiltrationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateVegetationHeight -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateVegetationHeight">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VegetationHeight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModeratelyHighImperviousCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModeratelyHighImperviousCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModeratelyLowImperviousCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModeratelyLowImperviousCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#NoSuccession -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#NoSuccession">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedConstrained -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedConstrained">
@@ -289,6 +525,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#NotDevelopedPlans">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#OldGrowth -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#OldGrowth">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage"/>
     </owl:Class>
     
 
@@ -326,6 +570,24 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentTreeCanopyCoverClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentTreeCanopyCoverClass">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment">
@@ -334,10 +596,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#PoleSuccession -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PoleSuccession">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ProtectedStatus -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ProtectedStatus">
         <rdfs:subClassOf rdf:resource="&habitat;OwnershipQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#RollingToHilly -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#RollingToHilly">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeClass"/>
     </owl:Class>
     
 
@@ -358,11 +636,79 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeClass">
+        <rdfs:subClassOf rdf:resource="&representation;IntensivePhysicalProperty"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SnowPrecipitationCategory -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SnowPrecipitationCategory">
         <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
         <rdfs:comment>Categorization to handle rain-on-snow attributes in WA data</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilGroupA -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilGroupA">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HydrologicSoilsGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilGroupB -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilGroupB">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HydrologicSoilsGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilGroupC -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilGroupC">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HydrologicSoilsGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilGroupD -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilGroupD">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HydrologicSoilsGroup"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilInfiltrationClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilInfiltrationClass">
+        <rdfs:subClassOf rdf:resource="&habitat;AnnualInfiltration"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SteeplyDissectedToMountainous -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SteeplyDissectedToMountainous">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -387,6 +733,111 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#UrbanOpenSpacePlans">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PlansDevelopment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VegetationHeight -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VegetationHeight">
+        <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighDaysPrecipitationPerYear -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighDaysPrecipitationPerYear">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#MeanDaysPrecipitationPerYear"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighGreenStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighGreenStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighImperviousCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighImperviousCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighSoilInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighSoilInfiltration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilInfiltrationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighVegetationHeight -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighVegetationHeight">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VegetationHeight"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowCanopyCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowCanopyCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowDaysPrecipitationPerYear -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowDaysPrecipitationPerYear">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#MeanDaysPrecipitationPerYear"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowGreenStorage -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowGreenStorage">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowImperviousCover -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowImperviousCover">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowSoilInfiltration -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowSoilInfiltration">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilInfiltrationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowVegetationHeight -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowVegetationHeight">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VegetationHeight"/>
     </owl:Class>
     
 
