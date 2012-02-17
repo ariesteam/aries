@@ -6848,29 +6848,6 @@
         (geospace:hasCoordinateReferenceSystem "EPSG:32618")))))
 
 
-(defobject vegetation_type_ca southernCalifornia:VegTypeSoCal
-
-  "Data source: USDA Forest Service Pacific Southwest Region Remote Sensing Lab"
-
-  (measurement:NumericCoding
-    (metadata:hasPriority 0)
-    (metadata:hasURL "http://www.fs.fed.us/r5/rsl/clearinghouse/gis-download.shtml")
-    (observation:hasDataSource
-      (geospace:WCSDataSource
-        (geospace:hasServiceUrl "http://ecoinformatics.uvm.edu/geoserver/wfs")
-        (geospace:hasCoverageId "california:vegetation_type_ca")
-        (geospace:hasNodataValue 255.0)))
-    (observation:hasObservationExtent
-      (geospace:RasterGrid
-        (geospace:hasXRangeMax 3222)
-        (geospace:hasYRangeMax 2473)
-        (geospace:hasLatLowerBound 33.5646695)
-        (geospace:hasLonLowerBound -118.657153)
-        (geospace:hasLatUpperBound 34.3319195)
-        (geospace:hasLonUpperBound -117.657713)
-        (geospace:hasCoordinateReferenceSystem "EPSG:4326")))))
-
-
 (defobject usa_watersheds_us geofeatures:Watershed
 
   "Data source: USGS Water Resources of the United States"
