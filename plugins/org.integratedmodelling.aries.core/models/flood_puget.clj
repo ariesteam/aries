@@ -820,37 +820,37 @@ be added to this list if desired."
 
 (defscenario open-development-flood
   "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
+  (model puget:PercentTreeCanopyCoverClass
+    (classification puget:PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen)))
-                      (conc 'carbonService:VeryLowCanopyCover)
+                      (conc 'puget:VeryLowCanopyCover)
                     
                       (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
-                      (conc 'carbonService:LowCanopyCover)
+                      (conc 'puget:LowCanopyCover)
 
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
-                      (conc 'carbonService:ModerateCanopyCover)
+                      (conc 'puget:ModerateCanopyCover)
                     
                       :otherwise (:pcc %))))
-  (model SuccessionalStage
-    (classification SuccessionalStage
+  (model puget:SuccessionalStage
+    (classification puget:SuccessionalStage
       :context [open-development-scenario :as od successional-stage :as ss]
       :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
-                  (conc 'floodService:NoSuccession)
+                  (conc 'puget:NoSuccession)
                   (:ss %))))
-  (model HydrologicSoilsGroup
-    (classification HydrologicSoilsGroup
+  (model puget:HydrologicSoilsGroup
+    (classification puget:HydrologicSoilsGroup
       :context [open-development-scenario :as od soil-group-puget :as sg]
       :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))                                    
-                  (conc 'floodService:SoilGroupD)
+                  (conc 'puget:SoilGroupD)
                   (:sg))))
   (model puget:FloodVegetationType
     (classification puget:FloodVegetationType
@@ -864,48 +864,48 @@ be added to this list if desired."
                       (conc 'puget:ForestGrasslandShrubland)
 
                       :otherwise (:vt %))))
-  (model PercentImperviousCoverClass
+  (model puget:PercentImperviousCoverClass
     (classification (ranking puget:ENVISIONUrbanGrowthImperviousOpen2060)
-      [80 100 :inclusive] VeryHighImperviousCover
-      [50  80]            HighImperviousCover
-      [20  50]            ModeratelyHighImperviousCover
-      [10  20]            ModeratelyLowImperviousCover
-      [ 5  10]            LowImperviousCover
-      [ 0   5]            VeryLowImperviousCover)))
+      [80 100 :inclusive] puget:VeryHighImperviousCover
+      [50  80]            puget:HighImperviousCover
+      [20  50]            puget:ModeratelyHighImperviousCover
+      [10  20]            puget:ModeratelyLowImperviousCover
+      [ 5  10]            puget:LowImperviousCover
+      [ 0   5]            puget:VeryLowImperviousCover)))
 
 (defscenario constrained-development-flood
   "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCoverClass
-    (classification PercentTreeCanopyCoverClass
+  (model puget:PercentTreeCanopyCoverClass
+    (classification puget:PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained)))
-                      (conc 'carbonService:VeryLowCanopyCover)
+                      (conc 'puget:VeryLowCanopyCover)
                     
                       (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
-                      (conc 'carbonService:LowCanopyCover)
+                      (conc 'puget:LowCanopyCover)
 
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
-                      (conc 'carbonService:ModerateCanopyCover)
+                      (conc 'puget:ModerateCanopyCover)
 
                       :otherwise (:pcc %))))
-  (model SuccessionalStage
-    (classification SuccessionalStage
+  (model puget:SuccessionalStage
+    (classification puget:SuccessionalStage
       :context [constrained-development-scenario :as cd successional-stage :as ss]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'floodService:NoSuccession)
+                  (conc 'puget:NoSuccession)
                   (:ss %))))
-  (model HydrologicSoilsGroup
-    (classification HydrologicSoilsGroup
+  (model puget:HydrologicSoilsGroup
+    (classification puget:HydrologicSoilsGroup
       :context [constrained-development-scenario :as cd soil-group-puget :as sg]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'floodService:SoilGroupD)
+                  (conc 'puget:SoilGroupD)
                   (:sg))))
   (model puget:FloodVegetationType
     (classification puget:FloodVegetationType
@@ -919,11 +919,11 @@ be added to this list if desired."
                       (conc 'puget:ForestGrasslandShrubland)
 
                       :otherwise (:vt %))))
-  (model PercentImperviousCoverClass
+  (model puget:PercentImperviousCoverClass
     (classification (ranking puget:ENVISIONUrbanGrowthImperviousConstrained2060) ;;Check this one with Gary
-      [80 100 :inclusive] VeryHighImperviousCover
-      [50  80]            HighImperviousCover
-      [20  50]            ModeratelyHighImperviousCover
-      [10  20]            ModeratelyLowImperviousCover
-      [ 5  10]            LowImperviousCover
-      [ 0   5]            VeryLowImperviousCover)))
+      [80 100 :inclusive] puget:VeryHighImperviousCover
+      [50  80]            puget:HighImperviousCover
+      [20  50]            puget:ModeratelyHighImperviousCover
+      [10  20]            puget:ModeratelyLowImperviousCover
+      [ 5  10]            puget:LowImperviousCover
+      [ 0   5]            puget:VeryLowImperviousCover)))

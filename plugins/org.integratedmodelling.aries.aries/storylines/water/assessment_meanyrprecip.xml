@@ -284,6 +284,40 @@ water.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="slope">
+    <concept>colorado:SlopeClass</concept>
+    <name>Slope</name>
+    <title>Slope</title>
+    <runninghead>Slope</runninghead>
+    <group>sink</group>
+    <units>degrees slope</units>
+    <description><![CDATA[
+    <p>Slope affects runoff by influencing potential infiltration.</p>
+    <h1>Role in models</h1> <p>Since hydrologic soils group
+    classifications do not account for slope, slope data along with HSG
+    and impervious surface data are used to estimate the soil infiltration
+    component in the surface water sink models. Greater infiltration is
+    expected on level slopes than on steep slopes where runoff occurs
+    quickly.</p>
+    <h1>Representation</h1> <p>Data are in physical units of degrees
+    slope.</p>
+    <h1>Source</h1> <p>Derived from a global 90-m SRTM digital
+    elevation model.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">Water supply model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Derived from Shuttle Radar Topography Mission data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="hydrologic-soils-group">
     <concept>waterSupplyService:HydrologicSoilsGroup</concept>
     <name>Hydrologic soils group</name>
@@ -418,6 +452,52 @@ water.
 
   <page id="soil-infiltration">
     <concept>waterSupplyService:SoilInfiltration</concept>
+    <name>Soil infiltration</name>
+    <title>Soil infiltration</title>
+    <runninghead>Soil infiltration</runninghead>
+    <group>sink</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+    <p>Surface water absorbed by the soil, potentially becoming
+    available as groundwater.</p>
+    <h1>Role in models</h1> <p>This is the output of a probabilistic
+    model accounting for the influence of soil and geologic
+    characteristics on infiltration. Results are summed with
+    evapotranspiration to give total surface water sink values, and then
+    passed to the flow model to estimate actual surface water availability
+    given the location of sources of surface water and users of water. In
+    the absence of direct data on infiltration, the results of this model
+    can also be used as source data for groundwater flow models.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water infiltrated per year. As the output of the models
+    is probabilistic, each point contains the probability distribution of
+    the amount of water infiltrated. The distribution can be visualized by
+    clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area. USGS WRD NDSI groundwater recharge data were used for
+    Bayesian network training.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html"
+    target="_blank">Water supply model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a
+    href="http://water.usgs.gov/GIS/metadata/usgswrd/XML/rech48grd.xml"
+    target="_blank">USGS groundwater recharge data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+ <page id="soil-infiltration">
+    <concept>colorado:SoilInfiltration</concept>
     <name>Soil infiltration</name>
     <title>Soil infiltration</title>
     <runninghead>Soil infiltration</runninghead>
@@ -625,6 +705,38 @@ water.
 
   <page id="percent-tree-canopy-cover">
     <concept>waterSupplyService:PercentTreeCanopyCoverClass</concept>
+    <name>Percent tree canopy cover</name>
+    <title>Percent tree canopy cover</title>
+    <runninghead>Percent tree canopy cover</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Percent tree canopy cover. Tree canopy cover influences root
+    and canopy characteristics that affect transpiration rates.</p>
+    <h1>Role in models</h1> <p>Tree canopy cover is used as input into
+    a probabilistic model estimating the contribution of vegetation toward
+    evapotranpiration. All else being equal, expect greater
+    evapotranspiration is assumed under higher tree canopy cover.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the land
+    surface under tree canopy cover.</p>
+    <h1>Source</h1> <p>)National Land Cover Dataset (NLCD, U.S.); GLCF
+    (University of Maryland, global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">Water supply model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="percent-tree-canopy-cover">
+    <concept>colorado:PercentTreeCanopyCoverClass</concept>
     <name>Percent tree canopy cover</name>
     <title>Percent tree canopy cover</title>
     <runninghead>Percent tree canopy cover</runninghead>

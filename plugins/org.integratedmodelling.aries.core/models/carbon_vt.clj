@@ -165,14 +165,14 @@
     :state   #(+ (if (nil? (:vegetation-c-storage %)) 0.0 (.getMean (:vegetation-c-storage %)))
                  (if (nil? (:soil-c-storage %))       0.0 (.getMean (:soil-c-storage %))))))
 
-(defmodel veg-soil-storage VegetationAndSoilCarbonStorageClass
+(defmodel veg-soil-storage vermont:VegetationAndSoilCarbonStorageClass
   (classification vegetation-soil-storage
-    [150 400] VeryHighStorage
-    [75 150]  HighStorage
-    [40 75]   ModerateStorage
-    [20 40]   LowStorage
-    [0.02 20] VeryLowStorage
-    [0 0.02]  NoStorage))
+    [150 400] vermont:VeryHighStorage
+    [75 150]  vermont:HighStorage
+    [40 75]   vermont:ModerateStorage
+    [20 40]   vermont:LowStorage
+    [0.02 20] vermont:VeryLowStorage
+    [0 0.02]  vermont:NoStorage))
 
 (defmodel stored-carbon-release vermont:StoredCarbonRelease
   (probabilistic-measurement StoredCarbonRelease "t/ha*year"

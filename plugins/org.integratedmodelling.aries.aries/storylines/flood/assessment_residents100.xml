@@ -104,7 +104,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="successional-stage">
-    <concept>floodService:SuccessionalStage</concept>
+    <concept>puget:SuccessionalStage</concept>
     <name>Successional stage</name>
     <title>Successional stage</title>
     <runninghead>Successional stage</runninghead>
@@ -136,7 +136,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="mean-days-precipitation-per-year">
-    <concept>floodService:MeanDaysPrecipitationPerYear</concept>
+    <concept>puget:MeanDaysPrecipitationPerYear</concept>
     <name>Mean days precipitation per year</name>
     <title>Mean days precipitation per year</title>
     <runninghead>Mean days precipitation per year</runninghead>
@@ -175,7 +175,43 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="hydrologic-soils-group">
-    <concept>floodService:HydrologicSoilsGroup</concept>
+    <concept>california:HydrologicSoilsGroup</concept>
+    <name>Hydrologic soils group</name>
+    <title>Hydrologic soils group</title>
+    <runninghead>Hydrologic soils group</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Different soil types have different infiltration capacities.
+    See <a
+    href="http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm"
+    target="_blank">Computing composite CN and runoff
+    coefficients</a>.</p>
+    <h1>Role in models</h1> <p>Soils are classified from group A
+    (highest infiltraiton capacity) to D (lowest infiltration capacity);
+    group accounts for maximum yearly wetness, degree of soil freezing,
+    bare soil surface, and swelling of clays, but does not account for
+    slope. HSG along with slope and impervious surface data were used to
+    estimate the soil infiltration component of flood control in the flood
+    sink models.</p>
+    <h1>Representation</h1> <p>Data are categorical.</p>
+    <h1>Source</h1> <p>SSURGO soils data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html" target="_blank">Flood regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="hydrologic-soils-group">
+    <concept>puget:HydrologicSoilsGroup</concept>
     <name>Hydrologic soils group</name>
     <title>Hydrologic soils group</title>
     <runninghead>Hydrologic soils group</runninghead>
@@ -211,7 +247,42 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="slope">
-    <concept>floodService:SlopeClass</concept>
+    <concept>california:SlopeClass</concept>
+    <name>Slope</name>
+    <title>Slope</title>
+    <runninghead>Slope</runninghead>
+    <group>sink</group>
+    <units>degrees slope</units>
+    <description><![CDATA[
+    <p>Slope strongly affects runoff by influencing potential
+    infiltration.</p>
+    <h1>Role in models</h1> <p>Since hydrologic soils group
+    classifications do not account for slope, slope data along with HSG
+    and impervious surface data were used to estimate the soil
+    infiltration component of flood control in the flood sink models.
+    Greater infiltration is expected on level slopes than on steep slopes
+    where runoff occurs quickly.</p>
+    <h1>Representation</h1> <p>Data are in physical units of degrees
+    slope.</p>
+    <h1>Source</h1> <p>Derived from a global 90-m SRTM digital
+    elevation model.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html" target="_blank">Flood regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Derived from Shuttle Radar Topography Mission data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="slope">
+    <concept>puget:SlopeClass</concept>
     <name>Slope</name>
     <title>Slope</title>
     <runninghead>Slope</runninghead>
@@ -246,7 +317,38 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="percent-impervious-cover">
-    <concept>floodService:PercentImperviousCoverClass</concept>
+    <concept>california:PercentImperviousCoverClass</concept>
+    <name>Percent impervious cover</name>
+    <title>Percent impervious cover</title>
+    <runninghead>Percent impervious cover</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>The amount of impervious surface (e.g., buildings, pavement) on
+    the landscape.</p>
+    <h1>Role in models</h1> <p>We use impervious surface along with
+    slope and hydrologic soils group to estimate the soil infiltration
+    component of flood control in the flood sink models. Zero infiltration
+    is expected on impervious surfaces.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the land
+    surface with impervious cover.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html" target="_blank">Flood regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="percent-impervious-cover">
+    <concept>puget:PercentImperviousCoverClass</concept>
     <name>Percent impervious cover</name>
     <title>Percent impervious cover</title>
     <runninghead>Percent impervious cover</runninghead>
@@ -315,7 +417,7 @@ Celsius.</p>
 </page>  -->
 
   <page id="vegetation-height">
-    <concept>floodService:VegetationHeight</concept>
+    <concept>puget:VegetationHeight</concept>
     <name>Vegetation height</name>
     <title>Vegetation height</title>
     <runninghead>Vegetation height</runninghead>
@@ -348,7 +450,41 @@ Celsius.</p>
   </page>
 
   <page id="percent-tree-canopy-cover">
-    <concept>floodService:PercentTreeCanopyCoverClass</concept>
+    <concept>california:PercentTreeCanopyCoverClass</concept>
+    <name>Percent tree canopy cover</name>
+    <title>Percent tree canopy cover</title>
+    <runninghead>Percent tree canopy cover</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Percent tree canopy cover. Tree canopy cover influences rooting
+    depths, root densities, and transpiration rates, affecting their
+    ability to aid in infiltration of floodwater.</p>
+    <h1>Role in models</h1> <p>Tree canopy cover is used as input into
+    a probabilistic model estimating the contribution of vegetation and
+    soils, or "green infrastructure" in infiltrating floodwater. All else
+    being equal, greater infiltration and evapotranspiration, leading to
+    greater mitigation of floodwater, are assumed under higher tree canopy
+    cover.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the land
+    surface under tree canopy cover.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html" target="_blank">Flood regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>.</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="percent-tree-canopy-cover">
+    <concept>puget:PercentTreeCanopyCoverClass</concept>
     <name>Percent tree canopy cover</name>
     <title>Percent tree canopy cover</title>
     <runninghead>Percent tree canopy cover</runninghead>
@@ -446,7 +582,48 @@ Celsius.</p>
   </page>
 
   <page id="soil-infiltration-class">
-    <concept>floodService:SoilInfiltrationClass</concept>
+    <concept>california:SoilInfiltrationClass</concept>
+    <name>Soil infiltration</name>
+    <title>Soil infiltration</title>
+    <runninghead>Soil infiltration</runninghead>
+    <group>sink</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+    <p>Surface water absorbed by the soil, potentially becoming
+    available as groundwater.</p>
+    <h1>Role in models</h1> <p>This is an intermediate node in the
+    Bayesian network that accounts for soil infiltration in reducing the
+    quantity of floodwater.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of water infiltrated per year. As the output of the models
+    is probabilistic, each point contains the probability distribution of
+    the amount of water infiltrated. The distribution can be visualized by
+    clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area. USGS WRD NDSI groundwater recharge data were used for
+    Bayesian network training.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html"
+    target="_blank">Flood regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a
+    href="http://water.usgs.gov/GIS/metadata/usgswrd/XML/rech48grd.xml"
+    target="_blank">USGS groundwater recharge data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">US National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="soil-infiltration-class">
+    <concept>puget:SoilInfiltrationClass</concept>
     <name>Soil infiltration</name>
     <title>Soil infiltration</title>
     <runninghead>Soil infiltration</runninghead>
@@ -534,7 +711,48 @@ Celsius.</p>
   </page>
 
   <page id="green-infrastructure-storage">
-    <concept>floodService:GreenInfrastructureStorage</concept>
+    <concept>california:GreenInfrastructureStorage</concept>
+    <name>Green infrastructure storage</name>
+    <title>Green infrastructure storage</title>
+    <runninghead>Green infrastructure storage</runninghead>
+    <group>sink</group>
+    <units>mm</units>
+    <description><![CDATA[
+    <p>Total floodwater absorption and detention capacity in soils,
+    vegetation, and floodplains.</p>
+    <h1>Role in models</h1> <p>This is the output of a probabilistic
+    model accounting for the influence of soil, vegetation, and their
+    saturation on floodwater absorption and detention capacity. Results
+    are summed with "gray infrastructure" storage to give total flood
+    regulation values, and then passed to the flow model to estimate
+    actual flood mitigation given the location of sources of floodwater
+    and beneficiaries at risk of flooding.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of floodwater absorbed or detained per year. As the output
+    of the models is probabilistic, each point contains the probability
+    distribution of the amount of floodwater regulated. The distribution
+    can be visualized by clicking on the map; the mean value and the
+    coefficient of variation are reported along with the
+    probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/flood.html" target="_blank">Flood regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="green-infrastructure-storage">
+    <concept>puget:GreenInfrastructureStorage</concept>
     <name>Green infrastructure storage</name>
     <title>Green infrastructure storage</title>
     <runninghead>Green infrastructure storage</runninghead>
