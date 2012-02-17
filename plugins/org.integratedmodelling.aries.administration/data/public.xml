@@ -9530,6 +9530,34 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <measurement:Ranking id="vegetation_type_ca">
+    <observation:hasObservable>
+      <california:VegTypeSoCal/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: USDA Forest Service Pacific Southwest
+    Region Remote Sensing Lab</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.fs.fed.us/r5/rsl/clearinghouse/gettiles.shtml</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>california:vegetation_type_ca</geospace:hasCoverageId>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>22064</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>19772</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>32.5351703</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-122.520822</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>38.4673703</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-115.901022</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
   <measurement:Ranking id="cdl_awifs_r_vt_2009_utm18">
     <observation:hasObservable>
       <carbonService:VegType />
