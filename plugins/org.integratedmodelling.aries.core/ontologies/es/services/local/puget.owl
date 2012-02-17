@@ -69,6 +69,43 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualPrecipitationClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualPrecipitationClass">
+        <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualSedimentSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="&eserv;Source"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualSedimentSourceClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualSedimentSourceClass">
+        <rdfs:subClassOf rdf:resource="&eserv;Source"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#CoarseSoilTexture -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#CoarseSoilTexture">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilTextureClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ConstrainedDevelopment">
@@ -189,6 +226,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#FineSoilTexture -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#FineSoilTexture">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilTextureClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType">
@@ -235,6 +280,14 @@
         <rdfs:subClassOf rdf:resource="&floodService;FloodStorage"/>
         <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighAnnualSedimentSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualSedimentSourceClass"/>
     </owl:Class>
     
 
@@ -295,6 +348,30 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighSlopeStability -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighSlopeStability">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeStabilityClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighSoilErodibility -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighSoilErodibility">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilErodibilityClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighSoilInfiltration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#HighSoilInfiltration">
@@ -332,6 +409,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#Level">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowAnnualSedimentSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualSedimentSourceClass"/>
     </owl:Class>
     
 
@@ -392,6 +477,30 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowSlopeStability -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowSlopeStability">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeStabilityClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowSoilErodibility -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowSoilErodibility">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilErodibilityClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowSoilInfiltration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#LowSoilInfiltration">
@@ -417,10 +526,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#MediumSoilTexture -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#MediumSoilTexture">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilTextureClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#MidSuccession -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#MidSuccession">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SuccessionalStage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateAnnualSedimentSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualSedimentSourceClass"/>
     </owl:Class>
     
 
@@ -465,6 +590,30 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateSlopeStability -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateSlopeStability">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeStabilityClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateSoilErodibility -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateSoilErodibility">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilErodibilityClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateSoilInfiltration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModerateSoilInfiltration">
@@ -493,6 +642,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#ModeratelyLowImperviousCover">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#PercentImperviousCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#NoAnnualSedimentSource -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#NoAnnualSedimentSource">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualSedimentSourceClass"/>
     </owl:Class>
     
 
@@ -645,11 +802,29 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeStabilityClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SlopeStabilityClass">
+        <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SnowPrecipitationCategory -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SnowPrecipitationCategory">
         <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
         <rdfs:comment>Categorization to handle rain-on-snow attributes in WA data</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilErodibilityClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilErodibilityClass">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -692,6 +867,15 @@
         <rdfs:subClassOf rdf:resource="&habitat;AnnualInfiltration"/>
         <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilTextureClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilTextureClass">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -778,6 +962,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighSoilErodibility -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighSoilErodibility">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilErodibilityClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighSoilInfiltration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryHighSoilInfiltration">
@@ -826,6 +1026,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowMeanAnnualPrecipitation -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowMeanAnnualPrecipitation">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualPrecipitationClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowSoilErodibility -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowSoilErodibility">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilErodibilityClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowSoilInfiltration -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#VeryLowSoilInfiltration">
@@ -847,6 +1063,14 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#Wetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/puget.owl#FloodVegetationType"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality -->
+
+    <rdf:Description rdf:about="&habitat;HabitatQuality">
+        <rdfs:subClassOf rdf:resource="&eserv;ServiceRelatedTrait"/>
+    </rdf:Description>
     
 
 

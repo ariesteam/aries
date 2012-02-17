@@ -42,51 +42,51 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
-(defmodel soil-group HydrologicSoilsGroup
+(defmodel soil-group puget:HydrologicSoilsGroup
   "Relevant soil group"
   (classification (ranking habitat:HydrologicSoilsGroup)
-    1 SoilGroupA
-    2 SoilGroupB
-    3 SoilGroupC
-    4 SoilGroupD))
+    1 puget:SoilGroupA
+    2 puget:SoilGroupB
+    3 puget:SoilGroupC
+    4 puget:SoilGroupD))
 
-(defmodel slope SlopeClass
+(defmodel slope puget:SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [    0  1.15] Level
-    [ 1.15  4.57] GentlyUndulating
-    [ 4.57 16.70] RollingToHilly
-    [16.70    :>] SteeplyDissectedToMountainous))
+    [    0  1.15] puget:Level
+    [ 1.15  4.57] puget:GentlyUndulating
+    [ 4.57 16.70] puget:RollingToHilly
+    [16.70    :>] puget:SteeplyDissectedToMountainous))
 
-(defmodel slope-stability SlopeStabilityClass
+(defmodel slope-stability puget:SlopeStabilityClass
   (classification (numeric-coding habitat:SlopeStability)         
-    1 HighSlopeStability
-    2 ModerateSlopeStability
-    3 LowSlopeStability))
+    1 puget:HighSlopeStability
+    2 puget:ModerateSlopeStability
+    3 puget:LowSlopeStability))
 
 ;; This discretization is for SSURGO/STATSGO, paying attention to
 ;; texture over inclusion of various sized rock fragments.
-(defmodel soil-texture SoilTextureClass
+(defmodel soil-texture puget:SoilTextureClass
   (classification (numeric-coding habitat:SoilTexture)
-    #{2 3 8 9 12 13 15 17 18 19 20 21 22 25 26 27 29 31 32 34 35 36 37 39 40 43 47 48 50 51 55 59 62 64 65 66 67 68 69 73 74 75 76 78 79 81 82 84 85 86 87 88 89 91 92 96 98 99 105 107 108 109 110 111 112 114 115 117 118 121 123 125 127 128 129 130 132 133 134 137 139 141 142 143 144 147 150 152 153 154 155 157 159 160 161 162 164 165 167 172 173 175 176 180 184 185 187 190 191 192 195} CoarseSoilTexture
-    #{1 4 5 6 10 11 14 24 28 30 33 38 42 49 57 60 61 63 70 71 72 77 80 83 90 93 94 95 97 102 103 104 116 124 126 140 151 163 166 168 169 179 181 189} MediumSoilTexture
-    #{7 16 23 41 44 45 46 52 53 54 56 58 100 101 106 113 119 120 122 131 135 136 138 145 146 148 149 156 170 171 174 177 182 183 186 188 193 194} FineSoilTexture))
+    #{2 3 8 9 12 13 15 17 18 19 20 21 22 25 26 27 29 31 32 34 35 36 37 39 40 43 47 48 50 51 55 59 62 64 65 66 67 68 69 73 74 75 76 78 79 81 82 84 85 86 87 88 89 91 92 96 98 99 105 107 108 109 110 111 112 114 115 117 118 121 123 125 127 128 129 130 132 133 134 137 139 141 142 143 144 147 150 152 153 154 155 157 159 160 161 162 164 165 167 172 173 175 176 180 184 185 187 190 191 192 195} puget:CoarseSoilTexture
+    #{1 4 5 6 10 11 14 24 28 30 33 38 42 49 57 60 61 63 70 71 72 77 80 83 90 93 94 95 97 102 103 104 116 124 126 140 151 163 166 168 169 179 181 189} puget:MediumSoilTexture
+    #{7 16 23 41 44 45 46 52 53 54 56 58 100 101 106 113 119 120 122 131 135 136 138 145 146 148 149 156 170 171 174 177 182 183 186 188 193 194} puget:FineSoilTexture))
 
 ;;Soil erodibility factor (k) from USLE/RUSLE (unitless).
-(defmodel soil-erodibility SoilErodibilityClass
+(defmodel soil-erodibility puget:SoilErodibilityClass
   (classification (numeric-coding habitat:SoilErodibility)
-    [0.375 :>]    VeryHighSoilErodibility
-    [0.3   0.375] HighSoilErodibility
-    [0.225 0.3]   ModerateSoilErodibility
-    [0.1   0.225] LowSoilErodibility
-    [:<    0.1]   VeryLowSoilErodibility))
+    [0.375 :>]    puget:VeryHighSoilErodibility
+    [0.3   0.375] puget:HighSoilErodibility
+    [0.225 0.3]   puget:ModerateSoilErodibility
+    [0.1   0.225] puget:LowSoilErodibility
+    [:<    0.1]   puget:VeryLowSoilErodibility))
 
-(defmodel precipitation-annual AnnualPrecipitationClass
+(defmodel precipitation-annual puget:AnnualPrecipitationClass
   (classification (measurement habitat:AnnualPrecipitation "mm")
-    [2200   :>] VeryHighMeanAnnualPrecipitation
-    [1800 2200] HighMeanAnnualPrecipitation
-    [1200 1800] ModerateMeanAnnualPrecipitation
-    [ 600 1200] LowMeanAnnualPrecipitation
-    [:<    600] VeryLowMeanAnnualPrecipitation))
+    [2200   :>] puget:VeryHighMeanAnnualPrecipitation
+    [1800 2200] puget:HighMeanAnnualPrecipitation
+    [1200 1800] puget:ModerateMeanAnnualPrecipitation
+    [ 600 1200] puget:LowMeanAnnualPrecipitation
+    [:<    600] puget:VeryLowMeanAnnualPrecipitation))
 
 (defmodel runoff AnnualRunoffClass
   (classification (measurement habitat:AnnualRunoff "mm")
@@ -107,20 +107,20 @@
     #{21 22 23 24 31 82} puget:CropsBarrenDeveloped))
 
 ;;Discretization based on Quinton et al. (1997)
-(defmodel percent-canopy-cover PercentTreeCanopyCoverClass
+(defmodel percent-canopy-cover puget:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [70 100 :inclusive] HighCanopyCover
-    [30  70]            ModerateCanopyCover
-    [ 0  30]            LowCanopyCover))
+    [70 100 :inclusive] puget:HighCanopyCover
+    [30  70]            puget:ModerateCanopyCover
+    [ 0  30]            puget:LowCanopyCover))
 
-(defmodel successional-stage SuccessionalStage
+(defmodel successional-stage puget:SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)  
-    #{5 6}                           OldGrowth
-    4                                LateSuccession
-    3                                MidSuccession
-    2                                PoleSuccession
-    1                                EarlySuccession
-    #{21 22 23 24 25 26 27 28 40 41} NoSuccession))
+    #{5 6}                           puget:OldGrowth
+    4                                puget:LateSuccession
+    3                                puget:MidSuccession
+    2                                puget:PoleSuccession
+    1                                puget:EarlySuccession
+    #{21 22 23 24 25 26 27 28 40 41} puget:NoSuccession))
 
 ;;Sediment source value - we have evidence for this but can't yet
 ;; train so keep this commented out for now and use the
@@ -132,16 +132,16 @@
 ;;    [:exclusive 0 30000] LowAnnualSedimentSource 
 ;;    0                    NoAnnualSedimentSource))
 
-(defmodel sediment-source-value-annual AnnualSedimentSourceClass
+(defmodel sediment-source-value-annual puget:AnnualSedimentSourceClass
   (probabilistic-measurement AnnualSedimentSourceClass "t/ha"
-    [100   300]    HighAnnualSedimentSource
-    [ 30   100]    ModerateAnnualSedimentSource
-    [  0.01 30]    LowAnnualSedimentSource 
-    [  0     0.01] NoAnnualSedimentSource))
+    [100   300]    puget:HighAnnualSedimentSource
+    [ 30   100]    puget:ModerateAnnualSedimentSource
+    [  0.01 30]    puget:LowAnnualSedimentSource 
+    [  0     0.01] puget:NoAnnualSedimentSource))
 
 ;; source bayesian model for Puget Sound     
-(defmodel source-puget AnnualSedimentSource
-  (bayesian AnnualSedimentSource 
+(defmodel source-puget puget:AnnualSedimentSource
+  (bayesian puget:AnnualSedimentSource 
     :import   "aries.core::SedimentSourcePugetAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover

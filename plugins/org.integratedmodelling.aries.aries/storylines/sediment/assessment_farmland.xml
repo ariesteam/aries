@@ -120,6 +120,44 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="hydrologic-soils-group">
+    <concept>puget:HydrologicSoilsGroup</concept>
+    <name>Hydrologic soils group</name>
+    <title>Hydrologic soils group</title>
+    <runninghead>Hydrologic soils group</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Different soil types have different infiltration capacities.
+    See <a
+    href="http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm"
+    target="_blank">Computing composite CN and runoff
+    coefficients</a>.</p>
+    <h1>Role in models</h1> <p>Soils are classified from group A
+    (highest infiltraiton capacity) to D (lowest infiltration capacity);
+    group accounts for maximum yearly wetness, degree of soil freezing,
+    bare soil surface, and swelling of clays, but does not account for
+    slope. HSG is used along with slope, slope stability, and soil texture
+    data to estimate soil erodibility in probabilistic erosion models.
+    Greater erodibility is assumed in soils with higher infiltration
+    capacity.</p>
+    <h1>Representation</h1> <p>Data are categorical.</p>
+    <h1>Source</h1> <p>SSURGO soils data (U.S.); University of Vermont
+    Spatial Analysis Lab, derived from FAO soils data (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="slope">
     <concept>soilRetentionService:SlopeClass</concept>
     <name>Slope</name>
@@ -155,8 +193,43 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="slope">
+    <concept>puget:SlopeClass</concept>
+    <name>Slope</name>
+    <title>Slope</title>
+    <runninghead>Slope</runninghead>
+    <group>source</group>
+    <units>degrees slope</units>
+    <description><![CDATA[
+    <p>Slope strongly affects potential erosion by influencing slope
+    stability and runoff speed.</p>
+    <h1>Role in models</h1> <p>Since hydrologic soils group
+    classifications do not account for slope, slope is used along with
+    hydrologic soils group, slope stability, and soil texture data to
+    estimate soil erodibility in probabilistic erosion models. Greater
+    erodibility is assumed on steep slopes where runoff occurs
+    quickly.</p>
+    <h1>Representation</h1> <p>Data are in physical units of degrees
+    slope.</p>
+    <h1>Source</h1> <p>Derived from a global 90-m SRTM digital
+    elevation model.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://srtm.usgs.gov/" target="_blank">Derived from Shuttle Radar Topography Mission data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="slope-stability">
-    <concept>soilRetentionService:SlopeStabilityClass</concept>
+    <concept>puget:SlopeStabilityClass</concept>
     <name>Slope stability</name>
     <title>Slope stability</title>
     <runninghead>Slope stability</runninghead>
@@ -213,6 +286,35 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="soil-texture">
+    <concept>puget:SoilTextureClass</concept>
+    <name>Soil texture</name>
+    <title>Soil texture</title>
+    <runninghead>Soil texture</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Soil texture can influence its erodibility.</p>
+    <h1>Role in models</h1> <p>Soil texture data can be used to
+    probabilistically estimate soil erodibility. Greater erodibility is
+    assumed for finer-textued soils.</p>
+    <h1>Representation</h1> <p>The data are categorical.</p>
+    <h1>Source</h1> <p>SSURGO soils data (U.S.); FAO soils data
+    (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database</a>, FAO Global Soils database.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="soil-erodibility">
     <concept>soilRetentionService:SoilErodibilityClass</concept>
     <name>Soil erodibility</name>
@@ -229,8 +331,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1> <p>Data are unitless estimates of
     erodibility used in the Revised Universal Soil Loss Equation.</p>
     <h1>Source</h1> <p>USGS Effects of Energy Development in the Rocky
-    Mountain Area (EERMA) Project (Colorado-New Mexico); U.S. EPA
-    EMAP-West Metric Browser (U.S.); Yang, D., et al. 2003. Global
+    Mountain Area (EERMA) Project (Colorado-New Mexico); SSURGO soils 
+    database (U.S.); Yang, D., et al. 2003. Global
     potential soil erosion with reference to land use and climate changes.
     Hydrological Processes 17: 2913-2928 (global).</p>
     ]]></description>
@@ -242,7 +344,48 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <credits language="html"><![CDATA[
     <b>Data sources</b>: <a
     href="http://www.fort.usgs.gov/Research/research_tasks.asp?TaskID=2397"
-    target="_blank">USGS EERMA Project</a>, <a href="http://www.epa.gov/esd/land-sci/emap_west_browser/pages/wemap_mm_table.htm" target="_blank">U.S. EPA EMAP-West Metric Browser</a>, Yang et al. (2003).</br>
+    target="_blank">USGS EERMA Project</a>, <a
+    href="http://soils.usda.gov/survey/geography/ssurgo/"
+    target="_blank">USDA-NRCS SSURGO soils database</a>, Yang et al. (2003).</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="soil-erodibility">
+    <concept>puget:SoilErodibilityClass</concept>
+    <name>Soil erodibility</name>
+    <title>Soil erodibility</title>
+    <runninghead>Soil erodibility</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Soil erodibility coefficients used in the Revised Universal
+    Soil Loss Equation.</p>
+    <h1>Role in models</h1> <p>Soil erodibility estimates can either
+    be directly used to estimate erosion using RUSLE or can be used to
+    train Bayesian networks in probabilistic erosion models for cases
+    where RUSLE's use is inappropriate.</p>
+    <h1>Representation</h1> <p>Data are unitless estimates of
+    erodibility used in the Revised Universal Soil Loss Equation.</p>
+    <h1>Source</h1> <p>USGS Effects of Energy Development in the Rocky
+    Mountain Area (EERMA) Project (Colorado-New Mexico); SSURGO soils 
+    database (U.S.); Yang, D., et al. 2003. Global
+    potential soil erosion with reference to land use and climate changes.
+    Hydrological Processes 17: 2913-2928 (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a
+    href="http://www.fort.usgs.gov/Research/research_tasks.asp?TaskID=2397"
+    target="_blank">USGS EERMA Project</a>, <a
+    href="http://soils.usda.gov/survey/geography/ssurgo/"
+    target="_blank">USDA-NRCS SSURGO soils database</a>, Yang et al. (2003).</br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -252,6 +395,40 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <page id="annual-precipitation">
     <concept>soilRetentionService:AnnualPrecipitationClass</concept>
+    <name>Annual precipitation</name>
+    <title>Annual precipitation</title>
+    <runninghead>Annual precipitation</runninghead>
+    <group>source</group>
+    <units>mm/year</units>
+    <description><![CDATA[
+    <p>Annual precipitation.</p>
+    <h1>Role in models</h1> <p>Precipitation data are used along with
+    soil erodiblity and vegetative maturity to estimate overall erosion in
+    the probabilistic erosion source models. In regions susceptible to
+    tropical storms and with steep slopes, tropical storm probability is
+    added as an additional influence on runoff, since these extreme storm
+    events can cause larger event-based episodes of erosion.</p>
+    <h1>Representation</h1> <p>Data are in physical units of
+    millimeters of precipitation per year.</p>
+    <h1>Source</h1> <p>PRISM Climate Group, Oregon State University
+    (U.S.); WorldClim (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="annual-precipitation">
+    <concept>puget:AnnualPrecipitationClass</concept>
     <name>Annual precipitation</name>
     <title>Annual precipitation</title>
     <runninghead>Annual precipitation</runninghead>
@@ -542,8 +719,76 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="percent-tree-canopy-cover">
+    <concept>puget:PercentTreeCanopyCoverClass</concept>
+    <name>Percent tree canopy cover</name>
+    <title>Percent tree canopy cover</title>
+    <runninghead>Percent tree canopy cover</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Percent tree canopy cover.</p>
+    <h1>Role in models</h1>
+    <p>Tree canopy cover is used as input into a probabilistic model
+    estimating the contribution of vegetation in reducing soil erosion.
+    All else being equal, greater protection from soil erosion is expected
+    under higher tree canopy cover.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the land
+    surface under tree canopy cover.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD, U.S.);
+    University of Maryland - Global Land Cover Facility (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset</a>, <a href="http://glcf.umiacs.umd.edu/" target="_blank">University of Maryland Global Land Cover Facility.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="successional-stage">
     <concept>soilRetentionService:SuccessionalStage</concept>
+    <name>Successional stage</name>
+    <title>Successional stage</title>
+    <runninghead>Successional stage</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>Forest successional stage influences attributes such as
+    vegetation height, tree canopy cover, root densities, and litter and
+    woody debris cover, all of which can potentially reduce soil
+    erosion.</p>
+    <h1>Role in models</h1> <p>Successional stage is used as input
+    into a probabilistic model estimating the contribution of vegetation
+    in reducing soil erosion. All else being equal, later successional
+    forests are expected to provide greater protection from soil
+    erosion.</p>
+    <h1>Representation</h1> <p>Data are categorical.</p>
+    <h1>Source</h1> <p>BLM Interagency Vegetation Mapping Project
+    (WA/OR); LANDFIRE (U.S.).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a
+    href="http://www.blm.gov/or/gis/data-details.php?data=ds000103"
+    target="_blank">Interagency Vegetation Mapping Project,</a> <a href="http://www.landfire.gov/" target="_blank">LANDFIRE.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="successional-stage">
+    <concept>puget:SuccessionalStage</concept>
     <name>Successional stage</name>
     <title>Successional stage</title>
     <runninghead>Successional stage</runninghead>
@@ -582,6 +827,48 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
        use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, using intelligent model selection. -->
   <page id="annual-sediment-source">
     <concept>soilRetentionService:AnnualSedimentSource</concept>
+    <name>Annual sediment source</name>
+    <title>Annual sediment source</title>
+    <runninghead>Annual sediment source</runninghead>
+    <group>source</group>
+    <units>t/ha</units>
+    <description><![CDATA[
+    <p>Annual soil erosion from the landscape.</p>
+    <h1>Role in models</h1> <p>This is the output of a probabilistic
+    model accounting for the influence of vegetation, soils, and
+    precipitation on erosion. These data are passed to the sediment flow
+    model, which calculates actual sediment delivered to beneficiaries,
+    given erosion levels, the activity of sinks, and the location of
+    beneficiaries of sedimentation or avoided sedimentation.</p>
+    <h1>Representation</h1> <p>Data are in physical units of tons of
+    sediment eroded per year. As the output of the models is
+    probabilistic, each point contains the probability distribution of the
+    amount of sediment eroded. The distribution can be visualized by
+    clicking on the map; the mean value and the coefficient of variation
+    are reported along with the probabilities.</p>
+    <h1>Source</h1> <p>This map has been computed at your request by a
+    Bayesian model built and calibrated by the ARIES server for the
+    selected area. U.S. EPA EMAP-West Metric Browser data (U.S.) and Yang,
+    D., et al. 2003. Global potential soil erosion with reference to land
+    use and climate changes. Hydrological Processes 17: 2913-2928 (global)
+    were used for Bayesian network training.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a href="http://www.epa.gov/esd/land-sci/emap_west_browser/pages/wemap_mm_table.htm" target="_blank">U.S. EPA EMAP-West Metric Browser</a>, Yang et al. (2003).</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="annual-sediment-source">
+    <concept>puget:AnnualSedimentSource</concept>
     <name>Annual sediment source</name>
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source</runninghead>
