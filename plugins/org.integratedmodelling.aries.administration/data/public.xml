@@ -8264,7 +8264,8 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Ranking id="puget_pugeterosionmetrics">
+<!--  Not very useful; it's at the watershed scale.
+<measurement:Ranking id="puget_pugeterosionmetrics">
     <observation:hasObservable>
       <habitat:SoilErodibility />
     </observation:hasObservable>
@@ -8287,7 +8288,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Ranking> -->
 
   <!--
   <measurement:Ranking id="SoilErodibilty">
@@ -8330,7 +8331,7 @@ global data. -->
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>puget:soil_erodibility_puget</geospace:hasCoverageId>
-        <geospace:hasTransformation>self * 0.1</geospace:hasTransformation>
+        <geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -8357,7 +8358,7 @@ global data. -->
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>usa:soil_erodibility_statsgo</geospace:hasCoverageId>
-        <geospace:hasTransformation>self * 0.1</geospace:hasTransformation>
+        <geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
