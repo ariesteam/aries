@@ -148,6 +148,10 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <parameter id="url" value="es/services/local/veracruz.owl"/>
     <parameter id="concept-space" value="veracruz"/>
   </extension>
+  <extension id="ontario" plugin-id="org.integratedmodelling.thinklab.core" point-id="ontology">
+    <parameter id="url" value="es/services/local/ontario.owl"/>
+    <parameter id="concept-space" value="ontario"/>
+  </extension>
 
   <!-- bindings  -->
   <extension id="clj" plugin-id="org.integratedmodelling.thinklab.core" point-id="language-binding">
