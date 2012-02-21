@@ -47,6 +47,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:infrastructure="http://www.integratedmodelling.org/ks/lulc/infrastructure.owl#"
     xmlns:mglulc="http://www.integratedmodelling.org/ks/lulc/mglulc.owl#"
     xmlns:glc="http://www.integratedmodelling.org/ks/ecology/lulc/glc.owl#"
+    xmlns:ontario-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/ontario-lulc.owl#"
 
     xmlns:floodService="http://www.integratedmodelling.org/ks/es/services/floodService.owl#"
     xmlns:carbonService="http://www.integratedmodelling.org/ks/es/services/carbonService.owl#"
@@ -1023,9 +1024,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:Ranking id="nesting_habitat_alg">
+  <measurement:BinaryCoding id="nesting_habitat_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:BirdNestingHabitat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1044,11 +1045,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:BinaryCoding>
 
-  <measurement:Ranking id="communication_towers_alg">
+  <measurement:BinaryCoding id="communication_towers_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <infrastructure:CommunicationTower/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1067,11 +1068,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:BinaryCoding>
 
   <measurement:Ranking id="deforestation_risk_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <carbonService:DeforestationRisk/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1092,9 +1093,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="spawning_habitat_alg">
+  <measurement:BinaryCoding id="spawning_habitat_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:FishSpawningHabitat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1113,11 +1114,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:BinaryCoding>
 
   <measurement:Ranking id="hardwood_softwood_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:HardwoodSoftwoodRatio/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1138,9 +1139,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="lulc2000_alg">
+  <measurement:NumericCoding id="lulc2000_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <ontario-lulc:MNRLULCNumeric/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1159,11 +1160,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:NumericCoding>
 
-  <measurement:Ranking id="moose_habitat_alg">
+  <measurement:BinaryCoding id="moose_habitat_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:MooseCalvingFeedingHabitat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1182,11 +1183,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:BinaryCoding>
 
-  <measurement:Ranking id="park_infrastructure_alg">
+  <measurement:BinaryCoding id="park_infrastructure_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <infrastructure:ParkInfrastructure/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1205,11 +1206,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:BinaryCoding>
 
   <measurement:Ranking id="canopy_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:PercentTreeCanopyCover/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1230,9 +1231,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="hydrography_alg">
+  <measurement:BinaryCoding id="hydrography_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <geofeatures:River/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1251,11 +1252,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:BinaryCoding>
 
   <measurement:Ranking id="soil_drainage_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:HydrologicSoilsGroup/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1278,7 +1279,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <measurement:Ranking id="successional_stage_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <ecology:SuccessionalStage/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1301,7 +1302,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <measurement:Ranking id="fire_frequency_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:FireThreat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1322,10 +1323,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="dams_low">
+  <measurement:Measurement id="dams_low">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <floodService:DamStorage/>
     </observation:hasObservable>
+    <measurement:unit>m</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1343,12 +1345,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
-  <measurement:Ranking id="dem20m_low">
+  <measurement:Measurement id="dem20m_low">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <geophysics:Altitude/>
     </observation:hasObservable>
+    <measurement:unit>m</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1366,11 +1369,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
-  <!-- <measurement:Ranking id="lulc2000_low"> -->
+  <!-- <measurement:NumericCoding id="lulc2000_low"> -->
   <!--   <observation:hasObservable> -->
-  <!--     <representation:GenericQuantifiable/> -->
+  <!--     <ontario-lulc:MNRLULCNumeric/> -->
   <!--   </observation:hasObservable> -->
   <!--   <observation:hasDataSource> -->
   <!--     <geospace:WCSDataSource> -->
@@ -1389,12 +1392,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!--       <geospace:hasCoordinateReferenceSystem>ESRI:102002</geospace:hasCoordinateReferenceSystem> -->
   <!--     </geospace:RasterGrid> -->
   <!--   </observation:hasObservationExtent> -->
-  <!-- </measurement:Ranking> -->
+  <!-- </measurement:NumericCoding> -->
 
-  <measurement:Ranking id="slope20m_low">
+  <measurement:Measurement id="slope20m_low">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <geophysics:DegreeSlope/>
     </observation:hasObservable>
+    <measurement:unit>°</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1412,11 +1416,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
   <measurement:Ranking id="canopy_low">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:PercentTreeCanopyCover/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1437,9 +1441,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="hydrography_low">
+  <measurement:BinaryCoding id="hydrography_low">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <geofeatures:River/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1458,11 +1462,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:BinaryCoding>
 
   <!-- <measurement:Ranking id="soil_drainage_low"> -->
   <!--   <observation:hasObservable> -->
-  <!--     <representation:GenericQuantifiable/> -->
+  <!--     <habitat:HydrologicSoilsGroup/> -->
   <!--   </observation:hasObservable> -->
   <!--   <observation:hasDataSource> -->
   <!--     <geospace:WCSDataSource> -->
@@ -1485,7 +1489,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <measurement:Ranking id="successional_stage_low">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <ecology:SuccessionalStage/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1506,10 +1510,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="dem10m_alg">
+  <measurement:Measurement id="dem10m_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <geophysics:Altitude/>
     </observation:hasObservable>
+    <measurement:unit>m</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1527,12 +1532,13 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
-  <measurement:Ranking id="slope10m_alg">
+  <measurement:Measurement id="slope10m_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <geophysics:DegreeSlope/>
     </observation:hasObservable>
+    <measurement:unit>°</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -1550,11 +1556,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
   <measurement:Ranking id="deer_moose_wintering_alg">
     <observation:hasObservable>
-      <representation:GenericQuantifiable/>
+      <habitat:DeerMooseWinteringHabitat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
