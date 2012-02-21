@@ -59,6 +59,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:recreationService="http://www.integratedmodelling.org/ks/es/services/recreationService.owl#"
     xmlns:mexico="http://www.integratedmodelling.org/ks/es/services/local/mexico.owl#"
     xmlns:sanPedro="http://www.integratedmodelling.org/ks/es/services/local/sanPedro.owl#"
+    xmlns:ontario="http://www.integratedmodelling.org/ks/es/services/local/ontario.owl#"
     xmlns:colorado="http://www.integratedmodelling.org/ks/es/services/local/colorado.owl#"
     xmlns:coastalProtection="http://www.integratedmodelling.org/ks/es/services/marine/coastalProtection.owl#"
     xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
@@ -1026,7 +1027,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <measurement:BinaryCoding id="nesting_habitat_alg">
     <observation:hasObservable>
-      <habitat:BirdNestingHabitat/>
+      <ontario:BirdNestingHabitat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1095,7 +1096,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <measurement:BinaryCoding id="spawning_habitat_alg">
     <observation:hasObservable>
-      <habitat:FishSpawningHabitat/>
+      <ontario:FishSpawningHabitat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1164,7 +1165,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <measurement:BinaryCoding id="moose_habitat_alg">
     <observation:hasObservable>
-      <habitat:MooseCalvingFeedingHabitat/>
+      <ontario:MooseCalvingFeedingHabitat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -1560,7 +1561,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <measurement:Ranking id="deer_moose_wintering_alg">
     <observation:hasObservable>
-      <habitat:DeerMooseWinteringHabitat/>
+      <ontario:DeerMooseWinteringHabitat/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
