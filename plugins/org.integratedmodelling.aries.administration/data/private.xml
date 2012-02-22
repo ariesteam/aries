@@ -1372,28 +1372,28 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!-- <measurement:NumericCoding id="lulc2000_low"> -->
-  <!--   <observation:hasObservable> -->
-  <!--     <ontario-lulc:MNRLULCNumeric/> -->
-  <!--   </observation:hasObservable> -->
-  <!--   <observation:hasDataSource> -->
-  <!--     <geospace:WCSDataSource> -->
-  <!--       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl> -->
-  <!--       <geospace:hasCoverageId>ontario:lulc2000_low</geospace:hasCoverageId> -->
-  <!--     </geospace:WCSDataSource> -->
-  <!--   </observation:hasDataSource> -->
-  <!--   <observation:hasObservationExtent> -->
-  <!--     <geospace:RasterGrid> -->
-  <!--       <geospace:hasXRangeMax>59430</geospace:hasXRangeMax> -->
-  <!--       <geospace:hasYRangeMax>58220</geospace:hasYRangeMax> -->
-  <!--       <geospace:hasLatLowerBound>1.1970285114E7</geospace:hasLatLowerBound> -->
-  <!--       <geospace:hasLonLowerBound>165281.528</geospace:hasLonLowerBound> -->
-  <!--       <geospace:hasLatUpperBound>1.3425835114E7</geospace:hasLatUpperBound> -->
-  <!--       <geospace:hasLonUpperBound>1651081.528</geospace:hasLonUpperBound> -->
-  <!--       <geospace:hasCoordinateReferenceSystem>ESRI:102002</geospace:hasCoordinateReferenceSystem> -->
-  <!--     </geospace:RasterGrid> -->
-  <!--   </observation:hasObservationExtent> -->
-  <!-- </measurement:NumericCoding> -->
+  <measurement:NumericCoding id="lulc2000_low">
+    <observation:hasObservable>
+      <ontario-lulc:MNRLULCNumeric/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:lulc2000_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>59430</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>58220</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>1.1970285114E7</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>165281.528</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1.3425835114E7</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>1651081.528</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>ESRI:102002</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:NumericCoding>
 
   <measurement:Measurement id="slope20m_low">
     <observation:hasObservable>
@@ -1465,28 +1465,28 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <!-- <measurement:Ranking id="soil_drainage_low"> -->
-  <!--   <observation:hasObservable> -->
-  <!--     <habitat:HydrologicSoilsGroup/> -->
-  <!--   </observation:hasObservable> -->
-  <!--   <observation:hasDataSource> -->
-  <!--     <geospace:WCSDataSource> -->
-  <!--       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl> -->
-  <!--       <geospace:hasCoverageId>ontario:soil_drainage_low</geospace:hasCoverageId> -->
-  <!--     </geospace:WCSDataSource> -->
-  <!--   </observation:hasDataSource> -->
-  <!--   <observation:hasObservationExtent> -->
-  <!--     <geospace:RasterGrid> -->
-  <!--       <geospace:hasXRangeMax>7470</geospace:hasXRangeMax> -->
-  <!--       <geospace:hasYRangeMax>5432</geospace:hasYRangeMax> -->
-  <!--       <geospace:hasLatLowerBound>1.2510409929E7</geospace:hasLatLowerBound> -->
-  <!--       <geospace:hasLonLowerBound>197250.576</geospace:hasLonLowerBound> -->
-  <!--       <geospace:hasLatUpperBound>1.2619089929E7</geospace:hasLatUpperBound> -->
-  <!--       <geospace:hasLonUpperBound>346690.576</geospace:hasLonUpperBound> -->
-  <!--       <geospace:hasCoordinateReferenceSystem>ESRI:102002</geospace:hasCoordinateReferenceSystem> -->
-  <!--     </geospace:RasterGrid> -->
-  <!--   </observation:hasObservationExtent> -->
-  <!-- </measurement:Ranking> -->
+  <measurement:Ranking id="soil_drainage_low">
+    <observation:hasObservable>
+      <habitat:HydrologicSoilsGroup/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:soil_drainage_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>7470</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>5432</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>1.2510409929E7</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>197250.576</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>1.2619089929E7</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>346690.576</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>ESRI:102002</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
 
   <measurement:Ranking id="successional_stage_low">
     <observation:hasObservable>
