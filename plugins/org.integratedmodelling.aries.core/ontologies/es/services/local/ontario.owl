@@ -9,11 +9,13 @@
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY ontario "http://www.integratedmodelling.org/ks/local/ontario.owl#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/local/ontario.owl#"
      xml:base="http://www.integratedmodelling.org/ks/local/ontario.owl"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
@@ -36,6 +38,12 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality -->
+
+    <owl:Class rdf:about="&habitat;EcosystemQuality"/>
     
 
 
@@ -73,6 +81,14 @@
 
     <owl:Class rdf:about="#MooseCalvingFeedingHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#RiparianConditionClass -->
+
+    <owl:Class rdf:about="#RiparianConditionClass">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
 </rdf:RDF>
 
