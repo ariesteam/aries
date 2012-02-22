@@ -19,7 +19,7 @@
 ;;;
 ;;; Sediment regulation model for Ontario
 ;;;
-;;; Valid Contexts: core.contexts.ontario/*
+;;; Valid Contexts: core.contexts.ontario/lakeofthewoods-wgs84
 ;;;
 ;;;-------------------------------------------------------------------
 
@@ -40,6 +40,11 @@
 ;;;-------------------------------------------------------------------
 ;;; Source models
 ;;;-------------------------------------------------------------------
+
+(defmodel soil-drainage ontario:SoilDrainageClass
+  "Soil drainage rating."
+  (classification (ranking ontario:SoilDrainageCode)
+    2 ontario:PoorlyDrainedSoils))
 
 ;;;-------------------------------------------------------------------
 ;;; Sink models
@@ -64,3 +69,12 @@
 ;;;-------------------------------------------------------------------
 ;;; Scenarios
 ;;;-------------------------------------------------------------------
+
+"
+1. Create concept ontario:HydrologicSoilsGroup with child classes:
+    SoilGroupA
+    SoilGroupB
+    SoilGroupC
+    SoilGroupD
+
+"

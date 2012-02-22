@@ -16,16 +16,16 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/local/ontario.owl#"
      xml:base="http://www.integratedmodelling.org/ks/local/ontario.owl"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:ontario="http://www.integratedmodelling.org/ks/local/ontario.owl#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
-    <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/local/ontario.owl">
+     xmlns:ontario="http://www.integratedmodelling.org/ks/local/ontario.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
+    <owl:Ontology rdf:about="">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
     </owl:Ontology>
@@ -49,6 +49,12 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#VegetationType -->
+
+    <owl:Class rdf:about="&habitat;VegetationType"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/eserv.owl#EcosystemGeneratedResource -->
 
     <owl:Class rdf:about="&eserv;EcosystemGeneratedResource"/>
@@ -57,15 +63,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#Agriculture -->
 
-    <owl:Class rdf:about="&ontario;Agriculture">
-        <rdfs:subClassOf rdf:resource="&ontario;WaterSupplyVegetationType"/>
+    <owl:Class rdf:about="#Agriculture">
+        <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#BirdNestingHabitat -->
 
-    <owl:Class rdf:about="&ontario;BirdNestingHabitat">
+    <owl:Class rdf:about="#BirdNestingHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
     </owl:Class>
     
@@ -73,15 +79,15 @@
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#BogFenMarshSwamp -->
 
-    <owl:Class rdf:about="&ontario;BogFenMarshSwamp">
-        <rdfs:subClassOf rdf:resource="&ontario;WaterSupplyVegetationType"/>
+    <owl:Class rdf:about="#BogFenMarshSwamp">
+        <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#DeerMooseWinteringHabitat -->
 
-    <owl:Class rdf:about="&ontario;DeerMooseWinteringHabitat">
+    <owl:Class rdf:about="#DeerMooseWinteringHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
     </owl:Class>
     
@@ -89,7 +95,7 @@
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#FishSpawningHabitat -->
 
-    <owl:Class rdf:about="&ontario;FishSpawningHabitat">
+    <owl:Class rdf:about="#FishSpawningHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
     </owl:Class>
     
@@ -97,39 +103,39 @@
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#Forest -->
 
-    <owl:Class rdf:about="&ontario;Forest">
-        <rdfs:subClassOf rdf:resource="&ontario;WaterSupplyVegetationType"/>
+    <owl:Class rdf:about="#Forest">
+        <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ImpairedForest -->
 
-    <owl:Class rdf:about="&ontario;ImpairedForest">
-        <rdfs:subClassOf rdf:resource="&ontario;WaterSupplyVegetationType"/>
+    <owl:Class rdf:about="#ImpairedForest">
+        <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ImperfectlyDrainedSoils -->
 
-    <owl:Class rdf:about="&ontario;ImperfectlyDrainedSoils">
-        <rdfs:subClassOf rdf:resource="&ontario;SoilDrainage"/>
+    <owl:Class rdf:about="#ImperfectlyDrainedSoils">
+        <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ModeratelyWellDrainedSoils -->
 
-    <owl:Class rdf:about="&ontario;ModeratelyWellDrainedSoils">
-        <rdfs:subClassOf rdf:resource="&ontario;SoilDrainage"/>
+    <owl:Class rdf:about="#ModeratelyWellDrainedSoils">
+        <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#MooseCalvingFeedingHabitat -->
 
-    <owl:Class rdf:about="&ontario;MooseCalvingFeedingHabitat">
+    <owl:Class rdf:about="#MooseCalvingFeedingHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
     </owl:Class>
     
@@ -137,39 +143,47 @@
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#NotVegetated -->
 
-    <owl:Class rdf:about="&ontario;NotVegetated">
-        <rdfs:subClassOf rdf:resource="&ontario;WaterSupplyVegetationType"/>
+    <owl:Class rdf:about="#NotVegetated">
+        <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#PoorlyDrainedSoils -->
 
-    <owl:Class rdf:about="&ontario;PoorlyDrainedSoils">
-        <rdfs:subClassOf rdf:resource="&ontario;SoilDrainage"/>
+    <owl:Class rdf:about="#PoorlyDrainedSoils">
+        <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#RapidlyDrainedSoils -->
 
-    <owl:Class rdf:about="&ontario;RapidlyDrainedSoils">
-        <rdfs:subClassOf rdf:resource="&ontario;SoilDrainage"/>
+    <owl:Class rdf:about="#RapidlyDrainedSoils">
+        <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#RiparianConditionClass -->
 
-    <owl:Class rdf:about="&ontario;RiparianConditionClass">
+    <owl:Class rdf:about="#RiparianConditionClass">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SoilDrainage -->
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SoilDrainageClass -->
 
-    <owl:Class rdf:about="&ontario;SoilDrainage">
+    <owl:Class rdf:about="#SoilDrainageClass">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SoilDrainageCode -->
+
+    <owl:Class rdf:about="#SoilDrainageCode">
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
@@ -177,31 +191,31 @@
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#UrbanInfrastructureRock -->
 
-    <owl:Class rdf:about="&ontario;UrbanInfrastructureRock">
-        <rdfs:subClassOf rdf:resource="&ontario;WaterSupplyVegetationType"/>
+    <owl:Class rdf:about="#UrbanInfrastructureRock">
+        <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#VeryPoorlyDrainedSoils -->
 
-    <owl:Class rdf:about="&ontario;VeryPoorlyDrainedSoils">
-        <rdfs:subClassOf rdf:resource="&ontario;SoilDrainage"/>
+    <owl:Class rdf:about="#VeryPoorlyDrainedSoils">
+        <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#VeryRapidlyDrainedSoils -->
 
-    <owl:Class rdf:about="&ontario;VeryRapidlyDrainedSoils">
-        <rdfs:subClassOf rdf:resource="&ontario;SoilDrainage"/>
+    <owl:Class rdf:about="#VeryRapidlyDrainedSoils">
+        <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
     
 
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#WaterSupplyVegetationType -->
 
-    <owl:Class rdf:about="&ontario;WaterSupplyVegetationType">
+    <owl:Class rdf:about="#WaterSupplyVegetationType">
         <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
     </owl:Class>
     
@@ -209,12 +223,18 @@
 
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#WellDrainedSoils -->
 
-    <owl:Class rdf:about="&ontario;WellDrainedSoils">
-        <rdfs:subClassOf rdf:resource="&ontario;SoilDrainage"/>
+    <owl:Class rdf:about="#WellDrainedSoils">
+        <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrdinalRanking -->
+
+    <owl:Class rdf:about="&thinklab-core;OrdinalRanking"/>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
 
