@@ -81,18 +81,18 @@
 
 (defmodel summer-high-winter-low SummerHighWinterLow
   (classification (ranking habitat:SummerHighWinterLow)
-    [40 :>] VeryHighSOL
-    [35 40] HighSOL
-    [30 35] ModerateSOL
-    [24 30] LowSOL
-    [:< 24] VeryLowSOL))
+    [35 :>] VeryHighSOL
+    [28 35] HighSOL
+    [24 28] ModerateSOL
+    [21 24] LowSOL
+    [:< 21] VeryLowSOL))
 
 (defmodel soil-cn-ratio SoilCNRatio
   (classification (ranking habitat:SoilCNRatio)
-    [35 :>] VeryHighCNRatio
-    [20 35] HighCNRatio
-    [10 20] LowCNRatio
-    [:< 10] VeryLowCNRatio))
+    [25 :>] VeryHighCNRatio
+    [15 25] HighCNRatio
+    [ 8 15] LowCNRatio
+    [:<  8] VeryLowCNRatio))
 
 (defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
   (classification (ranking habitat:HardwoodSoftwoodRatio)
@@ -157,8 +157,8 @@
   (classification (measurement habitat:FireFrequency "/km^2")
     [0.9 :>]    VeryHighFireThreat
     [0.25 0.9]  HighFireThreat
-    [0.01 0.25] ModerateFireThreat
-    [0    0.01] LowFireThreat))
+    [0.03 0.25] ModerateFireThreat
+    [-1   0.03] LowFireThreat))
 
 (defmodel veg-storage VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha"
