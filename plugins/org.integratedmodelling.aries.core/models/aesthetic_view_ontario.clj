@@ -17,9 +17,9 @@
 ;;;
 ;;;-------------------------------------------------------------------
 ;;;
-;;; Viewshed model for Ontario
+;;; Carbon model for Ontario
 ;;;
-;;; Valid Contexts: core.contexts.ontario/*
+;;; Valid Contexts: core.contexts.ontario/algonquin-wgs84
 ;;;
 ;;;-------------------------------------------------------------------
 
@@ -40,6 +40,13 @@
 ;;;-------------------------------------------------------------------
 ;;; Source models
 ;;;-------------------------------------------------------------------
+
+(defmodel mountain Mountain
+  "Classifies an elevation model into three levels of provision of beautiful mountains"
+  (classification (measurement geophysics:Altitude "m")
+    [2500 8850] LargeMountain ; No higher than Mt. Everest, catches artifacts
+    [1000 2500] SmallMountain
+    :otherwise  NoMountain))  ; Catches low artifacts
 
 ;;;-------------------------------------------------------------------
 ;;; Sink models
