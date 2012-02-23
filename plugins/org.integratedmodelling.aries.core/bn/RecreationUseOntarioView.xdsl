@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="ViewPositionClass">
+			<state id="HighViewPosition" />
+			<state id="MediumViewPosition" />
+			<state id="LowViewPosition" />
+			<probabilities>0.0056 0.2964 0.698</probabilities>
+		</cpt>
+		<cpt id="TravelTimeClass">
+			<state id="LongTravelTime" />
+			<state id="ModerateTravelTime" />
+			<state id="ShortTravelTime" />
+			<probabilities>0.6 0.2 0.2</probabilities>
+		</cpt>
+		<cpt id="PublicAccessClass">
+			<state id="PublicLand" />
+			<state id="PrivateLandWithAccess" />
+			<state id="NoPublicAccess" />
+			<probabilities>0.15 0.1 0.75</probabilities>
+		</cpt>
+		<cpt id="Congestion">
+			<state id="HighCongestion" />
+			<state id="ModerateCongestion" />
+			<state id="LowCongestion" />
+			<parents>TravelTimeClass PublicAccessClass</parents>
+			<probabilities>0.2 0.4 0.4 0.1 0.3 0.6 0 0 1 0.4 0.5 0.1 0.3 0.5 0.2 0 0 1 0.7 0.2 0.1 0.5 0.3 0.2 0 0 1</probabilities>
+		</cpt>
+		<cpt id="HikingDistanceClass">
+			<state id="LongHikingDistance" />
+			<state id="ModerateHikingDistance" />
+			<state id="ShortHikingDistance" />
+			<probabilities>0.37 0.49 0.14</probabilities>
+		</cpt>
+		<cpt id="HikingSlopeClass">
+			<state id="SteepSlope" />
+			<state id="ModerateSlope" />
+			<state id="LowSlope" />
+			<probabilities>0.0187 0.5179 0.4634</probabilities>
+		</cpt>
+		<cpt id="HikingDifficulty">
+			<state id="Strenuous" />
+			<state id="Moderate" />
+			<state id="Easy" />
+			<parents>HikingDistanceClass HikingSlopeClass</parents>
+			<probabilities>1 0 0 0.3 0.6 0.1 0.1 0.7 0.2 0.9 0.1 0 0.2 0.6 0.2 0 0.1 0.9 0.8 0.2 0 0.1 0.5 0.4 0 0 1</probabilities>
+		</cpt>
+		<cpt id="ViewerEnjoyment">
+			<state id="HighViewerEnjoyment" />
+			<state id="ModerateViewerEnjoyment" />
+			<state id="LowViewerEnjoyment" />
+			<parents>ViewPositionClass Congestion HikingDifficulty</parents>
+			<probabilities>0 0.2 0.8 0.1 0.2 0.7 0.2 0.3 0.5 0.1 0.2 0.7 0.2 0.3 0.5 0.2 0.5 0.3 0.6 0.3 0.1 0.6 0.35 0.05 0.8 0.2 0 0 0.2 0.8 0.1 0.2 0.7 0.2 0.3 0.5 0.05 0.25 0.7 0.1 0.4 0.5 0.15 0.55 0.3 0.5 0.4 0.1 0.7 0.25 0.05 0.8 0.2 0 0 0.1 0.9 0 0.2 0.8 0.1 0.3 0.6 0.1 0.2 0.7 0.1 0.4 0.5 0.2 0.4 0.4 0.3 0.6 0.1 0.4 0.55 0.05 0.7 0.3 0</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network2" faultnameformat="nodestate">
+			<node id="ViewPositionClass">
+				<name>ViewPositionClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>78 303 214 333</position>
+				<barchart active="true" width="207" height="72" />
+			</node>
+			<node id="ViewerEnjoyment">
+				<name>ViewerEnjoyment</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>355 160 492 193</position>
+				<barchart active="true" width="312" height="72" />
+			</node>
+			<node id="Congestion">
+				<name>Congestion</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>386 295 454 337</position>
+				<barchart active="true" width="223" height="72" />
+			</node>
+			<node id="TravelTimeClass">
+				<name>TravelTimeClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>198 387 339 475</position>
+				<barchart active="true" width="210" height="72" />
+			</node>
+			<node id="PublicAccessClass">
+				<name>PublicAccessClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>453 399 563 467</position>
+				<barchart active="true" width="243" height="72" />
+			</node>
+			<node id="HikingDifficulty">
+				<name>HikingDifficulty</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>697 295 761 335</position>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<node id="HikingDistanceClass">
+				<name>HikingDistanceClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>742 416 799 451</position>
+				<barchart active="true" width="243" height="72" />
+			</node>
+			<node id="HikingSlopeClass">
+				<name>HikingSlopeClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>971 417 1016 445</position>
+				<barchart active="true" width="168" height="72" />
+			</node>
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>857 59 1266 255</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>
