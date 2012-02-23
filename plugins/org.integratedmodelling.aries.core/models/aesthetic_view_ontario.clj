@@ -44,8 +44,8 @@
 (defmodel mountain Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
   (classification (measurement geophysics:Altitude "m")
-    [2500 8850] LargeMountain ; No higher than Mt. Everest, catches artifacts
-    [1000 2500] SmallMountain
+    [ 500 8850] LargeMountain ; No higher than Mt. Everest, catches artifacts
+    [ 250  500] SmallMountain
     :otherwise  NoMountain))  ; Catches low artifacts
 
 ;;;-------------------------------------------------------------------
