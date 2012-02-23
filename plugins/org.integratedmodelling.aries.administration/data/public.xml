@@ -53,6 +53,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:colorado="http://www.integratedmodelling.org/ks/es/services/local/colorado.owl#"
     xmlns:coastalProtection="http://www.integratedmodelling.org/ks/es/services/marine/coastalProtection.owl#"
     xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
+    xmlns:ontario-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/ontario-lulc.owl#"
 >
 
   <!-- References listed in the data sources (no doubt these should go
@@ -11447,5 +11448,32 @@ global data. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
+
+  <measurement:Ranking id="imperviousGlobal2">
+    <observation:hasObservable>
+      <ontario-lulc:PercentImperviousSurface/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NOAA-NGDC</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.ngdc.noaa.gov/dmsp/download_global_isa.html</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>global:impervious_global</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-1.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>16798</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>-64.996</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-180.004</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>75.004</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>179.996</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
 
 </kbox>
