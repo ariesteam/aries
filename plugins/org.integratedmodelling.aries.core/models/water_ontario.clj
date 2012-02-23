@@ -19,7 +19,7 @@
 ;;;
 ;;; Water supply model for Ontario
 ;;;
-;;; Valid Contexts: core.contexts.ontario/*
+;;; Valid Contexts: core.contexts.ontario/lakeofthewoods_wgs84
 ;;;
 ;;;-------------------------------------------------------------------
 
@@ -54,30 +54,36 @@
 ;; TotalPrecipitation.
 
 (defmodel snowfall-annual AnnualSnowfall
-  (measurement habitat:AnnualSnowmelt "cm"))
+  (measurement habitat:AnnualSnowmelt "mm"))
 
 ;; Total Precipitation as the sum of AnnualPrecipitation and
 ;; AnnualSnowfall.
-(defmodel runoff AnnualRunoff
+;; I'm able to use the measure command to test this, but the model
+;; command returns a Null pointer exception
+
+(defmodel runoff-annual AnnualRunoff
   (measurement habitat:AnnualRunoff "mm"
     :context [precipitation-annual snowfall-annual]
-    :state #(+ (:precipitation-annual %)
-               (or (:snowfall-annual  %) 0.0))))
+    :state   #(let [p (:annual-precipitation %)
+                    s (:annual-snowfall      %)]
+                (+ (or s 0)
+                   (or p 0)))))
+
 ;;;-------------------------------------------------------------------
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 ;; Still need to deal with land cover types: 4, 6, 24 28, 29
 ;; need to check if these land cover classes are present
 ;; in the Lake of the Woods region
-;;(defmodel land-cover-type ontario:WaterSupplyVegetationType
-;;  "Reclass of MNR Land cover data"
-;;  (classification (numeric-coding ontario:MNRLC)
-;;  #{1 2}                                                    ontario:Water
-;;  #{25 27}                                                  ontario:Agriculture
-;;  #{3 5}                                                    ontario:UrbanInfrastructureRock
-;;  #{15 16 17 18 19 20 21 22 23}                             ontario:BogFenMarshSwamp
-;;  #{9 10 11 12 13}                                          ontario:Forest
-;;  #{7 8}                                                    ontario:ImpairedForest))
+(defmodel land-cover-type ontario:WaterSupplyVegetationType
+  "Reclass of MNR Land cover data"
+  (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
+  #{1 2}                              ontario:NotVegetated
+  #{25 27}                            ontario:Agriculture
+  #{3 5}                              ontario:UrbanInfrastructureRock
+  #{15 16 17 18 19 20 21 22 23}       ontario:BogFenMarshSwamp
+  #{9 10 11 12 13}                    ontario:Forest
+  #{7 8}                              ontario:ImpairedForest))
 
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
@@ -87,22 +93,10 @@
     [ 5 30]               LowCanopyCover
     [ 0  5]               VeryLowCanopyCover))
 
-;;(defmodel soil-drainage HydrologicSoilsGroup
-;;  "this data is problematic because there is only a single polygon with data"
-;;(classification (numeric-coding waterSupplyService:HydrologicSoilsGroup)
-;;  1                  SoilGroupA
-;;  2                  SoilGroupB
-;;  3                  SoilGroupC
-;;  4                  SoilGroupD))
-
-(defmodel percent-impervious-cover PercentImperviousCoverClass
-  (classification (ranking habitat:PercentImperviousSurface)
-    [80 100 :inclusive] VeryHighImperviousCover
-    [50 80]             HighImperviousCover
-    [20 50]             ModeratelyHighImperviousCover
-    [10 20]             ModeratelyLowImperviousCover
-    [ 5 10]             LowImperviousCover
-    [ 0  5]             VeryLowImperviousCover))
+(defmodel soil-drainage ontario:SoilDrainageClass
+  "this data is problematic because there is only a single polygon with an actual value."
+  (classification (ranking ontario:SoilDrainageCode)
+    2  ontario:PoorlyDrainedSoils))
 
 (defmodel slope SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00B0")
@@ -111,11 +105,63 @@
     [ 4.57 16.70]         RollingToHilly
     [16.70 90 :inclusive] SteeplyDissectedToMountainous))
 
+(defmodel percent-impervious-cover PercentImperviousCoverClass
+  (classification (ranking ontario-lulc:PercentImperviousSurface)
+    [80 100 :inclusive] VeryHighImperviousCover
+    [50 80]             HighImperviousCover
+    [20 50]             ModeratelyHighImperviousCover
+    [10 20]             ModeratelyLowImperviousCover
+    [ 5 10]             LowImperviousCover
+    [ 0  5]             VeryLowImperviousCover))
+
+;;(defmodel evapotranspiration EvapotranspirationClass
+;;  (probabilistic-measurement EvapotranspirationClass "mm" 
+;;    [180 260] VeryHighEvapotranspiration
+;;    [100 180] HighEvapotranspiration
+;;    [ 50 100] ModerateEvapotranspiration
+;;    [  0  50] LowEvapotranspiration
+;;    [  0   0] VeryLowEvapotranspiration))
+
+;;(defmodel et-sink Evapotranspiration
+;;  (bayesian Evapotranspiration
+;;    :import  "aries.core::SurfaceWaterSinkOntario.xdsl"
+;;    :context [land-cover-type percent-canopy-cover]
+;;    :keep    [EvapotranspirationClass]
+;;    :result  evapotranspiration))
+
+;;(defmodel soil-infiltration SoilInfiltrationClass
+;;  (probabilistic-measurement SoilInfiltrationClass "mm" 
+;;    [180 260] VeryHighInfiltration
+;;    [100 180] HighInfiltration
+;;    [ 50 100] ModerateInfiltration
+;;    [  0  50] LowInfiltration
+;;    [  0   0] VeryLowInfiltration))
+
+;;(defmodel soil-sink SoilInfiltration
+;;  (bayesian SoilInfiltration
+;;    :import  "aries.core::SurfaceWaterSinkOntario.xdsl"
+;;    :context [soil-drainage slope percent-impervious-cover]
+;;    :keep    [SoilInfiltrationClass]
+;;    :result  soil-infiltration))
+
+;;(defmodel surface-water-sink SurfaceWaterSink
+;;  (measurement SurfaceWaterSink "mm"
+;;    :context [soil-sink et-sink] 
+;;    :state   #(let [si (:soil-infiltration-class  %)
+;;                    et (:evapotranspiration-class %)]
+;;                (+ 
+;;                (if (nil? si) 0.0 (.getMean si))
+;;                (if (nil? et) 0.0 (.getMean et))))))
+
 ;;;-------------------------------------------------------------------
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
 ;; RESIDENTIAL
+;; Canadians use an average of 1600 cubic meters of water per person
+;; per year. Need to factor this into the model statement below.
+;; See www.environmentalindicators.com/htdocs/indicators/6wate.htm
+;; 
 (defmodel residential-surface-water-use ResidentialSurfaceWaterUse
   (measurement ResidentialSurfaceWaterUse "mm" ;;This is an annual value
     :context [(count policytarget:PopulationDensity "/km^2")]
