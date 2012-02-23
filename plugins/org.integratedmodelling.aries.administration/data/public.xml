@@ -11376,29 +11376,29 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!-- <measurement:Count id="population_density_low"> -->
-  <!--   <observation:hasObservable> -->
-  <!--     <policyTarget:PopulationDensity/> -->
-  <!--   </observation:hasObservable> -->
-  <!-- <measurement:unit>/km^2</measurement:unit> -->
-  <!--   <observation:hasDataSource> -->
-  <!--     <geospace:WCSDataSource> -->
-  <!--       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl> -->
-  <!--       <geospace:hasCoverageId>ontario:population_density_low</geospace:hasCoverageId> -->
-  <!--     </geospace:WCSDataSource> -->
-  <!--   </observation:hasDataSource> -->
-  <!--   <observation:hasObservationExtent> -->
-  <!--     <geospace:RasterGrid> -->
-  <!--       <geospace:hasXRangeMax>12229</geospace:hasXRangeMax> -->
-  <!--       <geospace:hasYRangeMax>14509</geospace:hasYRangeMax> -->
-  <!--       <geospace:hasLatLowerBound>1.2481110114E7</geospace:hasLatLowerBound> -->
-  <!--       <geospace:hasLonLowerBound>197156.528</geospace:hasLonLowerBound> -->
-  <!--       <geospace:hasLatUpperBound>1.2843885114E7</geospace:hasLatUpperBound> -->
-  <!--       <geospace:hasLonUpperBound>502931.528</geospace:hasLonUpperBound> -->
-  <!--       <geospace:hasCoordinateReferenceSystem>ESRI:102002</geospace:hasCoordinateReferenceSystem> -->
-  <!--     </geospace:RasterGrid> -->
-  <!--   </observation:hasObservationExtent> -->
-  <!-- </measurement:Count> -->
+  <measurement:Count id="population_density_low">
+    <observation:hasObservable>
+      <policytarget:PopulationDensity/>
+    </observation:hasObservable>
+  <measurement:unit>/km^2</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:population_density_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>1756</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>1445</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5393784.064</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>331907.588</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5538484.064</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>507707.588</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Count>
 
   <measurement:Measurement id="stream_gradient_low">
     <observation:hasObservable>
