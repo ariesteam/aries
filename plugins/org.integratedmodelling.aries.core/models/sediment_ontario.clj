@@ -57,9 +57,9 @@
 ;; lulc2000_low
 (defmodel sediment-vegetation-type ontario:SedimentVegetationType
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
-    #{4 5} ontario:ForestGrasslandWetland
-    #{6}   ontario:ShrublandPasture
-    #{2 3} ontario:CropsBarrenDeveloped))
+    #{11 12 13 15 16 17 18 19 20 21 22 23} ontario:ForestGrasslandWetland
+    #{7 8 9 10 24 25}                      ontario:ShrublandPasture
+    #{3 4 5 6 27}                          ontario:CropsBarrenDeveloped))
 
 ;; successional_stage_low
 (defmodel successional-stage SuccessionalStage
@@ -74,11 +74,11 @@
 ;; canopy_low
 (defmodel percent-tree-canopy-cover-class ontario:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    5 ontario:VeryHighCanopyCover
-    4 ontario:HighCanopyCover
-    3 ontario:ModerateCanopyCover
-    2 ontario:LowCanopyCover
-    1 ontario:VeryLowCanopyCover))
+    [80 100 :inclusive] ontario:VeryHighCanopyCover
+    [60 80]             ontario:HighCanopyCover
+    [30 60]             ontario:ModerateCanopyCover
+    [ 5 30]             ontario:LowCanopyCover
+    [ 0  5]             ontario:VeryLowCanopyCover))
 
 ;; precipitation_low
 (defmodel annual-precipitation AnnualPrecipitation
@@ -113,10 +113,10 @@
 ;; slope20m_low
 (defmodel slope-class SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
-    [    0  1.15] Level
-    [ 1.15  4.57] GentlyUndulating
-    [ 4.57 16.70] RollingToHilly
-    [16.70    :>] SteeplyDissectedToMountainous))
+    [    0  1.15]            Level
+    [ 1.15  4.57]            GentlyUndulating
+    [ 4.57 16.70]            RollingToHilly
+    [16.70 90.00 :inclusive] SteeplyDissectedToMountainous))
 
 ;; soil_drainage_low
 (defmodel soil-drainage-class ontario:SoilDrainageClass
@@ -132,7 +132,7 @@
 
 (defmodel annual-sediment-source AnnualSedimentSource
   (bayesian AnnualSedimentSource
-    :import   "aries.core::SedimentSourceOntarioAdHoc.xdsl"
+    :import   "aries.core::SedimentSourceOntario.xdsl"
     :context  [sediment-vegetation-type
                successional-stage
                percent-tree-canopy-cover-class
@@ -147,19 +147,57 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-;; CapturedSediment = f(Slope,Dams,StreamGradient)
+(declare stream-gradient
+         dam-storage
+         annual-sediment-sink-class
+         annual-sediment-sink)
+
+;; stream_gradient_low
+(defmodel stream-gradient habitat:StreamGradient
+  (measurement habitat:StreamGradient "\u00b0"))
+
+;; dams_low
+(defmodel dam-storage floodService:DamStorage
+  (measurement floodService:DamStorage "mm"))
+
+;; (defmodel annual-sediment-sink-class AnnualSedimentSinkClass
+;;   (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
+;;     [100.00 300.00] HighAnnualSedimentSink
+;;     [ 30.00 100.00] ModerateAnnualSedimentSink
+;;     [  0.01  30.00] LowAnnualSedimentSink
+;;     [  0.00   0.01] NoAnnualSedimentSink))
+
+;; (defmodel annual-sediment-sink AnnualSedimentSink
+;;   (bayesian AnnualSedimentSink
+;;     :import   "aries.core::SedimentSinkOntario.xdsl"
+;;     :context  []
+;;     :keep     [AnnualSedimentSinkClass]
+;;     :result   annual-sediment-sink-class))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
-;; SedimentUsers = f(PopulationDensity,Dams)
+(declare population-density)
+
+;; population_density_low
+(defmodel population-density policytarget:PopulationDensity
+  (count policytarget:PopulationDensity "/km^2"))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
 ;;;-------------------------------------------------------------------
 
-;; SedimentRouting = f(DEM,Hydrography)
+(declare altitude
+         river)
+
+;; dem20m_low
+(defmodel altitude geophysics:Altitude
+  (measurement geophysics:Altitude "m"))
+
+;; hydrography_low
+(defmodel river geofeatures:River
+  (binary-coding geofeatures:River))
 
 ;;;-------------------------------------------------------------------
 ;;; Identification models
