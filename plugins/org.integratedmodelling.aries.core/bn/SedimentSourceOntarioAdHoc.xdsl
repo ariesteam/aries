@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="AnnualPrecipitationClass">
-			<state id="VeryHighMeanAnnualPrecipitation" />
-			<state id="HighMeanAnnualPrecipitation" />
-			<state id="ModerateMeanAnnualPrecipitation" />
-			<state id="LowMeanAnnualPrecipitation" />
-			<state id="VeryLowMeanAnnualPrecipitation" />
-			<probabilities>0.7 0.25 0.04 0.01 0</probabilities>
-		</cpt>
 		<cpt id="PercentTreeCanopyCoverClass">
 			<state id="VeryHighCanopyCover" />
 			<state id="HighCanopyCover" />
@@ -40,12 +32,6 @@
 			<parents>SuccessionalStage SedimentVegetationType PercentTreeCanopyCoverClass</parents>
 			<probabilities>1 0 0 0 0.25 0.25 0.25 0.25 1 0 0 0 0.25 0.25 0.25 0.25 1 0 0 0 0.2 0.4 0.4 0 0.25 0.25 0.25 0.25 0.05 0.2 0.35 0.4 0.25 0.25 0.25 0.25 0 0 0.1 0.9 0 0.05 0.3 0.65 0.25 0.25 0.25 0.25 0 0.05 0.1 0.85 0.25 0.25 0.25 0.25 0 0 0.05 0.95 0.95 0.05 0 0 0.25 0.25 0.25 0.25 0.85 0.15 0 0 0.25 0.25 0.25 0.25 0.75 0.15 0.1 0 0.2 0.4 0.4 0 0.25 0.25 0.25 0.25 0.05 0.2 0.35 0.4 0.25 0.25 0.25 0.25 0 0 0.1 0.9 0 0.05 0.3 0.65 0.25 0.25 0.25 0.25 0 0.05 0.1 0.85 0.25 0.25 0.25 0.25 0 0 0 1 0.75 0.2 0.05 0 0.25 0.25 0.25 0.25 0.55 0.35 0.1 0 0.25 0.25 0.25 0.25 0.2 0.4 0.4 0 0.2 0.4 0.4 0 0.25 0.25 0.25 0.25 0.05 0.2 0.35 0.4 0.25 0.25 0.25 0.25 0 0 0.1 0.9 0 0.05 0.3 0.65 0.25 0.25 0.25 0.25 0 0.05 0.1 0.85 0.25 0.25 0.25 0.25 0 0 0 1 0.15 0.4 0.45 0 0.25 0.25 0.25 0.25 0.05 0.35 0.6 0 0.25 0.25 0.25 0.25 0 0.25 0.75 0 0.2 0.4 0.4 0 0.25 0.25 0.25 0.25 0.05 0.2 0.35 0.4 0.25 0.25 0.25 0.25 0 0 0.1 0.9 0 0.05 0.3 0.65 0.25 0.25 0.25 0.25 0 0.05 0.1 0.85 0.25 0.25 0.25 0.25 0 0 0 1 0 0.2 0.8 0 0.25 0.25 0.25 0.25 0 0.1 0.9 0 0.25 0.25 0.25 0.25 0 0.05 0.95 0 0.2 0.4 0.4 0 0.25 0.25 0.25 0.25 0.05 0.2 0.35 0.4 0.25 0.25 0.25 0.25 0 0 0.1 0.9 0 0.05 0.3 0.65 0.25 0.25 0.25 0.25 0 0.05 0.1 0.85 0.25 0.25 0.25 0.25 0 0 0 1 0 0.05 0.4 0.55 0.25 0.25 0.25 0.25 0 0 0.3 0.7 0.25 0.25 0.25 0.25 0 0 0.1 0.9 0.2 0.4 0.4 0 0.25 0.25 0.25 0.25 0.05 0.2 0.35 0.4 0.25 0.25 0.25 0.25 0 0 0.1 0.9 0 0.05 0.3 0.65 0.25 0.25 0.25 0.25 0 0.05 0.1 0.85 0.25 0.25 0.25 0.25 0 0 0 1</probabilities>
 		</cpt>
-		<cpt id="SlopeStabilityClass">
-			<state id="HighSlopeStability" />
-			<state id="ModerateSlopeStability" />
-			<state id="LowSlopeStability" />
-			<probabilities>0.6 0.2 0.2</probabilities>
-		</cpt>
 		<cpt id="SlopeClass">
 			<state id="Level" />
 			<state id="GentlyUndulating" />
@@ -53,18 +39,15 @@
 			<state id="SteeplyDissectedToMountainous" />
 			<probabilities>0.38 0.37 0.24 0.01</probabilities>
 		</cpt>
-		<cpt id="SoilTextureClass">
-			<state id="FineSoilTexture" />
-			<state id="MediumSoilTexture" />
-			<state id="CoarseSoilTexture" />
-			<probabilities>0.15 0.35 0.5</probabilities>
-		</cpt>
-		<cpt id="Copy_of_HydrologicSoilsGroup">
-			<state id="SoilGroupA" />
-			<state id="SoilGroupB" />
-			<state id="SoilGroupC" />
-			<state id="SoilGroupD" />
-			<probabilities>0.03 0.78 0.13 0.06</probabilities>
+		<cpt id="SoilDrainageClass">
+			<state id="VeryRapidlyDrainedSoils" />
+			<state id="RapidlyDrainedSoils" />
+			<state id="WellDrainedSoils" />
+			<state id="ModeratelyWellDrainedSoils" />
+			<state id="ImperfectlyDrainedSoils" />
+			<state id="PoorlyDrainedSoils" />
+			<state id="VeryPoorlyDrainedSoils" />
+			<probabilities>0.1 0.1 0.1 0.1 0.1 0.4 0.1</probabilities>
 		</cpt>
 		<cpt id="SoilErodibilityClass">
 			<state id="VeryHighSoilErodibility" />
@@ -72,20 +55,28 @@
 			<state id="ModerateSoilErodibility" />
 			<state id="LowSoilErodibility" />
 			<state id="VeryLowSoilErodibility" />
-			<parents>SlopeClass SoilTextureClass Copy_of_HydrologicSoilsGroup SlopeStabilityClass</parents>
-			<probabilities>0 0 0 0.1 0.9 0 0.35 0.275 0.275 0.1 0.1 0.5 0.175 0.175 0.05 0 0 0 0.1 0.9 0 0.3 0.3 0.3 0.1 0.1 0.45 0.2 0.2 0.05 0 0 0 0.1 0.9 0 0.25 0.4 0.25 0.1 0.05 0.45 0.2 0.2 0.1 0 0 0 0.1 0.9 0 0.2 0.4 0.3 0.1 0.05 0.4 0.25 0.2 0.1 0 0 0 0.1 0.9 0.05 0.35 0.25 0.25 0.1 0.15 0.5 0.2 0.1 0.05 0 0 0 0.1 0.9 0 0.35 0.275 0.275 0.1 0.15 0.45 0.2 0.15 0.05 0 0 0 0.1 0.9 0 0.25 0.4 0.25 0.1 0.1 0.4 0.25 0.15 0.1 0 0 0 0.1 0.9 0 0.2 0.4 0.3 0.1 0.1 0.35 0.25 0.2 0.1 0 0 0 0.1 0.9 0.05 0.4 0.225 0.225 0.1 0.2 0.5 0.2 0.05 0.05 0 0 0 0.1 0.9 0.05 0.35 0.25 0.25 0.1 0.2 0.45 0.2 0.1 0.05 0 0 0 0.1 0.9 0 0.3 0.3 0.3 0.1 0.15 0.4 0.2 0.15 0.1 0 0 0 0.1 0.9 0 0.25 0.35 0.3 0.1 0.1 0.4 0.2 0.2 0.1 0 0 0.05 0.3 0.65 0.1 0.4 0.225 0.225 0.05 0.2 0.5 0.15 0.15 0 0 0 0.05 0.25 0.7 0.1 0.35 0.25 0.25 0.05 0.2 0.45 0.2 0.15 0 0 0 0.05 0.2 0.75 0.05 0.35 0.275 0.275 0.05 0.15 0.45 0.2 0.15 0.05 0 0 0.05 0.15 0.8 0.05 0.3 0.3 0.3 0.05 0.15 0.4 0.25 0.15 0.05 0 0 0.05 0.35 0.6 0.15 0.4 0.2 0.2 0.05 0.25 0.5 0.2 0.05 0 0 0 0.05 0.3 0.65 0.15 0.35 0.225 0.225 0.05 0.25 0.45 0.2 0.1 0 0 0 0.05 0.25 0.7 0.1 0.3 0.275 0.275 0.05 0.2 0.4 0.25 0.1 0.05 0 0 0.05 0.2 0.75 0.05 0.3 0.3 0.3 0.05 0.2 0.35 0.25 0.15 0.05 0 0 0.05 0.4 0.55 0.2 0.4 0.175 0.175 0.05 0.3 0.5 0.15 0.05 0 0 0 0.05 0.35 0.6 0.2 0.35 0.2 0.2 0.05 0.3 0.45 0.15 0.1 0 0 0 0.05 0.3 0.65 0.15 0.3 0.25 0.25 0.05 0.25 0.4 0.15 0.15 0.05 0 0 0.05 0.25 0.7 0.15 0.25 0.275 0.275 0.05 0.25 0.35 0.2 0.15 0.05 0 0.05 0.1 0.5 0.35 0.2 0.45 0.2 0.1 0.05 0.35 0.45 0.1 0.1 0 0 0.05 0.1 0.45 0.4 0.15 0.45 0.2 0.15 0.05 0.3 0.45 0.15 0.1 0 0 0.05 0.1 0.4 0.45 0.15 0.4 0.2 0.2 0.05 0.25 0.45 0.2 0.1 0 0 0.05 0.1 0.35 0.5 0.1 0.4 0.25 0.2 0.05 0.2 0.45 0.2 0.15 0 0 0.05 0.1 0.55 0.3 0.25 0.45 0.15 0.1 0.05 0.4 0.45 0.1 0.05 0 0 0.05 0.1 0.5 0.35 0.2 0.45 0.15 0.15 0.05 0.35 0.45 0.15 0.05 0 0 0.05 0.1 0.45 0.4 0.15 0.4 0.25 0.15 0.05 0.3 0.4 0.2 0.1 0 0 0.05 0.1 0.4 0.45 0.1 0.4 0.225 0.225 0.05 0.25 0.4 0.2 0.15 0 0 0.05 0.1 0.6 0.25 0.25 0.5 0.15 0.1 0 0.45 0.45 0.1 0 0 0 0.05 0.1 0.55 0.3 0.25 0.45 0.15 0.1 0.05 0.4 0.45 0.1 0.05 0 0 0.05 0.1 0.5 0.35 0.2 0.4 0.2 0.15 0.05 0.35 0.4 0.15 0.1 0 0 0.05 0.1 0.45 0.4 0.15 0.4 0.2 0.2 0.05 0.3 0.4 0.2 0.1 0 0 0.1 0.15 0.6 0.15 0.25 0.45 0.2 0.1 0 0.45 0.4 0.1 0.05 0 0 0.1 0.15 0.55 0.2 0.2 0.45 0.2 0.1 0.05 0.4 0.4 0.15 0.05 0 0 0.1 0.15 0.5 0.25 0.15 0.45 0.25 0.1 0.05 0.35 0.4 0.2 0.05 0 0 0.1 0.15 0.45 0.3 0.1 0.45 0.2 0.2 0.05 0.3 0.4 0.2 0.1 0 0 0.1 0.15 0.65 0.1 0.3 0.45 0.15 0.1 0 0.5 0.4 0.1 0 0 0 0.1 0.15 0.6 0.15 0.25 0.45 0.15 0.1 0.05 0.45 0.4 0.15 0 0 0 0.1 0.15 0.55 0.2 0.2 0.4 0.2 0.15 0.05 0.4 0.35 0.15 0.1 0 0 0.1 0.15 0.5 0.25 0.15 0.4 0.25 0.15 0.05 0.35 0.35 0.2 0.1 0 0 0.1 0.15 0.7 0.05 0.35 0.45 0.1 0.1 0 0.55 0.4 0.05 0 0 0 0.1 0.15 0.65 0.1 0.3 0.45 0.15 0.1 0 0.5 0.4 0.1 0 0 0 0.1 0.15 0.6 0.15 0.25 0.4 0.2 0.15 0 0.45 0.35 0.15 0.05 0 0 0.1 0.15 0.55 0.2 0.2 0.4 0.2 0.15 0.05 0.4 0.35 0.2 0.05 0</probabilities>
+			<parents>SlopeClass SoilDrainageClass</parents>
+			<probabilities>0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2</probabilities>
+		</cpt>
+		<cpt id="AnnualRunoffClass">
+			<state id="VeryHighMeanAnnualRunoff" />
+			<state id="HighMeanAnnualRunoff" />
+			<state id="ModerateMeanAnnualRunoff" />
+			<state id="LowMeanAnnualRunoff" />
+			<state id="VeryLowMeanAnnualRunoff" />
+			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
 		</cpt>
 		<cpt id="AnnualSedimentSourceClass">
 			<state id="HighAnnualSedimentSource" />
 			<state id="ModerateAnnualSedimentSource" />
 			<state id="LowAnnualSedimentSource" />
 			<state id="NoAnnualSedimentSource" />
-			<parents>SoilErodibilityClass AnnualPrecipitationClass VegetativeMaturity</parents>
-			<probabilities>0.4 0.25 0.25 0.1 0.55 0.3 0.1 0.05 0.85 0.1 0.05 0 0.95 0.05 0 0 0.3 0.3 0.3 0.1 0.45 0.35 0.1 0.1 0.7 0.3 0 0 0.9 0.1 0 0 0.2 0.35 0.3 0.15 0.35 0.35 0.25 0.05 0.65 0.25 0.1 0 0.85 0.1 0.05 0 0.2 0.2 0.35 0.25 0.3 0.3 0.3 0.1 0.35 0.35 0.2 0.1 0.6 0.3 0.1 0 0 0.15 0.3 0.55 0 0.3 0.3 0.4 0.1 0.25 0.3 0.35 0.35 0.35 0.2 0.1 0.3 0.25 0.25 0.2 0.5 0.25 0.15 0.1 0.75 0.2 0.05 0 0.95 0.05 0 0 0.2 0.3 0.3 0.2 0.4000000000000001 0.3 0.2000000000000001 0.1 0.65 0.25 0.1 0 0.85 0.15 0 0 0.15 0.3 0.3 0.25 0.3 0.3 0.25 0.15 0.55 0.25 0.2 0 0.75 0.15 0.1 0 0.1 0.2 0.35 0.35 0.2 0.3 0.3 0.2 0.3 0.3 0.3 0.1 0.5 0.4 0.1 0 0 0.1 0.25 0.65 0 0.2 0.3 0.5 0.05 0.2 0.3 0.45 0.3 0.3 0.3 0.1 0.2 0.3 0.3 0.2 0.3 0.3 0.3 0.1 0.4 0.4 0.2 0 0.5 0.4 0.1 0 0.1 0.35 0.35 0.2 0.2 0.35 0.35 0.1 0.3 0.4 0.3 0 0.4 0.4 0.2 0 0.05 0.3 0.4 0.25 0.15 0.35 0.35 0.15 0.2 0.4 0.4 0 0.3 0.4 0.3 0 0 0.25 0.35 0.4 0.1 0.3 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.3 0.3 0.2 0 0.1 0.2 0.7 0 0.15 0.2 0.65 0.05 0.15 0.25 0.55 0.05 0.2 0.3 0.45 0.05 0.15 0.3 0.5 0.1 0.2 0.3 0.4 0.15 0.25 0.3 0.3 0.2 0.3 0.3 0.2 0 0.1 0.4 0.5 0 0.2 0.4 0.4 0.05000000000000002 0.2500000000000001 0.35 0.35 0.1 0.3 0.3 0.3 0 0.05 0.4 0.55 0 0.15 0.4 0.45 0.05 0.2 0.35 0.4 0.05000000000000002 0.2500000000000001 0.35 0.35 0 0.05 0.3 0.65 0 0.1 0.3 0.6 0.05 0.15 0.3 0.5 0.05 0.2 0.3 0.45 0 0 0.1 0.9 0 0 0.2 0.8 0 0.05 0.25 0.7 0 0.1 0.25 0.65 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
+			<parents>SoilErodibilityClass VegetativeMaturity AnnualRunoffClass</parents>
+			<probabilities>0.4 0.25 0.25 0.1 0.4 0.25 0.25 0.1 0.4 0.25 0.25 0.1 0.4 0.25 0.25 0.1 0.4 0.25 0.25 0.1 0.55 0.3 0.1 0.05 0.55 0.3 0.1 0.05 0.55 0.3 0.1 0.05 0.55 0.3 0.1 0.05 0.55 0.3 0.1 0.05 0.85 0.1 0.05 0 0.85 0.1 0.05 0 0.85 0.1 0.05 0 0.85 0.1 0.05 0 0.85 0.1 0.05 0 0.95 0.05 0 0 0.95 0.05 0 0 0.95 0.05 0 0 0.95 0.05 0 0 0.95 0.05 0 0 0.3 0.25 0.25 0.2 0.3 0.25 0.25 0.2 0.3 0.25 0.25 0.2 0.3 0.25 0.25 0.2 0.3 0.25 0.25 0.2 0.5 0.25 0.15 0.1 0.5 0.25 0.15 0.1 0.5 0.25 0.15 0.1 0.5 0.25 0.15 0.1 0.5 0.25 0.15 0.1 0.75 0.2 0.05 0 0.75 0.2 0.05 0 0.75 0.2 0.05 0 0.75 0.2 0.05 0 0.75 0.2 0.05 0 0.95 0.05 0 0 0.95 0.05 0 0 0.95 0.05 0 0 0.95 0.05 0 0 0.95 0.05 0 0 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.3 0.3 0.3 0.1 0.3 0.3 0.3 0.1 0.3 0.3 0.3 0.1 0.3 0.3 0.3 0.1 0.3 0.3 0.3 0.1 0.4 0.4 0.2 0 0.4 0.4 0.2 0 0.4 0.4 0.2 0 0.4 0.4 0.2 0 0.4 0.4 0.2 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.05 0.15 0.3 0.5 0.05 0.15 0.3 0.5 0.05 0.15 0.3 0.5 0.05 0.15 0.3 0.5 0.05 0.15 0.3 0.5 0.1 0.2 0.3 0.4 0.1 0.2 0.3 0.4 0.1 0.2 0.3 0.4 0.1 0.2 0.3 0.4 0.1 0.2 0.3 0.4 0.15 0.25 0.3 0.3 0.15 0.25 0.3 0.3 0.15 0.25 0.3 0.3 0.15 0.25 0.3 0.3 0.15 0.25 0.3 0.3 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0.2 0.3 0.3 0.2 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
 			<node id="AnnualSedimentSourceClass">
 				<name>AnnualSedimentSourceClass</name>
 				<interior color="ffffff" />
@@ -93,14 +84,6 @@
 				<font color="000000" name="Arial" size="8" />
 				<position>549 133 683 166</position>
 				<barchart active="true" width="323" height="90" />
-			</node>
-			<node id="AnnualPrecipitationClass">
-				<name>AnnualPrecipitationClass</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>590 283 639 313</position>
-				<barchart active="true" width="325" height="108" />
 			</node>
 			<node id="VegetativeMaturity">
 				<name>VegetativeMaturity</name>
@@ -139,52 +122,44 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>287 281 376 318</position>
+				<position>287 276 376 313</position>
 				<barchart active="true" width="215" height="108" />
-			</node>
-			<node id="SlopeStabilityClass">
-				<name>SlopeStabilityClass</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>556 425 637 463</position>
-				<barchart active="true" width="242" height="72" />
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>
 				<interior color="99ccff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>123 416 174 449</position>
+				<position>98 424 149 457</position>
 				<barchart active="true" width="190" height="90" />
 			</node>
-			<node id="SoilTextureClass">
-				<name>SoilTextureClass</name>
+			<node id="SoilDrainageClass">
+				<name>SoilDrainageClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>330 425 398 461</position>
-				<barchart active="true" width="194" height="72" />
-			</node>
-			<node id="Copy_of_HydrologicSoilsGroup">
-				<name>HydrologicSoilsGroup</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>62 273 189 312</position>
+				<position>350 430 477 469</position>
 				<comment>e.g., permeability: more permeable soils (HSG A) would potentially be more erosive than less permeable soils (HSG D).</comment>
-				<barchart active="true" width="128" height="90" />
+				<barchart active="true" width="301" height="129" />
 			</node>
 			<textbox>
 				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>942 524 1351 720</position>
+				<position>942 524 1351 692</position>
 			</textbox>
 			<textbox>
 				<caption>don&apos;t forget to consider fire in this model. there is fire frequency data, and an example from CO that includes fire.</caption>
 				<font color="000000" name="Arial" size="14" />
-				<position>74 53 366 141</position>
+				<position>74 53 366 137</position>
 			</textbox>
+			<node id="AnnualRunoffClass">
+				<name>AnnualRunoffClass</name>
+				<interior color="e5f6f7" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>566 265 675 333</position>
+				<barchart active="true" width="314" height="96" />
+			</node>
 		</genie>
 	</extensions>
 </smile>
