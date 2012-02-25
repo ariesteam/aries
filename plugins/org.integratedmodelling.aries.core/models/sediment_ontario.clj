@@ -55,6 +55,7 @@
          soil-drainage-class)
 
 ;; lulc2000_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel sediment-vegetation-type ontario:SedimentVegetationType
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
     #{11 12 13 15 16 17 18 19 20 21 22 23} ontario:ForestGrasslandWetland
@@ -62,6 +63,7 @@
     #{3 4 5 6 27}                          ontario:CropsBarrenDeveloped))
 
 ;; successional_stage_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel successional-stage SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
     6 OldGrowth
@@ -72,13 +74,14 @@
     1 NoSuccession))
 
 ;; canopy_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel percent-tree-canopy-cover-class ontario:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] ontario:VeryHighCanopyCover
-    [60 80]             ontario:HighCanopyCover
-    [30 60]             ontario:ModerateCanopyCover
-    [ 5 30]             ontario:LowCanopyCover
-    [ 0  5]             ontario:VeryLowCanopyCover))
+    [0.80 1.00 :inclusive] ontario:VeryHighCanopyCover
+    [0.60 0.80]            ontario:HighCanopyCover
+    [0.30 0.60]            ontario:ModerateCanopyCover
+    [0.05 0.30]            ontario:LowCanopyCover
+    [0.00 0.05]            ontario:VeryLowCanopyCover))
 
 ;; precipitation_low
 (defmodel annual-precipitation AnnualPrecipitation
@@ -102,6 +105,7 @@
                     e (or (:annual-evapotranspiration %) 0.0)]
                 (- (+ p s) e))))
 
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel annual-runoff-class ontario:AnnualRunoffClass
   (classification annual-runoff
     [2400   :>] ontario:VeryHighMeanAnnualRunoff
@@ -111,6 +115,7 @@
     [   0  600] ontario:VeryLowMeanAnnualRunoff))
 
 ;; slope20m_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel slope-class SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
     [    0  1.15]            Level
@@ -119,6 +124,7 @@
     [16.70 90.00 :inclusive] SteeplyDissectedToMountainous))
 
 ;; soil_drainage_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel soil-drainage-class ontario:SoilDrainageClass
   (classification (ranking ontario:SoilDrainageCode)
     2 ontario:PoorlyDrainedSoils))
@@ -202,6 +208,15 @@
 ;;;-------------------------------------------------------------------
 ;;; Identification models
 ;;;-------------------------------------------------------------------
+
+(defmodel all-sediment-data ontario:AllSedimentData
+  (identification ontario:AllSedimentData
+    :context [annual-sediment-source
+              stream-gradient
+              dam-storage
+              population-density
+              altitude
+              river]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models

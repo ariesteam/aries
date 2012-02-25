@@ -91,6 +91,7 @@
 ;; need to check if these land cover classes are present
 ;; in the Lake of the Woods region
 ;; lulc2000_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel water-supply-vegetation-type ontario:WaterSupplyVegetationType
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
     #{1 2}                        ontario:NotVegetated
@@ -101,22 +102,25 @@
     #{7 8}                        ontario:ImpairedForest))
 
 ;; canopy_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel percent-tree-canopy-cover-class ontario:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [80 100 :inclusive] ontario:VeryHighCanopyCover
-    [60 80]             ontario:HighCanopyCover
-    [30 60]             ontario:ModerateCanopyCover
-    [ 5 30]             ontario:LowCanopyCover
-    [ 0  5]             ontario:VeryLowCanopyCover))
+    [0.80 1.00 :inclusive] ontario:VeryHighCanopyCover
+    [0.60 0.80]            ontario:HighCanopyCover
+    [0.30 0.60]            ontario:ModerateCanopyCover
+    [0.05 0.30]            ontario:LowCanopyCover
+    [0.00 0.05]            ontario:VeryLowCanopyCover))
 
 ;; This data is problematic because there is only a single polygon
 ;; with an actual value.
 ;; soil_drainage_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel soil-drainage-class ontario:SoilDrainageClass
   (classification (ranking ontario:SoilDrainageCode)
     2  ontario:PoorlyDrainedSoils))
 
 ;; slope20m_low
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel slope-class SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00B0")
     [    0  1.15]            Level
@@ -124,14 +128,16 @@
     [ 4.57 16.70]            RollingToHilly
     [16.70 90.00 :inclusive] SteeplyDissectedToMountainous))
 
+;; FIXME: ontario-lulc:PercentImperviousSurface runs from 0 to 2.088. WTF?
+;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel percent-impervious-cover-class PercentImperviousCoverClass
   (classification (ranking ontario-lulc:PercentImperviousSurface)
-    [80 100 :inclusive] VeryHighImperviousCover
-    [50 80]             HighImperviousCover
-    [20 50]             ModeratelyHighImperviousCover
-    [10 20]             ModeratelyLowImperviousCover
-    [ 5 10]             LowImperviousCover
-    [ 0  5]             VeryLowImperviousCover))
+    [0.80 1.00 :inclusive] VeryHighImperviousCover
+    [0.50 0.80]            HighImperviousCover
+    [0.20 0.50]            ModeratelyHighImperviousCover
+    [0.10 0.20]            ModeratelyLowImperviousCover
+    [0.05 0.10]            LowImperviousCover
+    [0.00 0.05]            VeryLowImperviousCover))
 
 (defmodel evapotranspiration-class EvapotranspirationClass
   (probabilistic-measurement EvapotranspirationClass "mm"
@@ -206,6 +212,14 @@
 ;;;-------------------------------------------------------------------
 ;;; Identification models
 ;;;-------------------------------------------------------------------
+
+(defmodel all-water-data ontario:AllWaterData
+  (identification ontario:AllWaterData
+    :context [annual-runoff
+              surface-water-sink
+              residential-surface-water-use
+              altitude
+              river]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
