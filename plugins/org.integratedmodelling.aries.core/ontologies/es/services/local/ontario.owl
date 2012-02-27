@@ -9,7 +9,9 @@
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY ontario "http://www.integratedmodelling.org/ks/local/ontario.owl#" >
+    <!ENTITY observation "http://www.integratedmodelling.org/ks/science/observation.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
     <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
 
@@ -18,7 +20,9 @@
      xml:base="http://www.integratedmodelling.org/ks/local/ontario.owl"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
@@ -43,9 +47,21 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality -->
+
+    <owl:Class rdf:about="&habitat;ClimateQuality"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#EcosystemQuality -->
 
     <owl:Class rdf:about="&habitat;EcosystemQuality"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality -->
+
+    <owl:Class rdf:about="&habitat;HabitatQuality"/>
     
 
 
@@ -69,6 +85,31 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#AllSedimentData -->
+
+    <owl:Class rdf:about="#AllSedimentData">
+        <rdfs:subClassOf rdf:resource="&observation;Identification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#AllWaterData -->
+
+    <owl:Class rdf:about="#AllWaterData">
+        <rdfs:subClassOf rdf:resource="&observation;Identification"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#AnnualRunoffClass -->
+
+    <owl:Class rdf:about="#AnnualRunoffClass">
+        <rdfs:subClassOf rdf:resource="&habitat;ClimateQuality"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#BirdNestingHabitat -->
 
     <owl:Class rdf:about="#BirdNestingHabitat">
@@ -81,6 +122,14 @@
 
     <owl:Class rdf:about="#BogFenMarshSwamp">
         <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#CropsBarrenDeveloped -->
+
+    <owl:Class rdf:about="#CropsBarrenDeveloped">
+        <rdfs:subClassOf rdf:resource="#SedimentVegetationType"/>
     </owl:Class>
     
 
@@ -109,6 +158,38 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ForestGrasslandWetland -->
+
+    <owl:Class rdf:about="#ForestGrasslandWetland">
+        <rdfs:subClassOf rdf:resource="#SedimentVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#GentlyUndulating -->
+
+    <owl:Class rdf:about="#GentlyUndulating">
+        <rdfs:subClassOf rdf:resource="#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#HighCanopyCover -->
+
+    <owl:Class rdf:about="#HighCanopyCover">
+        <rdfs:subClassOf rdf:resource="#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#HighMeanAnnualRunoff -->
+
+    <owl:Class rdf:about="#HighMeanAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoffClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ImpairedForest -->
 
     <owl:Class rdf:about="#ImpairedForest">
@@ -121,6 +202,46 @@
 
     <owl:Class rdf:about="#ImperfectlyDrainedSoils">
         <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#Level -->
+
+    <owl:Class rdf:about="#Level">
+        <rdfs:subClassOf rdf:resource="#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#LowCanopyCover -->
+
+    <owl:Class rdf:about="#LowCanopyCover">
+        <rdfs:subClassOf rdf:resource="#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#LowMeanAnnualRunoff -->
+
+    <owl:Class rdf:about="#LowMeanAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoffClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ModerateCanopyCover -->
+
+    <owl:Class rdf:about="#ModerateCanopyCover">
+        <rdfs:subClassOf rdf:resource="#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ModerateMeanAnnualRunoff -->
+
+    <owl:Class rdf:about="#ModerateMeanAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoffClass"/>
     </owl:Class>
     
 
@@ -149,6 +270,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#PercentTreeCanopyCoverClass -->
+
+    <owl:Class rdf:about="#PercentTreeCanopyCoverClass">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#PoorlyDrainedSoils -->
 
     <owl:Class rdf:about="#PoorlyDrainedSoils">
@@ -173,6 +302,38 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#RollingToHilly -->
+
+    <owl:Class rdf:about="#RollingToHilly">
+        <rdfs:subClassOf rdf:resource="#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SedimentVegetationType -->
+
+    <owl:Class rdf:about="#SedimentVegetationType">
+        <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ShrublandPasture -->
+
+    <owl:Class rdf:about="#ShrublandPasture">
+        <rdfs:subClassOf rdf:resource="#SedimentVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SlopeClass -->
+
+    <owl:Class rdf:about="#SlopeClass">
+        <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SoilDrainageClass -->
 
     <owl:Class rdf:about="#SoilDrainageClass">
@@ -189,10 +350,50 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SteeplyDissectedToMountainous -->
+
+    <owl:Class rdf:about="#SteeplyDissectedToMountainous">
+        <rdfs:subClassOf rdf:resource="#SlopeClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#UrbanInfrastructureRock -->
 
     <owl:Class rdf:about="#UrbanInfrastructureRock">
         <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#VeryHighCanopyCover -->
+
+    <owl:Class rdf:about="#VeryHighCanopyCover">
+        <rdfs:subClassOf rdf:resource="#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#VeryHighMeanAnnualRunoff -->
+
+    <owl:Class rdf:about="#VeryHighMeanAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoffClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#VeryLowCanopyCover -->
+
+    <owl:Class rdf:about="#VeryLowCanopyCover">
+        <rdfs:subClassOf rdf:resource="#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#VeryLowMeanAnnualRunoff -->
+
+    <owl:Class rdf:about="#VeryLowMeanAnnualRunoff">
+        <rdfs:subClassOf rdf:resource="#AnnualRunoffClass"/>
     </owl:Class>
     
 
@@ -226,6 +427,18 @@
     <owl:Class rdf:about="#WellDrainedSoils">
         <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/science/observation.owl#Identification -->
+
+    <owl:Class rdf:about="&observation;Identification"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/science/representation.owl#Length -->
+
+    <owl:Class rdf:about="&representation;Length"/>
     
 
 

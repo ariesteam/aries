@@ -154,6 +154,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservable>
     <rdfs:comment>Data source: Shuttle Radar Topography Mission (SRTM)</rdfs:comment>
     <metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
+    <metadata:hasPriority>10</metadata:hasPriority>
     <measurement:unit>m</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -11381,11 +11382,14 @@ global data. -->
     <observation:hasObservable>
       <policytarget:PopulationDensity/>
     </observation:hasObservable>
-  <measurement:unit>/km^2</measurement:unit>
+    <measurement:unit>/km^2</measurement:unit>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>ontario:population_density_low</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
