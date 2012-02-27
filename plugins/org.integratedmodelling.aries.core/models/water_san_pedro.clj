@@ -173,9 +173,9 @@
 
 (defmodel infiltration sanPedro:SoilInfiltrationClass
   (probabilistic-measurement waterSupplyService:SoilInfiltrationClass  "mm"
-    [60 120] sanPedro:HighInfiltration
-    [10  60] sanPedro:ModerateInfiltration
-    [ 0  10] sanPedro:LowInfiltration))
+    [10 30] sanPedro:HighInfiltration
+    [ 5 10] sanPedro:ModerateInfiltration
+    [ 0  5] sanPedro:LowInfiltration))
 
 (defmodel et-sink Evapotranspiration
   (bayesian Evapotranspiration

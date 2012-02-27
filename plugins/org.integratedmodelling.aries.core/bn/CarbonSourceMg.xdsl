@@ -14,13 +14,13 @@
 			<state id="NotDegraded" />
 			<probabilities>0.05 0.95</probabilities>
 		</cpt>
-		<cpt id="VegetationDensity">
-			<state id="VeryHighVegetationDensity" />
-			<state id="HighVegetationDensity" />
-			<state id="ModerateVegetationDensity" />
-			<state id="LowVegetationDensity" />
-			<state id="VeryLowVegetationDensity" />
-			<state id="NoVegetationDensity" />
+		<cpt id="VegetationCarbonStorage">
+			<state id="VeryHighVegetationStorage" />
+			<state id="HighVegetationStorage" />
+			<state id="ModerateVegetationStorage" />
+			<state id="LowVegetationStorage" />
+			<state id="VeryLowVegetationStorage" />
+			<state id="NoVegetationStorage" />
 			<parents>PercentTreeCanopyCoverClass ForestDegradationStatus</parents>
 			<probabilities>0.4 0.25 0.2 0.1 0.05 0 0.95 0.05 0 0 0 0 0.15 0.6 0.25 0 0 0 0.25 0.6 0.15 0 0 0 0.05 0.15 0.4 0.4 0 0 0.05 0.25 0.4 0.3 0 0 0 0.1 0.3 0.45 0.15 0 0 0.15 0.35 0.35 0.15 0 0 0 0.05 0.3 0.6 0.05 0 0 0.05 0.4 0.5 0.05</probabilities>
 			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
@@ -58,7 +58,7 @@
 			<state id="LowSequestration" />
 			<state id="VeryLowSequestration" />
 			<state id="NoSequestration" />
-			<parents>VegetationDensity SequestrationRate</parents>
+			<parents>VegetationCarbonStorage SequestrationRate</parents>
 			<probabilities>0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0.05 0.3 0.3 0.3 0.05 0 0 0 0.25 0.5 0.25 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0.2 0.4 0.4 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0.1 0.4 0.4 0.1 0 0 0 0 0.4 0.6 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0.2 0.6 0.2 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.9 0.1 0 0 0 0 0.45 0.45 0.1 0 0 0 0.3 0.4 0.3 0 0 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 			<property id="CarbonSequestration">CarbonSequestration=VegetationCarbonSequestration+SoilCarbonSequestration</property>
 		</cpt>
@@ -91,8 +91,8 @@
 				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
 				<barchart active="true" width="186" height="108" />
 			</node>
-			<node id="VegetationDensity">
-				<name>VegetationDensity</name>
+			<node id="VegetationCarbonStorage">
+				<name>VegetationCarbonStorage</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

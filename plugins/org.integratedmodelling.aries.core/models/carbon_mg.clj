@@ -59,23 +59,41 @@
 
 (defmodel summer-high-winter-low SummerHighWinterLow
   (classification (ranking habitat:SummerHighWinterLow)
-    [40 :>] VeryHighSOL
-    [35 40] HighSOL
-    [30 35] ModerateSOL
-    [24 30] LowSOL
-    [:< 24] VeryLowSOL))
+    [25 :>] VeryHighSOL
+    [22 25] HighSOL
+    [18 22] ModerateSOL
+    [15 18] LowSOL
+    [:< 15] VeryLowSOL))
 
 (defmodel soil-cn-ratio SoilCNRatio
   (classification (ranking habitat:SoilCNRatio)
-    [35 :>] VeryHighCNRatio
-    [20 35] HighCNRatio
-    [10 20] LowCNRatio
+    [20 :>] VeryHighCNRatio
+    [15 20] HighCNRatio
+    [10 15] LowCNRatio
     [:< 10] VeryLowCNRatio))
 
 (defmodel degradation-status ForestDegradationStatus
   (classification (numeric-coding mglulc:MGLULCNumeric)
     #{3 7 23}  Degraded
     :otherwise NotDegraded))
+
+;; This discretization is based off comparison with Reusch & Gibbs'
+;; global vegetation carbon storage layer, with maximum values from
+;; Madagascar being slightly over half of that in Puget Sound.  Need
+;; to run this by folks familiar with carbon data/forestry in
+;; Madagascar.  Note that using spatial data to determine these
+;; magnitudes (versus published literature estimates like Smith et
+;; al. 2006 for the United States) gives different relative magnitudes
+;; and that for San Pedro, Puget Sound, California, and Vermont we
+;; used Smith et al. 2006 for discretization.
+(defmodel veg-storage VegetationCarbonStorage
+  (probabilistic-measurement VegetationCarbonStorage "t/ha"
+    [150  500]    VeryHighVegetationStorage
+    [ 99  150]    HighVegetationStorage
+    [ 50   99]    ModerateVegetationStorage
+    [ 10   50]    LowVegetationStorage
+    [ 0.01 10]    VeryLowVegetationStorage
+    [ 0     0.01] NoVegetationStorage))
 
 ;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
@@ -125,11 +143,12 @@
     2      ModeratePh
     1      LowPh))
 
-;; Mg wetlands layer is just a wetlands layer - no reclass of a LULC layer.
+;; Mg wetlands layer is needs to be reworked to include zeros rather
+;; than nodata - for now just use LULC.
 (defmodel oxygen SoilOxygenConditions
-  (classification (binary-coding habitat:Wetland)
-    1          AnoxicSoils
-    :otherwise OxicSoils))
+  (classification (numeric-coding mglulc:MGLULCNumeric)
+    #{2 4 5 14} AnoxicSoils
+    :otherwise  OxicSoils))
 
 ;;No data on fire frequency for Madagascar - use Bayesian priors until we can get a layer.
 
@@ -145,24 +164,6 @@
     "Moderate" ModerateDeforestationRisk
     "Low"      LowDeforestationRisk
     :otherwise NoDeforestationRisk))
-
-;; This discretization is based off comparison with Reusch & Gibbs'
-;; global vegetation carbon storage layer, with maximum values from
-;; Madagascar being slightly over half of that in Puget Sound.  Need
-;; to run this by folks familiar with carbon data/forestry in
-;; Madagascar.  Note that using spatial data to determine these
-;; magnitudes (versus published literature estimates like Smith et
-;; al. 2006 for the United States) gives different relative magnitudes
-;; and that for San Pedro, Puget Sound, California, and Vermont we
-;; used Smith et al. 2006 for discretization.
-(defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha"
-    [300 500] VeryHighVegetationStorage
-    [100 300] HighVegetationStorage
-    [25 100]  ModerateVegetationStorage
-    [10 25]   LowVegetationStorage
-    [0.01 10] VeryLowVegetationStorage
-    [0 0.01]  NoVegetationStorage))
 
 (defmodel vegetation-carbon-storage VegetationCStorage
   (bayesian VegetationCStorage
@@ -183,12 +184,12 @@
 ;; discretization.
 (defmodel soil-storage SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha"
-    [75 150]  VeryHighSoilStorage
-    [40 75]   HighSoilStorage
-    [20 40]   ModerateSoilStorage
-    [10 20]   LowSoilStorage
-    [0.01 10] VeryLowSoilStorage
-    [0 0.01]  NoSoilStorage))
+    [200   520]    VeryHighSoilStorage
+    [110   200]    HighSoilStorage
+    [ 90   110]    ModerateSoilStorage
+    [ 50    90]    LowSoilStorage
+    [  0.01 50]    VeryLowSoilStorage
+    [  0     0.01] NoSoilStorage))
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage

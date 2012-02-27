@@ -54,13 +54,13 @@
 ;; statement and set the prior to its actual value from the data
 ;; (LowActualEvapotranspiration) - a good temporary solution for WCH
 ;; but change if you ran it again for Southern California.
-(defmodel actual-evapotranspiration california:ActualEvapotranspirationClass
+(defmodel actual-evapotranspiration ActualEvapotranspirationClass
   (classification (measurement habitat:ActualEvapotranspiration "mm")
-    [92 :>] california:VeryHighActualEvapotranspiration
-    [58 92] california:HighActualEvapotranspiration
-    [32 58] california:ModerateActualEvapotranspiration
-    [12 32] california:LowActualEvapotranspiration
-    [:< 12] california:VeryLowActualEvapotranspiration))
+    [92 :>] VeryHighEvapotranspiration
+    [58 92] HighEvapotranspiration
+    [32 58] ModerateEvapotranspiration
+    [12 32] LowEvapotranspiration
+    [:< 12] VeryLowEvapotranspiration))
 
 (defmodel percent-canopy-cover california:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
@@ -88,7 +88,7 @@
     #{71 81 82}       california:GrasslandAndCultivated
     21                california:OpenSpace
     22                california:LowDensityDeveloped
-    #{23 24}          california:HighAndMedDensityDeveloped))
+    #{23 24 31}       california:HighAndMedDensityDeveloped))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea

@@ -174,14 +174,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#HighActualEvapotranspiration -->
-
-    <owl:Class rdf:about="&california;HighActualEvapotranspiration">
-        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#HighAndMedDensityDeveloped -->
 
     <owl:Class rdf:about="&california;HighAndMedDensityDeveloped">
@@ -194,6 +186,14 @@
 
     <owl:Class rdf:about="&california;HighCanopyCover">
         <rdfs:subClassOf rdf:resource="&california;PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#HighEvapotranspiration -->
+
+    <owl:Class rdf:about="&california;HighEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
     </owl:Class>
     
 
@@ -303,14 +303,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#LowActualEvapotranspiration -->
-
-    <owl:Class rdf:about="&california;LowActualEvapotranspiration">
-        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#LowCanopyCover -->
 
     <owl:Class rdf:about="&california;LowCanopyCover">
@@ -323,6 +315,14 @@
 
     <owl:Class rdf:about="&california;LowDensityDeveloped">
         <rdfs:subClassOf rdf:resource="&california;LandCover"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#LowEvapotranspiration -->
+
+    <owl:Class rdf:about="&california;LowEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
     </owl:Class>
     
 
@@ -415,18 +415,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#ModerateActualEvapotranspiration -->
-
-    <owl:Class rdf:about="&california;ModerateActualEvapotranspiration">
-        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#ModerateCanopyCover -->
 
     <owl:Class rdf:about="&california;ModerateCanopyCover">
         <rdfs:subClassOf rdf:resource="&california;PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#ModerateEvapotranspiration -->
+
+    <owl:Class rdf:about="&california;ModerateEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
     </owl:Class>
     
 
@@ -772,18 +772,18 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#VeryHighActualEvapotranspiration -->
-
-    <owl:Class rdf:about="&california;VeryHighActualEvapotranspiration">
-        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#VeryHighCanopyCover -->
 
     <owl:Class rdf:about="&california;VeryHighCanopyCover">
         <rdfs:subClassOf rdf:resource="&california;PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#VeryHighEvapotranspiration -->
+
+    <owl:Class rdf:about="&california;VeryHighEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
     </owl:Class>
     
 
@@ -860,19 +860,19 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#VeryLowActualEvapotranspiration -->
-
-    <owl:Class rdf:about="&california;VeryLowActualEvapotranspiration">
-        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#VeryLowCanopyCover -->
 
     <owl:Class rdf:about="&california;VeryLowCanopyCover">
         <rdfs:subClassOf rdf:resource="&california;PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/california.owl#VeryLowEvapotranspiration -->
+
+    <owl:Class rdf:about="&california;VeryLowEvapotranspiration">
+        <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
