@@ -179,8 +179,9 @@
 (defmethod unpack-datasource :varprop
   [_ ds _]
   (println "Inside unpack-datasource!\nChecking datasource type..." ds)
-  (if (nil? ds) (throw (Exception. (str "null datasource"))))
-  (cond (and (.isProbabilistic ds) (.isContinuous ds))
+  ;; (if (nil? ds) (throw (Exception. (str "null datasource"))))
+  ;; (cond (and (.isProbabilistic ds) (.isContinuous ds))
+  (cond (instance? MemObjectContextualizedDatasource ds)
         (do (println "It's probabilistic and continuous.")
             (let [dists                 (.getRawData ds)
                   example-dist          (first (remove nil? dists))
@@ -198,10 +199,13 @@
                   _0_))))
 
         ;; other checks available: isCategorical isBoolean isNumeric
-        :otherwise
+        (instance? MemDoubleContextualizedDatasource ds)
         (do (println "It's deterministic.")
             (for [value (NaNs-to-zero (get-data ds))]
-              (fuzzy-number value 0.0)))))
+              (fuzzy-number value 0.0)))
+
+        :otherwise
+        (throw (Exception. (str "Unrecognized datasource type: " (class ds))))))
 
 (defn- unpack-datasource-orig
   "Returns a seq of length n of the values in ds,
