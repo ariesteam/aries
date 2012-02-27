@@ -283,7 +283,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
+<!--  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
     <observation:hasObservable>
       <geofeatures:EphemeralStream/>
     </observation:hasObservable>
@@ -305,7 +305,33 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
+  </measurement:BinaryCoding> -->
+
+<measurement:BinaryCoding id="hydrography_az_ephemeral2">
+  <observation:hasObservable>
+    <geofeatures:EphemeralStream/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Derived from Arizona Geographic Information Council data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>san_pedro:hydrography_az_ephemeral2</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>5440</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>6328</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>3466439.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>141387.869</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4099439.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>685587.869</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
 
   <measurement:NumericCoding id="Reclass_fire_Clip">
     <observation:hasObservable>
@@ -509,7 +535,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:BinaryCoding id="mountainfront_recharge">
+<!--  <measurement:BinaryCoding id="mountainfront_recharge">
     <observation:hasObservable>
       <geofeatures:MountainFront/>
     </observation:hasObservable>
@@ -530,6 +556,32 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasLonLowerBound>153487.996</geospace:hasLonLowerBound>
         <geospace:hasLatUpperBound>4100804.4</geospace:hasLatUpperBound>
         <geospace:hasLonUpperBound>686987.996</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding> -->
+
+  <measurement:BinaryCoding id="mountainfront_recharge">
+    <observation:hasObservable>
+      <geofeatures:MountainFront/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Derived from AGIC geology layer</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/geology.htm</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>san_pedro:mountainfront_recharge</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>5453</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>6361</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>3464504.4</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>141448.516</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4100804.4</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>686948.516</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>

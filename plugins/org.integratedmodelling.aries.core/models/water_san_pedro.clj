@@ -116,13 +116,13 @@
 
 (defmodel mountain-front sanPedro:MountainFront 
   (classification (binary-coding geofeatures:MountainFront)
-    1           sanPedro:MountainFrontPresent
-    :otherwise  sanPedro:MountainFrontAbsent))
+    1 sanPedro:MountainFrontPresent
+    0 sanPedro:MountainFrontAbsent))
 
 (defmodel stream-channel sanPedro:StreamChannel
   (classification (binary-coding geofeatures:EphemeralStream) 
-    1           sanPedro:StreamChannelPresent
-    :otherwise  sanPedro:StreamChannelAbsent))
+    1 sanPedro:StreamChannelPresent
+    0 sanPedro:StreamChannelAbsent))
 
 ;; Global layer looks funny (when using for Mexico as well) -
 ;; discretization should be something like >38, 34-38, <34.  Clearly
