@@ -167,7 +167,7 @@
     [0.9 :>]    VeryHighFireThreat
     [0.25 0.9]  HighFireThreat
     [0.03 0.25] ModerateFireThreat
-    [-1   0.03] LowFireThreat))
+    [0    0.03] LowFireThreat))
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
@@ -178,14 +178,19 @@
     :keep     [VegetationCarbonStorage]
     :result   veg-storage))
 
-(defmodel soil-storage SoilCarbonStorage
+(defmodel soil-storage SoilCarbonStorage ; Old discretizaton was 0-5,
+                                        ; 5-15, 15-30, 30-60, 60-115,
+                                        ; per Smith et al. 2006.
+                                        ; Discretization below fits
+                                        ; global soil C layer; revisit
+                                        ; once SSURGO soil C data are in
   (probabilistic-measurement SoilCarbonStorage "t/ha" 
-    [60 115] VeryHighSoilStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [30 60]  HighSoilStorage
-    [15 30]  ModerateSoilStorage
-    [5 15]   LowSoilStorage
-    [0.01 5] VeryLowSoilStorage
-    [0 0.01] NoSoilStorage))
+    [360    400]    VeryHighSoilStorage
+    [210    360]    HighSoilStorage
+    [180    210]    ModerateSoilStorage
+    [165    180]    LowSoilStorage
+    [  0.01 165]    VeryLowSoilStorage
+    [  0      0.01] NoSoilStorage))
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
