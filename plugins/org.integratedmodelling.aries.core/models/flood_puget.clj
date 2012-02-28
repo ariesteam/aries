@@ -287,7 +287,7 @@
 ;; coexistence of small layers + priors for areas without evidence.
 (defmodel green-infrastructure-sink puget:GreenInfrastructureSink 
   (bayesian puget:GreenInfrastructureSink
-    :import  "aries.core::FloodSinkPugetAnnual.xdsl"
+    :import  "aries.core::trained/FloodSinkPugetAnnual.xdsl"
     :context  [soil-group-puget vegetation-type slope ; vegetation-height
                successional-stage imperviousness percent-canopy-cover 
                mean-days-precipitation-annual land-selector]
