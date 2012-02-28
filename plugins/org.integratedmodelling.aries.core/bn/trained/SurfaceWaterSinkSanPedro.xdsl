@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="WaterSupplyVegetationType">
+			<state id="Forest" />
+			<state id="OakWoodland" />
+			<state id="MesquiteWoodland" />
+			<state id="Grassland" />
+			<state id="DesertScrub" />
+			<state id="Riparian" />
+			<state id="Agriculture" />
+			<state id="UrbanBarrenWater" />
+			<probabilities>0.1317806605050534 0.02093160413379036 0.2498525941446528 0.1877948113682186 0.3639445749242684 0.013856132275893 0.006485849064680056 0.02535377358344336</probabilities>
+		</cpt>
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="VeryHighCanopyCover" />
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
+			<state id="VeryLowCanopyCover" />
+			<probabilities>0.01840400471142521 0.02974087161366313 0.04358068315665489 0.04093050647820966 0.8673439340400471</probabilities>
+		</cpt>
+		<cpt id="AnnualMaximumTemperature">
+			<state id="VeryHighAnnualMaximumTemperature" />
+			<state id="HighAnnualMaximumTemperature" />
+			<state id="ModerateAnnualMaximumTemperature" />
+			<probabilities>0.0354829210836278 0.8923733804475854 0.07214369846878681</probabilities>
+		</cpt>
+		<cpt id="EvapotranspirationClass">
+			<state id="HighEvapotranspiration" />
+			<state id="ModerateEvapotranspiration" />
+			<state id="LowEvapotranspiration" />
+			<parents>WaterSupplyVegetationType PercentTreeCanopyCoverClass AnnualMaximumTemperature</parents>
+			<probabilities>0.5 0.5 0 0.4813277360757816 0.01348335648184271 0.5051889074423758 0.4356629209662886 0.4871903847134625 0.07714669432024898 0.45 0.55 0 0.2474045474045477 0.3909051909051902 0.3616902616902621 0.4298966946881367 0.2096341938291682 0.3604691114826951 0.25 0.65 0.1 0.1174332815202401 0.4143004137749852 0.4682663047047747 0.3694080126580718 0.3541787705353717 0.2764132168065565 0.3333333333333333 0.3333333333333333 0.3333333333333333 0.2064570743292495 0.4735814894067301 0.3199614362640203 0.3931710670616929 0.212151965036911 0.3946769679013961 0 0.5 0.5 0.04683156319053314 0.6398175208496688 0.3133509159597981 0.2667305083393182 0.351863378820525 0.3814061128401569 0.2000000000000001 0.7000000000000001 0.1 0.5149579831932774 0.3327731092436975 0.1522689075630252 0.05162807056515065 0.5457692378889693 0.4026026915458803 0.15 0.7 0.15 0.4239617763523907 0.5056124619563438 0.07042576169126555 0.7512698998268965 0.02000624308294785 0.2287238570901557 0.15 0.6 0.25 0.2283276450511945 0.3009913863156184 0.470680968633187 0.3526277958648681 0.06564204473383792 0.581730159401294 0.1 0.45 0.45 0.3910413601438614 0.4446624162170999 0.1642962236390387 0.478962044651262 0.4384846278173455 0.08255332753139265 0 0.4 0.6 0.2901449144508148 0.3393977698523769 0.3704573156968083 0.2395893732539139 0.3668494017184125 0.3935612250276738 0.3 0.7 0 0.2 0.8 0 0.1 0.9 0 0.2861118929230385 0.2172655346029959 0.4966225724739656 0.3752579038409437 0.5017401996540442 0.1230018965050122 0.2 0.5 0.3 0.2 0.6 0.2 0.4646466692321715 0.4480181475705345 0.0873351831972941 0.3335775438008918 0.09804701400372595 0.5683754421953824 0 0.4 0.6 0.1852534562211991 0.4133098400650582 0.4014367037137428 0 0.2 0.8 0.4346173706495923 0.47499741815553 0.09038521119487759 0.4025714112438762 0.4727545636484715 0.1246740251076524 0 0.05 0.95 0 0.2 0.8 0 0.1 0.9 0.3423950177537328 0.3367384656742498 0.3208665165720175 0 0.15 0.85 0.5902935093075938 0.2675810105387571 0.1421254801536492 0.7781004121393781 0.0401367553390783 0.1817628325215437 0 0.1 0.9 0.1632519616390583 0.3435774484161581 0.4931705899447836 0.07756517272377038 0.1637023243867985 0.7587325028894311 0 0.05 0.95 0.5528882938026014 0.3301836266258606 0.116928079571538 0.0713116096282954 0.2873751432782054 0.6413132470934994 0 0 1 0.1951566684771544 0.5529751090966819 0.2518682224261638 0.7389010129963192 0.1710693462753657 0.09002964072831504 0 0.1 0.9 0.3948059301966437 0.1254246885617214 0.4797693812416349 0.02107164358819988 0.5710666265302028 0.4078617298815974 0 0.05 0.95 0.7187922717643754 0.1004058089380058 0.1808019192976188 0.3766273276965786 0.2326238797266976 0.3907487925767239 0.4048990624208126 0.1090801587971957 0.4860207787819917 0.2190951701650707 0.5480538006928876 0.2328510291420418 0.2958493531277187 0.4299525720539948 0.2741980748182865 0.1603091732906888 0.3299938855180847 0.5096969411912266 0.07554991731418338 0.1872324037786282 0.7372176789071884 0.3993956144080666 0.4731215452833628 0.1274828403085707 0.1345428711951477 0.3198808678069865 0.5455762609978658 0.08004615116683869 0.4928378613723118 0.4271159874608494 0.3285832642916322 0.4265396299364816 0.2448771057718862 0.2094060092984526 0.2380646728193741 0.5525293178821734 0.8 0.2 0 0.7 0.3 0 0.9 0.1 0 0.8 0.2 0 0.4700310228053141 0.3925450541122978 0.137423923082388 0.4622168812123187 0.08458937591657162 0.4531937428711096 0.4534495774785086 0.3429608163066508 0.2035896062148407 0.5 0.4 0.1 0.3191045122375595 0.06711518385338129 0.6137803039090594 0.1517341677316998 0.3746125482937435 0.4736532839745568 0.2 0.7 0.1 0.4889201998206738 0.358503052815849 0.1525767473634771 0.1039246158020672 0.3365401218579635 0.5595352623399694 0.05 0.7 0.25 0.2000000000000001 0.7000000000000001 0.1 0.1 0.7000000000000001 0.2 0.05 0.65 0.3 0.1 0.8 0.1 0.05 0.8 0.15 0 0.8 0.2 0.05 0.8 0.15 0.2861614952582636 0.003314611914188381 0.7105238928275481 0 0.7 0.3 0 0.8 0.2 0 0.7 0.3 0 0.6 0.4 0.1660622966062297 0.3819153881915386 0.4520223152022317 0.3974123218986883 0.3330114170051201 0.2695762610961916 0 0.4 0.6 0.1 0.3 0.6 0.05 0.25 0.7 0.2457132755877674 0.3762153084673856 0.3780714159448471 0.1 0.2 0.7 0.4014223492582006 0.2651422349258201 0.3334354158159793 0.361354158148663 0.2584839316379099 0.3801619102134271 0 0.2 0.8 0.4592495611033416 0.06915225994584461 0.4715981789508139 0.1496694515074464 0.4740719215401381 0.3762586269524156 0 0.1 0.9 0.283488988616083 0.4872212499783411 0.2292897614055759 0.2916364139266328 0.3359609998962763 0.3724025861770908 0.2550512590823132 0.4423708569722304 0.3025778839454564 0.1229809569693436 0.8016583411517103 0.07536070187894614 0.2841879493188227 0.2407355920085792 0.475076458672598</probabilities>
+			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
+		</cpt>
+		<cpt id="MountainFront">
+			<state id="MountainFrontPresent" />
+			<state id="MountainFrontAbsent" />
+			<probabilities>0.2058303886925795 0.7941696113074205</probabilities>
+		</cpt>
+		<cpt id="StreamChannel">
+			<state id="StreamChannelPresent" />
+			<state id="StreamChannelAbsent" />
+			<probabilities>0.1146937573616019 0.8853062426383981</probabilities>
+		</cpt>
+		<cpt id="SoilInfiltrationClass">
+			<state id="HighInfiltration" />
+			<state id="ModerateInfiltration" />
+			<state id="LowInfiltration" />
+			<parents>MountainFront StreamChannel</parents>
+			<probabilities>0 0.3295454545454545 0.6704545454545454 0 0.3715220949263502 0.6284779050736498 0.001658374792703151 0.3383084577114428 0.6600331674958541 0.001878522229179712 0.3621373408474223 0.6359841369233981</probabilities>
+			<property id="SoilInfiltration">SoilInfiltration=1-((ObservedSlope/MaxSlope)/3)-((ObservedHSG/HSGD)/3)-((ObservedImperviousCover/100)/3)</property>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
+			<node id="WaterSupplyVegetationType">
+				<name>WaterSupplyVegetationType</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1140 336 1235 366</position>
+				<barchart active="true" width="190" height="162" />
+			</node>
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>901 305 1013 339</position>
+				<barchart active="true" width="224" height="108" />
+			</node>
+			<node id="AnnualMaximumTemperature">
+				<name>AnnualMaximumTemperature</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>615 291 663 321</position>
+				<barchart active="true" width="386" height="72" />
+			</node>
+			<node id="EvapotranspirationClass">
+				<name>EvapotranspirationClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>845 157 1061 191</position>
+				<barchart active="true" width="305" height="72" />
+			</node>
+			<node id="MountainFront">
+				<name>MountainFront</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>815 561 895 611</position>
+				<comment>To create mountain front recharge layer, I: 1) removed all alluvial deposits and areas capped by quaternary surfacial deposits, 2) kept all areas of limestone, 3) converted all other rocks to line features, dissolved them, and created a 1.6-km buffer around them to represent the mountain front recharge zone.  This leaves us with a 1.6 km band around the base of impermeable rocks, plus limestone areas, as the mountainfront recharge zone.</comment>
+				<barchart active="true" width="238" height="54" />
+			</node>
+			<node id="StreamChannel">
+				<name>StreamChannel</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1135 560 1219 612</position>
+				<barchart active="true" width="272" height="54" />
+			</node>
+			<node id="SoilInfiltrationClass">
+				<name>SoilInfiltrationClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>949 468 1038 503</position>
+				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)</comment>
+				<barchart active="true" width="192" height="72" />
+			</node>
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="10" />
+				<position>259 426 667 682</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>
