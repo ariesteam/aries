@@ -283,7 +283,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
+<!--  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
     <observation:hasObservable>
       <geofeatures:EphemeralStream/>
     </observation:hasObservable>
@@ -305,7 +305,60 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
+  </measurement:BinaryCoding> -->
+
+<measurement:BinaryCoding id="hydrography_az_ephemeral2">
+  <observation:hasObservable>
+    <geofeatures:EphemeralStream/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Derived from Arizona Geographic Information Council data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>san_pedro:hydrography_az_ephemeral2</geospace:hasCoverageId>
+      <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>5440</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>6328</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>3466439.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>141387.869</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4099439.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>685587.869</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding> 
+
+<!--
+<measurement:BinaryCoding id="san_pedro_hydrograph_az_ephemeral3">
+  <observation:hasObservable>
+    <geofeatures:EphemeralStream/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Derived from Arizona Geographic Information Council data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>san_pedro:hydrograph_az_ephemeral3</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>stream</geospace:hasValueAttribute>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>3460315.4458506647</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>116430.08374469791</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4106933.4803717462</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>698611.8138701736</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding> -->
 
   <measurement:NumericCoding id="Reclass_fire_Clip">
     <observation:hasObservable>
@@ -509,7 +562,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:BinaryCoding id="mountainfront_recharge">
+<!--  <measurement:BinaryCoding id="mountainfront_recharge">
     <observation:hasObservable>
       <geofeatures:MountainFront/>
     </observation:hasObservable>
@@ -533,7 +586,60 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
+  </measurement:BinaryCoding>  -->
+
+  <measurement:BinaryCoding id="mountainfront_recharge">
+    <observation:hasObservable>
+      <geofeatures:MountainFront/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Derived from AGIC geology layer</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/geology.htm</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>san_pedro:mountainfront_recharge</geospace:hasCoverageId>
+        <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>5453</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>6361</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>3464504.4</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>141448.516</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4100804.4</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>686948.516</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+
+<!--
+<measurement:BinaryCoding id="san_pedro_mountainfront_recharge2">
+  <observation:hasObservable>
+    <geofeatures:MountainFront/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Derived from AGIC geology layer</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/geology.htm</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>san_pedro:mountainfront_recharge2</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>azbound</geospace:hasValueAttribute>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>3458387.4268580014</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>116360.28249919426</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4108348.9125906997</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>700115.0029737583</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding> -->
 
   <measurement:BinaryCoding id="sanPedro_grazing_land_az">
     <observation:hasObservable>
