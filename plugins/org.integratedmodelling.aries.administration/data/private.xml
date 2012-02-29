@@ -257,10 +257,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!-- presence/absence of detention basins. -->
-  <measurement:Ranking id="puget_detention">
+  <measurement:BinaryCoding id="detention_basins_puget">
     <observation:hasObservable>
-      <infrastructure:DetentionBasin />
+      <infrastructure:DetentionBasin/>
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from King, Pierce, and San Juan county GIS point data</rdfs:comment>
     <metadata:hasPriority>5</metadata:hasPriority>
@@ -268,20 +267,21 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>puget:detention_basins_puget</geospace:hasCoverageId>
+        <geospace:hasNodataValue>255</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:RasterGrid>
-        <geospace:hasXRangeMax>5628</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>6002</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>46.3</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-124.3</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>48.703</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-121.478</geospace:hasLonUpperBound>
+        <geospace:hasXRangeMax>13888</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>8900</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>46.3319283</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-124.821607</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>49.0025283</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-120.654607</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:BinaryCoding>
 
 <!--  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
     <observation:hasObservable>

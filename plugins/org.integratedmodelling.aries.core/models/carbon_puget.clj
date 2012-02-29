@@ -171,7 +171,7 @@
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-    :import   "aries.core::CarbonSinkPuget.xdsl"
+    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
     :context  [percent-canopy-cover hardwood-softwood-ratio 
                successional-stage summer-high-winter-low land-selector]
     :required [LandOrSea]
@@ -194,7 +194,7 @@
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-    :import   "aries.core::CarbonSinkPuget.xdsl"
+    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
     :context  [soil-ph slope oxygen percent-canopy-cover hardwood-softwood-ratio 
                successional-stage soil-cn-ratio land-selector]
     :required [LandOrSea]
@@ -227,7 +227,7 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-    :import   "aries.core::CarbonSinkPuget.xdsl"
+    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
     :context  [veg-soil-storage fire-threat land-selector]
     :required [LandOrSea]
     :keep     [StoredCarbonRelease]
