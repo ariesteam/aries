@@ -51,6 +51,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:mexico="http://www.integratedmodelling.org/ks/es/services/local/mexico.owl#"
     xmlns:sanPedro="http://www.integratedmodelling.org/ks/es/services/local/sanPedro.owl#"
     xmlns:colorado="http://www.integratedmodelling.org/ks/es/services/local/colorado.owl#"
+    xmlns:ontario="http://www.integratedmodelling.org/ks/es/services/local/ontario.owl#"
     xmlns:coastalProtection="http://www.integratedmodelling.org/ks/es/services/marine/coastalProtection.owl#"
     xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
     xmlns:ontario-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/ontario-lulc.owl#"
@@ -11338,6 +11339,57 @@ global data. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
+
+  <measurement:Ranking id="SumHiWintLow">
+    <observation:hasObservable>
+      <ontario:SummerHighWinterLow />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Derived from WorldClim data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.worldclim.org/bioclim</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>global:sum_hi_wint_lo_global</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>17998</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="soil_ph1">
+    <observation:hasObservable>
+      <ontario:SoilPhShallow />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: FAO Digital Soil Map of the World</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>global:soil_pH_0_30_global</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>718</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>358</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
 
   <measurement:Measurement id="evapotranspiration_low">
     <observation:hasObservable>
