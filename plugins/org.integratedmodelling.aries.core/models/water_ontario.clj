@@ -35,7 +35,8 @@
                            identification bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology waterSupplyService)
+(namespace-ontology waterSupplyService
+  (owl:Thing (AllWaterData)))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
@@ -48,7 +49,7 @@
 ;; Annual precipitation interpolated from the National Climate Data
 ;; and Information Archive.
 ;; http://climate.weatheroffice.gc.ca/climateData/canada_e.html
-;; precipitation_low
+;; ontario:precipitation_low
 (defmodel annual-precipitation AnnualPrecipitation
   (measurement habitat:AnnualPrecipitation "mm"))
 
@@ -58,7 +59,7 @@
 ;; Snowmelt is converted to its rainfall equivalent so that it can
 ;; be summed with the AnnualPrecipitation value to estimate
 ;; TotalPrecipitation.
-;; snow_low
+;; ontario:snow_low
 (defmodel annual-snowmelt AnnualSnowmelt
   (measurement habitat:AnnualSnowmelt "mm"))
 
@@ -90,7 +91,7 @@
 ;; Still need to deal with land cover types: 4, 6, 24 28, 29
 ;; need to check if these land cover classes are present
 ;; in the Lake of the Woods region
-;; lulc2000_low
+;; ontario:lulc2000_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel water-supply-vegetation-type ontario:WaterSupplyVegetationType
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
@@ -101,7 +102,7 @@
     #{9 10 11 12 13}              ontario:Forest
     #{7 8}                        ontario:ImpairedForest))
 
-;; canopy_low
+;; ontario:canopy_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel percent-tree-canopy-cover-class ontario:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
@@ -113,13 +114,13 @@
 
 ;; This data is problematic because there is only a single polygon
 ;; with an actual value.
-;; soil_drainage_low
+;; ontario:soil_drainage_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel soil-drainage-class ontario:SoilDrainageClass
   (classification (ranking ontario:SoilDrainageCode)
     2  ontario:PoorlyDrainedSoils))
 
-;; slope20m_low
+;; ontario:slope20m_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel slope-class SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00B0")
@@ -128,6 +129,7 @@
     [ 4.57 16.70]            RollingToHilly
     [16.70 90.00 :inclusive] SteeplyDissectedToMountainous))
 
+;; global:impervious_global
 ;; FIXME: ontario-lulc:PercentImperviousSurface runs from 0 to 2.088. WTF?
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel percent-impervious-cover-class PercentImperviousCoverClass
@@ -188,7 +190,7 @@
 ;; Canadians use an average of 1600 cubic meters of water per person
 ;; per year. See
 ;; http://www.environmentalindicators.com/htdocs/indicators/6wate.htm
-;; population_density_low
+;; ontario:population_density_low
 (defmodel residential-surface-water-use ResidentialSurfaceWaterUse
   (measurement ResidentialSurfaceWaterUse "mm" ;;This is an annual value
     :context [(count policytarget:PopulationDensity "/km^2")]
@@ -201,11 +203,11 @@
 (declare altitude
          river)
 
-;; dem20m_low
+;; ontario:dem20m_low
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
-;; hydrography_low
+;; ontario:hydrography_low
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
@@ -213,8 +215,8 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel all-water-data ontario:AllWaterData
-  (identification ontario:AllWaterData
+(defmodel all-water-data AllWaterData
+  (identification AllWaterData
     :context [annual-runoff
               surface-water-sink
               residential-surface-water-use
