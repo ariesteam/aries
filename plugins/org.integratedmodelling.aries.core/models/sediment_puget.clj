@@ -142,7 +142,7 @@
 ;; source bayesian model for Puget Sound     
 (defmodel source-puget puget:AnnualSedimentSource
   (bayesian puget:AnnualSedimentSource 
-    :import   "aries.core::SedimentSourcePugetAdHoc.xdsl"
+    :import   "aries.core::trained/SedimentSourcePugetAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
                successional-stage slope-stability]

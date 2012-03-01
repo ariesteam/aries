@@ -35,7 +35,8 @@
                            identification bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology soilRetentionService)
+(namespace-ontology soilRetentionService
+  (owl:Thing (AllSedimentData)))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
@@ -54,7 +55,7 @@
          slope-class
          soil-drainage-class)
 
-;; lulc2000_low
+;; ontario:lulc2000_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel sediment-vegetation-type ontario:SedimentVegetationType
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
@@ -62,7 +63,7 @@
     #{7 8 9 10 24 25}                      ontario:ShrublandPasture
     #{3 4 5 6 27}                          ontario:CropsBarrenDeveloped))
 
-;; successional_stage_low
+;; ontario:successional_stage_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel successional-stage SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
@@ -73,7 +74,7 @@
     2 EarlySuccession
     1 NoSuccession))
 
-;; canopy_low
+;; ontario:canopy_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel percent-tree-canopy-cover-class ontario:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
@@ -83,15 +84,15 @@
     [0.05 0.30]            ontario:LowCanopyCover
     [0.00 0.05]            ontario:VeryLowCanopyCover))
 
-;; precipitation_low
+;; ontario:precipitation_low
 (defmodel annual-precipitation AnnualPrecipitation
   (measurement habitat:AnnualPrecipitation "mm"))
 
-;; snow_low
+;; ontario:snow_low
 (defmodel annual-snowmelt AnnualSnowmelt
   (measurement habitat:AnnualSnowmelt "mm"))
 
-;; evapotranspiration_low
+;; ontario:evapotranspiration_low
 (defmodel annual-evapotranspiration AnnualEvapotranspiration
   (measurement habitat:Evapotranspiration "mm"))
 
@@ -114,7 +115,7 @@
     [ 600 1200] ontario:LowMeanAnnualRunoff
     [   0  600] ontario:VeryLowMeanAnnualRunoff))
 
-;; slope20m_low
+;; ontario:slope20m_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel slope-class SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
@@ -123,7 +124,7 @@
     [ 4.57 16.70]            RollingToHilly
     [16.70 90.00 :inclusive] SteeplyDissectedToMountainous))
 
-;; soil_drainage_low
+;; ontario:soil_drainage_low
 ;; FIXME: This reclassing loses a lot of cells to nodata. Why?
 (defmodel soil-drainage-class ontario:SoilDrainageClass
   (classification (ranking ontario:SoilDrainageCode)
@@ -158,11 +159,11 @@
          annual-sediment-sink-class
          annual-sediment-sink)
 
-;; stream_gradient_low
+;; ontario:stream_gradient_low
 (defmodel stream-gradient habitat:StreamGradient
   (measurement habitat:StreamGradient "\u00b0"))
 
-;; dams_low
+;; ontario:dams_low
 (defmodel dam-storage floodService:DamStorage
   (measurement floodService:DamStorage "mm"))
 
@@ -186,7 +187,7 @@
 
 (declare population-density)
 
-;; population_density_low
+;; ontario:population_density_low
 (defmodel population-density policytarget:PopulationDensity
   (count policytarget:PopulationDensity "/km^2"))
 
@@ -197,11 +198,11 @@
 (declare altitude
          river)
 
-;; dem20m_low
+;; ontario:dem20m_low
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
-;; hydrography_low
+;; ontario:hydrography_low
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
@@ -209,8 +210,8 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel all-sediment-data ontario:AllSedimentData
-  (identification ontario:AllSedimentData
+(defmodel all-sediment-data AllSedimentData
+  (identification AllSedimentData
     :context [annual-sediment-source
               stream-gradient
               dam-storage

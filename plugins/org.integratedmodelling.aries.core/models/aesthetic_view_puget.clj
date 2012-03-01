@@ -190,9 +190,9 @@
         nil
         (geophysics:Altitude)
         :source-threshold    5.0  
-        :sink-threshold      5.0
+        :sink-threshold     11.0
         :use-threshold       0.1
-        :trans-threshold     1.0
+        :trans-threshold     0.1
         :source-type        :infinite
         :sink-type          :infinite
         :use-type           :infinite

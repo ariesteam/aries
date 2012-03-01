@@ -163,9 +163,9 @@
 (defmodel veg-storage sanPedro:VegetationCarbonStorage
   (probabilistic-measurement VegetationCarbonStorage "t/ha" 
     [75 100] sanPedro:VeryHighVegetationStorage
-    [20 75]  sanPedro:HighVegetationStorage
-    [5 20]   sanPedro:ModerateVegetationStorage
-    [2 5]    sanPedro:LowVegetationStorage
+    [20  75] sanPedro:HighVegetationStorage
+    [10  20] sanPedro:ModerateVegetationStorage
+    [2   10] sanPedro:LowVegetationStorage
     [0.01 2] sanPedro:VeryLowVegetationStorage
     [0 0.01] sanPedro:NoVegetationStorage))
 
@@ -178,12 +178,12 @@
 
 (defmodel soil-storage sanPedro:SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha" 
-    [40 80]        sanPedro:VeryHighSoilStorage
-    [20 40]        sanPedro:HighSoilStorage
-    [5 20]         sanPedro:ModerateSoilStorage
-    [2 5]          sanPedro:LowSoilStorage
-    [0.01 2]       sanPedro:VeryLowSoilStorage
-    [0 0.01]       sanPedro:NoSoilStorage))
+    [100  150]    sanPedro:VeryHighSoilStorage
+    [ 70  100]    sanPedro:HighSoilStorage
+    [ 50   70]    sanPedro:ModerateSoilStorage
+    [  2   50]    sanPedro:LowSoilStorage
+    [  0.01 2]    sanPedro:VeryLowSoilStorage
+    [  0    0.01] sanPedro:NoSoilStorage))
 
 (defmodel soil-carbon-storage sanPedro:SoilCStorage 
   (bayesian sanPedro:SoilCStorage 

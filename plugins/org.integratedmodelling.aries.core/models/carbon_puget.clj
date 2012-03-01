@@ -57,10 +57,10 @@
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
-;; Used to mask out ocean (elevation = 0)
+;; Used to mask out open water, perennial snow & ice, barren land
 (defmodel land-selector LandOrSea
-  (classification  (measurement geophysics:Altitude "m")
-    [:exclusive 0 :>] OnLand))
+  (classification  (numeric-coding nlcd:NLCDNumeric)
+    #{21 22 23 24 41 42 43 52 71 81 82 90 95} OnLand))
 
 (defmodel successional-stage SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
@@ -124,7 +124,7 @@
 ;; Bayesian sink model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-    :import   "aries.core::CarbonSourcePuget.xdsl"
+    :import   "aries.core::trained/CarbonSourcePuget.xdsl"
     :context  [hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
                percent-canopy-cover successional-stage land-selector]
     :required [LandOrSea]
@@ -167,29 +167,34 @@
     [0.9 :>]    VeryHighFireThreat
     [0.25 0.9]  HighFireThreat
     [0.03 0.25] ModerateFireThreat
-    [-1   0.03] LowFireThreat))
+    [0    0.03] LowFireThreat))
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-    :import   "aries.core::CarbonSinkPuget.xdsl"
+    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
     :context  [percent-canopy-cover hardwood-softwood-ratio 
                successional-stage summer-high-winter-low land-selector]
     :required [LandOrSea]
     :keep     [VegetationCarbonStorage]
     :result   veg-storage))
 
-(defmodel soil-storage SoilCarbonStorage
+(defmodel soil-storage SoilCarbonStorage ; Old discretizaton was 0-5,
+                                        ; 5-15, 15-30, 30-60, 60-115,
+                                        ; per Smith et al. 2006.
+                                        ; Discretization below fits
+                                        ; global soil C layer; revisit
+                                        ; once SSURGO soil C data are in
   (probabilistic-measurement SoilCarbonStorage "t/ha" 
-    [60 115] VeryHighSoilStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [30 60]  HighSoilStorage
-    [15 30]  ModerateSoilStorage
-    [5 15]   LowSoilStorage
-    [0.01 5] VeryLowSoilStorage
-    [0 0.01] NoSoilStorage))
+    [360    400]    VeryHighSoilStorage
+    [210    360]    HighSoilStorage
+    [180    210]    ModerateSoilStorage
+    [165    180]    LowSoilStorage
+    [  0.01 165]    VeryLowSoilStorage
+    [  0      0.01] NoSoilStorage))
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-    :import   "aries.core::CarbonSinkPuget.xdsl"
+    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
     :context  [soil-ph slope oxygen percent-canopy-cover hardwood-softwood-ratio 
                successional-stage soil-cn-ratio land-selector]
     :required [LandOrSea]
@@ -222,7 +227,7 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-    :import   "aries.core::CarbonSinkPuget.xdsl"
+    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
     :context  [veg-soil-storage fire-threat land-selector]
     :required [LandOrSea]
     :keep     [StoredCarbonRelease]

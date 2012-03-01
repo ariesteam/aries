@@ -47,6 +47,12 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#AtmosphericTemperature -->
+
+    <owl:Class rdf:about="&habitat;AtmosphericTemperature"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#ClimateQuality -->
 
     <owl:Class rdf:about="&habitat;ClimateQuality"/>
@@ -59,9 +65,21 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#FireRegime -->
+
+    <owl:Class rdf:about="&habitat;FireRegime"/>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#HabitatQuality -->
 
     <owl:Class rdf:about="&habitat;HabitatQuality"/>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#SoilPh -->
+
+    <owl:Class rdf:about="&habitat;SoilPh"/>
     
 
 
@@ -81,22 +99,6 @@
 
     <owl:Class rdf:about="#Agriculture">
         <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#AllSedimentData -->
-
-    <owl:Class rdf:about="#AllSedimentData">
-        <rdfs:subClassOf rdf:resource="&observation;Identification"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#AllWaterData -->
-
-    <owl:Class rdf:about="#AllWaterData">
-        <rdfs:subClassOf rdf:resource="&observation;Identification"/>
     </owl:Class>
     
 
@@ -126,6 +128,30 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#CarbonVegetationType -->
+
+    <owl:Class rdf:about="#CarbonVegetationType">
+        <rdfs:subClassOf rdf:resource="&habitat;VegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ConiferousForest -->
+
+    <owl:Class rdf:about="#ConiferousForest">
+        <rdfs:subClassOf rdf:resource="#CarbonVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#CroplandPasture -->
+
+    <owl:Class rdf:about="#CroplandPasture">
+        <rdfs:subClassOf rdf:resource="#CarbonVegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#CropsBarrenDeveloped -->
 
     <owl:Class rdf:about="#CropsBarrenDeveloped">
@@ -134,10 +160,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#DeciduousForest -->
+
+    <owl:Class rdf:about="#DeciduousForest">
+        <rdfs:subClassOf rdf:resource="#CarbonVegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#DeerMooseWinteringHabitat -->
 
     <owl:Class rdf:about="#DeerMooseWinteringHabitat">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemGeneratedResource"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#FireThreatClass -->
+
+    <owl:Class rdf:about="#FireThreatClass">
+        <rdfs:subClassOf rdf:resource="&habitat;FireRegime"/>
     </owl:Class>
     
 
@@ -182,6 +224,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#HighFireThreat -->
+
+    <owl:Class rdf:about="#HighFireThreat">
+        <rdfs:subClassOf rdf:resource="#FireThreatClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#HighMeanAnnualRunoff -->
 
     <owl:Class rdf:about="#HighMeanAnnualRunoff">
@@ -193,6 +243,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ImpairedForest -->
 
     <owl:Class rdf:about="#ImpairedForest">
+        <rdfs:subClassOf rdf:resource="#CarbonVegetationType"/>
         <rdfs:subClassOf rdf:resource="#WaterSupplyVegetationType"/>
     </owl:Class>
     
@@ -222,6 +273,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#LowFireThreat -->
+
+    <owl:Class rdf:about="#LowFireThreat">
+        <rdfs:subClassOf rdf:resource="#FireThreatClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#LowMeanAnnualRunoff -->
 
     <owl:Class rdf:about="#LowMeanAnnualRunoff">
@@ -230,10 +289,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#MixedForest -->
+
+    <owl:Class rdf:about="#MixedForest">
+        <rdfs:subClassOf rdf:resource="#CarbonVegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ModerateCanopyCover -->
 
     <owl:Class rdf:about="#ModerateCanopyCover">
         <rdfs:subClassOf rdf:resource="#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#ModerateFireThreat -->
+
+    <owl:Class rdf:about="#ModerateFireThreat">
+        <rdfs:subClassOf rdf:resource="#FireThreatClass"/>
     </owl:Class>
     
 
@@ -350,10 +425,34 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SoilPhShallow -->
+
+    <owl:Class rdf:about="#SoilPhShallow">
+        <rdfs:subClassOf rdf:resource="&habitat;SoilPh"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SteeplyDissectedToMountainous -->
 
     <owl:Class rdf:about="#SteeplyDissectedToMountainous">
         <rdfs:subClassOf rdf:resource="#SlopeClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SummerHighWinterLow -->
+
+    <owl:Class rdf:about="#SummerHighWinterLow">
+        <rdfs:subClassOf rdf:resource="&habitat;AtmosphericTemperature"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/ontario.owl#SwampFenBog -->
+
+    <owl:Class rdf:about="#SwampFenBog">
+        <rdfs:subClassOf rdf:resource="#CarbonVegetationType"/>
     </owl:Class>
     
 
@@ -427,12 +526,6 @@
     <owl:Class rdf:about="#WellDrainedSoils">
         <rdfs:subClassOf rdf:resource="#SoilDrainageClass"/>
     </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/science/observation.owl#Identification -->
-
-    <owl:Class rdf:about="&observation;Identification"/>
     
 
 

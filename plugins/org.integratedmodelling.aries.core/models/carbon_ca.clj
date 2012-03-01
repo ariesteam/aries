@@ -182,12 +182,17 @@
 
 (defmodel soil-storage california:SoilCarbonStorage
   (probabilistic-measurement SoilCarbonStorage "t/ha" 
-    [25 50]  california:VeryHighSoilStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [15 25]  california:HighSoilStorage
-    [5 15]   california:ModerateSoilStorage
-    [2 5]    california:LowSoilStorage
-    [0.01 2] california:VeryLowSoilStorage
-    [0 0.01] california:NoSoilStorage))
+    [110  150] california:VeryHighSoilStorage ;; Old discretizaton was 0-2,
+                                        ; 2-5, 5-15, 15-25, 25-50,
+                                        ; per Smith et al. 2006.
+                                        ; Discretization below fits
+                                        ; global soil C layer; revisit
+                                        ; once SSURGO soil C data are in
+    [ 95 110]  california:HighSoilStorage
+    [ 80  95]  california:ModerateSoilStorage
+    [ 50  80]  california:LowSoilStorage
+    [0.01 50]  california:VeryLowSoilStorage
+    [0  0.01]  california:NoSoilStorage))
 
 (defmodel soil-carbon-storage california:SoilCStorage 
   (bayesian california:SoilCStorage
