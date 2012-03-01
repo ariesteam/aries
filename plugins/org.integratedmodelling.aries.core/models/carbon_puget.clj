@@ -57,10 +57,10 @@
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
-;; Used to mask out ocean (elevation = 0)
+;; Used to mask out open water, perennial snow & ice, barren land
 (defmodel land-selector LandOrSea
-  (classification  (measurement geophysics:Altitude "m")
-    [:exclusive 0 :>] OnLand))
+  (classification  (numeric-coding nlcd:NLCDNumeric)
+    #{21 22 23 24 41 42 43 52 71 81 82 90 95} OnLand))
 
 (defmodel successional-stage SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
