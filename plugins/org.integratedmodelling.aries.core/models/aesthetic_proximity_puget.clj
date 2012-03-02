@@ -136,8 +136,8 @@
 ;; are present. Otherwise zero sink.
 (defmodel sink ProximitySink
   (ranking ProximitySink
-    :context [(binary-coding infrastructure:Highway)]
-    :state   #(if (== (:highway %) 1) 50 0)))
+    :context [(numeric-coding recreationService:RoadTravelCapacity)]
+    :state   #(if (== (:road-travel-capacity %) 1 2 3 4 5 6 7 9) 50 0)))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models

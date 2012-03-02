@@ -91,10 +91,12 @@
     23         TransportationInfrastructurePresent
     :otherwise TransportationInfrastructureAbsent))
 
+;; The model below is needed to filter out ferry routes, which are
+;; included in the highways layer and obviously don't act as sinks.
 (defmodel highway Highways
-  (classification (binary-coding infrastructure:Highway)
-    1          HighwaysPresent
-    :otherwise HighwaysAbsent))
+  (classification (numeric-coding recreationService:RoadTravelCapacity)
+    #{1 2 3 4 5 6 7 9} HighwaysPresent
+    :otherwise         HighwaysAbsent))
 
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
