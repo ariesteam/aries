@@ -108,7 +108,7 @@
 ;; Bayesian source model
 (defmodel source sanPedro:CarbonSourceValue   
   (bayesian sanPedro:CarbonSourceValue 
-    :import  "aries.core::CarbonSourceSanPedro.xdsl"
+    :import  "aries.core::trained/CarbonSourceSanPedro.xdsl"
     :context [vegetation-type percent-canopy-cover annual-precipitation]
     :keep    [VegetationAndSoilCarbonSequestration]
     :result  veg-soil-sequestration))

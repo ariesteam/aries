@@ -137,7 +137,7 @@
 (defmodel sink ProximitySink
   (ranking ProximitySink
     :context [(numeric-coding recreationService:RoadTravelCapacity)]
-    :state   #(if (== (:road-travel-capacity %) 1 2 3 4 5 6 7 9) 50 0)))
+    :state   #(if (contains? [1 7] (:road-travel-capacity %)) 50 0)))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
