@@ -73,7 +73,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#AnnualPrecipitationClass">
         <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
-        <rdfs:subClassOf rdf:resource="&representation;Length"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -278,7 +278,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#GreenInfrastructureStorage">
         <rdfs:subClassOf rdf:resource="&floodService;FloodStorage"/>
-        <rdfs:subClassOf rdf:resource="&representation;Length"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -865,7 +865,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/puget.owl#SoilInfiltrationClass">
         <rdfs:subClassOf rdf:resource="&habitat;AnnualInfiltration"/>
-        <rdfs:subClassOf rdf:resource="&representation;Length"/>
+        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     

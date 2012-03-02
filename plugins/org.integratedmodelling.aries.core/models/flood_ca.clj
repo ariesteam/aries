@@ -191,7 +191,7 @@
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage california:GreenInfrastructureStorage
-  (probabilistic-measurement california:GreenInfrastructureStorage "mm" 
+  (probabilistic-measurement GreenInfrastructureStorage "mm" 
     [115 320] california:VeryHighGreenStorage
     [ 72 115] california:HighGreenStorage
     [ 40  72] california:ModerateGreenStorage

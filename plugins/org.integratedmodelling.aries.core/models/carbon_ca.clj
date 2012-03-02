@@ -157,7 +157,7 @@
     #{1 255} california:LowFireThreat))
 
 (defmodel veg-storage california:VegetationCarbonStorage
-  (probabilistic-measurement california:VegetationCarbonStorage "t/ha" 
+  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
     [150 315] california:VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
     [80 150]  california:HighVegetationStorage
     [30 80]   california:ModerateVegetationStorage
@@ -181,7 +181,7 @@
     :result  veg-storage))
 
 (defmodel soil-storage california:SoilCarbonStorage
-  (probabilistic-measurement california:SoilCarbonStorage "t/ha" 
+  (probabilistic-measurement SoilCarbonStorage "t/ha" 
     [110  150] california:VeryHighSoilStorage ;; Old discretizaton was 0-2,
                                         ; 2-5, 5-15, 15-25, 25-50,
                                         ; per Smith et al. 2006.
@@ -234,7 +234,7 @@
     [0 0.01]  california:NoStorage))
 
 (defmodel stored-carbon-release california:StoredCarbonRelease
-  (probabilistic-measurement california:StoredCarbonRelease "t/ha*year"
+  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
     [100 180] california:VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
     [50 100]  california:HighRelease
     [25 50]   california:ModerateRelease
