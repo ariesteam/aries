@@ -9,8 +9,8 @@
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
     <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
-    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
     <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
@@ -18,16 +18,16 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
-     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl">
         <rdfs:label rdf:datatype="&xsd;string">Surface Water Sink</rdfs:label>
@@ -50,8 +50,8 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
-    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
     <owl:AnnotationProperty rdf:about="&rdfs;comment"/>
+    <owl:AnnotationProperty rdf:about="&rdfs;label"/>
     
 
 
@@ -400,7 +400,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualWaterFlow">
         <rdfs:subClassOf rdf:resource="&eserv;ActualFlow"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -410,7 +410,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ActualWaterSink">
         <rdfs:label rdf:datatype="&xsd;string">Locations where surface water transitions into groundwater (via infiltration) or atmospheric water (via evapotranspiration), or where groundwater transitions into surface water (via springs or baseflow).</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ActualSink"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -469,7 +469,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AgriculturalSurfaceWaterUse">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AgriculturalWaterUse"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -479,7 +479,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AgriculturalSurfaceWaterUseClass">
         <rdfs:label rdf:datatype="&xsd;string">Agricultural Surface Water Use</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AgriculturalWaterUse"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -488,7 +488,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AgriculturalWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -514,7 +514,6 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualPrecipitation">
         <rdfs:subClassOf rdf:resource="&habitat;Rainfall"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -523,7 +522,6 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualPrecipitationDryYear">
         <rdfs:subClassOf rdf:resource="&habitat;Rainfall"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -532,7 +530,6 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualPrecipitationWetYear">
         <rdfs:subClassOf rdf:resource="&habitat;Rainfall"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -540,7 +537,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualRecharge -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualRecharge">
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -549,7 +546,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualRunoff">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Runoff"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -557,7 +554,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualRunoffSummed -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualRunoffSummed">
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -581,7 +578,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualWellCapacity -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AnnualWellCapacity">
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
     </owl:Class>
     
@@ -591,7 +588,6 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AquaculturalSurfaceWaterUse">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AquaculturalWaterUse"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
     </owl:Class>
     
 
@@ -600,7 +596,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#AquaculturalWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -625,7 +621,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Baseflow">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -820,7 +816,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Evaporation">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -829,7 +825,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Evapotranspiration">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -838,7 +834,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#EvapotranspirationClass">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -945,7 +941,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#GroundwaterSink">
         <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -1508,7 +1504,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IncomingWaterTransfer">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InterbasinWaterTransfer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -1534,7 +1530,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IndustrialSurfaceWaterUse">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IndustrialWaterUseCode"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -1543,7 +1539,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IndustrialWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -1609,7 +1605,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUse">
         <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -1709,7 +1705,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#LivestockWaterUse">
         <rdfs:subClassOf rdf:resource="&habitat;SocioEconomicQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#IrrigationWaterUse"/>
     </owl:Class>
     
 
@@ -2199,7 +2195,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#MaximumWaterSink">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSink"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:comment rdf:datatype="&xsd;string">Any location where surface water can transition into groundwater (via percolation/recharge) or atmospheric water (via evapotranspiration), or where groundwater can transition into surface water (via springs or baseflow).</rdfs:comment>
     </owl:Class>
     
@@ -2947,7 +2943,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#OilAndGasSurfaceWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -2964,7 +2960,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#OutgoingWaterTransfer">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#InterbasinWaterTransfer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3009,7 +3005,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Percolation">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3122,7 +3118,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterFlow">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleFlow"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:comment rdf:datatype="&xsd;string">The movement of surface water via topography and stream networks, and groundwater via appropriate groundwater modeling, but not accounting for sinks (i.e., transitions between surface and groundwater, or evapotranspirative losses of surface water)</rdfs:comment>
     </owl:Class>
     
@@ -3132,7 +3128,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterSupply">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleSource"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:comment rdf:datatype="&xsd;string">Atmospheric, ground, or surface water transitions that result in an initial source location for surface or groundwater, that are capable of providing water to human beneficiaries when accounting for surface or groundwater flow paths but not accounting for sinks (i.e., potentially can provide water to human beneficiaries).</rdfs:comment>
     </owl:Class>
     
@@ -3150,7 +3146,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#PossibleWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;PossibleUse"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:comment rdf:datatype="&xsd;string">Water actually reaching a user, but not accounting for the activity of sinks.</rdfs:comment>
     </owl:Class>
     
@@ -3245,7 +3241,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ResidentialSurfaceWaterUse">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ResidentialWaterUse"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3262,7 +3258,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#ResidentialWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3279,7 +3275,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#Runoff">
         <rdfs:subClassOf rdf:resource="&habitat;ClimateQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3305,7 +3301,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SatisfiedWaterDemand">
         <rdfs:label rdf:datatype="&xsd;string">The portion of demand for water satisfied by extraction of surface or groundwater.</rdfs:label>
         <rdfs:subClassOf rdf:resource="&eserv;ActualUse"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3396,7 +3392,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SoilInfiltration">
         <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3406,7 +3402,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SoilInfiltrationClass">
         <rdfs:label rdf:datatype="&xsd;string">Soil Infiltration</rdfs:label>
         <rdfs:subClassOf rdf:resource="&ecology;MaterialFlow"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -3432,7 +3428,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SpringDischarge">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3539,7 +3535,7 @@
     <!-- http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceDiversionCapacity -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceDiversionCapacity">
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&DOLCE-Lite;dependent-place"/>
     </owl:Class>
     
@@ -3581,7 +3577,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceWaterSink">
         <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3590,7 +3586,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#SurfaceWaterSinkClass">
         <rdfs:subClassOf rdf:resource="&eserv;AbsoluteSink"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3672,7 +3668,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TotalSurfaceWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3681,7 +3677,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TourismRelatedWaterUse">
         <rdfs:subClassOf rdf:resource="&eserv;HumanConsumer"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3690,7 +3686,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#TransmissionLoss">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -3772,7 +3768,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#UsedWaterSupply">
         <rdfs:subClassOf rdf:resource="&eserv;ActualSource"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:comment rdf:datatype="&xsd;string">Atmospheric, ground, or surface water transitions that result in an initial source location for surface or groundwater, that are capable of providing water to human beneficiaries when accounting for surface or groundwater flow paths and sinks (i.e., actually provide water to human beneficiaries).</rdfs:comment>
     </owl:Class>
     
@@ -4031,7 +4027,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterDemand">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalUse"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:comment rdf:datatype="&xsd;string">Total demand for water (most realistically portrayed as total demand, but can be split into surface and groundwater).</rdfs:comment>
     </owl:Class>
     
@@ -4042,7 +4038,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterSupply">
         <rdfs:subClassOf rdf:resource="&eserv;ServiceObservable"/>
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -4067,7 +4063,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterTurbidity">
         <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 
@@ -4085,7 +4081,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#WaterYield">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
     </owl:Class>
     
 

@@ -97,7 +97,7 @@
     [:<  400] sanPedro:LowMeanAnnualPrecipitation))
 
 (defmodel veg-soil-sequestration sanPedro:VegetationAndSoilCarbonSequestration
-  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+  (probabilistic-measurement sanPedro:VegetationAndSoilCarbonSequestration "t/ha*year"
     [3 4.6]  sanPedro:VeryHighSequestration
     [2 3]    sanPedro:HighSequestration
     [1.5 2]  sanPedro:ModerateSequestration
@@ -161,7 +161,7 @@
     #{5 6} sanPedro:LowFireThreat))
 
 (defmodel veg-storage sanPedro:VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
+  (probabilistic-measurement sanPedro:VegetationCarbonStorage "t/ha" 
     [75 100] sanPedro:VeryHighVegetationStorage
     [20  75] sanPedro:HighVegetationStorage
     [10  20] sanPedro:ModerateVegetationStorage
@@ -171,13 +171,13 @@
 
 (defmodel vegetation-carbon-storage sanPedro:VegetationCStorage 
   (bayesian sanPedro:VegetationCStorage 
-    :import  "aries.core::CarbonSinkSanPedro.xdsl"
+    :import  "aries.core::trained/CarbonSinkSanPedro.xdsl"
     :context [annual-precipitation percent-canopy-cover vegetation-type]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
 (defmodel soil-storage sanPedro:SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha" 
+  (probabilistic-measurement sanPedro:SoilCarbonStorage "t/ha" 
     [100  150]    sanPedro:VeryHighSoilStorage
     [ 70  100]    sanPedro:HighSoilStorage
     [ 50   70]    sanPedro:ModerateSoilStorage
@@ -187,7 +187,7 @@
 
 (defmodel soil-carbon-storage sanPedro:SoilCStorage 
   (bayesian sanPedro:SoilCStorage 
-    :import  "aries.core::CarbonSinkSanPedro.xdsl"
+    :import  "aries.core::trained/CarbonSinkSanPedro.xdsl"
     :context [soil-ph slope oxygen percent-canopy-cover vegetation-type]
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
@@ -212,7 +212,7 @@
     [0 0.02] sanPedro:NoStorage))
 
 (defmodel stored-carbon-release sanPedro:StoredCarbonRelease
-  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
+  (probabilistic-measurement sanPedro:StoredCarbonRelease "t/ha*year"
     [12 90]  sanPedro:VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
     [9 12]   sanPedro:HighRelease
     [6 9]    sanPedro:ModerateRelease
@@ -222,7 +222,7 @@
 
 (defmodel sink sanPedro:CarbonSinkValue   
   (bayesian sanPedro:CarbonSinkValue 
-    :import  "aries.core::CarbonSinkSanPedro.xdsl"
+    :import  "aries.core::trained/CarbonSinkSanPedro.xdsl"
     :context [veg-soil-storage fire-threat]
     :keep    [StoredCarbonRelease]
     :result  stored-carbon-release))

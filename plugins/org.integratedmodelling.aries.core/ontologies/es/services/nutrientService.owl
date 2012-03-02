@@ -6,32 +6,33 @@
     <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
     <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
     <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
-    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
     <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
+    <!ENTITY protege "http://protege.stanford.edu/plugins/owl/protege#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY nutrientService "http://www.integratedmodelling.org/ks/es/nutrientService.owl#" >
-    <!ENTITY soilretention "http://www.integratedmodelling.org/ks/es/soilRetentionService#" >
-    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
+    <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY soilretention "http://www.integratedmodelling.org/ks/es/soilRetentionService#" >
     <!ENTITY soilRetentionService "http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl"
-     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
-     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
-     xmlns:soilretention="http://www.integratedmodelling.org/ks/es/soilRetentionService#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
-     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
-     xmlns:nutrientService="http://www.integratedmodelling.org/ks/es/nutrientService.owl#"
      xmlns:soilRetentionService="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#"
-     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
      xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#">
-    <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl">
+     xmlns:nutrientService="http://www.integratedmodelling.org/ks/es/nutrientService.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:protege="http://protege.stanford.edu/plugins/owl/protege#"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:soilretention="http://www.integratedmodelling.org/ks/es/soilRetentionService#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/es/nutrientService.owl">
+        <owl:versionIRI rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientService.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/es/soilRetentionService"/>
     </owl:Ontology>
     
@@ -120,13 +121,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PAgriculturalRelease"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NAgriculturalRelease"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NAgriculturalRelease"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PAgriculturalRelease"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Intensive agriculture can lead to both soil erosion (producing sediment runoff) and nutrients in runoff from excess fertilizer.  Weller et al. (1996) has P loading coefficients for agricultural lands in rural watersheds for the basin.</rdfs:comment>
@@ -236,13 +237,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticRelease"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticRelease"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Forests may naturally export some nutrients.  Weller et al. (1996) has P loading coefficients for forests in rural watersheds for the basin.</rdfs:comment>
@@ -410,13 +411,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ExposedSoil"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ImperviousSurface"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ImperviousSurface"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#ExposedSoil"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Movement of nitrate (NO3), typically from the soil to aquatic systems.</rdfs:comment>
@@ -489,30 +490,6 @@
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientSaturation"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentTrapping"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Runoff"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication"/>
             </owl:Restriction>
@@ -531,8 +508,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NutrientSaturation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -544,19 +521,43 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="&habitat;PrimaryProductivity"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Runoff"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentTrapping"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&habitat;PrimaryProductivity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">An ecosystem&#39;s ability to take up nutrients.</rdfs:comment>
@@ -613,37 +614,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentTrapping"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="&habitat;PrimaryProductivity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Runoff"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -660,18 +631,6 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Runoff"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PBioticRelease"/>
             </owl:Restriction>
@@ -679,7 +638,49 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&habitat;PrimaryProductivity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanPApplication"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#HumanNApplication"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NBioticRelease"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#AquaticTrophicStatus"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#SedimentTrapping"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">An ecosystem&#39;s ability to retain nutrients.</rdfs:comment>
@@ -875,8 +876,14 @@
         <rdfs:subClassOf rdf:resource="&ecology;MaterialEnergyFlow"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilretention;leadsToMore"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NRunoff"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Snowmelt"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -887,20 +894,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilretention;leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NRunoff"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="&soilretention;Amount"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Snowmelt"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Surface flow of water across the landscape after falling as precipitation.</rdfs:comment>
@@ -1014,13 +1015,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;has-quality"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#NUrbanRelease"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#PUrbanRelease"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1128,8 +1129,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;NutrientRetention"/>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Farmers"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1140,8 +1141,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;Farmers"/>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;NutrientRetention"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Soils that have enough fertility to support the growth of desirable types of vegetation (i.e., agriculture, forests, ornamental landscapes).</rdfs:comment>
@@ -1191,14 +1192,14 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:allValuesFrom rdf:resource="&nutrientService;NutrientRemoval"/>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;PublicWaterSupplyUsers"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;PublicWaterSupplyUsers"/>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="&nutrientService;NutrientRemoval"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1210,7 +1211,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;Recreationists"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Farmers"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1221,14 +1222,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;Farmers"/>
+                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
+                <owl:allValuesFrom rdf:resource="&nutrientService;NutrientAssimilationUptake"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasProvision"/>
-                <owl:allValuesFrom rdf:resource="&nutrientService;NutrientAssimilationUptake"/>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Recreationists"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Aquatic systems that have nutrient concentrations at or near their desirable levels.  While some aquatic systems are naturally eutrophic, others become eutrophic through addition of excess nutrients.  The ecosystem service of nutrient regulation helps to prevent this undesirable condition.</rdfs:comment>
@@ -1263,14 +1264,14 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemService"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;Food"/>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;EutrophicationPrevention"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;Aesthetics"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1282,7 +1283,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;Health"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Aesthetics"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1293,8 +1294,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;EutrophicationPrevention"/>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Health"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&nutrientService;Water"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1307,12 +1314,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
                 <owl:someValuesFrom rdf:resource="&nutrientService;FertileSoils"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="&nutrientService;Water"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Nutrient concentrations that are maintained within acceptable limits.</rdfs:comment>
@@ -1410,13 +1411,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Snowmelt"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterTemperature"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1428,7 +1429,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#leadsToChanged"/>
-                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#Snowmelt"/>
+                <owl:someValuesFrom rdf:resource="http://www.integratedmodelling.org/ks/es/nutrientEcology.owl#WaterpH"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1442,5 +1443,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1799) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
 

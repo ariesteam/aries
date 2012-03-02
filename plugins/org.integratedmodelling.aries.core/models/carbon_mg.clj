@@ -111,7 +111,7 @@
 ;; Bayesian source model
 (defmodel source CarbonSourceValue
   (bayesian CarbonSourceValue
-    :import   "aries.core::CarbonSourceMg.xdsl"
+    :import   "aries.core::trained/CarbonSourceMg.xdsl"
     :context  [percent-canopy-cover summer-high-winter-low soil-cn-ratio degradation-status]
     :required [SummerHighWinterLow]
     :keep     [VegetationAndSoilCarbonSequestration]
@@ -167,7 +167,7 @@
 
 (defmodel vegetation-carbon-storage VegetationCStorage
   (bayesian VegetationCStorage
-    :import   "aries.core::CarbonSinkMg.xdsl"
+    :import   "aries.core::trained/CarbonSinkMg.xdsl"
     :context  [percent-canopy-cover summer-high-winter-low degradation-status population-density]
     :required [SummerHighWinterLow]
     :keep     [VegetationCarbonStorage]
@@ -193,7 +193,7 @@
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage
-    :import   "aries.core::CarbonSinkMg.xdsl"
+    :import   "aries.core::trained/CarbonSinkMg.xdsl"
     :context  [soil-cn-ratio degradation-status soil-ph slope oxygen percent-canopy-cover]
     :required [SummerHighWinterLow]
     :keep     [SoilCarbonStorage]
@@ -226,7 +226,7 @@
 
 (defmodel sink CarbonSinkValue
   (bayesian CarbonSinkValue 
-    :import   "aries.core::CarbonSinkMg.xdsl"
+    :import   "aries.core::trained/CarbonSinkMg.xdsl"
     :context  [veg-soil-storage deforestation-risk]
     :required [SummerHighWinterLow]
     :keep     [StoredCarbonRelease]

@@ -99,7 +99,7 @@
 
 ;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration vermont:VegetationAndSoilCarbonSequestration
-  (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+  (probabilistic-measurement vermont:VegetationAndSoilCarbonSequestration "t/ha*year"
     [5 9]      vermont:VeryHighSequestration
     [4 5]      vermont:HighSequestration
     [3 4]      vermont:ModerateSequestration
@@ -128,7 +128,7 @@
 ;; from land conversion and fire).
 
 (defmodel veg-storage vermont:VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha"
+  (probabilistic-measurement vermont:VegetationCarbonStorage "t/ha"
     [100 300] vermont:VeryHighVegetationStorage ; High value bound from Smith et al. (2006); check with local experts.
     [50 100]  vermont:HighVegetationStorage
     [25 50]   vermont:ModerateVegetationStorage
@@ -144,7 +144,7 @@
     :result   veg-storage))
 
 (defmodel soil-storage vermont:SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha"
+  (probabilistic-measurement vermont:SoilCarbonStorage "t/ha"
     [60 100] vermont:VeryHighSoilStorage  ; High value bound from Smith et al. (2006); check with local experts.
     [35 60]  vermont:HighSoilStorage
     [10 35]  vermont:ModerateSoilStorage
@@ -175,7 +175,7 @@
     [0 0.02]  vermont:NoStorage))
 
 (defmodel stored-carbon-release vermont:StoredCarbonRelease
-  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
+  (probabilistic-measurement vermont:StoredCarbonRelease "t/ha*year"
     [75 200] vermont:VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
     [30 75]  vermont:HighRelease
     [15 30]  vermont:ModerateRelease

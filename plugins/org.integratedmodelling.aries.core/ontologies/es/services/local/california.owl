@@ -52,7 +52,8 @@
 
     <owl:Class rdf:about="&california;ActualEvapotranspirationClass">
         <rdfs:subClassOf rdf:resource="&habitat;ClimateQuality"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -152,7 +153,7 @@
 
     <owl:Class rdf:about="&california;GreenInfrastructureStorage">
         <rdfs:subClassOf rdf:resource="&floodService;FloodStorage"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
+        <rdfs:subClassOf rdf:resource="&representation;Length"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -723,6 +724,8 @@
 
     <owl:Class rdf:about="&california;StoredCarbonRelease">
         <rdfs:subClassOf rdf:resource="&eserv;TheoreticalSource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -740,6 +743,7 @@
     <owl:Class rdf:about="&california;VegetationAndSoilCarbonSequestration">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -872,7 +876,6 @@
 
     <owl:Class rdf:about="&california;VeryLowEvapotranspiration">
         <rdfs:subClassOf rdf:resource="&california;ActualEvapotranspirationClass"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 

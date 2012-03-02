@@ -172,21 +172,21 @@
     [ 0  30] sanPedro:LowEvapotranspiration))
 
 (defmodel infiltration sanPedro:SoilInfiltrationClass
-  (probabilistic-measurement waterSupplyService:SoilInfiltrationClass  "mm"
+  (probabilistic-measurement sanPedro:SoilInfiltrationClass  "mm"
     [10 30] sanPedro:HighInfiltration
     [ 5 10] sanPedro:ModerateInfiltration
     [ 0  5] sanPedro:LowInfiltration))
 
 (defmodel et-sink Evapotranspiration
   (bayesian Evapotranspiration
-    :import   "aries.core::SurfaceWaterSinkSanPedro.xdsl"
+    :import   "aries.core::/trained/SurfaceWaterSinkSanPedro.xdsl"
     :context  [annual-temperature vegetation-type percent-canopy-cover]
     :keep     [sanPedro:EvapotranspirationClass]
     :result   evapotranspiration))
 
 (defmodel infiltration-sink sanPedro:SoilInfiltration
   (bayesian sanPedro:SoilInfiltration
-    :import   "aries.core::SurfaceWaterSinkSanPedro.xdsl"
+    :import   "aries.core::trained/SurfaceWaterSinkSanPedro.xdsl"
     :context  [stream-channel mountain-front]
     :keep     [sanPedro:SoilInfiltrationClass]
     :result   infiltration))

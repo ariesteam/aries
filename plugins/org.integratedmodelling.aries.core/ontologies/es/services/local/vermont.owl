@@ -48,7 +48,6 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#AnnualPrecipitationClass">
         <rdfs:subClassOf rdf:resource="&habitat;Precipitation"/>
-        <rdfs:subClassOf rdf:resource="&representation;Volume"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -365,6 +364,8 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCarbonStorage">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -402,6 +403,7 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonSequestration">
         <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -410,6 +412,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationAndSoilCarbonStorageClass">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -427,6 +430,8 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage">
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -548,14 +553,6 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Wetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonVegetationType"/>
     </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
-
-    <rdf:Description rdf:about="&thinklab-core;OrderedRangeMapping">
-        <rdfs:subClassOf rdf:resource="&eserv;EcosystemSupportedResource"/>
-    </rdf:Description>
 </rdf:RDF>
 
 

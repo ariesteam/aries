@@ -133,7 +133,7 @@
 ;;    0                    NoAnnualSedimentSource))
 
 (defmodel sediment-source-value-annual puget:AnnualSedimentSourceClass
-  (probabilistic-measurement AnnualSedimentSourceClass "t/ha"
+  (probabilistic-measurement puget:AnnualSedimentSourceClass "t/ha"
     [100   300]    puget:HighAnnualSedimentSource
     [ 30   100]    puget:ModerateAnnualSedimentSource
     [  0.01 30]    puget:LowAnnualSedimentSource 
