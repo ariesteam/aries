@@ -69,8 +69,8 @@
     [ 0   5] NoNaturalBeauty))
 
 ;; source bayesian model                 
-(defmodel source AestheticViewProvision
-  (bayesian AestheticViewProvision 
+(defmodel source ViewSource
+  (bayesian ViewSource
     :import  "aries.core::ViewSourcePuget.xdsl"
     :context [mountain lake ocean]
     :keep    [TheoreticalNaturalBeauty]
@@ -186,7 +186,7 @@
 
 (defmodel view AestheticViewsheds
   (span LineOfSight 
-        AestheticViewProvision
+        ViewSource
         ViewUse
         ViewSink
         nil
@@ -199,7 +199,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 9 ; Runs very slowly but to completion at
+        :downscaling-factor 4 ; Runs very slowly but to completion at
                               ; 4.  Start at 9 then run at 4 when I
                               ; can let my machine run overnight/the weekend.
         :rv-max-states      10

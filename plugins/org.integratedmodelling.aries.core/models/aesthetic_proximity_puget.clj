@@ -119,8 +119,8 @@
     [ 5  25] LowProximityPotential
     [ 0   5] NoProximityPotential))
 
-(defmodel source AestheticProximityProvision
-  (bayesian AestheticProximityProvision
+(defmodel source ProximitySource
+  (bayesian ProximitySource
     :import  "aries.core::ProximitySourcePuget.xdsl"
     :context [lakefront riverfront beach forest woody-wetland
               emergent-wetland farmland park crime-potential
@@ -203,14 +203,14 @@
 
 (defmodel proximity AestheticProximity
   (span Proximity
-        AestheticProximityProvision
+        ProximitySource
         ProximityUse
         ProximitySink
         nil
         nil
-        :source-threshold   40.0  ; Excludes LowProximityPotential
-        :sink-threshold     0.0   ; Deterministic as 0.0 or 50.0 based on presence of highways
-        :use-threshold      0.2   ; Excludes HomeownerProximityUseAbsent
+        :source-threshold   20.0
+        :sink-threshold     1.0
+        :use-threshold      0.15
         :trans-threshold    1.0
         :source-type        :infinite
         :sink-type          :infinite

@@ -71,8 +71,8 @@
     [ 0   1] NoNaturalBeauty))
 
 ;; source bayesian model                 
-(defmodel source AestheticViewProvision
-  (bayesian AestheticViewProvision 
+(defmodel source ViewSource
+  (bayesian ViewSource
     :import  "aries.core::ViewSourceSanPedro.xdsl"
     :context [mountain scenic-vegetation]
     :keep    [TheoreticalNaturalBeauty]
@@ -186,7 +186,7 @@
 
 (defmodel view AestheticViewsheds
   (span LineOfSight 
-        AestheticViewProvision
+        ViewSource
         ViewUse
         ViewSink
         nil

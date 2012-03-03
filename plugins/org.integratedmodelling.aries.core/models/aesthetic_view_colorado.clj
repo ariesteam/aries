@@ -91,8 +91,8 @@
     [ 0   1] NoNaturalBeauty))
 
 ;; source bayesian model                 
-(defmodel source AestheticViewProvision
-  (bayesian AestheticViewProvision 
+(defmodel source ViewSource
+  (bayesian ViewSource 
     :import  "aries.core::ViewSourceColorado.xdsl"
     :context [lake peaks conifer aspen high-grass-shrubs low-grass-shrubs]
     :keep    [TheoreticalNaturalBeauty]
@@ -100,8 +100,8 @@
 
 ;; Source bayesian model, simplified. Consider using when you can look
 ;; at Gary's plain-English description of the flow models.              
-;;(defmodel source AestheticViewProvision
-;;  (bayesian AestheticViewProvision 
+;;(defmodel source ViewSource
+;;  (bayesian ViewSource
     ;;    :import  "aries.core::ViewSourceColoradoSimplified.xdsl"
     ;;    :context [lake peaks scenic-vegetation]
     ;;    :keep    [TheoreticalNaturalBeauty]
@@ -203,7 +203,7 @@
 
 (defmodel view AestheticViewsheds
   (span LineOfSight 
-        AestheticViewProvision
+        ViewSource
         ViewUse
         ViewSink
         nil

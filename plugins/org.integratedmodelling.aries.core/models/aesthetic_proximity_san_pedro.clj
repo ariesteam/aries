@@ -126,8 +126,8 @@
     [ 5  25] LowProximityPotential
     [ 0   5] NoProximityPotential))
 
-(defmodel source AestheticProximityProvision
-  (bayesian AestheticProximityProvision
+(defmodel source ProximitySource
+  (bayesian ProximitySource
     :import  "aries.core::ProximitySourceSanPedro.xdsl"
     :context [forest farmland grassland desert-scrub park fire-threat formal-protection riparian-wetland area]
     :keep    [TheoreticalProximitySource]
@@ -207,7 +207,7 @@
 
 (defmodel proximity AestheticProximity
   (span Proximity
-        AestheticProximityProvision
+        ProximitySource
         ProximityUse
         ProximitySink
         nil

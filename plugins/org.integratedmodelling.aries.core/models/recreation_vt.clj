@@ -95,10 +95,8 @@
     [ 0  25]   aestheticService:NoNaturalBeauty))
 
 ;; source bayesian model                 
-(defmodel source aestheticService:AestheticEnjoymentProvision
-  "This one will harmonize the context, then retrieve and run the BN with the given
-   evidence, and produce a new observation with distributions for the requested nodes."
-  (bayesian aestheticService:AestheticEnjoymentProvision 
+(defmodel source aestheticService:ViewSource
+  (bayesian aestheticService:ViewSource
     :import  "aries.core::RecreationSourceVtView.xdsl"
     :context [lake river-stream mountain open-space]
     :keep    [aestheticService:TheoreticalNaturalBeauty]
@@ -226,7 +224,7 @@
 ;;   flow model, which moves people toward those points.    
 ;;(defmodel view aestheticService:AestheticView
 ;;  (span aestheticService:LineOfSight 
-;;        aestheticService:AestheticViewProvision
+;;        aestheticService:ViewSource
 ;;        aestheticService:ViewUse
 ;;        aestheticService:ViewSink
 ;;        nil
