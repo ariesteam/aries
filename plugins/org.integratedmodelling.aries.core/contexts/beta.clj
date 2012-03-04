@@ -38,6 +38,10 @@
    256
    "EPSG:4326 POLYGON((15.544968 40.455699, 15.919189 40.190414, 16.11557 40.336077, 15.770874 40.605612, 15.544968 40.455699))"))
 
+;; The two contexts below are for running viewshed models in Puget Sound.
+;; They're not included in the Puget context to reduce the time needed
+;; to pload aries.
+
 (defcontext view-cascades
   ""
   (grid
