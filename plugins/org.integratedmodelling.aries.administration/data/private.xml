@@ -1114,6 +1114,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <observation:hasObservable>
       <infrastructure:Railway/>
     </observation:hasObservable>
+    <metadata:hasPriority>-5</metadata:hasPriority>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -1301,6 +1302,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>ontario:park_infrastructure_alg</geospace:hasCoverageId>
+        <geospace:hasNodataValue>255</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
