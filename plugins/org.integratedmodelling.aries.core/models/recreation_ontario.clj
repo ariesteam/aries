@@ -19,7 +19,7 @@
 ;;;
 ;;; Recreation model for Ontario
 ;;;
-;;; Valid Contexts: core.contexts.ontario/*
+;;; Valid Contexts: core.contexts.ontario/algonquin-wgs84
 ;;;
 ;;;-------------------------------------------------------------------
 
@@ -51,8 +51,8 @@
 (defmodel mountain aestheticService:Mountain
   "Classifies elevation data into three levels of service provision."
   (classification (measurement geophysics:Altitude "m")
-    [1000 8850]   aestheticService:LargeMountain
-    [ 350 1000]   aestheticService:SmallMountain
+    [540 8850]   aestheticService:LargeMountain
+    [500  540]   aestheticService:SmallMountain
     :otherwise    aestheticService:NoMountain))
 
 ;;ontario:hydrography_alg
@@ -62,7 +62,7 @@
     0            RiverStreamAbsent
     :otherwise   RiverStreamPresent))
 
-;; FIX ME: need to add this data to geoserver
+;;ontario:lakes_alg
 (defmodel lake aestheticService:Lake
   "Identifies the presence of a lake"
   (classification (binary-coding geofeatures:Lake)
@@ -105,17 +105,21 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(declare transportation-energy-infrastructure-code
+(declare clearcuts
+         transportation-energy-infrastructure-code
          transportation-energy-infrastructure
-         clearcuts)
+         park-infrastructure)
 
 ;;ontario:lulc2000_alg
-(defmodel clearcuts Clearcuts
+(defmodel clearcuts aestheticService:Clearcuts
    "Uses MNR LULC data to identify open space of varying classes."
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
-    #{7 8}       ClearcutsPresent
-    :otherwise   ClearcutsAbsent))  
+    #{7 8}       aestheticService:ClearcutsPresent
+    :otherwise   aestheticService:ClearcutsAbsent))  
 
+;;ontario:roads_alg
+;;ontario:utility_lines_alg
+;;ontario:railway_alg
 (defmodel transportation-energy-infrastructure-code TransportationEnergyInfrastructureCode
   (binary-coding TransportationEnergyInfrastructureCode
     :context [(binary-coding infrastructure:Road)
@@ -131,6 +135,14 @@
   (classification transportation-energy-infrastructure-code
     1 TransportationEnergyInfrastructurePresent
     0 TransportationEnergyInfrastructureAbsent))
+
+;;ontario:park_infrastructure_alg
+(defmodel park-infrastructure infrastructure:ParkInfrastructureCode
+  "Use data supplied by MNR to identify locations within Algonquin Provincial Park where Park-related infrastructure is located."
+  (classification (binary-coding infrastructure:ParkInfrastructure)
+    1            infrastructure:ParkInfrastructurePresent
+    :otherwise   infrastructure:ParkInfrastructureAbsent))
+
 
 
 ;;;-------------------------------------------------------------------
