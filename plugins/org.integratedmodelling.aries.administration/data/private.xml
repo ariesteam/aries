@@ -1256,6 +1256,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>ontario:lulc2000_alg</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1294,15 +1295,15 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:BinaryCoding id="park_infrastructure_alg">
+  <measurement:NumericCoding id="park_infrastructure_alg">
     <observation:hasObservable>
       <infrastructure:ParkInfrastructure/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>ontario:park_infrastructure_alg</geospace:hasCoverageId>
-        <geospace:hasNodataValue>255</geospace:hasNodataValue>
+        <geospace:hasCoverageId>park_infrastructure_alg</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1316,7 +1317,31 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
+  </measurement:NumericCoding>
+
+  <measurement:BinaryCoding id="park_infrastructure_alg">
+    <observation:hasObservable>
+      <infrastructure:ParkInfrastructure/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:park_infrastructure_alg</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>877</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>771</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5120040.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307860.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding> 
 
   <measurement:Ranking id="canopy_alg">
     <observation:hasObservable>
@@ -1350,6 +1375,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>ontario:hydrography_alg</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1638,6 +1664,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>ontario:dem10m_alg</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -1719,6 +1746,30 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasLonLowerBound>175998.586</geospace:hasLonLowerBound>
         <geospace:hasLatUpperBound>5119918.498</geospace:hasLatUpperBound>
         <geospace:hasLonUpperBound>307773.586</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="lakes_alg">
+    <observation:hasObservable>
+      <geofeatures:Lake/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+       <geospace:hasCoverageId>ontario:lakes_alg</geospace:hasCoverageId>
+       <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
