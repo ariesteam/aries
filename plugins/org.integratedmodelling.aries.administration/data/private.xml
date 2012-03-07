@@ -180,6 +180,31 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+<!-- Dummy layer to hopefully enable proximity model runs in the
+     Noosack River watershed in Washington State.-->
+<measurement:Ranking id="housing_value_noosack">
+  <observation:hasObservable>
+    <economics:AppraisedPropertyValue />
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>puget:housing_value_noosack</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>1425</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>247</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>48.5438171</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-123.418334</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>49.0418171</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-120.564334</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
   <measurement:Measurement id="aquacultural_use_la">
     <observation:hasObservable>
       <waterSupplyService:AquaculturalSurfaceWaterUse />
