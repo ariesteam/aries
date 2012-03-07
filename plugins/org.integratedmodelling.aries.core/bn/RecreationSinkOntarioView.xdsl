@@ -11,20 +11,18 @@
 			<state id="ClearcutsAbsent" />
 			<probabilities>0.05 0.95</probabilities>
 		</cpt>
-		<cpt id="ParkDevelopment">
-			<state id="HighIntensityParkDevelopment" />
-			<state id="ModerateIntensityParkDevelopment" />
-			<state id="LowIntensityParkDevelopment" />
-			<state id="NoParkDevelopment" />
-			<probabilities>0.002 0.008999999999999999 0.053 0.9360000000000001</probabilities>
+		<cpt id="ParkInfrastructure">
+			<state id="ParkInfrastructurePresent" />
+			<state id="ParkInfrastructureAbsent" />
+			<probabilities>0.05 0.95</probabilities>
 		</cpt>
 		<cpt id="VisualBlight">
 			<state id="HighBlight" />
 			<state id="ModerateBlight" />
 			<state id="LowBlight" />
 			<state id="NoBlight" />
-			<parents>ParkDevelopment Clearcuts TransportationEnergyInfrastructure</parents>
-			<probabilities>1 0 0 0 0.9 0.1 0 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.3 0.6 0.1 0 0.1 0.6 0.3 0 0.1 0.6 0.3 0 0.1 0.4 0.5 0 0.1 0.4 0.5 0 0.1 0.2 0.7 0 0.1 0.2 0.7 0 0 0.2 0.8 0 0 0.2 0.8 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0 1</probabilities>
+			<parents>ParkInfrastructure Clearcuts TransportationEnergyInfrastructure</parents>
+			<probabilities>0.1 0.4 0.5 0 0.1 0.2 0.7 0 0.1 0.2 0.7 0 0 0.2 0.8 0 0 0.2 0.8 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
@@ -37,8 +35,8 @@
 				<position>482 365 550 391</position>
 				<barchart active="true" width="190" height="54" />
 			</node>
-			<node id="ParkDevelopment">
-				<name>ParkDevelopment</name>
+			<node id="ParkInfrastructure">
+				<name>ParkInfrastructure</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
