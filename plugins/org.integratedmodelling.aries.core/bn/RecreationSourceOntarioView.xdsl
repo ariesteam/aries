@@ -15,24 +15,23 @@
 			<state id="NotOpenLand" />
 			<probabilities>0.07000000000000001 0.51 0.1 0.25 0.07000000000000001</probabilities>
 		</cpt>
-		<cpt id="WaterView">
-			<state id="HighQualityWaterView" />
-			<state id="LowQualityWaterView" />
-			<state id="NoWaterView" />
-			<probabilities>0.04 0.04 0.92</probabilities>
+		<cpt id="Lake">
+			<state id="LakePresent" />
+			<state id="LakeAbsent" />
+			<probabilities>0.25 0.75</probabilities>
 		</cpt>
-		<cpt id="LandmarkView">
-			<state id="LandmarkView" />
-			<state id="NotLandmarkView" />
-			<probabilities>0.1 0.9</probabilities>
+		<cpt id="RiverStream">
+			<state id="RiverStreamPresent" />
+			<state id="RiverStreamAbsent" />
+			<probabilities>0.25 0.75</probabilities>
 		</cpt>
 		<cpt id="TheoreticalNaturalBeauty">
 			<state id="HighNaturalBeauty" />
 			<state id="ModerateNaturalBeauty" />
 			<state id="LowNaturalBeauty" />
 			<state id="NoNaturalBeauty" />
-			<parents>OpenSpaceClass Mountain WaterView LandmarkView</parents>
-			<probabilities>0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.3 0.5 0.2 0 0.3 0.5 0.2 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.4 0.3 0.3 0 0.4 0.3 0.3 0 0.2 0.5 0.3 0 0.2 0.5 0.3 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.76 0.14 0.08 0.02 0.76 0.14 0.08 0.02 0 0.3 0.5 0.2 0 0.3 0.5 0.2 1 0 0 0 1 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.7 0.3 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.7 0.3 0 0 0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.6 0.4 0 0 0.6 0.4 0 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.4 0.5 0.1 0 0.4 0.5 0.1 0 0.7 0.2 0.1 0 0.7 0.2 0.1 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.4 0.3 0.3 0 0.4 0.3 0.3 0 0.3 0.3 0.4 0 0.3 0.3 0.4 0 0.4 0.3 0.3 0 0.4 0.3 0.3 0 0.3 0.3 0.4 0 0.3 0.3 0.4 0 0.1 0.2 0.7 0 0.1 0.2 0.7 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0.4 0.6 0 0 0.4 0.6 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0.2 0.8 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1</probabilities>
+			<parents>OpenSpaceClass Mountain RiverStream Lake</parents>
+			<probabilities>0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.5 0.4 0.1 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0.7 0.2 0.1 0 0.7 0.2 0.1 0 0.7 0.2 0.1 0 0.7 0.2 0.1 0 0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.6 0.3 0.1 0 0.4 0.3 0.3 0 0.4 0.3 0.3 0 0.4 0.3 0.3 0 0.4 0.3 0.3 0 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0.25 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0.6 0.4 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0.1 0.9</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
@@ -61,26 +60,26 @@
 				<position>120 316 243 350</position>
 				<barchart active="true" width="207" height="90" />
 			</node>
-			<node id="WaterView">
-				<name>WaterView</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>581 439 627 467</position>
-				<barchart active="true" width="270" height="72" />
-			</node>
 			<textbox>
 				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
 				<font color="000000" name="Arial" size="8" />
 				<position>877 52 1286 248</position>
 			</textbox>
-			<node id="LandmarkView">
-				<name>LandmarkView</name>
+			<node id="RiverStream">
+				<name>RiverStream</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>250 441 296 469</position>
-				<barchart active="true" width="270" height="72" />
+				<position>245 450 368 484</position>
+				<barchart active="true" width="207" height="108" />
+			</node>
+			<node id="Lake">
+				<name>Lake</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>499 453 622 487</position>
+				<barchart active="true" width="207" height="108" />
 			</node>
 		</genie>
 	</extensions>
