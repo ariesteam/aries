@@ -124,7 +124,7 @@
 ;; Bayesian sink model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-    :import   "aries.core::trained/CarbonSourcePuget.xdsl"
+    :import   "aries.core::CarbonSourcePuget.xdsl"
     :context  [hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
                percent-canopy-cover successional-stage land-selector]
     :required [LandOrSea]
