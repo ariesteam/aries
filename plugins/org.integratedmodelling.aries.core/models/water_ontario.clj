@@ -207,7 +207,7 @@
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
-;; ontario:hydrography_low
+;; ontario:streams_low
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
