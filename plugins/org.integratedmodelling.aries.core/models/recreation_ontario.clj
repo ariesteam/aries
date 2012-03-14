@@ -133,21 +133,51 @@
 
 (defmodel transportation-energy-infrastructure TransportationEnergyInfrastructure
   (classification transportation-energy-infrastructure-code
-    1 TransportationEnergyInfrastructurePresent
-    0 TransportationEnergyInfrastructureAbsent))
+    1          TransportationEnergyInfrastructurePresent
+    :otherwise TransportationEnergyInfrastructureAbsent))
 
 ;;ontario:park_infrastructure_alg
+;; still a problem here that needs to be resolved.
 (defmodel park-infrastructure infrastructure:ParkInfrastructureCode
   "Use data supplied by MNR to identify locations within Algonquin Provincial Park where Park-related infrastructure is located."
-  (classification (binary-coding infrastructure:ParkInfrastructure)
-    1            infrastructure:ParkInfrastructurePresent
-    :otherwise   infrastructure:ParkInfrastructureAbsent))
+  (binary-coding infrastructure:ParkInfrastructure))
+;;  (classification (binary-coding infrastructure:ParkInfrastructure)
+;;    1            infrastructure:ParkInfrastructurePresent
+;;    :otherwise   infrastructure:ParkInfrastructureAbsent))
+
+(defmodel view-sink-undiscretizer aestheticService:VisualBlight
+  (probabilistic-ranking aestheticService:VisualBlight
+    [50 100] aestheticService:HighBlight
+    [25  50] aestheticService:ModerateBlight
+    [ 5  25] aestheticService:LowBlight
+    [ 0   5] aestheticService:NoBlight))
+
+(defmodel sink aestheticService:ViewSink
+  "Landscape features that reduce the quality of scenic views"
+  (bayesian aestheticService:ViewSink 
+    :import  "aries.core::RecreationSinkOntarioView.xdsl"
+    :context [clearcuts transportation-energy-infrastructure transportation-energy-infrastructure-code park-infrastructure]
+    :keep    [aestheticService:VisualBlight]
+    :result  view-sink-undiscretizer))
 
 
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
 ;;;-------------------------------------------------------------------
+
+;;ontario:canoe_use_alg
+(defmodel canoe-use CanoeUse
+  "Use data from MNR park surveys where backcountry user indicated a canoe trip."
+(classification (binary-coding CanoeUse)
+  1              CanoeUsePresent
+  :otherwise     CanoeUseAbsent))
+
+;; ontario:trails_alg
+;;(defmodel trails Trails
+;;  (binary-coding infrastructure:Path))
+
+
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
@@ -157,9 +187,56 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
+;; ontario:dem10m_alg
+(defmodel altitude geophysics:Altitude
+  (measurement geophysics:Altitude "m"))
+
+(defmodel data-homeowners aestheticService:LineOfSight
+  (identification aestheticService:LineOfSight
+    :context [source canoe-use sink altitude]))
+
 ;;;-------------------------------------------------------------------
 ;;; Flow models
 ;;;-------------------------------------------------------------------
+
+(defmodel view aestheticService:AestheticViewsheds
+  (span aestheticService:LineOfSight 
+        aestheticService:ViewSource
+        recreationService:CanoeUse
+        ;;        aestheticService:ViewUse
+        aestheticService:ViewSink
+        nil
+        (geophysics:Altitude)
+        :source-threshold    5.0
+        :sink-threshold      5.0
+        :use-threshold       0.1
+        :trans-threshold     1.0
+        :source-type        :infinite
+        :sink-type          :infinite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 2
+        :rv-max-states      10
+        :animation?         false
+        ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")
+        ;; need to add additional context(s) for use
+        :context [source sink canoe-use altitude]
+        :keep    [aestheticService:TheoreticalSource
+                  aestheticService:TheoreticalSink
+                  aestheticService:TheoreticalUse
+                  aestheticService:PossibleFlow
+                  aestheticService:PossibleSource
+                  aestheticService:PossibleUse
+                  aestheticService:ActualFlow
+                  aestheticService:ActualSource
+                  aestheticService:ActualSink
+                  aestheticService:ActualUse
+                  aestheticService:InaccessibleSource
+                  aestheticService:InaccessibleSink
+                  aestheticService:InaccessibleUse
+                  aestheticService:BlockedFlow
+                  aestheticService:BlockedSource
+                  aestheticService:BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

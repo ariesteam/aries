@@ -207,7 +207,7 @@
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
-;; ontario:hydrography_low
+;; ontario:streams_low
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
@@ -226,6 +226,43 @@
 ;;;-------------------------------------------------------------------
 ;;; Flow models
 ;;;-------------------------------------------------------------------
+
+(defmodel freshwater-supply FreshwaterSupply
+  (span SurfaceWaterMovement
+        AnnualRunoff
+        ResidentialSurfaceWaterUse
+        SurfaceWaterSink
+        nil
+        (geophysics:Altitude geofeatures:River)
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    0.1
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :finite
+        :benefit-type       :rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :animation?         false
+        :save-file          (str (System/getProperty "user.home") "/freshwater_supply_ontario_data.clj")
+        :context            [annual-runoff surface-water-sink residential-surface-water-use altitude river]
+        :keep               [TheoreticalSource
+                             TheoreticalSink
+                             TheoreticalUse
+                             PossibleFlow
+                             PossibleSource
+                             PossibleUse
+                             ActualFlow
+                             ActualSource
+                             ActualSink
+                             ActualUse
+                             InaccessibleSource
+                             InaccessibleSink
+                             InaccessibleUse
+                             BlockedFlow
+                             BlockedSource
+                             BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

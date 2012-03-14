@@ -167,19 +167,19 @@
 (defmodel dam-storage floodService:DamStorage
   (measurement floodService:DamStorage "mm"))
 
-;; (defmodel annual-sediment-sink-class AnnualSedimentSinkClass
-;;   (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
-;;     [100.00 300.00] HighAnnualSedimentSink
-;;     [ 30.00 100.00] ModerateAnnualSedimentSink
-;;     [  0.01  30.00] LowAnnualSedimentSink
-;;     [  0.00   0.01] NoAnnualSedimentSink))
+(defmodel annual-sediment-sink-class AnnualSedimentSinkClass
+  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
+    [100.00 300.00] HighAnnualSedimentSink
+    [ 30.00 100.00] ModerateAnnualSedimentSink
+    [  0.01  30.00] LowAnnualSedimentSink
+    [  0.00   0.01] NoAnnualSedimentSink))
 
-;; (defmodel annual-sediment-sink AnnualSedimentSink
-;;   (bayesian AnnualSedimentSink
-;;     :import   "aries.core::SedimentSinkOntario.xdsl"
-;;     :context  []
-;;     :keep     [AnnualSedimentSinkClass]
-;;     :result   annual-sediment-sink-class))
+(defmodel annual-sediment-sink AnnualSedimentSink
+  (bayesian AnnualSedimentSink
+    :import   "aries.core::SedimentSinkOntario.xdsl"
+    :context  [stream-gradient dam-storage]
+    :keep     [AnnualSedimentSinkClass]
+    :result   annual-sediment-sink-class))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
@@ -206,6 +206,14 @@
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
+;; FIXME: This is just a dummy placeholder
+(defmodel levee infrastructure:Levee
+  (binary-coding geofeatures:River))
+
+;; FIXME: These is just a dummy placeholder
+(defmodel floodplains-code FloodplainsCode
+  (binary-coding geofeatures:River))
+
 ;;;-------------------------------------------------------------------
 ;;; Identification models
 ;;;-------------------------------------------------------------------
@@ -222,6 +230,43 @@
 ;;;-------------------------------------------------------------------
 ;;; Flow models
 ;;;-------------------------------------------------------------------
+
+(defmodel beneficial-sediment-transport BeneficialSedimentTransport
+  (span SedimentTransport
+        AnnualSedimentSource
+        PopulationDensity
+        AnnualSedimentSink ; this model is incomplete
+        nil
+        (geophysics:Altitude geofeatures:River infrastructure:Levee FloodplainsCode) ; we don't have information on floodplains or levees
+        :source-threshold   100.0
+        :sink-threshold     100.0
+        :use-threshold        0.0
+        :trans-threshold     10.0
+        :source-type        :finite
+        :sink-type          :finite
+        :use-type           :infinite
+        :benefit-type       :non-rival
+        :downscaling-factor 1
+        :rv-max-states      10
+        :animation?         false
+        ;;:save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
+        :context [annual-sediment-source annual-sediment-sink population-density altitude river levee floodplains-code]
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleSink
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

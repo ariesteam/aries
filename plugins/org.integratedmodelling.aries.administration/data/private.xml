@@ -358,7 +358,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:BinaryCoding> 
+</measurement:BinaryCoding>
 
 <!--
 <measurement:BinaryCoding id="san_pedro_hydrograph_az_ephemeral3">
@@ -1367,7 +1367,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding> 
+  </measurement:BinaryCoding>
 
   <measurement:Ranking id="canopy_alg">
     <observation:hasObservable>
@@ -1800,5 +1800,51 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+
+  <measurement:BinaryCoding id="ontario_streams_low">
+    <observation:hasObservable>
+      <geofeatures:River/>
+    </observation:hasObservable>
+    <metadata:hasPriority>-5</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:streams_low</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>5406991.704203659</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>340236.6184022885</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5526888.640798068</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>498702.0006674698</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="canoe_use_alg">
+    <observation:hasObservable>
+      <recreationService:CanoeUse/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:canoe_use_alg</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>877</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>771</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5120040.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307860.0</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
 
 </kbox>
