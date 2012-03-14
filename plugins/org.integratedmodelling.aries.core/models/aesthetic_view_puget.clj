@@ -199,7 +199,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 4 ; Runs very slowly but to completion at
+        :downscaling-factor 9 ; Runs very slowly but to completion at
                               ; 4.  Start at 9 then run at 4 when I
                               ; can let my machine run overnight/the weekend.
         :rv-max-states      10
