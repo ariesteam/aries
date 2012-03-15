@@ -181,7 +181,8 @@
   (println "Inside unpack-datasource!\nChecking datasource type..." ds)
   ;; (if (nil? ds) (throw (Exception. (str "null datasource"))))
   ;; (cond (and (.isProbabilistic ds) (.isContinuous ds))
-  (cond (instance? MemObjectContextualizedDatasource ds)
+;; this is BS (cond (instance? MemObjectContextualizedDatasource ds)
+  (cond (.isProbabilistic ds)
         (do (println "It's probabilistic and continuous.")
             (let [dists                 (.getRawData ds)
                   example-dist          (first (remove nil? dists))
@@ -199,13 +200,16 @@
                   _0_))))
 
         ;; other checks available: isCategorical isBoolean isNumeric
-        (instance? MemDoubleContextualizedDatasource ds)
-        (do (println "It's deterministic.")
-            (for [value (NaNs-to-zero (get-data ds))]
-              (fuzzy-number value 0.0)))
+;        (instance? MemDoubleContextualizedDatasource ds)
+;        (do (println "It's deterministic.")
+;            (for [value (NaNs-to-zero (get-data ds))]
+;              (fuzzy-number value 0.0)))
 
         :otherwise
-        (throw (Exception. (str "Unrecognized datasource type: " (class ds))))))
+        (do (println "It's Gary's nightmare, but it probably works anyway, because Gary only wants numbers.")
+            (for [value (NaNs-to-zero (get-data ds))]
+              (fuzzy-number value 0.0)))))
+;        (throw (Exception. (str "Unrecognized datasource type: " (class ds))))))
 
 (defn- unpack-datasource-orig
   "Returns a seq of length n of the values in ds,
