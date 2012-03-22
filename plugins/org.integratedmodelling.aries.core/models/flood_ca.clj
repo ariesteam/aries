@@ -145,9 +145,9 @@
 ;;Use NLCD here, the Vegetation Type SoCal layer provided by Mark doesn't have enough categories to cover the discretization below.
 (defmodel vegetation-type california:FloodVegetationType
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{90 95}		  california:Wetland
-    #{41 42 43 52 71} california:ForestGrasslandShrubland
-    #{21 22 23 24 82} california:DevelopedCultivated))
+    #{90 95}		     california:Wetland
+    #{41 42 43 52 71 81} california:ForestGrasslandShrubland
+    #{21 22 23 24 31 82} california:DevelopedCultivated))
 
 (defmodel percent-canopy-cover california:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)

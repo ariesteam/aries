@@ -170,9 +170,9 @@
 (defmodel vegetation-type puget:FloodVegetationType
   "Just a reclass of the NLCD land use layer"
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{90 95}          puget:Wetland
-    #{41 42 43 52 71} puget:ForestGrasslandShrubland
-    #{21 22 23 24 82} puget:DevelopedCultivated))
+    #{90 95}             puget:Wetland
+    #{41 42 43 52 71 81} puget:ForestGrasslandShrubland
+    #{21 22 23 24 31 82} puget:DevelopedCultivated))
 
 (defmodel vegetation-height puget:VegetationHeight
   (classification (measurement habitat:VegetationHeight "ft")
