@@ -36,7 +36,10 @@
                            bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology soilRetentionService)
+(namespace-ontology soilRetentionService
+  (thinklab-core:BooleanRanking
+   (LandOrSea
+    (OnLand) (NotOnLand))))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
@@ -122,6 +125,11 @@
     1                                puget:EarlySuccession
     #{21 22 23 24 25 26 27 28 40 41} puget:NoSuccession))
 
+;; Used to mask out ocean (elevation = 0)
+(defmodel land-selector LandOrSea
+  (classification  (measurement geophysics:Altitude "m")
+    [:exclusive 0 :>] OnLand))
+
 ;;Sediment source value - we have evidence for this but can't yet
 ;; train so keep this commented out for now and use the
 ;; undiscretization statement below (?)
@@ -145,9 +153,9 @@
     :import   "aries.core::trained/SedimentSourcePugetAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
-               successional-stage slope-stability]
-    :required [SlopeClass]
-    :keep     [AnnualSedimentSourceClass]
+               successional-stage slope-stability land-selector]
+    :required [LandOrSea]
+    :keep     [puget:AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
 
 ;; Add deterministic model for USLE: Have data for it for the western

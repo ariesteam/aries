@@ -177,8 +177,8 @@
     [ 5 10] sanPedro:ModerateInfiltration
     [ 0  5] sanPedro:LowInfiltration))
 
-(defmodel et-sink Evapotranspiration
-  (bayesian Evapotranspiration
+(defmodel et-sink sanPedro:Evapotranspiration
+  (bayesian sanPedro:Evapotranspiration
     :import   "aries.core::/trained/SurfaceWaterSinkSanPedro.xdsl"
     :context  [annual-temperature vegetation-type percent-canopy-cover]
     :keep     [sanPedro:EvapotranspirationClass]

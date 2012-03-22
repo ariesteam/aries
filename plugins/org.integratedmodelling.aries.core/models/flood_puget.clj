@@ -292,7 +292,7 @@
                successional-stage imperviousness percent-canopy-cover 
                mean-days-precipitation-annual land-selector]
     :required [LandOrSea]
-    :keep     [GreenInfrastructureStorage]
+    :keep     [puget:GreenInfrastructureStorage]
     :result   green-infrastructure-storage))
 
 (defmodel sink-annual FloodSink

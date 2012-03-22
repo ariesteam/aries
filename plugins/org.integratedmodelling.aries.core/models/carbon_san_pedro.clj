@@ -110,7 +110,7 @@
   (bayesian sanPedro:CarbonSourceValue 
     :import  "aries.core::trained/CarbonSourceSanPedro.xdsl"
     :context [vegetation-type percent-canopy-cover annual-precipitation]
-    :keep    [VegetationAndSoilCarbonSequestration]
+    :keep    [sanPedro:VegetationAndSoilCarbonSequestration]
     :result  veg-soil-sequestration))
 
 ;;;-------------------------------------------------------------------
@@ -173,7 +173,7 @@
   (bayesian sanPedro:VegetationCStorage 
     :import  "aries.core::trained/CarbonSinkSanPedro.xdsl"
     :context [annual-precipitation percent-canopy-cover vegetation-type]
-    :keep    [VegetationCarbonStorage]
+    :keep    [sanPedro:VegetationCarbonStorage]
     :result  veg-storage))
 
 (defmodel soil-storage sanPedro:SoilCarbonStorage
@@ -189,7 +189,7 @@
   (bayesian sanPedro:SoilCStorage 
     :import  "aries.core::trained/CarbonSinkSanPedro.xdsl"
     :context [soil-ph slope oxygen percent-canopy-cover vegetation-type]
-    :keep    [SoilCarbonStorage]
+    :keep    [sanPedro:SoilCarbonStorage]
     :result  soil-storage))
 
 ;;Consider reworking the soil carbon storage part of the model based
@@ -224,7 +224,7 @@
   (bayesian sanPedro:CarbonSinkValue 
     :import  "aries.core::trained/CarbonSinkSanPedro.xdsl"
     :context [veg-soil-storage fire-threat]
-    :keep    [StoredCarbonRelease]
+    :keep    [sanPedro:StoredCarbonRelease]
     :result  stored-carbon-release))
 
 ;;;-------------------------------------------------------------------

@@ -159,7 +159,7 @@
     [:<  7] LowPopulationDensity))
 
 (defmodel deforestation-risk DeforestationRiskClass
-  (classification (ranking DeforestationRisk)
+  (classification (categorization DeforestationRisk)
     "High"     HighDeforestationRisk
     "Moderate" ModerateDeforestationRisk
     "Low"      LowDeforestationRisk

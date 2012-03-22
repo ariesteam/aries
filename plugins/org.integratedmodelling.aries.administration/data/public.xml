@@ -918,6 +918,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
         <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:OrdinalRanking</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -931,7 +932,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking> -->
 
-  <measurement:Ranking id="mg_deforestation_mg">
+  <observation:Categorization id="mg_deforestation_mg">
     <observation:hasObservable>
       <carbonService:DeforestationRisk/>
     </observation:hasObservable>
@@ -943,7 +944,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
         <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
-        <geospace:hasValueType>thinklab-core:OrdinalRanking</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -955,7 +955,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </observation:Categorization>
 
   <!-- Units for this are in fires/km2 from 1970-2007 -->
   <measurement:Measurement id="fire_freq_puget">
