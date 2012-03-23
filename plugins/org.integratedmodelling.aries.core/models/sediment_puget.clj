@@ -306,7 +306,7 @@
 ;; Sediment flow model for farmers in floodplains
 (defmodel sediment-farmers BeneficialSedimentTransport ; or DetrimentalSedimentTransport
   (span SedimentTransport
-        AnnualSedimentSource
+        puget:AnnualSedimentSource
         DepositionProneFarmers
         AnnualSedimentSink
         nil
@@ -343,7 +343,7 @@
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs DetrimentalSedimentTransport
   (span SedimentTransport
-        AnnualSedimentSource
+        puget:AnnualSedimentSource
         geofeatures:Reservoir
         AnnualSedimentSink
         nil
@@ -380,7 +380,7 @@
 ;; Sediment flow model for assessing turbidity
 (defmodel sediment-turbidity DetrimentalTurbidity
   (span SedimentTransport
-        AnnualSedimentSource
+        puget:AnnualSedimentSource
         WaterIntakeUse  ; Change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
         AnnualSedimentSink 
         nil

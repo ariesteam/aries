@@ -295,8 +295,8 @@
     :keep     [puget:GreenInfrastructureStorage]
     :result   green-infrastructure-storage))
 
-(defmodel sink-annual FloodSink
-  (measurement FloodSink "mm"
+(defmodel sink-annual puget:FloodSink
+  (measurement puget:FloodSink "mm"
     :context [green-infrastructure-sink gray-infrastructure-sink]
     :state   #(+ 
                (if (nil? (:green-infrastructure-sink %)) 0.0 (.getMean (:green-infrastructure-sink %)))
@@ -497,7 +497,7 @@ be added to this list if desired."
   (span FloodWaterMovement
         Precipitation
         FloodFarmersUse100
-        FloodSink
+        puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -534,7 +534,7 @@ be added to this list if desired."
   (span FloodWaterMovement
         Precipitation
         FloodFarmersUse500
-        FloodSink
+        puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -571,7 +571,7 @@ be added to this list if desired."
   (span FloodWaterMovement
         Precipitation
         FloodPublicAssetsUse100
-        FloodSink
+        puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -608,7 +608,7 @@ be added to this list if desired."
   (span FloodWaterMovement
         Precipitation
         FloodPublicAssetsUse500
-        FloodSink
+        puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -645,7 +645,7 @@ be added to this list if desired."
   (span FloodWaterMovement
         Precipitation
         FloodResidentsUse100
-        FloodSink
+        puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -686,7 +686,7 @@ be added to this list if desired."
   (span FloodWaterMovement
         Precipitation
         FloodResidentsUse500
-        FloodSink
+        puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -728,7 +728,7 @@ be added to this list if desired."
   (span FloodWaterMovement
         Precipitation
         FloodPrivateAssetsUse100
-        FloodSink
+        puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
@@ -765,7 +765,7 @@ be added to this list if desired."
   (span FloodWaterMovement
         Precipitation
         FloodPrivateAssetsUse500
-        FloodSink
+        puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too

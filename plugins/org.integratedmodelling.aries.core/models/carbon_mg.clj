@@ -159,11 +159,11 @@
     [:<  7] LowPopulationDensity))
 
 (defmodel deforestation-risk DeforestationRiskClass
-  (classification (categorization DeforestationRisk)
-    "High"     HighDeforestationRisk
-    "Moderate" ModerateDeforestationRisk
-    "Low"      LowDeforestationRisk
-    :otherwise NoDeforestationRisk))
+  (classification (ranking DeforestationRisk)
+    3 HighDeforestationRisk
+    2 ModerateDeforestationRisk
+    1 LowDeforestationRisk
+    0 NoDeforestationRisk))
 
 (defmodel vegetation-carbon-storage VegetationCStorage
   (bayesian VegetationCStorage

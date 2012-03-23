@@ -930,9 +930,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking> -->
+  </measurement:Ranking> 
 
-  <observation:Categorization id="mg_deforestation_mg">
+  <measurement:Ranking id="mg_deforestation_mg">
     <observation:hasObservable>
       <carbonService:DeforestationRisk/>
     </observation:hasObservable>
@@ -943,7 +943,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
+        <geospace:hasValueAttribute>id</geospace:hasValueAttribute>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -955,7 +955,32 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </observation:Categorization>
+  </measurement:Ranking> -->
+
+<measurement:Ranking id="mg_deforestation_mg">
+  <observation:hasObservable>
+    <carbonService:DeforestationRisk/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: GLCF (University of Maryland) MODIS Vegetative Cover Conversion</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://glcf.umiacs.umd.edu/data/vcc/description.shtml</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>id</geospace:hasValueAttribute>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>-25.6071128845215</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>40.2718200683594</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>-0.213632225990295</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>50.4837532043457</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
 
   <!-- Units for this are in fires/km2 from 1970-2007 -->
   <measurement:Measurement id="fire_freq_puget">
@@ -10774,9 +10799,9 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:NumericCoding id="nlcd_lc_ll_04">
+  <measurement:NumericCoding id="nlcd_lc_lll_04">
     <observation:hasObservable>
-      <nlcd:NLCDNumeric />
+      <nlcd:NLCDNumeric/>
     </observation:hasObservable>
     <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -10785,8 +10810,8 @@ global data. -->
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127</geospace:hasNodataValue>
-        <geospace:hasCoverageId>usa:nlcd_4</geospace:hasCoverageId>
+        <geospace:hasNodataValue>0</geospace:hasNodataValue>
+        <geospace:hasCoverageId>usa:nlcd_lc_lll_04</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -10802,9 +10827,9 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:NumericCoding id="nlcd_lc_ll_05">
+  <measurement:NumericCoding id="nlcd_lc_lll_05">
     <observation:hasObservable>
-      <nlcd:NLCDNumeric />
+      <nlcd:NLCDNumeric/>
     </observation:hasObservable>
     <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -10813,9 +10838,8 @@ global data. -->
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127</geospace:hasNodataValue>
         <geospace:hasNodataValue>0</geospace:hasNodataValue>
-        <geospace:hasCoverageId>usa:nlcd_5</geospace:hasCoverageId>
+        <geospace:hasCoverageId>usa:nlcd_lc_lll_05</geospace:hasCoverageId>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
