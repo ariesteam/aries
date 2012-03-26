@@ -206,10 +206,6 @@
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
-;; FIXME: This is just a dummy placeholder
-(defmodel levee infrastructure:Levee
-  (binary-coding geofeatures:River))
-
 ;; FIXME: These is just a dummy placeholder
 (defmodel floodplains-code FloodplainsCode
   (binary-coding geofeatures:River))
@@ -250,7 +246,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
-        :context [annual-sediment-source annual-sediment-sink population-density altitude river levee floodplains-code]
+        :context [annual-sediment-source annual-sediment-sink population-density altitude river floodplains-code]
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse

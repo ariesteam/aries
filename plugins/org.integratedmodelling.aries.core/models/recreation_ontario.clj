@@ -169,13 +169,13 @@
 ;;ontario:canoe_use_alg
 (defmodel canoe-use CanoeUse
   "Use data from MNR park surveys where backcountry user indicated a canoe trip."
-(classification (binary-coding CanoeUse)
+(classification (numeric-coding CanoeUse)
   1              CanoeUsePresent
   :otherwise     CanoeUseAbsent))
 
 ;; ontario:trails_alg
-;;(defmodel trails Trails
-;;  (binary-coding infrastructure:Path))
+(defmodel trails Trails
+  (binary-coding infrastructure:Path))
 
 
 
@@ -202,8 +202,8 @@
 (defmodel view aestheticService:AestheticViewsheds
   (span aestheticService:LineOfSight 
         aestheticService:ViewSource
-        recreationService:CanoeUse
-        ;;        aestheticService:ViewUse
+        CanoeUse
+        ;;aestheticService:ViewUse
         aestheticService:ViewSink
         nil
         (geophysics:Altitude)

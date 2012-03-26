@@ -95,7 +95,8 @@
 ;; ontario:lulc2000_alg
 (defmodel vegetated-land VegetatedLand
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
-    #{7 8 9 10 11 12 13 18 19 21 23 25 27} OnVegetatedLand))
+    #{7 8 9 10 11 12 13 18 19 21 23 25 27} OnVegetatedLand
+    :otherwise                             NotOnVegetatedLand))
     ;; #{1 2 3 4 5 6 15 16 17 20 22 24 28 29} NotOnVegetatedLand))
 
 ;; Ceiling based off highest local values from MODIS NPP data

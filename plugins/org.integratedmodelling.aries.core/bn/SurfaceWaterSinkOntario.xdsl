@@ -66,13 +66,13 @@
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network1" faultnameformat="nodestate">
 			<node id="SoilInfiltrationClass">
 				<name>SoilInfiltrationClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>462 61 551 96</position>
+				<position>523 183 612 218</position>
 				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)</comment>
 				<barchart active="true" width="188" height="108" />
 			</node>
@@ -81,7 +81,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>395 398 611 432</position>
+				<position>1091 216 1307 250</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.\n\nWhat about agriculture? I am pretty sure it is possible to find data on different types of cultivated plants. Octavio\n</comment>
 				<barchart active="true" width="330" height="108" />
 			</node>
@@ -90,7 +90,7 @@
 				<interior color="99c18e" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>290 569 402 603</position>
+				<position>791 145 903 179</position>
 				<comment>See the notes for priors in lake_of_the_woods.CanopyCover\n</comment>
 				<barchart active="true" width="271" height="115" />
 			</node>
@@ -99,16 +99,16 @@
 				<interior color="99c18e" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>606 571 701 601</position>
+				<position>795 290 890 320</position>
 				<comment>See the notes for priors in lake_of_the_woods.LandCover</comment>
-				<barchart active="true" width="288" height="118" />
+				<barchart active="true" width="288" height="126" />
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>
 				<interior color="99c18e" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>479 197 524 225</position>
+				<position>183 197 228 225</position>
 				<comment>See the notes for priors in lake_of_the_woods.Slope</comment>
 				<barchart active="true" width="349" height="90" />
 			</node>
@@ -117,23 +117,23 @@
 				<interior color="99c18e" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>113 221 236 251</position>
+				<position>115 71 238 101</position>
 				<comment>Most of the Lake of the Woods area has soils data with a NoData value. Since the majority of the are is covered with water (I could calculate this), I designate the highest prior for the poorly drained soil type and equally allocate the values for the remaining three categories.</comment>
-				<barchart active="true" width="239" height="144" />
+				<barchart active="true" width="292" height="144" />
 			</node>
 			<node id="PercentImperviousCoverClass">
 				<name>PercentImperviousCoverClass</name>
 				<interior color="99c18e" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>780 209 928 241</position>
+				<position>119 310 267 342</position>
 				<comment>See the notes for priors in lake_of_the_woods.ImperviousSurface</comment>
 				<barchart active="true" width="326" height="126" />
 			</node>
 			<textbox>
 				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>863 441 1272 609</position>
+				<position>863 441 1272 637</position>
 			</textbox>
 		</genie>
 	</extensions>
