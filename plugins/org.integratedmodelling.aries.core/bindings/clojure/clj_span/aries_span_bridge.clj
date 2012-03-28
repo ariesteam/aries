@@ -68,7 +68,6 @@
 
 (defn save-span-layers
   [filename source-layer sink-layer use-layer flow-layers cell-width cell-height]
-  (constraints-1.0 {:pre [(.canWrite (File. filename))]})
   (let [dummy-map    {:theoretical-source  (constantly {})
                       :inaccessible-source (constantly {})
                       :possible-source     (constantly {})
