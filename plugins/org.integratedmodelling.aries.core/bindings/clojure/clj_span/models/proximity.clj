@@ -28,10 +28,16 @@
 
 (ns clj-span.models.proximity
   (:use [clj-misc.utils      :only (def- p my->> mapmap euclidean-distance with-progress-bar-cool with-message remove-nil-val-entries)]
-        [clj-span.params     :only (*trans-threshold*)]
-        [clj-span.core       :only (distribute-flow! service-carrier)]
-        [clj-misc.varprop    :only (_0_ _+_ _* _>_ rv-fn _>)]
         [clj-misc.matrix-ops :only (get-neighbors get-line-fn find-bounding-box)]))
+
+(refer 'clj-span.core :only '(distribute-flow! service-carrier))
+
+(def #^{:dynamic true} _0_)
+(def #^{:dynamic true} _+_)
+(def #^{:dynamic true} _*)
+(def #^{:dynamic true} _>_)
+(def #^{:dynamic true} rv-fn)
+(def #^{:dynamic true} _>)
 
 ;; in meters
 (def- half-mile    805.0)
@@ -84,9 +90,9 @@
    sink-effects map and its sink-value is subtracted from the current
    utility along this path.  Whether a sink or not, the current
    location's id is appended to the route."
-  [boundary-id sink-layer to-meters {:keys [source-id route possible-weight actual-weight sink-effects] :as prev-carrier}]
+  [boundary-id sink-layer to-meters trans-threshold {:keys [source-id route possible-weight actual-weight sink-effects] :as prev-carrier}]
   (let [decay-value (distance-decay to-meters source-id boundary-id)]
-    (if (_> (_* possible-weight decay-value) *trans-threshold*)
+    (if (_> (_* possible-weight decay-value) trans-threshold)
       (let [sink-value (get-in sink-layer boundary-id)]
         (if (or (= _0_ sink-value)
                 (= _0_ actual-weight))
@@ -102,10 +108,10 @@
 (defn- expand-frontier
   "Returns a new frontier which surrounds the one passed in and
    contains only those frontier-options which have a decayed
-   possible-weight greater than *trans-threshold*. A frontier is here
+   possible-weight greater than trans-threshold. A frontier is here
    defined to be a map of location ids [i j] to service-carrier
    structs."
-  [sink-layer to-meters rows cols frontier]
+  [sink-layer to-meters trans-threshold rows cols frontier]
   (into {}
         (for [boundary-id (find-bounding-box rows cols (keys frontier))]
           [boundary-id
@@ -116,7 +122,7 @@
                                             seq)]
              (if-let [best-path-carrier (my->> frontier-options
                                                (reduce (fn [c1 c2] (if (_>_ (:actual-weight c1) (:actual-weight c2)) c1 c2)))
-                                               (progress-carrier boundary-id sink-layer to-meters))]
+                                               (progress-carrier boundary-id sink-layer to-meters trans-threshold))]
                best-path-carrier))])))
 
 (defn- distribute-gaussian!
@@ -125,14 +131,15 @@
    be distributed (due to distance decay).  Stores a service-carrier
    in every use location it encounters."
   [source-layer sink-layer use-layer cache-layer possible-flow-layer
-   actual-flow-layer to-meters rows cols source-id]
+   actual-flow-layer to-meters trans-threshold rows cols source-id]
   (let [source-value (get-in source-layer source-id)]
     (doseq [frontier (take-while seq
                                  (map remove-nil-val-entries
-                                      (iterate (p expand-frontier sink-layer to-meters rows cols)
+                                      (iterate (p expand-frontier sink-layer to-meters trans-threshold rows cols)
                                                {source-id (progress-carrier source-id
                                                                             sink-layer
                                                                             to-meters
+                                                                            trans-threshold
                                                                             (struct-map service-carrier
                                                                               :source-id       source-id
                                                                               :route           []
@@ -147,21 +154,34 @@
                         frontier-element)))))
 
 (defmethod distribute-flow! "Proximity"
-  [_ cell-width cell-height rows cols cache-layer possible-flow-layer
-   actual-flow-layer source-layer sink-layer use-layer source-points _ _ _]
-  (let [to-meters (fn [[i j]] [(* i cell-height) (* j cell-width)])]
-    (with-message (str "Projecting " (count source-points) " search bubbles...\n") "\nAll done."
-      (with-progress-bar-cool
-        :drop
-        (count source-points)
-        (pmap (p distribute-gaussian!
-                 source-layer
-                 sink-layer
-                 use-layer
-                 cache-layer
-                 possible-flow-layer
-                 actual-flow-layer
-                 to-meters
-                 rows
-                 cols)
-              source-points)))))
+  [{:keys [source-layer sink-layer use-layer
+           cache-layer possible-flow-layer actual-flow-layer
+           source-points cell-width cell-height rows cols
+           value-type trans-threshold]}]
+  (let [prob-ns (cond
+                 (= value-type :numbers)  'clj-misc.numbers
+                 (= value-type :varprop)  'clj-misc.varprop
+                 (= value-type :randvars) 'clj-misc.randvars)]
+    (binding [_0_   (var-get (ns-resolve prob-ns '_0_))
+              _+_   (var-get (ns-resolve prob-ns '_+_))
+              _*    (var-get (ns-resolve prob-ns '_*))
+              _>_   (var-get (ns-resolve prob-ns '_>_))
+              rv-fn (var-get (ns-resolve prob-ns 'rv-fn))
+              _>    (var-get (ns-resolve prob-ns '_>))]
+      (let [to-meters (fn [[i j]] [(* i cell-height) (* j cell-width)])]
+        (with-message (str "Projecting " (count source-points) " search bubbles...\n") "\nAll done."
+          (with-progress-bar-cool
+            :drop
+            (count source-points)
+            (pmap (p distribute-gaussian!
+                     source-layer
+                     sink-layer
+                     use-layer
+                     cache-layer
+                     possible-flow-layer
+                     actual-flow-layer
+                     to-meters
+                     trans-threshold
+                     rows
+                     cols)
+                  source-points)))))))
