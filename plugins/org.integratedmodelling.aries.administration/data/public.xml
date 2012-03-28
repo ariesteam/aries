@@ -11614,4 +11614,48 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+  <measurement:BinaryCoding id="floodplain_farmland_low">
+    <observation:hasObservable>
+      <soilRetentionService:DepositionProneFarmers/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:floodplain_farmland_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>8785</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>7230</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5393755.862</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>331916.008</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5538395.862</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>507656.008</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="ontario_floodplains_low">
+    <observation:hasObservable>
+      <geofeatures:Floodplain/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:floodplains_low</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>5407047.140335178</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>340341.59026808734</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5526757.966498787</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>497933.68286568637</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
 </kbox>
