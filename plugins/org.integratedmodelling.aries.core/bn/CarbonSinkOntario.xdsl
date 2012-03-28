@@ -7,14 +7,13 @@
 			<state id="ModerateSOL" />
 			<state id="LowSOL" />
 			<state id="VeryLowSOL" />
-			<probabilities>0.1 0.1 0.1 0.3 0.4</probabilities>
+			<probabilities>0.14 0.3 0.38 0.18 0</probabilities>
 		</cpt>
 		<cpt id="FireThreatClass">
-			<state id="VeryHighFireThreat" />
 			<state id="HighFireThreat" />
 			<state id="ModerateFireThreat" />
 			<state id="LowFireThreat" />
-			<probabilities>0.771 0.052 0.152 0.025</probabilities>
+			<probabilities>0 0.0002 0.9998</probabilities>
 		</cpt>
 		<cpt id="PercentTreeCanopyCoverClass">
 			<state id="VeryHighCanopyCover" />
@@ -22,7 +21,7 @@
 			<state id="ModerateCanopyCover" />
 			<state id="LowCanopyCover" />
 			<state id="VeryLowCanopyCover" />
-			<probabilities>0.05 0.05 0.05 0.1 0.75</probabilities>
+			<probabilities>0.19 0.33 0.11 0.21 0.16</probabilities>
 		</cpt>
 		<cpt id="CarbonVegetationType">
 			<state id="ConiferousForest" />
@@ -31,7 +30,7 @@
 			<state id="ImpairedForest" />
 			<state id="SwampFenBog" />
 			<state id="CroplandPasture" />
-			<probabilities>0.2 0.2 0.2 0.2 0.1 0.1</probabilities>
+			<probabilities>0.14 0.18 0.28 0.29 0.11 0</probabilities>
 		</cpt>
 		<cpt id="SuccessionalStage">
 			<state id="OldGrowth" />
@@ -40,7 +39,7 @@
 			<state id="PoleSuccession" />
 			<state id="EarlySuccession" />
 			<state id="NoSuccession" />
-			<probabilities>0.2 0.2 0.2 0.2 0.1 0.1</probabilities>
+			<probabilities>0.13 0.11 0.05 0.04 0.3 0.37</probabilities>
 		</cpt>
 		<cpt id="VegetationDensity">
 			<state id="VeryHighVegetationDensity" />
@@ -56,7 +55,7 @@
 		<cpt id="SoilOxygenConditions">
 			<state id="AnoxicSoils" />
 			<state id="OxicSoils" />
-			<probabilities>0.01 0.99</probabilities>
+			<probabilities>0.11 0.89</probabilities>
 		</cpt>
 		<cpt id="VegetationCarbonStorage">
 			<state id="VeryHighVegetationStorage" />
@@ -66,20 +65,20 @@
 			<state id="VeryLowVegetationStorage" />
 			<state id="NoVegetationStorage" />
 			<parents>VegetationDensity SummerHighWinterLow</parents>
-			<probabilities>0.7 0.15 0.1 0.05 0 0 0.5 0.3 0.15 0.05 0 0 0.2 0.3 0.3 0.15 0.05 0 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.6 0.2 0.15 0.05 0 0 0.4 0.4 0.15 0.05 0 0 0.1 0.4 0.3 0.15 0.05 0 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1 0.3 0.3 0.2 0.1 0 0 0.15 0.5 0.15 0.2 0 0 0.05 0.45 0.3 0.2 0 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0 0.05 0.3 0.4 0.25 0 0 0 0.2 0.5 0.3 0 0 0 0.1 0.55 0.35 0 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0 0 0.1 0.4 0.5 0 0 0 0.05 0.25 0.7 0 0 0 0 0.2 0.8 0 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667 0.1666666666666667</probabilities>
+			<probabilities>0.7 0.15 0.1 0.05 0 0 0.5 0.2 0.15 0.1 0.05 0 0.2 0.3 0.3 0.15 0.05 0 0.1 0.3 0.35 0.2 0.05 0 0.1 0.1 0.4 0.25 0.1 0.05 0.6 0.2 0.15 0.05 0 0 0.4 0.4 0.15 0.05 0 0 0.1 0.4 0.3 0.15 0.05 0 0.1 0.3 0.35 0.15 0.05 0.05 0 0.3 0.35 0.15 0.1 0.1 0.1 0.3 0.3 0.2 0.1 0 0 0.15 0.5 0.15 0.2 0 0 0.05 0.45 0.3 0.2 0 0 0.05 0.4 0.35 0.15 0.05 0 0 0.35 0.4 0.15 0.1 0 0.05 0.3 0.4 0.25 0 0 0 0.2 0.5 0.3 0 0 0 0.1 0.55 0.35 0 0 0 0.05 0.6 0.3 0.05 0 0 0.05 0.6 0.25 0.1 0 0 0.1 0.4 0.5 0 0 0 0.05 0.25 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.15 0.75 0.1 0 0 0 0.1 0.7 0.2 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 		</cpt>
 		<cpt id="SlopeClass">
 			<state id="Level" />
 			<state id="GentlyUndulating" />
 			<state id="RollingToHilly" />
 			<state id="SteeplyDissectedToMountainous" />
-			<probabilities>0.6 0.225 0.125 0.05</probabilities>
+			<probabilities>0.65 0.12 0.16 0.07000000000000001</probabilities>
 		</cpt>
 		<cpt id="SoilPh">
 			<state id="HighPh" />
 			<state id="ModeratePh" />
 			<state id="LowPh" />
-			<probabilities>0.1 0.45 0.45</probabilities>
+			<probabilities>0 0 1</probabilities>
 		</cpt>
 		<cpt id="SoilCarbonStorage">
 			<state id="VeryHighSoilStorage" />
@@ -98,14 +97,14 @@
 			<state id="LowStorage" />
 			<state id="VeryLowStorage" />
 			<state id="NoStorage" />
-			<probabilities>0.2 0.1 0.1 0.4 0.175 0.025</probabilities>
+			<probabilities>0.095 0.14 0.23 0.25 0.27 0.015</probabilities>
 		</cpt>
 		<cpt id="DeforestationRiskClass">
 			<state id="HighDeforestationRisk" />
 			<state id="ModerateDeforestationRisk" />
 			<state id="LowDeforestationRisk" />
 			<state id="NoDeforestationRisk" />
-			<probabilities>0.005 0.01 0.01 0.975</probabilities>
+			<probabilities>0.1 0.43 0.34 0.13</probabilities>
 		</cpt>
 		<cpt id="StoredCarbonRelease">
 			<state id="VeryHighRelease" />
@@ -115,27 +114,27 @@
 			<state id="VeryLowRelease" />
 			<state id="NoRelease" />
 			<parents>VegetationAndSoilCarbonStorageClass DeforestationRiskClass FireThreatClass</parents>
-			<probabilities>0.8 0.15 0.05 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.6 0.3 0.05 0.05 0 0 0.5 0.3 0.1 0.1 0 0 0.75 0.2 0.05 0 0 0 0.65 0.25 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0 0.1 0.3 0.3 0.2 0.1 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.2 0.2 0.2 0.2 0 0 0 0 0.1 0.4 0.5 0.15 0.03 0.02 0 0 0.8 0.015 0.005 0 0 0 0.98 0.004 0.001 0 0 0 0.995 0 0 0 0 0 1 0 0.85 0.1 0.05 0 0 0 0.75 0.15 0.1 0 0 0 0.7 0.2000000000000001 0.1 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.8 0.15 0.05 0 0 0 0.7 0.25 0.05 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.75 0.15 0.1 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.05 0.25 0.4 0.25 0.05 0 0.15 0.03 0.02 0 0.8 0 0.015 0.005 0 0 0.98 0 0.004 0.001 0 0 0.995 0 0 0 0 0 1 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.6 0.3 0.1 0 0 0 0.95 0.05 0 0 0 0 0.8 0.2 0 0 0 0 0.6 0.3 0.1 0 0 0 0.3 0.25 0.25 0.2 0 0 0.8 0.15 0.05 0 0 0 0.6 0.3 0.1 0 0 0 0.3 0.25 0.25 0.2 0 0 0.2 0.2 0.3 0.3 0 0 0.15 0.03 0.02 0.8 0 0 0.015 0.005 0 0.98 0 0 0.004 0.001 0 0.995 0 0 0 0 0 1 0 0 0 1 0 0 0 0 0 0.9 0.1 0 0 0 0 0.85 0.15 0 0 0 0 0.65 0.2500000000000001 0.1 0 0 0 0.9 0.1 0 0 0 0 0.75 0.2 0.05 0 0 0 0.65 0.2500000000000001 0.1 0 0 0 0.3 0.3 0.4 0 0 0 0.85 0.15 0 0 0 0 0.65 0.2500000000000001 0.1 0 0 0 0.3 0.3 0.4 0 0 0 0.15 0.25 0.6 0 0 0 0.15 0.05 0.8 0 0 0 0.015 0.005 0.98 0 0 0 0.004 0.001 0.995 0 0 0 0 0 1 0 0 0 0 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.6 0.4 0 0 0 0 0.9 0.1 0 0 0 0 0.75 0.25 0 0 0 0 0.6 0.4 0 0 0 0 0.3 0.7 0 0 0 0 0.9 0.1 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.3 0.7 0 0 0 0 0.2 0.8 0 0 0 0 0.02 0.98 0 0 0 0 0.005 0.995 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+			<probabilities>0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.6 0.3 0.05 0.05 0 0 0.5 0.3 0.1 0.1 0 0 0.65 0.25 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0 0.1 0.3 0.3 0.2 0.1 0.3 0.3 0.3 0.1 0 0 0.2 0.2 0.2 0.2 0.2 0 0 0 0 0.1 0.4 0.5 0.015 0.005 0 0 0 0.98 0.004 0.001 0 0 0 0.995 0 0 0 0 0 1 0 0.75 0.15 0.1 0 0 0 0.7 0.2000000000000001 0.1 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.7 0.25 0.05 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.05 0.25 0.4 0.25 0.05 0 0.015 0.005 0 0 0.98 0 0.004 0.001 0 0 0.995 0 0 0 0 0 1 0 0 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.6 0.3 0.1 0 0 0 0.8 0.2 0 0 0 0 0.6 0.3 0.1 0 0 0 0.3 0.25 0.25 0.2 0 0 0.6 0.3 0.1 0 0 0 0.3 0.25 0.25 0.2 0 0 0.2 0.2 0.3 0.3 0 0 0.015 0.005 0 0.98 0 0 0.004 0.001 0 0.995 0 0 0 0 0 1 0 0 0 0.9 0.1 0 0 0 0 0.85 0.15 0 0 0 0 0.65 0.2500000000000001 0.1 0 0 0 0.75 0.2 0.05 0 0 0 0.65 0.2500000000000001 0.1 0 0 0 0.3 0.3 0.4 0 0 0 0.65 0.2500000000000001 0.1 0 0 0 0.3 0.3 0.4 0 0 0 0.15 0.25 0.6 0 0 0 0.015 0.005 0.98 0 0 0 0.004 0.001 0.995 0 0 0 0 0 1 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.6 0.4 0 0 0 0 0.75 0.25 0 0 0 0 0.6 0.4 0 0 0 0 0.3 0.7 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.3 0.7 0 0 0 0 0.02 0.98 0 0 0 0 0.005 0.995 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
 			<property id="CarbonStorage">CarbonStorage=VegetationCarbonStorage+SoilCarbonStorage</property>
 		</cpt>
 	</nodes>
 	<extensions>
-		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
+		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network1" faultnameformat="nodestate">
 			<node id="StoredCarbonRelease">
 				<name>StoredCarbonRelease</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>423 109 572 134</position>
+				<position>487 155 636 180</position>
 				<comment>Agricultural practices are also an influence there, but it&apos;s unlikely we could get a spatial dataset of this (e.g., no-till versus regular plowing)</comment>
-				<barchart active="true" width="177" height="126" />
+				<barchart active="true" width="205" height="126" />
 			</node>
 			<node id="VegetationCarbonStorage">
 				<name>VegetationCarbonStorage</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>771 450 927 483</position>
+				<position>759 737 915 770</position>
 				<barchart active="true" width="276" height="126" />
 			</node>
 			<node id="SoilCarbonStorage">
@@ -143,7 +142,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>148 449 264 482</position>
+				<position>810 525 926 558</position>
 				<barchart active="true" width="213" height="126" />
 			</node>
 			<node id="SoilOxygenConditions">
@@ -151,23 +150,23 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>23 694 158 724</position>
-				<barchart active="true" width="128" height="54" />
+				<position>484 401 619 431</position>
+				<barchart active="true" width="187" height="54" />
 			</node>
 			<node id="PercentTreeCanopyCoverClass">
 				<name>PercentTreeCanopyCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>788 736 895 766</position>
-				<barchart active="true" width="203" height="108" />
+				<position>112 712 219 742</position>
+				<barchart active="true" width="311" height="108" />
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>367 713 412 741</position>
+				<position>528 564 573 592</position>
 				<comment>+ aspect (more C on N-NE facing slope)</comment>
 				<barchart active="true" width="190" height="90" />
 			</node>
@@ -176,15 +175,15 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1055 597 1191 632</position>
-				<barchart active="true" width="236" height="96" />
+				<position>459 840 595 875</position>
+				<barchart active="true" width="236" height="108" />
 			</node>
 			<node id="VegetationDensity">
 				<name>VegetationDensity</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>449 551 571 580</position>
+				<position>444 695 566 724</position>
 				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
 				<barchart active="true" width="279" height="126" />
 			</node>
@@ -193,24 +192,24 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>691 249 830 299</position>
+				<position>187 263 326 313</position>
 				<comment>VegetationAndSoilCarbonStorage = VegetationCarbonStorage + SoilCarbonStorage</comment>
-				<barchart active="true" width="238" height="126" />
+				<barchart active="true" width="262" height="126" />
 			</node>
 			<node id="FireThreatClass">
 				<name>FireThreatClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>455 243 545 274</position>
-				<barchart active="true" width="243" height="90" />
+				<position>211 155 301 186</position>
+				<barchart active="true" width="262" height="74" />
 			</node>
 			<node id="DeforestationRiskClass">
 				<name>DeforestationRiskClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>177 245 293 272</position>
+				<position>197 58 313 85</position>
 				<comment>A function of agricultural/economic factors (likely difficult to find/nonexistent spatially) and population growth.  We have population growth data, but not at the appropriate scale for Puget Sound (national data).</comment>
 				<barchart active="true" width="263" height="90" />
 			</node>
@@ -219,36 +218,41 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>193 707 251 730</position>
+				<position>522 477 580 500</position>
 				<comment>See how the modeling looks if we add pH.</comment>
-				<barchart active="true" width="128" height="72" />
+				<barchart active="true" width="188" height="72" />
 			</node>
 			<textbox>
-				<caption>For soil carbon storage, Brown et al. (2010) use PRISM precip, SSURGO/STATSGO soil organic C, CaCO3, wind erodibility index data as inputs to CENTURY model.\n\nMartens et al. 2005: Soil C positively correlated with clay content, precipitation, negatively correlated with temperature. But clay content was the strongest predictor.</caption>
+				<caption>For soil carbon storage, Brown et al. (2010) use PRISM precip, SSURGO/STATSGO soil organic C, CaCO3, wind erodibility index data as inputs to CENTURY model.\n\nMartens et al. 2005: Soil C positively correlated with clay content, precipitation, negatively correlated with temperature.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>910 210 1212 294</position>
+				<position>952 216 1254 300</position>
 			</textbox>
 			<node id="CarbonVegetationType">
 				<name>CarbonVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>557 739 652 769</position>
-				<barchart active="true" width="219" height="144" />
+				<position>164 579 259 609</position>
+				<barchart active="true" width="219" height="126" />
 			</node>
 			<textbox>
 				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>815 14 1224 182</position>
+				<position>915 14 1324 210</position>
 			</textbox>
 			<node id="SuccessionalStage">
 				<name>SuccessionalStage</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>841 603 887 631</position>
-				<barchart active="true" width="204" height="112" />
+				<position>196 846 242 874</position>
+				<barchart active="true" width="204" height="126" />
 			</node>
+			<textbox>
+				<caption>All of the priors have been assigned following a review of the input data sets. Completed 27 March 2012.\n\nCPTs complete. 28 March 2012.</caption>
+				<font color="ff0000" name="Arial" size="14" />
+				<position>1059 365 1361 475</position>
+			</textbox>
 		</genie>
 	</extensions>
 </smile>
