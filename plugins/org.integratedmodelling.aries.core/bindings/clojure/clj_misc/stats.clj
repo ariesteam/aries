@@ -38,4 +38,4 @@
   "Return x normalized in the range [0,1].
    x is assumed to be drawn from N(mu,sigma)."
   [x mu sigma]
-  (/ (+ 1 (- (/ x sigma) mu)) 2))
+  (/ (inc (- (/ x sigma) mu)) 2))

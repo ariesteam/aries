@@ -22,9 +22,11 @@
 ;;; functions.
 
 (ns clj-span.interface
-  (:use [clj-misc.varprop    :only (_0_)]
-        [clj-misc.utils      :only (& p mapmap)]
-        [clj-misc.matrix-ops :only (matrix2seq matrix2coord-map print-matrix get-rows get-cols in-bounds?)]))
+  (:use [clj-misc.utils      :only (& p mapmap)]
+        [clj-misc.matrix-ops :only (matrix2seq matrix2coord-map print-matrix get-rows get-cols in-bounds?)]
+        [clj-span.gui        :only (draw-layer write-layer-to-file)])
+  (:require (clj-misc [numbers :as nb] [varprop :as vp] [randvars :as rv]))
+  (:import (java.io File)))
 
 (defn- select-location
   "Prompts for coords and returns the selected [i j] pair."
@@ -70,7 +72,7 @@
       (print "Choice: ")
       (flush)
       (let [choice (read)]
-        (if (and (integer? choice) (> choice 0) (<= choice num-prompts))
+        (if (and (integer? choice) (pos? choice) (<= choice num-prompts))
           (prompts (dec choice))
           (do (println "Invalid selection. Please choose a number from the menu.")
               (recur)))))))
@@ -90,51 +92,118 @@
      selected-feature)))
 
 (defmulti provide-results
-  ;;"Returns the results to the caller according to the requested result-type:
-  ;;
+  ;; "Returns the results to the caller according to the requested result-type:
+
   ;;  :cli-menu = Provides a command-line driven menu system, which
   ;;              allows the user to view the result maps as matrices
   ;;              along with a report on their number of distinct
   ;;              values. Additional actions include viewing all
   ;;              properties of a particular location and viewing the
   ;;              input source, sink, use, and flow-layers as matrices.
-  ;;
+
   ;;  :closure-map = Transforms the results-menu into the form expected
   ;;                 by ARIES.  That is, labels (keys) in the map are
   ;;                 converted from mixed-case strings to lowercase
   ;;                 keywords and matrices (vals) are transformed into
   ;;                 maps of {[i j] -> RV}, excluding all locations
   ;;                 whose values equal _0_."
-  (fn [result-type source-layer sink-layer use-layer flow-layers results-menu] result-type))
+  (fn [result-type value-type source-layer sink-layer use-layer flow-layers results-menu] result-type))
+
+(defn get-max-scale
+  [rows cols]
+  (let [dimensions (.. java.awt.Toolkit getDefaultToolkit getScreenSize)
+        height     (* 0.8 (.height dimensions)) ; we reduce these limits to provide
+        width      (* 0.8 (.width  dimensions))]; space for the map legends
+    (if (and (< rows height)
+             (< cols width))
+      (min (/ width  cols)
+           (/ height rows))
+      (/ 1
+         (max (/ cols width)
+              (/ rows height))))))
+
+(def #^{:dynamic true} *scale* 1)
+
+(defn set-scale!
+  [new-scale]
+  (when new-scale
+    (alter-var-root #'*scale* (constantly new-scale))
+    nil))
+
+(defn label-to-keyword
+  [label]
+  (let [[_ word1 word2] (re-find #"(\w+)\s+-\s+(\w+)" label)]
+    (keyword (str (.toLowerCase word2) \- (.toLowerCase word1)))))
+
+(defn write-layers-to-directory
+  [dirname scale value-type results-map]
+  (if dirname
+    (doseq [[label layer-fn] results-map]
+      (write-layer-to-file dirname (name (label-to-keyword label)) (layer-fn) scale value-type))))
+
+(defn request-dirname
+  []
+  (print "Output Directory (in double quotes): ")
+  (flush)
+  (try
+    (let [choice    (read)
+          directory (File. choice)]
+      (if (and (.isDirectory directory) (.canWrite directory))
+        choice
+        (println "Invalid selection:" choice "is not a writeable directory.")))
+    (catch Exception e (println "Invalid selection: You must enter a directory name in double quotes."))))
+
+(defn request-scale
+  []
+  (print "Pixels per cell (integer): ")
+  (flush)
+  (let [choice (read)]
+    (if (integer? choice)
+      choice
+      (println "Invalid selection:" choice "must be an integer."))))
 
 (defmethod provide-results :cli-menu
-  [_ source-layer sink-layer use-layer flow-layers results-menu]
+  [_ value-type source-layer sink-layer use-layer flow-layers results-menu]
   (let [rows        (get-rows source-layer)
         cols        (get-cols source-layer)
+        ;; scale       (get-max-scale rows cols)
         menu-extras (array-map
                      "Location Properties"
                      #(view-location-properties (select-location rows cols) source-layer sink-layer use-layer flow-layers)
                      "Input Features"
                      #(select-map-by-feature source-layer sink-layer use-layer flow-layers)
+                     "Write All Layers to Directory"
+                     #(write-layers-to-directory (request-dirname)
+                                                 *scale*
+                                                 value-type
+                                                 (merge
+                                                  (assoc results-menu
+                                                    "Source - Input" (constantly source-layer)
+                                                    "Sink   - Input" (constantly sink-layer)
+                                                    "Use    - Input" (constantly use-layer))
+                                                  (mapmap (fn [label] (str label " - Input")) constantly flow-layers)))
+                     "Set Image Scale"
+                     #(set-scale! (request-scale))
                      "Quit"
                      nil)
         menu        (apply array-map (apply concat (concat results-menu menu-extras)))
         prompts     (keys menu)]
-    (loop [action (menu (select-menu-option prompts))]
-      (when action
+    (loop [choice (select-menu-option prompts)]
+      (when-let [action (menu choice)]
         (when-let [matrix-result (action)]
-          (newline)
-          (print-matrix matrix-result)
-          (newline)
-          (println "Distinct values:" (count (distinct (matrix2seq matrix-result)))))
-        (recur (menu (select-menu-option prompts)))))))
+          (draw-layer choice matrix-result *scale* value-type)
+          (println "\nDistinct values:" (count (distinct (matrix2seq matrix-result)))))
+        (recur (select-menu-option prompts))))))
 
 (defmethod provide-results :closure-map
-  [_ _ _ _ _ results-menu]
+  [_ value-type _ _ _ _ results-menu]
   (println "Returning the results map to Ferd's code.")
   (mapmap
-   (fn [label]
-     (let [[_ word1 word2] (re-find #"(\w+)\s+-\s+(\w+)" label)]
-       (keyword (str (.toLowerCase word2) \- (.toLowerCase word1)))))
-   (fn [closure] (& (p matrix2coord-map _0_) closure))
+   label-to-keyword
+   (fn [closure]
+     (let [_0_ (cond
+                (= value-type :numbers)  nb/_0_
+                (= value-type :varprop)  vp/_0_
+                (= value-type :randvars) rv/_0_)]
+       (& (p matrix2coord-map _0_) closure)))
    results-menu))

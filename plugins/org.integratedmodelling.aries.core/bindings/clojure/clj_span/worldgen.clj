@@ -25,16 +25,17 @@
   (:use [clj-misc.matrix-ops :only (make-matrix)]
         [clj-misc.utils      :only (constraints-1.0 p)]
         [clj-misc.randvars   :only (cont-type disc-type)]
-        [clojure.contrib.duck-streams :only (spit file-str with-in-reader read-lines) :rename {spit duck-spit}]))
+        [clojure.java.io     :only (file reader) :as io]))
 
 (defn read-layer-from-file
   [filename]
-  (with-in-reader (file-str filename) (read)))
+  (try (with-open [in-stream (java.io.PushbackReader. (io/reader (io/resource filename)))] (read in-stream))
+       (catch Exception e (println "Filename" filename "is not a readable file. (" e ")"))))
 
 (defn write-layer-to-file
   [filename layer]
   (binding [*print-dup* true]
-    (duck-spit (file-str filename) layer)))
+    (spit (io/file filename) layer)))
 
 ;; Deprecated - reimplement with clj-misc.randvars/make-randvar
 (defn make-random-layer
@@ -63,11 +64,12 @@
 
 (defn make-layer-from-ascii-grid
   [filename]
-  (let [lines (read-lines filename)
-        rows  (Integer/parseInt (second (re-find #"^NROWS\s+(\d+)" (first  lines))))
-        cols  (Integer/parseInt (second (re-find #"^NCOLS\s+(\d+)" (second lines))))
-        data  (drop-while (p re-find #"^[^\d]") lines)]
-    (println "Stub...process the data...")))
+  (with-open [in-stream (io/reader filename)]
+    (let [lines (line-seq in-stream)
+          rows  (Integer/parseInt (second (re-find #"^NROWS\s+(\d+)" (first  lines))))
+          cols  (Integer/parseInt (second (re-find #"^NCOLS\s+(\d+)" (second lines))))
+          data  (drop-while (p re-find #"^[^\d]") lines)]
+      (println "Stub...process the data..."))))
 
 (defn make-ascii-grid-from-layer
   [layer]

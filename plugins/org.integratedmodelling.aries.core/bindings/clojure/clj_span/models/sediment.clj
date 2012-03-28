@@ -31,13 +31,20 @@
 ;;;
 
 (ns clj-span.models.sediment
-  (:use [clj-span.core       :only (distribute-flow! service-carrier)]
-        [clj-misc.utils      :only (seq2map mapmap iterate-while-seq with-message
+  (:use [clj-misc.utils      :only (seq2map mapmap iterate-while-seq with-message
                                     memoize-by-first-arg angular-distance p def-
                                     with-progress-bar-cool euclidean-distance)]
         [clj-misc.matrix-ops :only (get-neighbors on-bounds? add-ids subtract-ids find-nearest
-                                    find-line-between rotate-2d-vec find-point-at-dist-in-m)]
-        [clj-misc.varprop    :only (_0_ _+_ *_ _d rv-fn _min_)]))
+                                    find-line-between rotate-2d-vec find-point-at-dist-in-m)]))
+
+(refer 'clj-span.core :only '(distribute-flow! service-carrier))
+
+(def #^{:dynamic true} _0_)
+(def #^{:dynamic true} _+_)
+(def #^{:dynamic true} *_)
+(def #^{:dynamic true} _d)
+(def #^{:dynamic true} rv-fn)
+(def #^{:dynamic true} _min_)
 
 (defn- lowest-neighbors
   [id in-stream? elevation-layer rows cols]
@@ -130,7 +137,7 @@
                 {current-id (rv-fn (fn [a s] (min a s)) actual-weight sink-cap)}]))))
         [actual-weight {}]))))
 
-(def- *max-levee-distance* 100.0) ;; in meters
+(def #^{:dynamic true} *max-levee-distance* 100.0) ;; in meters
 
 (defn- nearby-levees
   [origin bearing levee? cell-width cell-height]
@@ -294,33 +301,47 @@
 
 ;; FIXME: 100-yr vs. 500-yr floodplains?
 (defmethod distribute-flow! "SedimentTransport"
-  [_ cell-width cell-height rows cols cache-layer possible-flow-layer actual-flow-layer
-   source-layer sink-layer _ source-points sink-points use-points
-   {stream-layer "River", elevation-layer "Altitude", levees-layer "Levee",
-    floodplain-layer "FloodplainsCode"}]
-  (let [levee?               (memoize #(if-let [val (get-in levees-layer     %)] (not= _0_ val)))
-        in-stream?           (memoize #(if-let [val (get-in stream-layer     %)] (not= _0_ val)))
-        in-floodplain?       (memoize #(if-let [val (get-in floodplain-layer %)] (not= _0_ val)))
-        floodplain-sinks     (filter in-floodplain? sink-points)
-        sink-stream-intakes  (find-nearest-stream-points in-stream? rows cols floodplain-sinks)
-        sink-AFs             (flood-activation-factors in-floodplain? sink-stream-intakes)
-        use-id?              (set use-points)
-        ha-per-cell          (* cell-width cell-height (Math/pow 10.0 -4.0))
-        sink-caps            (make-buckets ha-per-cell sink-layer floodplain-sinks)]
-    (propagate-sediment! cache-layer
-                         possible-flow-layer
-                         actual-flow-layer
-                         source-layer
-                         source-points
-                         ha-per-cell
-                         sink-caps
-                         levee?
-                         in-stream?
-                         sink-stream-intakes
-                         sink-AFs
-                         use-id?
-                         elevation-layer
-                         cell-width
-                         cell-height
-                         rows
-                         cols)))
+  [{:keys [source-layer sink-layer flow-layers
+           cache-layer possible-flow-layer actual-flow-layer
+           source-points sink-points use-points
+           value-type cell-width cell-height rows cols]}]
+  (let [{stream-layer "River",
+         elevation-layer "Altitude",
+         levees-layer "Levee",
+         floodplain-layer "FloodplainsCode"} flow-layers
+        prob-ns (cond
+                 (= value-type :numbers)  'clj-misc.numbers
+                 (= value-type :varprop)  'clj-misc.varprop
+                 (= value-type :randvars) 'clj-misc.randvars)]
+    (binding [_0_   (var-get (ns-resolve prob-ns '_0_))
+              _+_   (var-get (ns-resolve prob-ns '_+_))
+              *_    (var-get (ns-resolve prob-ns '*_))
+              _d    (var-get (ns-resolve prob-ns '_d))
+              rv-fn (var-get (ns-resolve prob-ns 'rv-fn))
+              _min_ (var-get (ns-resolve prob-ns '_min_))]
+      (let [levee?               (memoize #(if-let [val (get-in levees-layer     %)] (not= _0_ val)))
+            in-stream?           (memoize #(if-let [val (get-in stream-layer     %)] (not= _0_ val)))
+            in-floodplain?       (memoize #(if-let [val (get-in floodplain-layer %)] (not= _0_ val)))
+            floodplain-sinks     (filter in-floodplain? sink-points)
+            sink-stream-intakes  (find-nearest-stream-points in-stream? rows cols floodplain-sinks)
+            sink-AFs             (flood-activation-factors in-floodplain? sink-stream-intakes)
+            use-id?              (set use-points)
+            ha-per-cell          (* cell-width cell-height (Math/pow 10.0 -4.0))
+            sink-caps            (make-buckets ha-per-cell sink-layer floodplain-sinks)]
+        (propagate-sediment! cache-layer
+                             possible-flow-layer
+                             actual-flow-layer
+                             source-layer
+                             source-points
+                             ha-per-cell
+                             sink-caps
+                             levee?
+                             in-stream?
+                             sink-stream-intakes
+                             sink-AFs
+                             use-id?
+                             elevation-layer
+                             cell-width
+                             cell-height
+                             rows
+                             cols)))))

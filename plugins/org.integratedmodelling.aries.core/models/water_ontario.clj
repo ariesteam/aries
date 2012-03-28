@@ -245,7 +245,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        :save-file          (str (System/getProperty "user.home") "/freshwater_supply_ontario_data.clj")
+        ;; :save-file          (str (System/getProperty "user.home") "/freshwater_supply_ontario_data.clj")
         :context            [annual-runoff surface-water-sink residential-surface-water-use altitude river]
         :keep               [TheoreticalSource
                              TheoreticalSink

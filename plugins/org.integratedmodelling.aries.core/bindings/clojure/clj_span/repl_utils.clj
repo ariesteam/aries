@@ -17,14 +17,15 @@
 ;;;
 ;;;-------------------------------------------------------------------
 ;;;
-;;; This namespace defines functions for testing clj-span flow models
-;;; at the Clojure REPL.
+;;; This namespace defines functions for testing the various SPAN
+;;; simulations at the REPL.
 
 (ns clj-span.repl-utils
   (:use (clj-span core commandline aries-span-bridge analyzer gui)
-        (clj-misc utils matrix-ops varprop stats)
-        clojure.contrib.pprint)
-  (:require [clj-misc.randvars :as rv]))
+        [clj-span.worldgen :only [read-layer-from-file]]
+        (clj-misc utils matrix-ops stats)
+        clojure.pprint)
+  (:require (clj-misc [numbers :as nb] [varprop :as vp] [randvars :as rv])))
 
 (defn load-layers
   [filename]
@@ -38,27 +39,40 @@
     (def rows (get-rows s))
     (def cols (get-cols s))))
 
+(defn load-layer
+  [layer-name filename]
+  (let [data (read-layer-from-file filename)]
+    (case layer-name
+      :source (def source-layer data)
+      :sink   (def sink-layer   data)
+      :use    (def use-layer    data)
+      :flow   (def flow-layers  data))))
+
 (defn extract-results
-  [result-map]
-  (def tsrc  (let [rmap ((:theoretical-source  result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def isrc  (let [rmap ((:inaccessible-source result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def psrc  (let [rmap ((:possible-source     result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def bsrc  (let [rmap ((:blocked-source      result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def asrc  (let [rmap ((:actual-source       result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def tsnk  (let [rmap ((:theoretical-sink    result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def isnk  (let [rmap ((:inaccessible-sink   result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def asnk  (let [rmap ((:actual-sink         result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def tuse  (let [rmap ((:theoretical-use     result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def iuse  (let [rmap ((:inaccessible-use    result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def puse  (let [rmap ((:possible-use        result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def buse  (let [rmap ((:blocked-use         result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def ause  (let [rmap ((:actual-use          result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def pflow (let [rmap ((:possible-flow       result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def bflow (let [rmap ((:blocked-flow        result-map))] (make-matrix rows cols #(get rmap % _0_))))
-  (def aflow (let [rmap ((:actual-flow         result-map))] (make-matrix rows cols #(get rmap % _0_)))))
+  [value-type result-map]
+  (let [_0_ (case value-type
+              :numbers  nb/_0_
+              :varprop  vp/_0_
+              :randvars rv/_0_)]
+    (def tsrc  (let [rmap ((:theoretical-source  result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def isrc  (let [rmap ((:inaccessible-source result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def psrc  (let [rmap ((:possible-source     result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def bsrc  (let [rmap ((:blocked-source      result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def asrc  (let [rmap ((:actual-source       result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def tsnk  (let [rmap ((:theoretical-sink    result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def isnk  (let [rmap ((:inaccessible-sink   result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def asnk  (let [rmap ((:actual-sink         result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def tuse  (let [rmap ((:theoretical-use     result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def iuse  (let [rmap ((:inaccessible-use    result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def puse  (let [rmap ((:possible-use        result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def buse  (let [rmap ((:blocked-use         result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def ause  (let [rmap ((:actual-use          result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def pflow (let [rmap ((:possible-flow       result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def bflow (let [rmap ((:blocked-flow        result-map))] (make-matrix rows cols #(get rmap % _0_))))
+    (def aflow (let [rmap ((:actual-flow         result-map))] (make-matrix rows cols #(get rmap % _0_))))))
 
 (defn test-run-sediment
-  []
+  [value-type]
   (run-span {:flow-model         "SedimentTransport"
              :source-layer       source-layer
              :sink-layer         sink-layer
@@ -74,13 +88,14 @@
              :sink-type          :finite
              :use-type           :infinite
              :benefit-type       :rival ;; or :non-rival for turbidity
+             :value-type         value-type
              :downscaling-factor 3
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-flood
-  []
+  [value-type]
   (run-span {:flow-model         "FloodWaterMovement"
              :source-layer       source-layer
              :sink-layer         sink-layer
@@ -96,13 +111,14 @@
              :sink-type          :finite
              :use-type           :infinite
              :benefit-type       :non-rival
+             :value-type         value-type
              :downscaling-factor 3
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-storm
-  []
+  [value-type]
   (run-span {:flow-model         "CoastalStormMovement"
              :source-layer       source-layer
              :sink-layer         sink-layer
@@ -118,13 +134,14 @@
              :sink-type          :infinite
              :use-type           :infinite
              :benefit-type       :non-rival
+             :value-type         value-type
              :downscaling-factor 1
              :rv-max-states      10
              :animation?         true
              :result-type        :closure-map}))
 
 (defn test-run-fishing
-  []
+  [value-type]
   (run-span {:flow-model         "SubsistenceFishAccessibility"
              :source-layer       source-layer
              :sink-layer         nil
@@ -140,13 +157,14 @@
              :sink-type          nil
              :use-type           :finite
              :benefit-type       :rival
+             :value-type         value-type
              :downscaling-factor 1
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-water
-  []
+  [value-type]
   (run-span {:flow-model         "SurfaceWaterMovement"
              :source-layer       source-layer
              :sink-layer         sink-layer
@@ -154,21 +172,22 @@
              :flow-layers        flow-layers
              :cell-width         cell-width
              :cell-height        cell-height
-             :source-threshold   nil ;; 1500.0
-             :sink-threshold     nil ;; 300.0
-             :use-threshold      nil ;; 500.0
-             :trans-threshold    0.1
+             :source-threshold   0.0
+             :sink-threshold     0.0
+             :use-threshold      1.0
+             :trans-threshold    1.0
              :source-type        :finite
              :sink-type          :finite
              :use-type           :finite
              :benefit-type       :rival
-             :downscaling-factor 1
+             :value-type         value-type
+             :downscaling-factor 8
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-carbon
-  []
+  [value-type]
   (run-span {:flow-model         "CO2Removed"
              :source-layer       source-layer
              :sink-layer         sink-layer
@@ -184,13 +203,14 @@
              :sink-type          :finite
              :use-type           :finite
              :benefit-type       :rival
+             :value-type         value-type
              :downscaling-factor 20
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-view
-  []
+  [value-type]
   (run-span {:flow-model         "LineOfSight"
              :source-layer       source-layer
              :sink-layer         sink-layer
@@ -206,14 +226,14 @@
              :sink-type          :infinite
              :use-type           :infinite
              :benefit-type       :non-rival
-             :value-type         :varprop
-             :downscaling-factor 4
+             :value-type         value-type
+             :downscaling-factor 2
              :rv-max-states      10
              :animation?         false
              :result-type        :closure-map}))
 
 (defn test-run-proximity
-  []
+  [value-type]
   (run-span {:flow-model         "Proximity"
              :source-layer       source-layer
              :sink-layer         sink-layer
@@ -229,7 +249,7 @@
              :sink-type          :infinite
              :use-type           :infinite
              :benefit-type       :non-rival
-             :value-type         :varprop
+             :value-type         value-type
              :downscaling-factor 1
              :rv-max-states      10
              :animation?         false
