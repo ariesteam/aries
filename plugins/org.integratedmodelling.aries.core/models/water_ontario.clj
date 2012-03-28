@@ -242,7 +242,7 @@
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
-        :downscaling-factor 2
+        :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/freshwater_supply_ontario_data.clj")
