@@ -60,7 +60,8 @@
 (defmodel sediment-vegetation-type ontario:SedimentVegetationType
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
     #{11 12 13 15 16 17 18 19 20 21 22 23} ontario:ForestGrasslandWetland
-    #{7 8 9 10 24 25}                      ontario:ShrublandPasture
+    #{24 25}                               ontario:ShrublandPasture
+    #{7 8 9 10}                            ontario:ImpairedForest
     #{3 4 5 6 27}                          ontario:CropsBarrenDeveloped))
 
 ;; ontario:successional_stage_low
@@ -161,7 +162,23 @@
 
 ;; ontario:stream_gradient_low
 (defmodel stream-gradient habitat:StreamGradient
-  (measurement habitat:StreamGradient "\u00b0"))
+  (classification (measurement habitat:StreamGradient "\u00b0")
+    [2.86   :>] HighStreamGradient
+    [1.15 2.86] ModerateStreamGradient
+    [:<   1.15] LowStreamGradient))
+
+(defmodel floodplain Floodplains
+  (classification (binary-coding Floodplains)
+    1          InFloodplain
+    :otherwise NotInFloodplain))
+
+(defmodel floodplain-canopy-cover FloodplainTreeCanopyCoverClass 
+  (classification (ranking habitat:PercentFloodplainTreeCanopyCover)
+    [80 100 :inclusive] VeryHighFloodplainCanopyCover
+    [60  80]            HighFloodplainCanopyCover
+    [40  60]            ModerateFloodplainCanopyCover
+    [20  40]            LowFloodplainCanopyCover
+    [ 0  20]            VeryLowFloodplainCanopyCover))
 
 ;; ontario:dams_low
 (defmodel dam-storage floodService:DamStorage
@@ -185,11 +202,10 @@
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
-(declare population-density)
+(declare deposition-prone-farmers)
 
-;; ontario:population_density_low
-(defmodel population-density policytarget:PopulationDensity
-  (count policytarget:PopulationDensity "/km^2"))
+(defmodel deposition-prone-farmers DepositionProneFarmers
+  (binary-coding DepositionProneFarmers))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
@@ -219,7 +235,7 @@
     :context [annual-sediment-source
               stream-gradient
               dam-storage
-              population-density
+              deposition-prone-farmers
               altitude
               river]))
 
@@ -230,7 +246,7 @@
 (defmodel beneficial-sediment-transport BeneficialSedimentTransport
   (span SedimentTransport
         AnnualSedimentSource
-        PopulationDensity
+        DepositionProneFarmers
         AnnualSedimentSink ; this model is incomplete
         nil
         (geophysics:Altitude geofeatures:River infrastructure:Levee FloodplainsCode) ; we don't have information on floodplains or levees
@@ -246,7 +262,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
-        :context [annual-sediment-source annual-sediment-sink population-density altitude river floodplains-code]
+        :context [annual-sediment-source annual-sediment-sink deposition-prone-farmers altitude river floodplains-code]
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse
