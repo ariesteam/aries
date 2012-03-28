@@ -22,7 +22,7 @@
 ;;; of different options specifying the form of its results.
 
 (ns clj-span.core
-  (:use [clj-misc.utils      :only (p & with-message)]
+  (:use [clj-misc.utils      :only (p & with-message my->>)]
         [clj-misc.matrix-ops :only (map-matrix
                                     make-matrix
                                     resample-matrix
@@ -103,12 +103,13 @@
                               (= value-type :varprop)  vp/rv-intensive-sampler
                               (= value-type :randvars) rv/rv-intensive-sampler)]
     (with-message
-      "Generating results map..."
-      "done."
+      "Generating result maps...\n"
+      "Finished generating result maps."
       (apply array-map
              (mapcat (fn [[label f]]
-                       (let [layer (f params)]
-                         [label #(resample-matrix orig-rows orig-cols rv-intensive-sampler layer)]))
+                       (with-message (str "Producing " label "...") "done"
+                         (let [layer (f params)]
+                           [label #(resample-matrix orig-rows orig-cols rv-intensive-sampler layer)])))
                      (array-map
                       "Source - Theoretical"  theoretical-source
                       "Source - Inaccessible" inaccessible-source
@@ -293,11 +294,11 @@
            sink-layer use-layer flow-layers]
     :as params}]
   (set-global-vars! params)
-  (provide-results result-type value-type source-layer sink-layer use-layer flow-layers
-                   (-> params
-                       verify-params-or-throw
-                       preprocess-data-layers
-                       create-simulation-inputs
-                       run-simulation
-                       deref-result-layers
-                       generate-results-map)))
+  (my->> params
+         verify-params-or-throw
+         preprocess-data-layers
+         create-simulation-inputs
+         run-simulation
+         deref-result-layers
+         generate-results-map
+         (provide-results result-type value-type source-layer sink-layer use-layer flow-layers)))
