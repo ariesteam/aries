@@ -23,7 +23,7 @@
 
 (ns clj-misc.matrix-ops
   (:use [clojure.set    :only (map-invert)]
-        [clj-misc.utils :only (constraints-1.0 def- p & remove-nil-val-entries magnitude between? metric-distance)]))
+        [clj-misc.utils :only (constraints-1.0 def- p & remove-nil-val-entries magnitude between? metric-distance with-message)]))
 
 (defn get-rows [matrix] (count matrix))
 (defn get-cols [matrix] (count (first matrix)))
@@ -142,10 +142,14 @@
                     (fn [coords] (apply f (map #(get-in % coords) matrices)))))))
 
 (defn numeric-extensive-sampler
+  "Returns the extensive weighted sum of a coverage (i.e. a sequence
+   of pairs of [value fraction-covered])."
   [coverage]
   (reduce + (map (fn [[val frac]] (* val frac)) coverage)))
 
 (defn numeric-intensive-sampler
+  "Returns the intensive weighted sum of a coverage (i.e. a sequence
+   of pairs of [value fraction-covered])."
   [coverage]
   (let [frac-sum (reduce + (map second coverage))]
     (reduce + (map (fn [[val frac]] (* val (/ frac frac-sum))) coverage))))
@@ -197,24 +201,22 @@
 
 (defn resample-matrix
   [new-rows new-cols sampling-fn matrix]
-  (constraints-1.0 {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]})
+  {:pre [(every? #(and (pos? %) (integer? %)) [new-rows new-cols])]}
   (let [orig-rows (get-rows matrix)
         orig-cols (get-cols matrix)]
-    (println (str "Resampling matrix from " orig-rows " x " orig-cols " to " new-rows " x " new-cols "..."))
-    (let [new-matrix (if (and (== orig-rows new-rows)
-                              (== orig-cols new-cols))
-                       matrix
-                       (let [cell-length (float (/ orig-rows new-rows))
-                             cell-width  (float (/ orig-cols new-cols))]
-                         (make-matrix new-rows new-cols (fn [[i j]] (sampling-fn (get-matrix-coverage matrix
-                                                                                                      cell-length
-                                                                                                      cell-width
-                                                                                                      i
-                                                                                                      j))))))]
-      (printf "  Distinct Layer Values: [Pre] %d [Post] %d\n"
-              (count (distinct (matrix2seq matrix)))
-              (count (distinct (matrix2seq new-matrix))))
-      new-matrix)))
+    (with-message
+      (str "\nResampling matrix from " orig-rows " x " orig-cols " to " new-rows " x " new-cols "...\n")
+      #(format "  Distinct Layer Values: [Pre] %d [Post] %d"
+               (count (distinct (matrix2seq matrix)))
+               (count (distinct (matrix2seq %))))
+      (if (and (== orig-rows new-rows)
+               (== orig-cols new-cols))
+        matrix
+        (let [cell-length (float (/ orig-rows new-rows))
+              cell-width  (float (/ orig-cols new-cols))]
+          (make-matrix new-rows
+                       new-cols
+                       (fn [[i j]] (sampling-fn (get-matrix-coverage matrix cell-length cell-width i j)))))))))
 
 (defn divides?
   "Is y divisible by x? (i.e. x is the denominator)"
@@ -331,6 +333,18 @@
   [A B]
   (map-matrix * A B))
 
+(defn matrix-min
+  "Returns the minimum value in the matrix or the minimum value above
+   threshold if passed in."
+  ([matrix]
+     (apply min (for [row (seq matrix)] (apply min (seq row)))))
+  ([matrix threshold]
+     (if-let [vals-above-threshold (seq (remove nil? (for [row (seq matrix)]
+                                                       (if-let [vals-above-threshold (seq (filter #(> % threshold) row))]
+                                                         (apply min vals-above-threshold)))))]
+       (apply min vals-above-threshold)
+       threshold)))
+
 (defn matrix-max
   "Returns the maximum value in the matrix."
   [matrix]
@@ -373,10 +387,10 @@
                           (range pi (inc bi))
                           (range pi (dec bi) -1)))
 
-          (== m 0) (map (fn [j] [pi j])
-                        (if (< pj bj)
-                          (range pj (inc bj))
-                          (range pj (dec bj) -1)))
+          (zero? m) (map (fn [j] [pi j])
+                         (if (< pj bj)
+                           (range pj (inc bj))
+                           (range pj (dec bj) -1)))
 
           :otherwise (let [get-i-range
                            (cond (and (< pi bi) (< pj bj))
