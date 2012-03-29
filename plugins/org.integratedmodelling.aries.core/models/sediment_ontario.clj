@@ -180,21 +180,22 @@
     1 InFloodplain
     0 NotInFloodplain))
 
-(defmodel floodplain-tree-canopy-cover
+(defmodel floodplain-tree-canopy-cover FloodplainTreeCanopyCover
   (ranking FloodplainTreeCanopyCover
     :context [(ranking habitat:PercentTreeCanopyCover)
               (binary-coding FloodplainsCode)]
-    :state   #(let [c (or (:percent-tree-canopy-cover %) 0.0)
-                    f (or (:floodplains-code %)          0.0)]
-                (* c f))))
+    :state   #(if (and (:floodplains-code %)
+                       (:percent-tree-canopy-cover %))
+                (int (* 100 (:percent-tree-canopy-cover %)))
+                0)))
 
 (defmodel floodplain-tree-canopy-cover-class FloodplainTreeCanopyCoverClass
   (classification floodplain-tree-canopy-cover
-    [0.8 1.0 :inclusive] VeryHighFloodplainCanopyCover
-    [0.6 0.8]            HighFloodplainCanopyCover
-    [0.4 0.6]            ModerateFloodplainCanopyCover
-    [0.2 0.4]            LowFloodplainCanopyCover
-    [0.0 0.2]            VeryLowFloodplainCanopyCover))
+    [80 100 :inclusive] VeryHighFloodplainCanopyCover
+    [60  80]            HighFloodplainCanopyCover
+    [40  60]            ModerateFloodplainCanopyCover
+    [20  40]            LowFloodplainCanopyCover
+    [ 0  20]            VeryLowFloodplainCanopyCover))
 
 (defmodel annual-sediment-sink-class AnnualSedimentSinkClass
   (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
@@ -261,9 +262,9 @@
   (span SedimentTransport
         AnnualSedimentSource
         DepositionProneFarmers
-        AnnualSedimentSink ; this model is incomplete
+        AnnualSedimentSink
         nil
-        (geophysics:Altitude geofeatures:River infrastructure:Levee FloodplainsCode) ; we don't have information on floodplains or levees
+        (geophysics:Altitude geofeatures:River FloodplainsCode) ; we don't have information on levees
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
