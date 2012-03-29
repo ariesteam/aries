@@ -235,7 +235,7 @@
         nil
         (geophysics:Altitude geofeatures:River)
         :source-threshold   0.0
-        :sink-threshold     0.0
+        :sink-threshold     100.0
         :use-threshold      0.0
         :trans-threshold    0.1
         :source-type        :finite
