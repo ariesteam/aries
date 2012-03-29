@@ -276,7 +276,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        :save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
+        ;; :save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
         :context [annual-sediment-source annual-sediment-sink deposition-prone-farmers altitude river floodplains-code]
         :keep    [TheoreticalSource
                   TheoreticalSink
