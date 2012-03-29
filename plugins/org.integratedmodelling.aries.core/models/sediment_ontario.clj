@@ -155,34 +155,46 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(declare stream-gradient
-         dam-storage
+(declare stream-gradient-class
+         ;; dam-storage
+         floodplains
+         floodplain-tree-canopy-cover
+         floodplain-tree-canopy-cover-class
          annual-sediment-sink-class
          annual-sediment-sink)
 
 ;; ontario:stream_gradient_low
-(defmodel stream-gradient habitat:StreamGradient
+(defmodel stream-gradient-class StreamGradientClass
   (classification (measurement habitat:StreamGradient "\u00b0")
     [2.86   :>] HighStreamGradient
     [1.15 2.86] ModerateStreamGradient
     [:<   1.15] LowStreamGradient))
 
-(defmodel floodplain Floodplains
-  (classification (binary-coding Floodplains)
-    1          InFloodplain
-    :otherwise NotInFloodplain))
-
-(defmodel floodplain-canopy-cover FloodplainTreeCanopyCoverClass 
-  (classification (ranking habitat:PercentFloodplainTreeCanopyCover)
-    [80 100 :inclusive] VeryHighFloodplainCanopyCover
-    [60  80]            HighFloodplainCanopyCover
-    [40  60]            ModerateFloodplainCanopyCover
-    [20  40]            LowFloodplainCanopyCover
-    [ 0  20]            VeryLowFloodplainCanopyCover))
-
 ;; ontario:dams_low
-(defmodel dam-storage floodService:DamStorage
-  (measurement floodService:DamStorage "mm"))
+;; (defmodel dam-storage floodService:DamStorage
+;;   (measurement floodService:DamStorage "mm"))
+
+;; ontario:floodplains_low
+(defmodel floodplains Floodplains
+  (classification (binary-coding FloodplainsCode)
+    1 InFloodplain
+    0 NotInFloodplain))
+
+(defmodel floodplain-tree-canopy-cover
+  (ranking FloodplainTreeCanopyCover
+    :context [(ranking habitat:PercentTreeCanopyCover)
+              (binary-coding FloodplainsCode)]
+    :state   #(let [c (or (:percent-tree-canopy-cover %) 0.0)
+                    f (or (:floodplains-code %)          0.0)]
+                (* c f))))
+
+(defmodel floodplain-tree-canopy-cover-class FloodplainTreeCanopyCoverClass
+  (classification floodplain-tree-canopy-cover
+    [0.8 1.0 :inclusive] VeryHighFloodplainCanopyCover
+    [0.6 0.8]            HighFloodplainCanopyCover
+    [0.4 0.6]            ModerateFloodplainCanopyCover
+    [0.2 0.4]            LowFloodplainCanopyCover
+    [0.0 0.2]            VeryLowFloodplainCanopyCover))
 
 (defmodel annual-sediment-sink-class AnnualSedimentSinkClass
   (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
@@ -194,7 +206,7 @@
 (defmodel annual-sediment-sink AnnualSedimentSink
   (bayesian AnnualSedimentSink
     :import   "aries.core::SedimentSinkOntario.xdsl"
-    :context  [stream-gradient dam-storage]
+    :context  [stream-gradient-class floodplains floodplain-tree-canopy-cover-class]
     :keep     [AnnualSedimentSinkClass]
     :result   annual-sediment-sink-class))
 
@@ -204,6 +216,7 @@
 
 (declare deposition-prone-farmers)
 
+;; ontario:floodplain_farmland_low
 (defmodel deposition-prone-farmers DepositionProneFarmers
   (binary-coding DepositionProneFarmers))
 
@@ -212,7 +225,8 @@
 ;;;-------------------------------------------------------------------
 
 (declare altitude
-         river)
+         river
+         floodplains-code)
 
 ;; ontario:dem20m_low
 (defmodel altitude geophysics:Altitude
@@ -222,9 +236,9 @@
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
-;; FIXME: These is just a dummy placeholder
+;; ontario:floodplains_low
 (defmodel floodplains-code FloodplainsCode
-  (binary-coding geofeatures:River))
+  (binary-coding FloodplainsCode))
 
 ;;;-------------------------------------------------------------------
 ;;; Identification models
@@ -233,11 +247,11 @@
 (defmodel all-sediment-data AllSedimentData
   (identification AllSedimentData
     :context [annual-sediment-source
-              stream-gradient
-              dam-storage
+              annual-sediment-sink
               deposition-prone-farmers
               altitude
-              river]))
+              river
+              floodplains-code]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -250,10 +264,10 @@
         AnnualSedimentSink ; this model is incomplete
         nil
         (geophysics:Altitude geofeatures:River infrastructure:Levee FloodplainsCode) ; we don't have information on floodplains or levees
-        :source-threshold   100.0
-        :sink-threshold     100.0
-        :use-threshold        0.0
-        :trans-threshold     10.0
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    10.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -261,7 +275,7 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
+        :save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
         :context [annual-sediment-source annual-sediment-sink deposition-prone-farmers altitude river floodplains-code]
         :keep    [TheoreticalSource
                   TheoreticalSink
