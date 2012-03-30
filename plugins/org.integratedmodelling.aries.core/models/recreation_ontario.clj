@@ -207,9 +207,9 @@
         aestheticService:ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    10.0
-        :sink-threshold      5.0
-        :use-threshold       0.1
+        :source-threshold    75.0
+        :sink-threshold      10.0
+        :use-threshold       0.25
         :trans-threshold     1.0
         :source-type        :infinite
         :sink-type          :infinite
@@ -218,7 +218,7 @@
         :downscaling-factor 2
         :rv-max-states      10
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")
+        ;; :save-file          (str (System/getProperty "user.home") "/recreation_ontario_data.clj")
         ;; need to add additional context(s) for use
         :context [source sink canoe-use altitude]
         :keep    [aestheticService:TheoreticalSource
