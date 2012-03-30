@@ -58,8 +58,8 @@
                      (= ~value-type :numbers)  'clj-misc.numbers
                      (= ~value-type :varprop)  'clj-misc.varprop
                      (= ~value-type :randvars) 'clj-misc.randvars)]
-       (binding ~(vec (mapcat (fn [sym] [sym `(var-get (ns-resolve ~prob-ns '~sym))]) symbols))
-         ~@body))))
+       ~@(for [sym symbols] `(alter-var-root (var ~sym) (constantly (var-get (ns-resolve ~prob-ns '~sym)))))
+       ~@body)))
 
 (defstruct service-carrier
   :source-id      ; starting id of this flow path

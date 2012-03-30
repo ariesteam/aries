@@ -36,7 +36,7 @@
   (:use [clj-misc.utils      :only (euclidean-distance p def- between? with-progress-bar-cool with-message my-partition-all)]
         [clj-misc.matrix-ops :only (find-line-between get-line-fn)]))
 
-(refer 'clj-span.core :only '(distribute-flow! service-carrier))
+(refer 'clj-span.core :only '(distribute-flow! service-carrier with-typed-math-syms))
 
 (def #^{:dynamic true} _0_)
 (def #^{:dynamic true} _+_)
@@ -178,24 +178,8 @@
            cache-layer possible-flow-layer actual-flow-layer
            source-points use-points cell-width cell-height
            value-type trans-threshold]}]
-  (let [{elev-layer "Altitude"} flow-layers
-        prob-ns (cond
-                 (= value-type :numbers)  'clj-misc.numbers
-                 (= value-type :varprop)  'clj-misc.varprop
-                 (= value-type :randvars) 'clj-misc.randvars)]
-    (binding [_0_   (var-get (ns-resolve prob-ns '_0_))
-              _+_   (var-get (ns-resolve prob-ns '_+_))
-              _-_   (var-get (ns-resolve prob-ns '_-_))
-              _*_   (var-get (ns-resolve prob-ns '_*_))
-              _d_   (var-get (ns-resolve prob-ns '_d_))
-              _*    (var-get (ns-resolve prob-ns '_*))
-              *_    (var-get (ns-resolve prob-ns '*_))
-              _d    (var-get (ns-resolve prob-ns '_d))
-              -_    (var-get (ns-resolve prob-ns '-_))
-              _>_   (var-get (ns-resolve prob-ns '_>_))
-              _max_ (var-get (ns-resolve prob-ns '_max_))
-              rv-fn (var-get (ns-resolve prob-ns 'rv-fn))
-              _>    (var-get (ns-resolve prob-ns '_>))]
+  (let [{elev-layer "Altitude"} flow-layers]
+    (with-typed-math-syms value-type [_0_ _+_ _-_ _*_ _d_ _* *_ _d -_ _>_ _max_ rv-fn _>]
       (let [num-view-lines (* (count source-points) (count use-points))
             to-meters      (fn [[i j]] [(* i cell-height) (* j cell-width)])
             partition-size 1]

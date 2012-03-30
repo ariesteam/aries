@@ -26,8 +26,8 @@
 
 (ns clj-span.aries-span-bridge
   (:use [clj-span.core           :only (run-span)]
-        [clj-misc.matrix-ops     :only (seq2matrix)]
-        [clj-misc.utils          :only (remove-nil-val-entries constraints-1.0 with-message)])
+        [clj-misc.matrix-ops     :only (seq2matrix map-matrix)]
+        [clj-misc.utils          :only (remove-nil-val-entries constraints-1.0 with-message mapmap)])
   (:require (clj-misc [numbers :as nb] [varprop :as vp] [randvars :as rv]))
   (:import (java.io File FileWriter FileReader PushbackReader)
            (org.integratedmodelling.corescience.literals IndexedCategoricalDistribution)))
@@ -67,7 +67,7 @@
 )
 
 (defn save-span-layers
-  [filename source-layer sink-layer use-layer flow-layers cell-width cell-height]
+  [filename source-layer sink-layer use-layer flow-layers cell-width cell-height value-type]
   (let [dummy-map    {:theoretical-source  (constantly {})
                       :inaccessible-source (constantly {})
                       :possible-source     (constantly {})
@@ -83,12 +83,16 @@
                       :actual-use          (constantly {})
                       :possible-flow       (constantly {})
                       :blocked-flow        (constantly {})
-                      :actual-flow         (constantly {})}]
+                      :actual-flow         (constantly {})}
+        to-printable (if (contains? #{:varprop :randvars} value-type) #(with-meta (into {} %) (meta %)) identity)]
     (with-open [outstream (FileWriter. filename)]
       (binding [*out*       outstream
                 *print-dup* true]
-        (doseq [data [source-layer sink-layer use-layer flow-layers cell-width cell-height]]
-          (prn data))))
+        (doseq [data (map #(map-matrix to-printable %) [source-layer sink-layer use-layer])]
+          (prn data))
+        (prn (mapmap identity #(map-matrix to-printable %) flow-layers))
+        (prn cell-width)
+        (prn cell-height)))
     dummy-map))
 
 (defn read-span-layers
@@ -226,7 +230,7 @@
       (Thread/sleep 10000)
       (if (string? save-file)
         (do (println "Writing extracted SPAN layers to" save-file "and exiting early.")
-            (save-span-layers save-file source-layer sink-layer use-layer flow-layers cell-w cell-h))
+            (save-span-layers save-file source-layer sink-layer use-layer flow-layers cell-w cell-h value-type))
         (run-span (remove-nil-val-entries
                    {:source-layer       source-layer
                     :source-threshold   source-threshold

@@ -211,8 +211,7 @@
 (defn move-carriers-one-step-downstream!
   [params surface-water-carriers]
   (report-carrier-counts surface-water-carriers)
-  (map (p to-the-ocean! params) surface-water-carriers))
-  ;; (pmap (p to-the-ocean! params) surface-water-carriers))
+  (pmap (p to-the-ocean! params) surface-water-carriers))
 
 (defn create-initial-service-carriers
   [{:keys [source-layer source-points mm2-per-cell in-stream?]}]
