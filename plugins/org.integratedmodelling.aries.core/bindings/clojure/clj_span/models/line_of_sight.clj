@@ -181,23 +181,22 @@
   (let [{elev-layer "Altitude"} flow-layers]
     (with-typed-math-syms value-type [_0_ _+_ _-_ _*_ _d_ _* *_ _d -_ _>_ _max_ rv-fn _>]
       (let [num-view-lines (* (count source-points) (count use-points))
-            to-meters      (fn [[i j]] [(* i cell-height) (* j cell-width)])
-            partition-size 1]
-        (with-message (str "Scanning " num-view-lines " view lines in chunks of size " partition-size "...\n") "\nAll done."
+            to-meters      (fn [[i j]] [(* i cell-height) (* j cell-width)])]
+        (with-message (str "Scanning " num-view-lines " view lines...\n") "\nAll done."
           (with-progress-bar-cool
             :drop
-            (int (Math/ceil (/ num-view-lines partition-size)))
-            (pmap (fn [view-lines]
-                    (doseq [[source-point use-point] view-lines]
-                      (raycast!
-                       source-layer
-                       sink-layer
-                       elev-layer
-                       cache-layer
-                       possible-flow-layer
-                       actual-flow-layer
-                       to-meters
-                       trans-threshold
-                       source-point
-                       use-point)))
-                  (my-partition-all partition-size (for [use-point use-points source-point source-points] [source-point use-point])))))))))
+            num-view-lines
+            (pmap (fn [[source-point use-point]]
+                    (raycast!
+                     source-layer
+                     sink-layer
+                     elev-layer
+                     cache-layer
+                     possible-flow-layer
+                     actual-flow-layer
+                     to-meters
+                     trans-threshold
+                     source-point
+                     use-point))
+                  (for [use-point use-points source-point source-points]
+                    [source-point use-point]))))))))

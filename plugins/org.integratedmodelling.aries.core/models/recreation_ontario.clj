@@ -215,7 +215,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 2
+        :downscaling-factor 3
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/recreation_ontario_data.clj")
