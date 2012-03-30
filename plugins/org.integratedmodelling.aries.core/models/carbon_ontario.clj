@@ -102,11 +102,11 @@
 
 (defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
   (classification (ranking habitat:HardwoodSoftwoodRatio)
-    [1  2]            VeryHighHardness
-    [2  4]            HighHardness
-    [4  6]            ModerateHardness
-    [6  8]            LowHardness
-    [8 10 :inclusive] VeryLowHardness))
+    [0   20]            VeryHighHardness
+    [20  40]            HighHardness
+    [40  60]            ModerateHardness
+    [60  80]            LowHardness
+    [80 100 :inclusive] VeryLowHardness))
 
 ;; ontario:lulc2000_alg
 (defmodel carbon-vegetation-type ontario:CarbonVegetationType
@@ -118,14 +118,14 @@
     #{18 19 21 23} ontario:SwampFenBog
     #{25 27}       ontario:CroplandPasture))
 
-(defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha"
-    [500 900] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [200 500] HighVegetationStorage
-    [75 200]  ModerateVegetationStorage
-    [25 75]   LowVegetationStorage
-    [0.01 25] VeryLowVegetationStorage
-    [0 0.01]  NoVegetationStorage))
+;; (defmodel veg-storage VegetationCarbonStorage
+;;   (probabilistic-measurement VegetationCarbonStorage "t/ha"
+;;     [500 900] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+;;     [200 500] HighVegetationStorage
+;;     [75 200]  ModerateVegetationStorage
+;;     [25 75]   LowVegetationStorage
+;;     [0.01 25] VeryLowVegetationStorage
+;;     [0 0.01]  NoVegetationStorage))
 
 ;; Ceiling based off highest local values from MODIS NPP data
 ;; global:npp_modis -> measure -d carbonService:VegetationAndSoilCarbonSequestration t/ha*year core.contexts.ontario/algonquin-wgs84
@@ -142,7 +142,7 @@
   (bayesian CarbonSourceValue
     :import   "aries.core::CarbonSourceOntario.xdsl"
     :context  [altitude vegetated-land successional-stage percent-tree-canopy-cover-class summer-high-winter-low
-               soil-cn-ratio hardwood-softwood-ratio carbon-vegetation-type veg-storage]
+               soil-cn-ratio hardwood-softwood-ratio carbon-vegetation-type]
     :required [VegetatedLand]
     :keep     [VegetationAndSoilCarbonSequestration]
     :result   vegetation-and-soil-carbon-sequestration))
