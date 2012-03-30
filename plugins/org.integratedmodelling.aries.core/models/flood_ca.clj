@@ -163,19 +163,19 @@
 ;; but change if you ran it again for Southern California.
 (defmodel evapotranspiration EvapotranspirationClass
   (classification (measurement habitat:ActualEvapotranspiration "mm")
-    [90 :>]	VeryHighEvapotranspiration
-    [60 90]	HighEvapotranspiration
-    [30 60] ModerateEvapotranspiration
-    [12 30] LowEvapotranspiration
-    [ 0 12] VeryLowEvapotranspiration))
+    [45 60] VeryHighEvapotranspiration
+    [30 45] HighEvapotranspiration
+    [20 30] ModerateEvapotranspiration
+    [10 20] LowEvapotranspiration
+    [ 0 10] VeryLowEvapotranspiration))
 
 (defmodel infiltration california:SoilInfiltrationClass
   (classification (measurement waterSupplyService:SoilInfiltrationClass "mm")
-    [25 :>]	california:VeryHighSoilInfiltration
-    [13 25]	california:HighSoilInfiltration
-    [ 8 13]	california:ModerateSoilInfiltration
-    [ 3  8]	california:LowSoilInfiltration
-    [ 0  3]	california:VeryLowSoilInfiltration))
+    [150 200] california:VeryHighSoilInfiltration
+    [100 150] california:HighSoilInfiltration
+    [ 25 100] california:ModerateSoilInfiltration
+    [ 10  25] california:LowSoilInfiltration
+    [  0  10] california:VeryLowSoilInfiltration))
 
 ;; Doing this one like the detention basin model for Puget Sound.
 (defmodel dam-storage DamStorage
@@ -192,7 +192,7 @@
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage california:GreenInfrastructureStorage
   (probabilistic-measurement GreenInfrastructureStorage "mm" 
-    [115 320] california:VeryHighGreenStorage
+    [115 260] california:VeryHighGreenStorage
     [ 72 115] california:HighGreenStorage
     [ 40  72] california:ModerateGreenStorage
     [ 15  40] california:LowGreenStorage
