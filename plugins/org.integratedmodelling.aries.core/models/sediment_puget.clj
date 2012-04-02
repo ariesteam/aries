@@ -150,7 +150,7 @@
 ;; source bayesian model for Puget Sound     
 (defmodel source-puget puget:AnnualSedimentSource
   (bayesian puget:AnnualSedimentSource 
-    :import   "aries.core::trained/SedimentSourcePugetAdHoc.xdsl"
+    :import   "aries.core::SedimentSourcePugetAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
                successional-stage slope-stability land-selector]
@@ -319,7 +319,7 @@
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 3
+        :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_farmers_puget_data.clj")
@@ -356,7 +356,7 @@
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 3
+        :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
