@@ -20,7 +20,7 @@
 ;;; Recreation model for Ontario
 ;;;
 ;;; Valid Contexts: core.contexts.ontario/algonquin-wgs84
-;;;
+;;;                 core.contexts.ontario/algonquin-bbox-wgs84
 ;;;-------------------------------------------------------------------
 
 (ns core.models.recreation-ontario
@@ -215,7 +215,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3
+        :downscaling-factor 2
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/recreation_ontario_data.clj")
