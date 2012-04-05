@@ -100,13 +100,21 @@
     [ 8 15] LowCNRatio
     [:<  8] VeryLowCNRatio))
 
+;;(defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
+;;(classification (ranking habitat:HardwoodSoftwoodRatio)
+;;  [0   20]            VeryHighHardness
+;;  [20  40]            HighHardness
+;;  [40  60]            ModerateHardness
+;;  [60  80]            LowHardness
+;;  [80 100 :inclusive] VeryLowHardness))
+
 (defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
   (classification (ranking habitat:HardwoodSoftwoodRatio)
-    [0   20]            VeryHighHardness
-    [20  40]            HighHardness
-    [40  60]            ModerateHardness
-    [60  80]            LowHardness
-    [80 100 :inclusive] VeryLowHardness))
+    [80 100 :inclusive]     VeryHighHardness
+    [60  80]                HighHardness
+    [40  60]                ModerateHardness
+    [20  40]                LowHardness
+    [0   20]                VeryLowHardness))
 
 ;; ontario:lulc2000_alg
 (defmodel carbon-vegetation-type ontario:CarbonVegetationType
