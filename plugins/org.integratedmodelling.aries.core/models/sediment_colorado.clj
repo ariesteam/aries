@@ -221,7 +221,7 @@
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 3
+        :downscaling-factor 9
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
@@ -239,7 +239,7 @@
                   InaccessibleSink
                   BlockedFlow
                   BlockedSource
-                  BlockedUse]))                        
+                  BlockedUse]))
 
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs-no-fire DetrimentalSedimentTransportNoFire
