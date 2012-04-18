@@ -102,15 +102,6 @@
     [6  8]            LowHardness
     [8 10 :inclusive] VeryLowHardness))
 
-(defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha"
-    [500 900] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [200 500] HighVegetationStorage
-    [75 200]  ModerateVegetationStorage
-    [25 75]   LowVegetationStorage
-    [0.01 25] VeryLowVegetationStorage
-    [0 0.01]  NoVegetationStorage))
-
 ;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
@@ -124,7 +115,7 @@
 ;; Bayesian sink model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-    :import   "aries.core::trained/CarbonSourcePugetGreenCoarse.xdsl"
+    :import   "aries.core::CarbonSourcePuget.xdsl"
     :context  [hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
                percent-canopy-cover successional-stage land-selector]
     :required [LandOrSea]
@@ -168,6 +159,15 @@
     [0.25 0.9]  HighFireThreat
     [0.03 0.25] ModerateFireThreat
     [0    0.03] LowFireThreat))
+
+(defmodel veg-storage VegetationCarbonStorage
+  (probabilistic-measurement VegetationCarbonStorage "t/ha"
+    [500 900] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [200 500] HighVegetationStorage
+    [75 200]  ModerateVegetationStorage
+    [25 75]   LowVegetationStorage
+    [0.01 25] VeryLowVegetationStorage
+    [0 0.01]  NoVegetationStorage))
 
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
