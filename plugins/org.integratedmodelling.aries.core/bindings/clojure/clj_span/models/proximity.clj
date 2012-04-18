@@ -30,7 +30,7 @@
   (:use [clj-misc.utils      :only (def- p my->> mapmap euclidean-distance with-progress-bar-cool with-message remove-nil-val-entries)]
         [clj-misc.matrix-ops :only (get-neighbors get-line-fn find-bounding-box)]))
 
-(refer 'clj-span.core :only '(distribute-flow! service-carrier))
+(refer 'clj-span.core :only '(distribute-flow! service-carrier with-typed-math-syms))
 
 (def #^{:dynamic true} _0_)
 (def #^{:dynamic true} _+_)
@@ -47,7 +47,7 @@
 (def- slow-source-decay (get-line-fn {:slope (/ -0.25 half-mile) :intercept 0.5}))
 
 ;; source decay = fast decay to 1/2 mile, slow decay to 1 mile, gone after 1 mile
-(defn- source-decay
+(defn source-decay
   [distance]
   (cond (> distance mile)
         0.0
@@ -158,30 +158,21 @@
            cache-layer possible-flow-layer actual-flow-layer
            source-points cell-width cell-height rows cols
            value-type trans-threshold]}]
-  (let [prob-ns (cond
-                 (= value-type :numbers)  'clj-misc.numbers
-                 (= value-type :varprop)  'clj-misc.varprop
-                 (= value-type :randvars) 'clj-misc.randvars)]
-    (binding [_0_   (var-get (ns-resolve prob-ns '_0_))
-              _+_   (var-get (ns-resolve prob-ns '_+_))
-              _*    (var-get (ns-resolve prob-ns '_*))
-              _>_   (var-get (ns-resolve prob-ns '_>_))
-              rv-fn (var-get (ns-resolve prob-ns 'rv-fn))
-              _>    (var-get (ns-resolve prob-ns '_>))]
-      (let [to-meters (fn [[i j]] [(* i cell-height) (* j cell-width)])]
-        (with-message (str "Projecting " (count source-points) " search bubbles...\n") "\nAll done."
-          (with-progress-bar-cool
-            :drop
-            (count source-points)
-            (pmap (p distribute-gaussian!
-                     source-layer
-                     sink-layer
-                     use-layer
-                     cache-layer
-                     possible-flow-layer
-                     actual-flow-layer
-                     to-meters
-                     trans-threshold
-                     rows
-                     cols)
-                  source-points)))))))
+  (with-typed-math-syms value-type [_0_ _+_ _* _>_ rv-fn _>]
+    (let [to-meters (fn [[i j]] [(* i cell-height) (* j cell-width)])]
+      (with-message (str "Projecting " (count source-points) " search bubbles...\n") "\nAll done."
+        (with-progress-bar-cool
+          :drop
+          (count source-points)
+          (pmap (p distribute-gaussian!
+                   source-layer
+                   sink-layer
+                   use-layer
+                   cache-layer
+                   possible-flow-layer
+                   actual-flow-layer
+                   to-meters
+                   trans-threshold
+                   rows
+                   cols)
+                source-points))))))

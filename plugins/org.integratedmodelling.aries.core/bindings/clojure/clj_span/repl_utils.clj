@@ -80,18 +80,18 @@
              :flow-layers        flow-layers
              :cell-width         cell-width
              :cell-height        cell-height
-             :source-threshold   1000.0
-             :sink-threshold     500.0
+             :source-threshold   0.0
+             :sink-threshold     0.0
              :use-threshold      0.0
-             :trans-threshold    100.0
+             :trans-threshold    1.0
              :source-type        :finite
              :sink-type          :finite
              :use-type           :infinite
              :benefit-type       :rival ;; or :non-rival for turbidity
              :value-type         value-type
-             :downscaling-factor 3
+             :downscaling-factor 4
              :rv-max-states      10
-             :animation?         false
+             :animation?         true
              :result-type        :closure-map}))
 
 (defn test-run-flood
