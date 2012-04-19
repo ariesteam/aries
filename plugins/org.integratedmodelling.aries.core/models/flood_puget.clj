@@ -454,7 +454,7 @@ be added to this list if desired."
     [400  :>]  HighFloodplainWidth
     [200 400]  ModerateFloodplainWidth
     [:<  200]  LowFloodplainWidth
-    :otherwise NoFloodplainWidth))         
+    :otherwise NoFloodplainWidth))
 
 ;; These are currently set to "source-annual" but should also be
 ;; tested for "source-monthly"
@@ -501,10 +501,10 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0      ; Set at zero since output values for this are a 0/1
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -538,10 +538,10 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0      
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -575,10 +575,10 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -612,10 +612,10 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -649,10 +649,10 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -690,10 +690,10 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -732,10 +732,10 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -769,10 +769,10 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite

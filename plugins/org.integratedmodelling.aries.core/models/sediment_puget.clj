@@ -311,10 +311,10 @@
         AnnualSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River) 
-        :source-threshold   1000.0 ; Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -348,10 +348,10 @@
         AnnualSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
-        :source-threshold   1000.0
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -385,10 +385,10 @@
         AnnualSedimentSink 
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
-        :source-threshold   1000.0
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite

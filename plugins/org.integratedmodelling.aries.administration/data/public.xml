@@ -7648,7 +7648,6 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
   <measurement:BinaryCoding id="hydrography_puget_mid_res">
     <observation:hasObservable>
@@ -7676,7 +7675,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <!--
   <measurement:BinaryCoding id="hydrography_puget_hi_res">
     <observation:hasObservable>
       <geofeatures:River />
@@ -7703,6 +7701,8 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+Not sure why DR rivers are commented out.  This will likely mean
+     the sediment model won't work. 
   <measurement:BinaryCoding id="dominicanRepublic_drrivers">
     <observation:hasObservable>
       <geofeatures:River />
@@ -7724,6 +7724,30 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
   -->
+
+  <measurement:BinaryCoding id="puget_hydrography_wa">
+    <observation:hasObservable>
+      <geofeatures:River/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Washington DOT hydrography data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.wsdot.wa.gov/mapsdata/geodatacatalog/default.htm</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>puget:hydrography_wa</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>5075159.368870418</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>363200.59696175426</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5432277.4950698</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>681923.2016715293</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+    </measurement:BinaryCoding>
 
   <measurement:BinaryCoding id="mexico_lastreams">
     <observation:hasObservable>
@@ -10421,7 +10445,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Ranking id="coastal_nutrient_inputs">
+  <measurement:Measurement id="coastal_nutrient_inputs">
     <observation:hasObservable>
       <fisheries:NutrientRunoff/>
     </observation:hasObservable>
@@ -10429,6 +10453,7 @@ global data. -->
     marine ecosystems</rdfs:comment>
     <metadata:hasPriority>10</metadata:hasPriority>
     <metadata:hasURL>http://www.nceas.ucsb.edu/globalmarine</metadata:hasURL>
+    <measurement:unit>t/year</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -10446,7 +10471,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
   <measurement:BinaryCoding id="mg_paths2">
     <observation:hasObservable>
@@ -10578,7 +10603,7 @@ global data. -->
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <measurement:Ranking id="artisinal_fishing">
+  <measurement:Measurement id="artisinal_fishing">
     <observation:hasObservable>
       <fisheries:SubsistenceUse/>
     </observation:hasObservable>
@@ -10586,6 +10611,7 @@ global data. -->
     marine ecosystems</rdfs:comment>
     <metadata:hasPriority>10</metadata:hasPriority>
     <metadata:hasURL>http://www.nceas.ucsb.edu/globalmarine</metadata:hasURL>
+    <measurement:unit>t/year</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -10603,7 +10629,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
   <measurement:Ranking id="gdcyc">
     <observation:hasObservable>

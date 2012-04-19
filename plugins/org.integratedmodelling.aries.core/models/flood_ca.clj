@@ -412,9 +412,9 @@ list if desired."
 		nil 
 		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
-		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
-		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
+		:use-threshold		 0.0	 ; Set at zero since output values for this are a 0/1
+		:trans-threshold	 5.0	 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
 		:sink-type			:finite
 		:use-type			:infinite
@@ -437,7 +437,7 @@ list if desired."
                   InaccessibleUse
                   BlockedFlow
                   BlockedSource
-                  BlockedUse]))   
+                  BlockedUse]))
 
 ;; Flow model for farmers in the 500-year floodplain  
 (defmodel flood-regulation-farmers-500 AvoidedDamageToFarms500
@@ -448,7 +448,7 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
@@ -484,7 +484,7 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
@@ -520,7 +520,7 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
@@ -556,7 +556,7 @@ list if desired."
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :sink-threshold     30.0     ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
         :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
@@ -593,7 +593,7 @@ list if desired."
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :sink-threshold     30.0     ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
         :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
@@ -631,7 +631,7 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
@@ -667,7 +667,7 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
@@ -703,7 +703,7 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
@@ -739,7 +739,7 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
@@ -775,7 +775,7 @@ list if desired."
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :sink-threshold     30.0     ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
         :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
@@ -812,7 +812,7 @@ list if desired."
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :sink-threshold     30.0     ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
         :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite

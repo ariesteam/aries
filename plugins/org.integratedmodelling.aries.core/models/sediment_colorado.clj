@@ -213,7 +213,9 @@
         ReservoirSedimentSink
         nil
         (geophysics:Altitude geofeatures:River FloodplainsCode)
-        :source-threshold   1000.0
+        :source-threshold   1000.0 ;; Be very careful with units here:
+        ;; if the flow results show no flows, may need to set
+        ;; thresholds lower.
         :sink-threshold      500.0
         :use-threshold         0.0
         :trans-threshold     100.0
