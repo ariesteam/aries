@@ -1814,7 +1814,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <!-- Numeric ranking of successional stage -->
+  <!-- Numeric ranking of successional stage 
   <measurement:Ranking id="successional_stage_puget">
     <observation:hasObservable>
       <ecology:SuccessionalStage/>
@@ -1836,6 +1836,32 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasLonLowerBound>365037.5</geospace:hasLonLowerBound>
         <geospace:hasLatUpperBound>5435887.5</geospace:hasLatUpperBound>
         <geospace:hasLonUpperBound>665787.5</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26710</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking> -->
+
+  <measurement:Ranking id="successional_stage_puget">
+    <observation:hasObservable>
+      <ecology:SuccessionalStage/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Interagency Vegetation Mapping Project</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.blm.gov/or/gis/data-details.php?data=ds000103</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>puget:successional_stage_puget</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>14513</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>32020</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4635337.5</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>365037.5</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5435887.5</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>727912.5</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:26710</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
