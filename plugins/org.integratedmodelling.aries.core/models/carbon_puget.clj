@@ -303,7 +303,7 @@
       3          MidSuccession
       2          EarlySuccession
       1          PoleSuccession
-      :otherwise NoSuccession)))
+      #{21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} NoSuccession)))
 
 (defscenario ipcc-hadley-b2-incentivized 
   "This scenario represents the effects of the Hadley B1 IPCC climate
