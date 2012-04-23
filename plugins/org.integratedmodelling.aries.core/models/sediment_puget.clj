@@ -283,13 +283,13 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))                                    
+  (measurement geophysics:Altitude "m"))
 
 (defmodel levees infrastructure:Levee
   (binary-coding infrastructure:Levee))
 
 (defmodel streams geofeatures:River
-  (binary-coding geofeatures:River))        
+  (binary-coding geofeatures:River))
 
 (defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
   (identification ReservoirSoilDeposition 
