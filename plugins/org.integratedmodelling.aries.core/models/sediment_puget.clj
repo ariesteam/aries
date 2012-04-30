@@ -123,7 +123,7 @@
     3                                puget:MidSuccession
     2                                puget:PoleSuccession
     1                                puget:EarlySuccession
-    #{21 22 23 24 25 26 27 28 40 41} puget:NoSuccession))
+    #{21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} puget:NoSuccession))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea

@@ -118,13 +118,13 @@
 
 ;; Global dataset values are in the range of 18-39 mm for Colorado.
 (defmodel evapotranspiration colorado:EvapotranspirationClass
-  (probabilistic-measurement waterSupplyService:EvapotranspirationClass "mm"
+  (probabilistic-measurement colorado:EvapotranspirationClass "mm"
     [30 40] colorado:HighEvapotranspiration
     [24 30] colorado:ModerateEvapotranspiration
     [18 24] colorado:LowEvapotranspiration))
 
 (defmodel infiltration colorado:SoilInfiltrationClass
-  (probabilistic-measurement waterSupplyService:SoilInfiltrationClass "mm"
+  (probabilistic-measurement colorado:SoilInfiltrationClass "mm"
     [250 500] colorado:HighInfiltration
     [ 50 250] colorado:ModerateInfiltration
     [  0  50] colorado:LowInfiltration))
@@ -133,14 +133,14 @@
   (bayesian colorado:Evapotranspiration
     :import   "aries.core::SurfaceWaterSinkColorado.xdsl"
     :context  [slope vegetation-type percent-canopy-cover]
-    :keep     [sanPedro:EvapotranspirationClass]
+    :keep     [colorado:EvapotranspirationClass]
     :result   evapotranspiration))
 
 (defmodel infiltration-sink colorado:SoilInfiltration
   (bayesian colorado:SoilInfiltration
     :import   "aries.core::SurfaceWaterSinkColorado.xdsl"
     :context  [slope vegetation-type percent-canopy-cover]
-    :keep     [sanPedro:SoilInfiltrationClass]
+    :keep     [colorado:SoilInfiltrationClass]
     :result   infiltration))
 
 (defmodel surface-water-sink SurfaceWaterSink

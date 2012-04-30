@@ -191,7 +191,7 @@
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage california:GreenInfrastructureStorage
-  (probabilistic-measurement GreenInfrastructureStorage "mm" 
+  (probabilistic-measurement california:GreenInfrastructureStorage "mm" 
     [115 260] california:VeryHighGreenStorage
     [ 72 115] california:HighGreenStorage
     [ 40  72] california:ModerateGreenStorage
@@ -204,7 +204,7 @@
     :import	  "aries.core::FloodSinkCa.xdsl"
     :context  [soil-group slope imperviousness percent-canopy-cover vegetation-type land-selector]
     :required [LandOrSea]
-    :keep	  [GreenInfrastructureStorage]
+    :keep	  [california:GreenInfrastructureStorage]
     :result	  green-infrastructure-storage))
 
 (defmodel sink-annual FloodSink
@@ -455,7 +455,7 @@ list if desired."
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
 		:context [source-annual farmers-use-500 sink-annual altitude streams floodplains-500-code]
@@ -491,7 +491,7 @@ list if desired."
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
 		:context [source-annual public-use-100 sink-annual altitude streams floodplains-100-code]
@@ -527,7 +527,7 @@ list if desired."
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
 		:context [source-annual public-use-500 sink-annual altitude streams floodplains-500-code]
@@ -563,7 +563,7 @@ list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 8        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 1        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
@@ -600,7 +600,7 @@ list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 1        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -674,7 +674,7 @@ list if desired."
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
 		:context [source-annual farmers-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
@@ -710,7 +710,7 @@ list if desired."
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
 		:context [source-annual public-use-100 green-infrastructure-sink altitude streams floodplains-100-code]
@@ -746,7 +746,7 @@ list if desired."
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
 		:context [source-annual public-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
@@ -782,7 +782,7 @@ list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 8        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 1        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
@@ -819,7 +819,7 @@ list if desired."
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 1        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
