@@ -199,9 +199,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 9 ; Runs very slowly but to completion at
-                              ; 4.  Start at 9 then run at 4 when I
-                              ; can let my machine run overnight/the weekend.
+        :downscaling-factor 16
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_puget_data.clj")
