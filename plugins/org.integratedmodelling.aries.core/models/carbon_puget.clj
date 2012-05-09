@@ -102,15 +102,6 @@
     [6  8]            LowHardness
     [8 10 :inclusive] VeryLowHardness))
 
-(defmodel veg-storage VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha"
-    [500 900] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
-    [200 500] HighVegetationStorage
-    [75 200]  ModerateVegetationStorage
-    [25 75]   LowVegetationStorage
-    [0.01 25] VeryLowVegetationStorage
-    [0 0.01]  NoVegetationStorage))
-
 ;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
@@ -169,9 +160,18 @@
     [0.03 0.25] ModerateFireThreat
     [0    0.03] LowFireThreat))
 
+(defmodel veg-storage VegetationCarbonStorage
+  (probabilistic-measurement VegetationCarbonStorage "t/ha"
+    [500 900] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+    [200 500] HighVegetationStorage
+    [75 200]  ModerateVegetationStorage
+    [25 75]   LowVegetationStorage
+    [0.01 25] VeryLowVegetationStorage
+    [0 0.01]  NoVegetationStorage))
+
 (defmodel vegetation-carbon-storage VegetationCStorage 
   (bayesian VegetationCStorage 
-    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
+    :import   "aries.core::CarbonSinkPuget.xdsl"
     :context  [percent-canopy-cover hardwood-softwood-ratio 
                successional-stage summer-high-winter-low land-selector]
     :required [LandOrSea]
@@ -194,7 +194,7 @@
 
 (defmodel soil-carbon-storage SoilCStorage 
   (bayesian SoilCStorage 
-    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
+    :import   "aries.core::CarbonSinkPuget.xdsl"
     :context  [soil-ph slope oxygen percent-canopy-cover hardwood-softwood-ratio 
                successional-stage soil-cn-ratio land-selector]
     :required [LandOrSea]
@@ -227,7 +227,7 @@
 
 (defmodel sink CarbonSinkValue   
   (bayesian CarbonSinkValue 
-    :import   "aries.core::trained/CarbonSinkPuget.xdsl"
+    :import   "aries.core::CarbonSinkPuget.xdsl"
     :context  [veg-soil-storage fire-threat land-selector]
     :required [LandOrSea]
     :keep     [StoredCarbonRelease]
@@ -303,7 +303,7 @@
       3          MidSuccession
       2          EarlySuccession
       1          PoleSuccession
-      :otherwise NoSuccession)))
+      #{21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} NoSuccession)))
 
 (defscenario ipcc-hadley-b2-incentivized 
   "This scenario represents the effects of the Hadley B1 IPCC climate

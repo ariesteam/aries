@@ -71,7 +71,7 @@
 (defcontext co-grand-county400
   "Grand County, CO, for viewshed & sediment analysis"
   (grid
-   400
+   "50 m"
    "EPSG:4326 POLYGON((-106.66 40.5, -105.62 40.5, -105.62 39.67, -106.66 39.67, -106.66 40.5))"))
 
 (defcontext co-grand-county512

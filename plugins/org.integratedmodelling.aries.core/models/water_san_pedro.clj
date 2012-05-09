@@ -362,7 +362,7 @@
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
-        :downscaling-factor 1
+        :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_dry_year.clj")
@@ -402,7 +402,7 @@
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
-        :downscaling-factor 1
+        :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/water_san_pedro_data_wet_year.clj")

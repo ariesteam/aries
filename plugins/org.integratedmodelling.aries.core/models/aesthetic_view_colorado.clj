@@ -43,8 +43,8 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel lake Lake
-  (classification (binary-coding geofeatures:Lake)
-    1          LakePresent
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    110        LakePresent
     :otherwise LakeAbsent))
 
 (defmodel peaks SharpPeaks
@@ -54,34 +54,33 @@
 
 ;; Consider combining the four below based on the simplified BN if
 ;; Gary's flow model description.
-(defmodel conifer colorado:ConiferForests
-  (classification (binary-coding colorado:ConiferForestPresence)
-    1          colorado:ConifersPresent
-    :otherwise colorado:ConifersAbsent))
+;(defmodel conifer colorado:ConiferForests
+;(classification (binary-coding colorado:ConiferForestPresence)
+;  1          colorado:ConifersPresent
+;  :otherwise colorado:ConifersAbsent))
 
-(defmodel aspen colorado:AspenForests
-  (classification (binary-coding colorado:AspenForestPresence)
-    1          colorado:AspensPresent
-    :otherwise colorado:AspensAbsent))
+;(defmodel aspen colorado:AspenForests
+;(classification (binary-coding colorado:AspenForestPresence)
+;  1          colorado:AspensPresent
+;  :otherwise colorado:AspensAbsent))
 
-(defmodel high-grass-shrubs colorado:HighGrassOrShrubs
-  (classification (binary-coding colorado:HighGrassShrubPresence)
-    1          colorado:HighGrassShrubsPresent
-    :otherwise colorado:HighGrassShrubsAbsent))
+;(defmodel high-grass-shrubs colorado:HighGrassOrShrubs
+;(classification (binary-coding colorado:HighGrassShrubPresence)
+;  1          colorado:HighGrassShrubsPresent
+;  :otherwise colorado:HighGrassShrubsAbsent))
 
-(defmodel low-grass-shrubs colorado:LowGrassOrShrubs
-  (classification (binary-coding colorado:LowGrassShrubPresence)
-    1          colorado:LowGrassShrubsPresent
-    :otherwise colorado:LowGrassShrubsAbsent))
+;(defmodel low-grass-shrubs colorado:LowGrassOrShrubs
+;(classification (binary-coding colorado:LowGrassShrubPresence)
+;  1          colorado:LowGrassShrubsPresent
+;  :otherwise colorado:LowGrassShrubsAbsent))
 
-;; Replace above pending review of Gary's plain-English flow model description
-;; (defmodel scenic-vegetation colorado:ScenicVegetationType
-;; (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-;;  #{24 26 28 29 30 32 34 35 36 78 79} colorado:ConiferForest
-;;  #{22 38}                            colorado:AspenForest
-;;  #{69 70 71 77 86}                   colorado:HighGrassShrubs
-;;  #{41 42 48 62 67 82 85 114}         colorado:LowGrassShrubs
-;;  :otherwise                          colorado:Other))
+(defmodel scenic-vegetation colorado:ScenicVegetationType
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    #{24 26 28 29 30 32 34 35 36 78 79} colorado:ConiferForest
+    #{22 38}                            colorado:AspenForest
+    #{69 70 71 77 86}                   colorado:HighGrassShrubs
+    #{41 42 48 62 67 82 85 114}         colorado:LowGrassShrubs
+    :otherwise                          colorado:Other))
 
 (defmodel theoretical-beauty TheoreticalNaturalBeauty
   (probabilistic-ranking TheoreticalNaturalBeauty
@@ -91,21 +90,21 @@
     [ 0   1] NoNaturalBeauty))
 
 ;; source bayesian model                 
-(defmodel source ViewSource
-  (bayesian ViewSource 
-    :import  "aries.core::ViewSourceColorado.xdsl"
-    :context [lake peaks conifer aspen high-grass-shrubs low-grass-shrubs]
-    :keep    [TheoreticalNaturalBeauty]
-    :result  theoretical-beauty))
+;(defmodel source ViewSource
+;(bayesian ViewSource 
+;  :import  "aries.core::ViewSourceColorado.xdsl"
+;  :context [lake peaks conifer aspen high-grass-shrubs low-grass-shrubs]
+;  :keep    [TheoreticalNaturalBeauty]
+;  :result  theoretical-beauty))
 
 ;; Source bayesian model, simplified. Consider using when you can look
 ;; at Gary's plain-English description of the flow models.              
-;;(defmodel source ViewSource
-;;  (bayesian ViewSource
-    ;;    :import  "aries.core::ViewSourceColoradoSimplified.xdsl"
-    ;;    :context [lake peaks scenic-vegetation]
-    ;;    :keep    [TheoreticalNaturalBeauty]
-    ;;    :result  theoretical-beauty))
+(defmodel source ViewSource
+  (bayesian ViewSource
+        :import  "aries.core::ViewSourceColoradoSimplified.xdsl"
+        :context [lake peaks scenic-vegetation]
+        :keep    [TheoreticalNaturalBeauty]
+        :result  theoretical-beauty))
 
 ;;;-------------------------------------------------------------------
 ;;; Sink models
@@ -216,7 +215,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 9
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_view_san_pedro_data.clj")

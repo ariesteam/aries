@@ -37,5 +37,19 @@
 (defcontext algonquin-bbox-wgs84
   "Two Algonquin Provincial Park region."
   (grid
-  512
-"EPSG:4326 POLYGON ((-79.18 46.1710058593745,  -77.4700000000009 46.1710058593745, -77.4700000000009 45.138994140625,  -79.18 45.138994140625, -79.18 46.1710058593745))"))
+   "50 m"
+   "EPSG:4326 POLYGON ((-79.18 46.1710058593745,  -77.4700000000009 46.1710058593745, -77.4700000000009 45.138994140625,  -79.18 45.138994140625, -79.18 46.1710058593745))"))
+
+(defcontext lakeofthewoods-wshed2
+  "Context 2 from the list of Lake of the Woods watersheds"
+  (grid
+   "100 m"
+   "EPSG:4326 POLYGON ((-94.280040 49.85116, -93.46478 49.85116, -93.46478 49.43051, -94.280040 49.43051, -94.280040 49.85116))"))
+
+(defcontext lakeofthewoods-wshed7
+  "Context 7 from the list of Lake of the Woods watersheds"
+  (grid
+  "75 m"
+  "EPSG:4326 POLYGON ((-94.68109 49.005374, -94.165895 49.005374, -94.165895 48.83393, -94.68109  48.83393, -94.68109 49.005374))"))
+
+

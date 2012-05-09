@@ -71,7 +71,7 @@
          c cols
          n num-points
          points nil]
-    (if (== n 0)
+    (if (zero? n)
       points
       (let [point [(rand-int r) (rand-int c)]]
         (if (contains-item? points point)
