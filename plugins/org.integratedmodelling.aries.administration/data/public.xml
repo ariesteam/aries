@@ -1814,7 +1814,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <!-- Numeric ranking of successional stage -->
   <measurement:Ranking id="successional_stage_puget">
     <observation:hasObservable>
       <ecology:SuccessionalStage/>
@@ -1840,6 +1839,32 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+
+<!--  <measurement:Ranking id="successional_stage_puget">
+    <observation:hasObservable>
+      <ecology:SuccessionalStage/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Interagency Vegetation Mapping Project</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.blm.gov/or/gis/data-details.php?data=ds000103</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>puget:successional_stage_puget</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>14513</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>32020</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>4635337.5</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>365037.5</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5435887.5</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>727912.5</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26710</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking> -->
 
   <measurement:Ranking id="SumHiWintLow">
     <observation:hasObservable>
@@ -7648,7 +7673,6 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
   <measurement:BinaryCoding id="hydrography_puget_mid_res">
     <observation:hasObservable>
@@ -7676,7 +7700,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <!--
   <measurement:BinaryCoding id="hydrography_puget_hi_res">
     <observation:hasObservable>
       <geofeatures:River />
@@ -7703,6 +7726,8 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+Not sure why DR rivers are commented out.  This will likely mean
+     the sediment model won't work. 
   <measurement:BinaryCoding id="dominicanRepublic_drrivers">
     <observation:hasObservable>
       <geofeatures:River />
@@ -7724,6 +7749,30 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
   -->
+
+  <measurement:Ranking id="puget_hydrography_wa">
+    <observation:hasObservable>
+      <geofeatures:River/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Washington DOT hydrography data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.wsdot.wa.gov/mapsdata/geodatacatalog/default.htm</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>puget:hydrography_wa</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>5075159.368870418</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>363200.59696175426</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5432277.4950698</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>681923.2016715293</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+    </measurement:Ranking>
 
   <measurement:BinaryCoding id="mexico_lastreams">
     <observation:hasObservable>
@@ -10421,7 +10470,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Ranking id="coastal_nutrient_inputs">
+  <measurement:Measurement id="coastal_nutrient_inputs">
     <observation:hasObservable>
       <fisheries:NutrientRunoff/>
     </observation:hasObservable>
@@ -10429,6 +10478,7 @@ global data. -->
     marine ecosystems</rdfs:comment>
     <metadata:hasPriority>10</metadata:hasPriority>
     <metadata:hasURL>http://www.nceas.ucsb.edu/globalmarine</metadata:hasURL>
+    <measurement:unit>t/year</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -10446,7 +10496,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
   <measurement:BinaryCoding id="mg_paths2">
     <observation:hasObservable>
@@ -10578,7 +10628,7 @@ global data. -->
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <measurement:Ranking id="artisinal_fishing">
+  <measurement:Measurement id="artisinal_fishing">
     <observation:hasObservable>
       <fisheries:SubsistenceUse/>
     </observation:hasObservable>
@@ -10586,6 +10636,7 @@ global data. -->
     marine ecosystems</rdfs:comment>
     <metadata:hasPriority>10</metadata:hasPriority>
     <metadata:hasURL>http://www.nceas.ucsb.edu/globalmarine</metadata:hasURL>
+    <measurement:unit>t/year</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -10603,7 +10654,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Measurement>
 
   <measurement:Ranking id="gdcyc">
     <observation:hasObservable>
@@ -11518,22 +11569,21 @@ global data. -->
     </observation:hasObservable>
     <measurement:unit>/km^2</measurement:unit>
     <metadata:hasPriority>0</metadata:hasPriority>
-    <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>ontario:population_density_low</geospace:hasCoverageId>
-        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+        <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:RasterGrid>
-        <geospace:hasXRangeMax>1756</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>1445</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>5393784.064</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>331907.588</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>5538484.064</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>507707.588</geospace:hasLonUpperBound>
+        <geospace:hasXRangeMax>3041</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>2254</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5409718.549</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>343719.411</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5522518.549</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>495869.411</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
@@ -11613,5 +11663,49 @@ global data. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+
+  <measurement:BinaryCoding id="floodplain_farmland_low">
+    <observation:hasObservable>
+      <soilRetentionService:DepositionProneFarmers/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:floodplain_farmland_low</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>8785</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>7230</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>5393755.862</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>331916.008</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5538395.862</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>507656.008</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+  <measurement:BinaryCoding id="ontario_floodplains_low">
+    <observation:hasObservable>
+      <soilRetentionService:FloodplainsCode/>
+    </observation:hasObservable>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ontario:floodplains_low</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>5407047.140335178</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>340341.59026808734</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>5526757.966498787</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>497933.68286568637</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:26915</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </measurement:BinaryCoding>
 
 </kbox>

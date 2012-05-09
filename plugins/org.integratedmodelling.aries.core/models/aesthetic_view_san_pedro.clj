@@ -257,6 +257,11 @@
       :state   #(if (is? (:od %) (conc 'sanPedro:DevelopedOpen))
                   (conc 'aestheticService:HousingPresent)
                   (:h %))))
+;; Theoretically at least, we could assume all new housing is just of
+;; moderate value.  In practice we could just use priors
+;; since there's no knowledge of new housing values - though for the
+;; San Pedro the only housing value data are for Tucson anyway, so
+;; it's no big deal to leave in at this point.
   (model HousingValue
     (classification HousingValue
       :context [open-development-scenario :as od property-value :as pv]

@@ -163,19 +163,19 @@
 ;; but change if you ran it again for Southern California.
 (defmodel evapotranspiration EvapotranspirationClass
   (classification (measurement habitat:ActualEvapotranspiration "mm")
-    [90 :>]	VeryHighEvapotranspiration
-    [60 90]	HighEvapotranspiration
-    [30 60] ModerateEvapotranspiration
-    [12 30] LowEvapotranspiration
-    [ 0 12] VeryLowEvapotranspiration))
+    [45 60] VeryHighEvapotranspiration
+    [30 45] HighEvapotranspiration
+    [20 30] ModerateEvapotranspiration
+    [10 20] LowEvapotranspiration
+    [ 0 10] VeryLowEvapotranspiration))
 
 (defmodel infiltration california:SoilInfiltrationClass
   (classification (measurement waterSupplyService:SoilInfiltrationClass "mm")
-    [25 :>]	california:VeryHighSoilInfiltration
-    [13 25]	california:HighSoilInfiltration
-    [ 8 13]	california:ModerateSoilInfiltration
-    [ 3  8]	california:LowSoilInfiltration
-    [ 0  3]	california:VeryLowSoilInfiltration))
+    [150 200] california:VeryHighSoilInfiltration
+    [100 150] california:HighSoilInfiltration
+    [ 25 100] california:ModerateSoilInfiltration
+    [ 10  25] california:LowSoilInfiltration
+    [  0  10] california:VeryLowSoilInfiltration))
 
 ;; Doing this one like the detention basin model for Puget Sound.
 (defmodel dam-storage DamStorage
@@ -191,8 +191,8 @@
 
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage california:GreenInfrastructureStorage
-  (probabilistic-measurement GreenInfrastructureStorage "mm" 
-    [115 320] california:VeryHighGreenStorage
+  (probabilistic-measurement california:GreenInfrastructureStorage "mm" 
+    [115 260] california:VeryHighGreenStorage
     [ 72 115] california:HighGreenStorage
     [ 40  72] california:ModerateGreenStorage
     [ 15  40] california:LowGreenStorage
@@ -204,7 +204,7 @@
     :import	  "aries.core::FloodSinkCa.xdsl"
     :context  [soil-group slope imperviousness percent-canopy-cover vegetation-type land-selector]
     :required [LandOrSea]
-    :keep	  [GreenInfrastructureStorage]
+    :keep	  [california:GreenInfrastructureStorage]
     :result	  green-infrastructure-storage))
 
 (defmodel sink-annual FloodSink
@@ -412,9 +412,9 @@ list if desired."
 		nil 
 		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
-		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
-		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
+		:use-threshold		 0.0	 ; Set at zero since output values for this are a 0/1
+		:trans-threshold	 5.0	 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
 		:sink-type			:finite
 		:use-type			:infinite
@@ -437,7 +437,7 @@ list if desired."
                   InaccessibleUse
                   BlockedFlow
                   BlockedSource
-                  BlockedUse]))   
+                  BlockedUse]))
 
 ;; Flow model for farmers in the 500-year floodplain  
 (defmodel flood-regulation-farmers-500 AvoidedDamageToFarms500
@@ -448,14 +448,14 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
 		:context [source-annual farmers-use-500 sink-annual altitude streams floodplains-500-code]
@@ -484,14 +484,14 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
 		:context [source-annual public-use-100 sink-annual altitude streams floodplains-100-code]
@@ -520,14 +520,14 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
 		:context [source-annual public-use-500 sink-annual altitude streams floodplains-500-code]
@@ -556,14 +556,14 @@ list if desired."
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :sink-threshold     30.0     ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
         :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 8        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 1        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
@@ -593,14 +593,14 @@ list if desired."
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :sink-threshold     30.0     ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
         :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 1        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -631,7 +631,7 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
@@ -667,14 +667,14 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_farmers500.clj")
 		:context [source-annual farmers-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
@@ -703,14 +703,14 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains100Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public100.clj")
 		:context [source-annual public-use-100 green-infrastructure-sink altitude streams floodplains-100-code]
@@ -739,14 +739,14 @@ list if desired."
 		nil
 		(geophysics:Altitude geofeatures:River Floodplains500Code)
 		:source-threshold	50.0	 ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-		:sink-threshold		3000.0	 ; Considering moderate, high, and very high flood sinks
+		:sink-threshold		30.0	 ; Considering moderate, high, and very high flood sinks
 		:use-threshold		0.0		 ; Set at zero since output values for this are a 0/1
 		:trans-threshold	5.0		 ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
 		:source-type		:finite
 		:sink-type			:finite
 		:use-type			:infinite
 		:benefit-type		:non-rival
-		:downscaling-factor 8
+		:downscaling-factor 1
 		:rv-max-states		10
 		;;:save-file		  (str (System/getProperty "user.home") "/flood_ca_data_public500.clj")
 		:context [source-annual public-use-500 green-infrastructure-sink altitude streams floodplains-500-code]
@@ -775,14 +775,14 @@ list if desired."
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :sink-threshold     30.0     ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
         :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 8        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 1        ; Originally set at 1; bumped it to 8 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_regulation_residents_100_puget_data.clj")
@@ -812,14 +812,14 @@ list if desired."
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code)
         :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
+        :sink-threshold     30.0     ; Considering moderate, high, and very high flood sinks
         :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
         :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 1        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")

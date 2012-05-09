@@ -106,9 +106,9 @@
     [0 0.01] sanPedro:NoSequestration))
 
 ;; Bayesian source model
-(defmodel source sanPedro:CarbonSourceValue   
-  (bayesian sanPedro:CarbonSourceValue 
-    :import  "aries.core::trained/CarbonSourceSanPedro.xdsl"
+(defmodel source sanPedro:CarbonSourceValue
+  (bayesian sanPedro:CarbonSourceValue
+    :import  "aries.core::CarbonSourceSanPedro.xdsl"
     :context [vegetation-type percent-canopy-cover annual-precipitation]
     :keep    [sanPedro:VegetationAndSoilCarbonSequestration]
     :result  veg-soil-sequestration))

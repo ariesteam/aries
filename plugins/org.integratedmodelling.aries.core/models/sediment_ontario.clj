@@ -60,7 +60,8 @@
 (defmodel sediment-vegetation-type ontario:SedimentVegetationType
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
     #{11 12 13 15 16 17 18 19 20 21 22 23} ontario:ForestGrasslandWetland
-    #{7 8 9 10 24 25}                      ontario:ShrublandPasture
+    #{24 25}                               ontario:ShrublandPasture
+    #{7 8 9 10}                            ontario:ImpairedForest
     #{3 4 5 6 27}                          ontario:CropsBarrenDeveloped))
 
 ;; ontario:successional_stage_low
@@ -154,18 +155,47 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(declare stream-gradient
-         dam-storage
+(declare stream-gradient-class
+         ;; dam-storage
+         floodplains
+         floodplain-tree-canopy-cover
+         floodplain-tree-canopy-cover-class
          annual-sediment-sink-class
          annual-sediment-sink)
 
 ;; ontario:stream_gradient_low
-(defmodel stream-gradient habitat:StreamGradient
-  (measurement habitat:StreamGradient "\u00b0"))
+(defmodel stream-gradient-class StreamGradientClass
+  (classification (measurement habitat:StreamGradient "\u00b0")
+    [2.86   :>] HighStreamGradient
+    [1.15 2.86] ModerateStreamGradient
+    [:<   1.15] LowStreamGradient))
 
 ;; ontario:dams_low
-(defmodel dam-storage floodService:DamStorage
-  (measurement floodService:DamStorage "mm"))
+;; (defmodel dam-storage floodService:DamStorage
+;;   (measurement floodService:DamStorage "mm"))
+
+;; ontario:floodplains_low
+(defmodel floodplains Floodplains
+  (classification (binary-coding FloodplainsCode)
+    1 InFloodplain
+    0 NotInFloodplain))
+
+(defmodel floodplain-tree-canopy-cover FloodplainTreeCanopyCover
+  (ranking FloodplainTreeCanopyCover
+    :context [(ranking habitat:PercentTreeCanopyCover)
+              (binary-coding FloodplainsCode)]
+    :state   #(if (and (:floodplains-code %)
+                       (:percent-tree-canopy-cover %))
+                (int (* 100 (:percent-tree-canopy-cover %)))
+                0)))
+
+(defmodel floodplain-tree-canopy-cover-class FloodplainTreeCanopyCoverClass
+  (classification floodplain-tree-canopy-cover
+    [80 100 :inclusive] VeryHighFloodplainCanopyCover
+    [60  80]            HighFloodplainCanopyCover
+    [40  60]            ModerateFloodplainCanopyCover
+    [20  40]            LowFloodplainCanopyCover
+    [ 0  20]            VeryLowFloodplainCanopyCover))
 
 (defmodel annual-sediment-sink-class AnnualSedimentSinkClass
   (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
@@ -177,7 +207,7 @@
 (defmodel annual-sediment-sink AnnualSedimentSink
   (bayesian AnnualSedimentSink
     :import   "aries.core::SedimentSinkOntario.xdsl"
-    :context  [stream-gradient dam-storage]
+    :context  [stream-gradient-class floodplains floodplain-tree-canopy-cover-class]
     :keep     [AnnualSedimentSinkClass]
     :result   annual-sediment-sink-class))
 
@@ -185,18 +215,19 @@
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
-(declare population-density)
+(declare deposition-prone-farmers)
 
-;; ontario:population_density_low
-(defmodel population-density policytarget:PopulationDensity
-  (count policytarget:PopulationDensity "/km^2"))
+;; ontario:floodplain_farmland_low
+(defmodel deposition-prone-farmers DepositionProneFarmers
+  (binary-coding DepositionProneFarmers))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
 ;;;-------------------------------------------------------------------
 
 (declare altitude
-         river)
+         river
+         floodplains-code)
 
 ;; ontario:dem20m_low
 (defmodel altitude geophysics:Altitude
@@ -206,9 +237,9 @@
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
-;; FIXME: These is just a dummy placeholder
+;; ontario:floodplains_low
 (defmodel floodplains-code FloodplainsCode
-  (binary-coding geofeatures:River))
+  (binary-coding FloodplainsCode))
 
 ;;;-------------------------------------------------------------------
 ;;; Identification models
@@ -217,11 +248,11 @@
 (defmodel all-sediment-data AllSedimentData
   (identification AllSedimentData
     :context [annual-sediment-source
-              stream-gradient
-              dam-storage
-              population-density
+              annual-sediment-sink
+              deposition-prone-farmers
               altitude
-              river]))
+              river
+              floodplains-code]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -230,14 +261,14 @@
 (defmodel beneficial-sediment-transport BeneficialSedimentTransport
   (span SedimentTransport
         AnnualSedimentSource
-        PopulationDensity
-        AnnualSedimentSink ; this model is incomplete
+        DepositionProneFarmers
+        AnnualSedimentSink
         nil
-        (geophysics:Altitude geofeatures:River infrastructure:Levee FloodplainsCode) ; we don't have information on floodplains or levees
-        :source-threshold   100.0
-        :sink-threshold     100.0
-        :use-threshold        0.0
-        :trans-threshold     10.0
+        (geophysics:Altitude geofeatures:River FloodplainsCode) ; we don't have information on levees
+        :source-threshold   0.0
+        :sink-threshold     0.0
+        :use-threshold      0.0
+        :trans-threshold    10.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -245,8 +276,8 @@
         :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
-        ;;:save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
-        :context [annual-sediment-source annual-sediment-sink population-density altitude river floodplains-code]
+        ;; :save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
+        :context [annual-sediment-source annual-sediment-sink deposition-prone-farmers altitude river floodplains-code]
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse

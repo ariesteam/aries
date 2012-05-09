@@ -27,7 +27,7 @@
   (let [pools (ManagementFactory/getMemoryPoolMXBeans)
         mb (* 1024.0 1024.0)
         step (fn [pools tu tr tm]
-               (if (not (seq pools))
+               (if-not (seq pools)
                  [(/ tu mb) (/ tr mb) (/ tm mb)]
                  (let [pool (first pools)
                        usage (. pool getUsage)]

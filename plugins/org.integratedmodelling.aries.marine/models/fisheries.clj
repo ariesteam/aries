@@ -68,6 +68,9 @@
     :state   #(if-let [abundance (:lutjanus-argentimaculatus-abundance-mg %)]
                 (* abundance 8712431))))
 
+;; NB: we have actual subsistence harvest data from Halpern et al.
+;; (2008), which we don't use but definitely could.
+
 (defmodel total-pelagic-subsistence-harvest TotalSubsistenceHarvest
   "Estimates the total subsistence harvest of marine pelagic fishes in
    kg/km^2*year."

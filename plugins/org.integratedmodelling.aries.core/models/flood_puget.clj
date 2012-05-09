@@ -174,13 +174,14 @@
     #{41 42 43 52 71 81} puget:ForestGrasslandShrubland
     #{21 22 23 24 31 82} puget:DevelopedCultivated))
 
-(defmodel vegetation-height puget:VegetationHeight
-  (classification (measurement habitat:VegetationHeight "ft")
-    [120  :>] puget:VeryHighVegetationHeight
-    [ 80 120] puget:HighVegetationHeight
-    [ 50  80] puget:ModerateVegetationHeight
-    [ 20  50] puget:LowVegetationHeight
-    [ :<  20] puget:VeryLowVegetationHeight))
+;; Re-enable with LandFire canopy height data
+;;(defmodel vegetation-height puget:VegetationHeight
+;;  (classification (measurement habitat:VegetationHeight "ft")
+;;    [120  :>] puget:VeryHighVegetationHeight
+;;    [ 80 120] puget:HighVegetationHeight
+;;    [ 50  80] puget:ModerateVegetationHeight
+;;    [ 20  50] puget:LowVegetationHeight
+;;    [ :<  20] puget:VeryLowVegetationHeight))
 
 (defmodel percent-canopy-cover puget:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
@@ -210,15 +211,15 @@
 
 (defmodel evapotranspiration EvapotranspirationClass
   (classification (measurement habitat:ActualEvapotranspiration "mm")
-    [90 :>] VeryHighEvapotranspiration
-    [60 90] HighEvapotranspiration
-    [30 60] ModerateEvapotranspiration
-    [12 30] LowEvapotranspiration
-    [ 0 12] VeryLowEvapotranspiration))
+    [45 60] VeryHighEvapotranspiration
+    [30 45] HighEvapotranspiration
+    [20 30] ModerateEvapotranspiration
+    [10 20] LowEvapotranspiration
+    [ 0 10] VeryLowEvapotranspiration))
 
 (defmodel infiltration puget:SoilInfiltrationClass
   (classification (measurement waterSupplyService:SoilInfiltrationClass "mm")
-    [1250   :>]	puget:VeryHighSoilInfiltration
+    [1250 2100]	puget:VeryHighSoilInfiltration
     [ 600 1250]	puget:HighSoilInfiltration
     [ 350  600]	puget:ModerateSoilInfiltration
     [ 200  350]	puget:LowSoilInfiltration
@@ -246,11 +247,11 @@
 ;;Undiscretizer for GreenInfrastructureStorage
 (defmodel green-infrastructure-storage puget:GreenInfrastructureStorage
   (probabilistic-measurement puget:GreenInfrastructureStorage "mm" 
-    [115 320] puget:VeryHighGreenStorage
-    [ 72 115] puget:HighGreenStorage
-    [ 40  72] puget:ModerateGreenStorage
-    [ 15  40] puget:LowGreenStorage
-    [  0  15] puget:VeryLowGreenStorage))
+    [900 2160] puget:VeryHighGreenStorage
+    [500  900] puget:HighGreenStorage
+    [200  500] puget:ModerateGreenStorage
+    [ 50  200] puget:LowGreenStorage
+    [  0   50] puget:VeryLowGreenStorage))
 
 ;; Assumes that detention basins average 3 m, i.e., 3000 mm, in depth,
 ;; i.e., storage capacity when empty.  Can alter this as appropriate.
@@ -287,7 +288,7 @@
 ;; coexistence of small layers + priors for areas without evidence.
 (defmodel green-infrastructure-sink puget:GreenInfrastructureSink 
   (bayesian puget:GreenInfrastructureSink
-    :import  "aries.core::trained/FloodSinkPugetAnnual.xdsl"
+    :import  "aries.core::FloodSinkPugetAnnual.xdsl"
     :context  [soil-group-puget vegetation-type slope ; vegetation-height
                successional-stage imperviousness percent-canopy-cover 
                mean-days-precipitation-annual land-selector]
@@ -453,7 +454,7 @@ be added to this list if desired."
     [400  :>]  HighFloodplainWidth
     [200 400]  ModerateFloodplainWidth
     [:<  200]  LowFloodplainWidth
-    :otherwise NoFloodplainWidth))         
+    :otherwise NoFloodplainWidth))
 
 ;; These are currently set to "source-annual" but should also be
 ;; tested for "source-monthly"
@@ -500,15 +501,15 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0      ; Set at zero since output values for this are a 0/1
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 4        ; Originally set at 1; bumped it up in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -537,15 +538,15 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0      
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 4        ; Originally set at 1; bumped it up in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -574,15 +575,15 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ;;Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 4        ;;Originally set at 1; bumped in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -611,15 +612,15 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 4        ; Originally set at 1; bumped it in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -648,16 +649,16 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it
-                                     ; to 3 in order to run models at
+        :downscaling-factor 1        ; Originally set at 1; bumped it
+                                     ; up in order to run models at
                                      ; high enough resolution to
                                      ; produce a continuous streams
                                      ; layer from hydrography data
@@ -689,15 +690,15 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 4        ; Originally set at 1; bumped it up in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -731,15 +732,15 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains100Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 4        ; Originally set at 1; bumped it up in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -768,15 +769,15 @@ be added to this list if desired."
         puget:FloodSink
         nil
         (geophysics:Altitude geofeatures:River Floodplains500Code Levees)
-        :source-threshold   50.0     ; Consider nearly but not all sources of precipitation, as floods can happen in dry areas too
-        :sink-threshold     3000.0   ; Considering moderate, high, and very high flood sinks
-        :use-threshold      0.0      ; Set at zero since output values for this are a 0/1
-        :trans-threshold    5.0      ; Set at an initially arbitrary but low weight; eventually run sensitivity analysis on this
+        :source-threshold   50.0
+        :sink-threshold     10.0
+        :use-threshold       0.0
+        :trans-threshold     5.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 3        ; Originally set at 1; bumped it to 3 in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
+        :downscaling-factor 4        ; Originally set at 1; bumped it up in order to run models at high enough resolution to produce a continuous streams layer from hydrography data
         :rv-max-states      10 
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/flood_data.clj")
@@ -819,7 +820,7 @@ be added to this list if desired."
     #{0 1 2 3 8 9 10 11 12 13 14 15 16} puget:NotDevelopedOpen))
 
 (defscenario open-development-flood
-  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+ "Changes values in developed areas to low canopy cover, no forest successional stage, soil group D (lowest permeability), developed vegetation type, and housing present, and subs in a new impervious surface layer."
   (model puget:PercentTreeCanopyCoverClass
     (classification puget:PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
@@ -851,7 +852,7 @@ be added to this list if desired."
                         (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))                                    
                   (conc 'puget:SoilGroupD)
-                  (:sg))))
+                  (:sg %))))
   (model puget:FloodVegetationType
     (classification puget:FloodVegetationType
       :context [open-development-scenario :as od vegetation-type :as vt]
@@ -871,10 +872,16 @@ be added to this list if desired."
       [20  50]            puget:ModeratelyHighImperviousCover
       [10  20]            puget:ModeratelyLowImperviousCover
       [ 5  10]            puget:LowImperviousCover
-      [ 0   5]            puget:VeryLowImperviousCover)))
+      [ 0   5]            puget:VeryLowImperviousCover))
+  (model aestheticService:PresenceOfHousing
+    (classification aestheticService:PresenceOfHousing
+      :context [open-development-scenario :as od housing :as h]
+      :state   #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
+                  (conc 'aestheticService:HousingPresent)  
+                  (:h %)))))
 
 (defscenario constrained-development-flood
-  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+  "Changes values in developed areas to low canopy cover, no forest successional stage, soil group D (lowest permeability), developed vegetation type, and housing present, and subs in a new impervious surface layer."
   (model puget:PercentTreeCanopyCoverClass
     (classification puget:PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
@@ -906,7 +913,7 @@ be added to this list if desired."
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
                   (conc 'puget:SoilGroupD)
-                  (:sg))))
+                  (:sg %))))
   (model puget:FloodVegetationType
     (classification puget:FloodVegetationType
       :context [constrained-development-scenario :as cd vegetation-type :as vt]
@@ -926,4 +933,10 @@ be added to this list if desired."
       [20  50]            puget:ModeratelyHighImperviousCover
       [10  20]            puget:ModeratelyLowImperviousCover
       [ 5  10]            puget:LowImperviousCover
-      [ 0   5]            puget:VeryLowImperviousCover)))
+      [ 0   5]            puget:VeryLowImperviousCover))
+  (model aestheticService:PresenceOfHousing
+    (classification aestheticService:PresenceOfHousing
+      :context [constrained-development-scenario :as cd housing :as h]
+      :state   #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
+                  (conc 'aestheticService:HousingPresent)  
+                  (:h %)))))

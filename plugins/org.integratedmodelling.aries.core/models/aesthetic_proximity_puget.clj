@@ -61,7 +61,7 @@
 
 (defmodel forest Forest
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{41 42 43} ForestPresent                  
+    #{41 42 43} ForestPresent         
     :otherwise  ForestAbsent))
 
 (defmodel woody-wetland WoodyWetland
@@ -216,7 +216,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 9
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/aesthetic_proximity_puget_data.clj")
@@ -314,13 +314,16 @@
       :context [open-development-scenario :as od housing :as h]
       :state   #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                   (conc 'aestheticService:HousingPresent)           
-                  (:h %))))
-  (model HousingValue
-    (classification HousingValue
-      :context [open-development-scenario :as od property-value :as pv]
-      :state   #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
-                  (conc 'aestheticService:ModerateHousingValue)           
-                  (:pv %)))))
+                  (:h %)))))
+;; Theoretically at least, we could assume all new housing is just of
+;; moderate value.  In practice it's best that we just use priors
+;; since there's really no knowledge of new housing values.
+; (model HousingValue
+;  (classification HousingValue
+;    :context [open-development-scenario :as od property-value :as pv]
+;    :state #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
+;     (conc 'aestheticService:ModerateHousingValue)           
+;     (:pv %)))))
 
 (defscenario constrained-development-proximity
   "Changes values in developed areas to no valuable open space type,
@@ -378,10 +381,10 @@
       :context [constrained-development-scenario :as cd housing :as h]
       :state   #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                   (conc 'aestheticService:HousingPresent)           
-                  (:h %))))
-  (model HousingValue
-    (classification HousingValue
-      :context [constrained-development-scenario :as cd property-value :as pv]
-      :state   #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
-                  (conc 'aestheticService:ModerateHousingValue)           
-                  (:pv %)))))
+                  (:h %)))))
+;(model HousingValue
+; (classification HousingValue
+;  :context [constrained-development-scenario :as cd property-value :as pv]
+;  :state #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
+;   (conc 'aestheticService:ModerateHousingValue)           
+;   (:pv %)))))

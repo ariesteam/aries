@@ -20,6 +20,7 @@
 ;;; Carbon model for Ontario
 ;;;
 ;;; Valid Contexts: core.contexts.ontario/algonquin-wgs84
+;;;                 core.contexts.ontatio/algonquin-bbox-wgs84
 ;;;
 ;;;-------------------------------------------------------------------
 
@@ -54,24 +55,15 @@
          vegetation-and-soil-carbon-sequestration
          carbon-source-value)
 
-;; ontario:lulc2000_alg
-(defmodel carbon-vegetation-type ontario:CarbonVegetationType
-  (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
-    13             ontario:ConiferousForest
-    11             ontario:DeciduousForest
-    12             ontario:MixedForest
-    #{7 8 9 10}    ontario:ImpairedForest
-    #{18 19 21 23} ontario:SwampFenBog
-    #{25 27}       ontario:CroplandPasture))
+(defmodel altitude geophysics:Altitude
+  (measurement geophysics:Altitude "m"))
 
-;; ontario:canopy_alg
-(defmodel percent-tree-canopy-cover-class PercentTreeCanopyCoverClass
-  (classification (ranking habitat:PercentTreeCanopyCover :units "%")
-    [0.8 1.0 :inclusive] VeryHighCanopyCover
-    [0.6 0.8]            HighCanopyCover
-    [0.4 0.6]            ModerateCanopyCover
-    [0.2 0.4]            LowCanopyCover
-    [0.0 0.2]            VeryLowCanopyCover))
+;; ontario:lulc2000_alg
+(defmodel vegetated-land VegetatedLand
+  (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
+    #{7 8 9 10 11 12 13 18 19 21 23 25 27} OnVegetatedLand
+    :otherwise                             NotOnVegetatedLand))
+    ;; #{1 2 3 4 5 6 15 16 17 20 22 24 28 29} NotOnVegetatedLand))
 
 ;; ontario:successional_stage_alg
 (defmodel successional-stage SuccessionalStage
@@ -83,6 +75,15 @@
     2 EarlySuccession
     1 NoSuccession))
 
+;; ontario:canopy_alg
+(defmodel percent-tree-canopy-cover-class PercentTreeCanopyCoverClass
+  (classification (ranking habitat:PercentTreeCanopyCover :units "%")
+    [0.8 1.0 :inclusive] VeryHighCanopyCover
+    [0.6 0.8]            HighCanopyCover
+    [0.4 0.6]            ModerateCanopyCover
+    [0.2 0.4]            LowCanopyCover
+    [0.0 0.2]            VeryLowCanopyCover))
+
 ;; global:sum_hi_wint_lo_global
 (defmodel summer-high-winter-low SummerHighWinterLow
   (classification (ranking ontario:SummerHighWinterLow)
@@ -92,12 +93,47 @@
     [41 42]            LowSOL
     [40 41]            VeryLowSOL))
 
+(defmodel soil-cn-ratio SoilCNRatio
+  (classification (ranking habitat:SoilCNRatio)
+    [25 :>] VeryHighCNRatio
+    [15 25] HighCNRatio
+    [ 8 15] LowCNRatio
+    [:<  8] VeryLowCNRatio))
+
+;;(defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
+;;(classification (ranking habitat:HardwoodSoftwoodRatio)
+;;  [0   20]            VeryHighHardness
+;;  [20  40]            HighHardness
+;;  [40  60]            ModerateHardness
+;;  [60  80]            LowHardness
+;;  [80 100 :inclusive] VeryLowHardness))
+
+(defmodel hardwood-softwood-ratio HardwoodSoftwoodRatio
+  (classification (ranking habitat:HardwoodSoftwoodRatio)
+    [80 100 :inclusive]     VeryHighHardness
+    [60  80]                HighHardness
+    [40  60]                ModerateHardness
+    [20  40]                LowHardness
+    [0   20]                VeryLowHardness))
+
 ;; ontario:lulc2000_alg
-(defmodel vegetated-land VegetatedLand
+(defmodel carbon-vegetation-type ontario:CarbonVegetationType
   (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
-    #{7 8 9 10 11 12 13 18 19 21 23 25 27} OnVegetatedLand
-    :otherwise                             NotOnVegetatedLand))
-    ;; #{1 2 3 4 5 6 15 16 17 20 22 24 28 29} NotOnVegetatedLand))
+    13             ontario:ConiferousForest
+    11             ontario:DeciduousForest
+    12             ontario:MixedForest
+    #{7 8 9 10}    ontario:ImpairedForest
+    #{18 19 21 23} ontario:SwampFenBog
+    #{25 27}       ontario:CroplandPasture))
+
+;; (defmodel veg-storage VegetationCarbonStorage
+;;   (probabilistic-measurement VegetationCarbonStorage "t/ha"
+;;     [500 900] VeryHighVegetationStorage ; Ceiling is a very high carbon storage value for the region's forests from Smith et al. (2006).
+;;     [200 500] HighVegetationStorage
+;;     [75 200]  ModerateVegetationStorage
+;;     [25 75]   LowVegetationStorage
+;;     [0.01 25] VeryLowVegetationStorage
+;;     [0 0.01]  NoVegetationStorage))
 
 ;; Ceiling based off highest local values from MODIS NPP data
 ;; global:npp_modis -> measure -d carbonService:VegetationAndSoilCarbonSequestration t/ha*year core.contexts.ontario/algonquin-wgs84
@@ -113,7 +149,8 @@
 (defmodel carbon-source-value CarbonSourceValue
   (bayesian CarbonSourceValue
     :import   "aries.core::CarbonSourceOntario.xdsl"
-    :context  [carbon-vegetation-type percent-tree-canopy-cover-class successional-stage summer-high-winter-low vegetated-land]
+    :context  [altitude vegetated-land successional-stage percent-tree-canopy-cover-class summer-high-winter-low
+               soil-cn-ratio hardwood-softwood-ratio carbon-vegetation-type]
     :required [VegetatedLand]
     :keep     [VegetationAndSoilCarbonSequestration]
     :result   vegetation-and-soil-carbon-sequestration))
@@ -248,8 +285,10 @@
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
-;; FIXME: Okay, so I've got absolutely nothing here, not even a
-;;        population density layer.
+;;
+;; calculating the difference between source and use and estimating
+;; the number of people the sequestration capacity of the park can handle
+;;
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models

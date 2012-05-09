@@ -21,12 +21,18 @@
 ;;;
 
 (ns clj-span.models.surface-water-topologic
-  (:use [clj-span.core          :only (distribute-flow! service-carrier)]
-        [clj-misc.utils         :only (seq2map mapmap p &)]
+  (:use [clj-misc.utils         :only (seq2map mapmap p &)]
         [clj-misc.matrix-ops    :only (get-rows get-cols make-matrix map-matrix find-bounding-box
                                        filter-matrix-for-coords get-neighbors on-bounds?)]
-        [clj-misc.varprop       :only (_0_ _+_ rv-fn _min_ _max_)]
         [clj-misc.point-algebra :only (nearest-point-where)]))
+
+(refer 'clj-span.core :only '(distribute-flow! service-carrier))
+
+(def ^:dynamic _0_)
+(def ^:dynamic _+_)
+(def ^:dynamic rv-fn)
+(def ^:dynamic _min_)
+(def ^:dynamic _max_)
 
 (defn- step-upstream
   [closed-set in-stream? elevation-layer rows cols id]
@@ -85,9 +91,9 @@
   (dosync
    (let [sink-cap-ref      (sink-caps current-id)
          sink-cap          (deref sink-cap-ref)
-         new-sink-effects  (rv-fn min                        actual-weight sink-cap)
-         new-actual-weight (rv-fn (fn [a s] (- a (min a s))) actual-weight sink-cap)
-         new-sink-cap      (rv-fn (fn [a s] (- s (min a s))) actual-weight sink-cap)]
+         new-sink-effects  (rv-fn 'min                        actual-weight sink-cap)
+         new-actual-weight (rv-fn '(fn [a s] (- a (min a s))) actual-weight sink-cap)
+         new-sink-cap      (rv-fn '(fn [a s] (- s (min a s))) actual-weight sink-cap)]
      (alter sink-cap-ref (constantly new-sink-cap))
      [new-actual-weight new-sink-effects])))
 
@@ -364,24 +370,36 @@
     in-stream-carriers))
 
 (defmethod distribute-flow! "SurfaceWaterMovement"
-  [_ cell-width cell-height rows cols cache-layer possible-flow-layer
-   actual-flow-layer source-layer sink-layer use-layer source-points
-   sink-points use-points {stream-layer "River", elevation-layer "Altitude"}]
-  (let [stream-points (filter-matrix-for-coords (p not= _0_) stream-layer)]
-    (println "Stream points:" (count stream-points))
-    (let [sink-caps          (seq2map sink-points (fn [id] [id (ref (get-in sink-layer id))]))
-          use-caps           (seq2map use-points  (fn [id] [id (ref (get-in use-layer  id))]))
-          unsaturated-use?   (fn [id] (not= _0_ (deref (use-caps id))))
-          in-stream-carriers (shift-source-to-stream source-points
-                                                     source-layer
-                                                     sink-caps
-                                                     stream-points
-                                                     elevation-layer
-                                                     rows
-                                                     cols)
-          stream-roots       (find-nearest-stream-points in-stream-carriers rows cols use-points)
-          carrier-caches     (search-upstream elevation-layer rows cols in-stream-carriers stream-roots use-caps unsaturated-use?)]
-      ;; Update the cache-layer.
-      (dosync
-       (doseq [[id cache] carrier-caches]
-         (alter (get-in cache-layer id) (constantly cache)))))))
+  [{:keys [source-layer sink-layer use-layer flow-layers
+           cache-layer possible-flow-layer actual-flow-layer
+           source-points sink-points use-points
+           cell-width cell-height rows cols value-type]}]
+  (let [{stream-layer "River",
+         elevation-layer "Altitude"} flow-layers
+        prob-ns (case value-type
+                  :numbers  'clj-misc.numbers
+                  :varprop  'clj-misc.varprop
+                  :randvars 'clj-misc.randvars)]
+    (binding [_0_   (var-get (ns-resolve prob-ns '_0_))
+              _+_   (var-get (ns-resolve prob-ns '_+_))
+              rv-fn (var-get (ns-resolve prob-ns 'rv-fn))
+              _min_ (var-get (ns-resolve prob-ns '_min_))
+              _max_ (var-get (ns-resolve prob-ns '_max_))]
+      (let [stream-points (filter-matrix-for-coords (p not= _0_) stream-layer)]
+        (println "Stream points:" (count stream-points))
+        (let [sink-caps          (seq2map sink-points (fn [id] [id (ref (get-in sink-layer id))]))
+              use-caps           (seq2map use-points  (fn [id] [id (ref (get-in use-layer  id))]))
+              unsaturated-use?   (fn [id] (not= _0_ (deref (use-caps id))))
+              in-stream-carriers (shift-source-to-stream source-points
+                                                         source-layer
+                                                         sink-caps
+                                                         stream-points
+                                                         elevation-layer
+                                                         rows
+                                                         cols)
+              stream-roots       (find-nearest-stream-points in-stream-carriers rows cols use-points)
+              carrier-caches     (search-upstream elevation-layer rows cols in-stream-carriers stream-roots use-caps unsaturated-use?)]
+          ;; Update the cache-layer.
+          (dosync
+           (doseq [[id cache] carrier-caches]
+             (alter (get-in cache-layer id) (constantly cache)))))))))

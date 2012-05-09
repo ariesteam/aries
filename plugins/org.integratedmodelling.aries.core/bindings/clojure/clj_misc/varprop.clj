@@ -22,22 +22,17 @@
 ;;; var].
 
 (ns clj-misc.varprop
-  (:use [clj-misc.utils :only [my-partition-all replace-all]])
-  (:import (clojure.lang IPersistentMap)))
+  (:use [clj-misc.utils :only [replace-all my-partition-all]])
+  (:import (clojure.lang PersistentStructMap)))
 
-;;(defrecord FuzzyNumber [mean var])
 (defstruct FuzzyNumber :mean :var)
 
-;; (defn fuzzy-number
-;;   "Constructs a FuzzyNumber."
-;;   [mean var]
-;;   (FuzzyNumber. mean var))
 (defn fuzzy-number
   "Constructs a FuzzyNumber."
   [mean var]
   (struct FuzzyNumber mean var))
 
-(defn fuzzy-number-from-states
+(defn create-from-states
   "Constructs a FuzzyNumber from n states and n probs, corresponding
    to a finite discrete distribution."
   [states probs]
@@ -45,7 +40,7 @@
         var  (reduce + (map (fn [x p] (* (Math/pow (- x mean) 2) p)) states probs))]
     (fuzzy-number mean var)))
 
-(defn fuzzy-number-from-ranges
+(defn create-from-ranges
   "Constructs a FuzzyNumber from n bounds and n-1 probs corresponding
    to a piecewise continuous uniform distribution with
    discontinuities (i.e. jumps) at the bounds. prob i represents the
@@ -60,7 +55,7 @@
         var           (- second-moment (* mean mean))]
     (fuzzy-number mean var)))
 
-(def #^{:doc "A fuzzy number with mean and variance of 0."} _0_ (fuzzy-number 0.0 0.0))
+(def #^{:doc "A FuzzyNumber with mean and variance of 0."} _0_ (fuzzy-number 0.0 0.0))
 
 (defn _+_
   "Returns the sum of two or more FuzzyNumbers."
@@ -243,103 +238,103 @@
      (max_ x (reduce _max_ Y more))))
 
 (defmulti ?+?
-  ;;"Returns the sum of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;; "Returns the sum of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?+? [IPersistentMap IPersistentMap] [X Y & _] (_+_ X Y))
-(defmethod ?+? [IPersistentMap Number]         [X Y & _] (_+  X Y))
-(defmethod ?+? [Number         IPersistentMap] [X Y & _] ( +_ X Y))
-(defmethod ?+? [Number         Number]         [X Y & _] ( +  X Y))
+(defmethod ?+? [PersistentStructMap PersistentStructMap] [X Y & _] (_+_ X Y))
+(defmethod ?+? [PersistentStructMap Number]              [X Y & _] (_+  X Y))
+(defmethod ?+? [Number              PersistentStructMap] [X Y & _] ( +_ X Y))
+(defmethod ?+? [Number              Number]              [X Y & _] ( +  X Y))
 (defmethod ?+? :more [X Y & more] (reduce ?+? (?+? X Y) more))
 
 (defmulti ?-?
-  ;;"Returns the difference of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;; "Returns the difference of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?-? [IPersistentMap IPersistentMap] [X Y & _] (_-_ X Y))
-(defmethod ?-? [IPersistentMap Number]         [X Y & _] (_-  X Y))
-(defmethod ?-? [Number         IPersistentMap] [X Y & _] ( -_ X Y))
-(defmethod ?-? [Number         Number]         [X Y & _] ( -  X Y))
+(defmethod ?-? [PersistentStructMap PersistentStructMap] [X Y & _] (_-_ X Y))
+(defmethod ?-? [PersistentStructMap Number]              [X Y & _] (_-  X Y))
+(defmethod ?-? [Number              PersistentStructMap] [X Y & _] ( -_ X Y))
+(defmethod ?-? [Number              Number]              [X Y & _] ( -  X Y))
 (defmethod ?-? :more [X Y & more] (reduce ?-? (?-? X Y) more))
 
 (defmulti ?*?
-  ;;"Returns the product of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;; "Returns the product of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?*? [IPersistentMap IPersistentMap] [X Y & _] (_*_ X Y))
-(defmethod ?*? [IPersistentMap Number]         [X Y & _] (_*  X Y))
-(defmethod ?*? [Number         IPersistentMap] [X Y & _] ( *_ X Y))
-(defmethod ?*? [Number         Number]         [X Y & _] ( *  X Y))
+(defmethod ?*? [PersistentStructMap PersistentStructMap] [X Y & _] (_*_ X Y))
+(defmethod ?*? [PersistentStructMap Number]              [X Y & _] (_*  X Y))
+(defmethod ?*? [Number              PersistentStructMap] [X Y & _] ( *_ X Y))
+(defmethod ?*? [Number              Number]              [X Y & _] ( *  X Y))
 (defmethod ?*? :more [X Y & more] (reduce ?*? (?*? X Y) more))
 
 (defmulti ?d?
-  ;;"Returns the quotient of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;; "Returns the quotient of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?d? [IPersistentMap IPersistentMap] [X Y & _] (_d_ X Y))
-(defmethod ?d? [IPersistentMap Number]         [X Y & _] (_d  X Y))
-(defmethod ?d? [Number         IPersistentMap] [X Y & _] ( d_ X Y))
-(defmethod ?d? [Number         Number]         [X Y & _] ( /  X Y))
+(defmethod ?d? [PersistentStructMap PersistentStructMap] [X Y & _] (_d_ X Y))
+(defmethod ?d? [PersistentStructMap Number]              [X Y & _] (_d  X Y))
+(defmethod ?d? [Number              PersistentStructMap] [X Y & _] ( d_ X Y))
+(defmethod ?d? [Number              Number]              [X Y & _] ( /  X Y))
 (defmethod ?d? :more [X Y & more] (reduce ?d? (?d? X Y) more))
 
 (defmulti ?<?
-  ;;"Compares two or more values, which may be FuzzyNumbers or
-  ;; scalars, and returns true if X_i < X_i+1 for all i in [1,n]. Uses
-  ;; reflection."
+  ;; "Compares two or more values, which may be FuzzyNumbers or
+  ;;  scalars, and returns true if X_i < X_i+1 for all i in [1,n]. Uses
+  ;;  reflection."
   (fn [X Y & more] (if (seq more)
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?<? [IPersistentMap IPersistentMap] [X Y & _] (_<_ X Y))
-(defmethod ?<? [IPersistentMap Number]         [X Y & _] (_<  X Y))
-(defmethod ?<? [Number         IPersistentMap] [X Y & _] ( <_ X Y))
-(defmethod ?<? [Number         Number]         [X Y & _] ( <  X Y))
+(defmethod ?<? [PersistentStructMap PersistentStructMap] [X Y & _] (_<_ X Y))
+(defmethod ?<? [PersistentStructMap Number]              [X Y & _] (_<  X Y))
+(defmethod ?<? [Number              PersistentStructMap] [X Y & _] ( <_ X Y))
+(defmethod ?<? [Number              Number]              [X Y & _] ( <  X Y))
 (defmethod ?<? :more [X Y & more] (every? (fn [[X Y]] (?<? X Y)) (partition 2 1 (list* X Y more))))
 
 (defmulti ?>?
-  ;;"Compares two or more values, which may be FuzzyNumbers or
-  ;; scalars, and returns true if X_i > X_i+1 for all i in [1,n]. Uses
-  ;; reflection."
+  ;; "Compares two or more values, which may be FuzzyNumbers or
+  ;;  scalars, and returns true if X_i > X_i+1 for all i in [1,n]. Uses
+  ;;  reflection."
   (fn [X Y & more] (if (seq more)
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?>? [IPersistentMap IPersistentMap] [X Y & _] (_>_ X Y))
-(defmethod ?>? [IPersistentMap Number]         [X Y & _] (_>  X Y))
-(defmethod ?>? [Number         IPersistentMap] [X Y & _] ( >_ X Y))
-(defmethod ?>? [Number         Number]         [X Y & _] ( >  X Y))
+(defmethod ?>? [PersistentStructMap PersistentStructMap] [X Y & _] (_>_ X Y))
+(defmethod ?>? [PersistentStructMap Number]              [X Y & _] (_>  X Y))
+(defmethod ?>? [Number              PersistentStructMap] [X Y & _] ( >_ X Y))
+(defmethod ?>? [Number              Number]              [X Y & _] ( >  X Y))
 (defmethod ?>? :more [X Y & more] (every? (fn [[X Y]] (?>? X Y)) (partition 2 1 (list* X Y more))))
 
 (defmulti ?min?
-  ;;"Returns the smallest of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;; "Returns the smallest of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?min? [IPersistentMap IPersistentMap] [X Y & _] (_min_ X Y))
-(defmethod ?min? [IPersistentMap Number]         [X Y & _] (_min  X Y))
-(defmethod ?min? [Number         IPersistentMap] [X Y & _] ( min_ X Y))
-(defmethod ?min? [Number         Number]         [X Y & _] ( min  X Y))
+(defmethod ?min? [PersistentStructMap PersistentStructMap] [X Y & _] (_min_ X Y))
+(defmethod ?min? [PersistentStructMap Number]              [X Y & _] (_min  X Y))
+(defmethod ?min? [Number              PersistentStructMap] [X Y & _] ( min_ X Y))
+(defmethod ?min? [Number              Number]              [X Y & _] ( min  X Y))
 (defmethod ?min? :more [X Y & more] (reduce ?min? (?min? X Y) more))
 
 (defmulti ?max?
-  ;;"Returns the largest of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
+  ;; "Returns the largest of two or more values, which may be FuzzyNumbers or scalars. Uses reflection."
   (fn [X Y & more] (if (seq more)
                      :more
                      [(class X) (class Y)])))
 
-(defmethod ?max? [IPersistentMap IPersistentMap] [X Y & _] (_max_ X Y))
-(defmethod ?max? [IPersistentMap Number]         [X Y & _] (_max  X Y))
-(defmethod ?max? [Number         IPersistentMap] [X Y & _] ( max_ X Y))
-(defmethod ?max? [Number         Number]         [X Y & _] ( max  X Y))
+(defmethod ?max? [PersistentStructMap PersistentStructMap] [X Y & _] (_max_ X Y))
+(defmethod ?max? [PersistentStructMap Number]              [X Y & _] (_max  X Y))
+(defmethod ?max? [Number              PersistentStructMap] [X Y & _] ( max_ X Y))
+(defmethod ?max? [Number              Number]              [X Y & _] ( max  X Y))
 (defmethod ?max? :more [X Y & more] (reduce ?max? (?max? X Y) more))
 
 (def fuzzy-arithmetic-mapping
@@ -353,6 +348,8 @@
     max clj-misc.varprop/?max?})
 
 (defn ensure-fuzzy
+  "If value is a FuzzyNumber, return it. Otherwise, make it into a
+   FuzzyNumber."
   [value]
   (if (number? value)
     (fuzzy-number value 0.0)
@@ -371,17 +368,34 @@
           f))
       f)))
 
-(defmacro rv-fn
+;; (defmacro rv-fn
+;;   "Transforms f into its fuzzy arithmetic equivalent, fuzzy-f, and
+;;    calls (apply fuzzy-f Xs). Uses reflection on the types of Xs as
+;;    well as any numeric literal values used in f."
+;;   [f & Xs]
+;;   `(~(fuzzify-fn f) ~@Xs))
+
+(defn rv-fn
   "Transforms f into its fuzzy arithmetic equivalent, fuzzy-f, and
    calls (apply fuzzy-f Xs). Uses reflection on the types of Xs as
    well as any numeric literal values used in f."
   [f & Xs]
-  `(~(fuzzify-fn f) ~@Xs))
+  (apply (eval (fuzzify-fn f)) Xs))
 
 (defn rv-mean
   "Returns the mean of a FuzzyNumber."
   [X]
   (:mean X))
+
+(defn rv-variance
+  "Returns the variance of a FuzzyNumber."
+  [X]
+  (:var X))
+
+(defn rv-stdev
+  "Returns the standard deviation of a FuzzyNumber."
+  [X]
+  (Math/sqrt (:var X)))
 
 (defn rv-sum
   "Returns the sum of a sequence of FuzzyNumbers using _+_."
@@ -401,18 +415,25 @@
 
 (defn rv-extensive-sampler
   "Returns the extensive weighted sum of a coverage (i.e. a sequence
-   of pairs of [value fraction-covered]). For use with
-   clj-misc.matrix-ops/resample-matrix."
+   of pairs of [value fraction-covered])."
   [coverage]
   (rv-sum (map (fn [[val frac]] (_* val frac)) coverage)))
 
 (defn rv-intensive-sampler
   "Returns the intensive weighted sum of a coverage (i.e. a sequence
-   of pairs of [value fraction-covered]). For use with
-   clj-misc.matrix-ops/resample-matrix."
+   of pairs of [value fraction-covered])."
   [coverage]
   (let [frac-sum (reduce + (map second coverage))]
     (rv-sum (map (fn [[val frac]] (_* val (/ frac frac-sum))) coverage))))
+
+(defn rv-distribution-sampler
+  "Returns the distribution of the means of a coverage (i.e. a
+   sequence of pairs of [value fraction-covered])."
+  [coverage]
+  (let [frac-sum (reduce + (map second coverage))
+        states   (map (comp rv-mean first) coverage)
+        probs    (map #(/ (second %) frac-sum) coverage)]
+    (create-from-states states probs)))
 
 (let [stored-val (atom nil)]
   (defn marsaglia-normal
@@ -457,7 +478,7 @@
   (+ (* (marsaglia-normal) (Math/sqrt (:var X))) (:mean X)))
 
 (defn draw-repeatedly
-  "Takes a fuzzy number X, and returns an infinite lazy sequence of
+  "Takes a FuzzyNumber X, and returns an infinite lazy sequence of
    normally-distributed, pseudo-random numbers that match the
    parameters of X, (or a finite sequence of length n, if an integer n
    is provided)."

@@ -123,7 +123,7 @@
     3                                puget:MidSuccession
     2                                puget:PoleSuccession
     1                                puget:EarlySuccession
-    #{21 22 23 24 25 26 27 28 40 41} puget:NoSuccession))
+    #{21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} puget:NoSuccession))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea
@@ -150,7 +150,7 @@
 ;; source bayesian model for Puget Sound     
 (defmodel source-puget puget:AnnualSedimentSource
   (bayesian puget:AnnualSedimentSource 
-    :import   "aries.core::trained/SedimentSourcePugetAdHoc.xdsl"
+    :import   "aries.core::SedimentSourcePugetAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
                successional-stage slope-stability land-selector]
@@ -283,17 +283,17 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))                                    
+  (measurement geophysics:Altitude "m"))
 
 (defmodel levees infrastructure:Levee
   (binary-coding infrastructure:Levee))
 
 (defmodel streams geofeatures:River
-  (binary-coding geofeatures:River))        
+  (binary-coding geofeatures:River))
 
 (defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
   (identification ReservoirSoilDeposition 
-    :context [source-puget sediment-sink-us hydroelectric-use-level levees]))
+    :context [source-puget sediment-sink-us hydroelectric-use-level levees streams]))
 
 (defmodel farmland-soil-deposition-data FarmlandSoilDeposition
   (identification FarmlandSoilDeposition 
@@ -311,15 +311,15 @@
         AnnualSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River) 
-        :source-threshold   1000.0 ; Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 3
+        :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_farmers_puget_data.clj")
@@ -348,15 +348,15 @@
         AnnualSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
-        :source-threshold   1000.0
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 3
+        :downscaling-factor 1
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
@@ -385,10 +385,10 @@
         AnnualSedimentSink 
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
-        :source-threshold   1000.0
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -434,38 +434,39 @@
     #{0 1 2 3 8 9 10 11 12 13 14 15 16} puget:NotDevelopedOpen))
 
 (defscenario open-development-sediment
+ "Changes values in developed areas to low canopy cover, no forest successional stage, soil group D (lowest permeability), developed vegetation type, and farmland absent."
   "Changes values in developed areas to no succession, low canopy
 cover, moderate hardwood-softwood ratio, low fire frequency, increased
 greenhouse gas emissions."
-  (model PercentTreeCanopyCover
-    (classification PercentTreeCanopyCover
+  (model puget:PercentTreeCanopyCoverClass
+    (classification puget:PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                           (is? (:od %) (conc 'puget:LowDensityDevelopedOpen)))
-                      (conc 'carbonService:LowCanopyCover)
+                      (conc 'puget:LowCanopyCover)
 
                       (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen))
-                      (conc 'carbonService:ModerateCanopyCover)
+                      (conc 'puget:ModerateCanopyCover)
 
                       :otherwise (:pcc %))))
-  (model SuccessionalStage
-    (classification SuccessionalStage
+  (model puget:SuccessionalStage
+    (classification puget:SuccessionalStage
       :context [open-development-scenario :as od successional-stage :as ss]
       :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
-                  (conc 'soilRetentionService:NoSuccession)
+                  (conc 'puget:NoSuccession)
                   (:ss %))))
-  (model HydrologicSoilsGroup
-    (classification HydrologicSoilsGroup
+  (model puget:HydrologicSoilsGroup
+    (classification puget:HydrologicSoilsGroup
       :context [open-development-scenario :as od soil-group :as sg]
       :state   #(if (or (is? (:od %) (conc 'puget:HighDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:ModerateDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
                         (is? (:od %) (conc 'puget:UrbanOpenSpaceOpen)))
-                  (conc 'soilRetentionService:SoilGroupD)
+                  (conc 'puget:SoilGroupD)
                   (:sg %))))
   (model puget:SedimentVegetationType
     (classification puget:SedimentVegetationType
@@ -491,35 +492,35 @@ greenhouse gas emissions."
 
 (defscenario constrained-development-sediment
   "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
-  (model PercentTreeCanopyCover
-    (classification PercentTreeCanopyCover
+  (model puget:PercentTreeCanopyCoverClass
+    (classification puget:PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
       :state   #(cond (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                           (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained)))
-                      (conc 'carbonService:LowCanopyCover)
+                      (conc 'puget:LowCanopyCover)
 
                       (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained))
-                      (conc 'carbonService:ModerateCanopyCover)
+                      (conc 'puget:ModerateCanopyCover)
 
                       :otherwise (:pcc %))))
-  (model SuccessionalStage
-    (classification SuccessionalStage
+  (model puget:SuccessionalStage
+    (classification puget:SuccessionalStage
       :context [constrained-development-scenario :as cd successional-stage :as ss]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'soilRetentionService:NoSuccession)
+                  (conc 'puget:NoSuccession)
                   (:ss %))))
-  (model HydrologicSoilsGroup
-    (classification HydrologicSoilsGroup
+  (model puget:HydrologicSoilsGroup
+    (classification puget:HydrologicSoilsGroup
       :context [constrained-development-scenario :as cd soil-group :as sg]
       :state   #(if (or (is? (:cd %) (conc 'puget:HighDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:ModerateDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
                         (is? (:cd %) (conc 'puget:UrbanOpenSpaceConstrained)))
-                  (conc 'soilRetentionService:SoilGroupD)
+                  (conc 'puget:SoilGroupD)
                   (:sg %))))
   (model puget:SedimentVegetationType
     (classification puget:SedimentVegetationType
