@@ -128,7 +128,7 @@
 (defmodel gray-kill colorado:GrayBeetleKill
   (classification (binary-coding colorado:GrayBeetleStage)
     1          colorado:GrayKillPresent
-    :otherwise colorado:GrayKillAbsent))
+    :otherwise colorado:GrayKillAbsent)) 
 
 (defmodel green-gray-kill colorado:GreenGrayBeetleKill
   (classification (binary-coding colorado:GreenGrayBeetleStage)
