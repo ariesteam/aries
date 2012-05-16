@@ -11709,4 +11709,111 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+  <observation:Categorization id="usa_levees">
+    <observation:hasObservable>
+      <infrastructure:Levee/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>usa:levees</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>struct_typ</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>17.94175273849895</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-165.43631796060345</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>64.50107555115626</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-65.44304676070377</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </observation:Categorization>
+
+  <observation:Categorization id="colorado_soil_orders2_co">
+    <observation:hasObservable>
+      <colorado:CarbonSoilType/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Digitized based on NRCS Global Soil
+    Regions Map</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://soils.usda.gov/use/worldsoils/mapindex/order.html</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:soil_orders2_co</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>taxorder</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>36.99242354971053</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-109.06026499128734</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.00344517452728</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-102.04148051575308</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </observation:Categorization>
+
+  <!-- Native values are in decimal degrees, conversion below is to meters -->
+  <measurement:Measurement id="floodplain_width">
+    <observation:hasObservable>
+      <habitat:FloodplainWidth/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Derived from FEMA Q3 flood data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <measurement:unit>m</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>usa:floodplain_width</geospace:hasCoverageId>
+        <geospace:hasTransformation>self * 111000</geospace:hasTransformation>
+        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>38081</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>16325</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>24.5126</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-124.5787247</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>49.0031</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-67.4542247</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
+
+  <measurement:NumericCoding id="NLCD2001_7">
+    <observation:hasObservable>
+      <nlcd:NLCDNumeric/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+    <metadata:belongsToDataset>USGS_NLCD_2001</metadata:belongsToDataset>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>usa:NLCD2001_7</geospace:hasCoverageId>
+        <geospace:hasNodataValue>255</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>66008</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>41502</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>37.5656551</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-85.3181513</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>50.6809191</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-64.4589913</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:NumericCoding>
+
 </kbox>
