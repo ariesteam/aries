@@ -906,58 +906,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </measurement:Measurement>
 
 <!-- Can't get this one working to save my life.
-  <measurement:Ranking id="mg_mgdeforestation">
-    <observation:hasObservable>
-      <carbonService:DeforestationRisk />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: GLCF (University of Maryland) MODIS Vegetative Cover Conversion</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://glcf.umiacs.umd.edu/data/vcc/description.shtml</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
-        <geospace:hasValueType>thinklab-core:OrdinalRanking</geospace:hasValueType>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>-25.465</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>40.272</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>-0.214</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>50.035</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Ranking> 
-
-  <measurement:Ranking id="mg_deforestation_mg">
-    <observation:hasObservable>
-      <carbonService:DeforestationRisk/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: GLCF (University of Maryland) MODIS Vegetative Cover Conversion</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://glcf.umiacs.umd.edu/data/vcc/description.shtml</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>id</geospace:hasValueAttribute>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>-25.6071128845215</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>40.2718200683594</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>-0.213632225990295</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>50.4837532043457</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Ranking> 
-
-<measurement:Ranking id="mg_deforestation_mg">
+<observation:Categorization id="mg_deforestation2_mg">
   <observation:hasObservable>
     <carbonService:DeforestationRisk/>
   </observation:hasObservable>
@@ -967,8 +916,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <observation:hasDataSource>
     <geospace:WFSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>mg:deforestation_mg</geospace:hasCoverageId>
-      <geospace:hasValueAttribute>id</geospace:hasValueAttribute>
+      <geospace:hasCoverageId>mg:deforestation2_mg</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>class</geospace:hasValueAttribute>
     </geospace:WFSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
@@ -980,7 +929,33 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
-</measurement:Ranking> -->
+</observation:Categorization> -->
+
+<measurement:Ranking id="mg_deforestation2_mg">
+  <observation:hasObservable>
+    <carbonService:DeforestationRisk/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: GLCF (University of Maryland) MODIS Vegetative Cover Conversion</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://glcf.umiacs.umd.edu/data/vcc/description.shtml</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>mg:deforestation2_mg</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>id</geospace:hasValueAttribute>
+      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType> 
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>-25.6071128845215</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>40.2718200683594</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>-0.213632225990295</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>50.4837532043457</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
 
   <!-- Units for this are in fires/km2 from 1970-2007 -->
   <measurement:Measurement id="fire_freq_puget">
