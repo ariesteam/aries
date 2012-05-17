@@ -10685,7 +10685,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-
+<!-- Commenting these out to test new NLCD's
   <measurement:NumericCoding id="nlcd_lc_ll_01">
     <observation:hasObservable>
       <nlcd:NLCDNumeric />
@@ -10714,7 +10714,8 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-<!--  <measurement:NumericCoding id="nlcd_lc_ll_02">
+
+  <measurement:NumericCoding id="nlcd_lc_ll_02">
     <observation:hasObservable>
       <nlcd:NLCDNumeric />
     </observation:hasObservable>
@@ -10768,7 +10769,7 @@ global data. -->
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:NumericCoding> -->
+</measurement:NumericCoding> 
 
 <measurement:NumericCoding id="nlcd_2">
 <observation:hasObservable>
@@ -11133,7 +11134,7 @@ global data. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
-
+-->
   <!-- VT and NY bodies of water -->
   <measurement:BinaryCoding id="vt_ny_nhdwaterbody">
     <observation:hasObservable>
@@ -11762,6 +11763,34 @@ global data. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
+
+  <measurement:NumericCoding id="NLCD2001_6">
+    <observation:hasObservable>
+      <nlcd:NLCDNumeric/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+    <metadata:belongsToDataset>USGS_NLCD_2001</metadata:belongsToDataset>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>usa:NLCD2001_6</geospace:hasCoverageId>
+        <geospace:hasNodataValue>255</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>56732</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>61796</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>22.1641831</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-86.1558383</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.6923511</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-68.2278943</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:NumericCoding>
 
   <measurement:NumericCoding id="NLCD2001_7">
     <observation:hasObservable>
