@@ -105,11 +105,11 @@
 
 (defmodel successional-stage colorado:SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
-    1          colorado:OldGrowth
-    2          colorado:LateSuccession
+    5          colorado:OldGrowth
+    4          colorado:LateSuccession
     3          colorado:MidSuccession
-    4          colorado:PoleSuccession
-    5          colorado:EarlySuccession
+    2          colorado:PoleSuccession
+    1          colorado:EarlySuccession
     :otherwise colorado:NoSuccession))
 
 ;;Sediment source value - we have evidence for this but can't yet
