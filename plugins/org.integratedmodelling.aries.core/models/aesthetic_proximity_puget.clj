@@ -61,7 +61,7 @@
 
 (defmodel forest Forest
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{41 42 43} ForestPresent                  
+    #{41 42 43} ForestPresent         
     :otherwise  ForestAbsent))
 
 (defmodel woody-wetland WoodyWetland

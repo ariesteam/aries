@@ -207,7 +207,7 @@
         aestheticService:ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    75.0
+        :source-threshold    75.0  ;; Brian: NB, you've probably eliminated all sources by using such a high source theshold.
         :sink-threshold      10.0
         :use-threshold       0.25
         :trans-threshold     1.0

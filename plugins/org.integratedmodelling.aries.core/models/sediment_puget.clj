@@ -123,7 +123,7 @@
     3                                puget:MidSuccession
     2                                puget:PoleSuccession
     1                                puget:EarlySuccession
-    #{21 22 23 24 25 26 27 28 40 41} puget:NoSuccession))
+    #{21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} puget:NoSuccession))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea
@@ -283,13 +283,13 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))                                    
+  (measurement geophysics:Altitude "m"))
 
 (defmodel levees infrastructure:Levee
   (binary-coding infrastructure:Levee))
 
 (defmodel streams geofeatures:River
-  (binary-coding geofeatures:River))        
+  (binary-coding geofeatures:River))
 
 (defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
   (identification ReservoirSoilDeposition 
@@ -311,10 +311,10 @@
         AnnualSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River) 
-        :source-threshold   1000.0 ; Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -348,10 +348,10 @@
         AnnualSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
-        :source-threshold   1000.0
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
@@ -385,10 +385,10 @@
         AnnualSedimentSink 
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
-        :source-threshold   1000.0
-        :sink-threshold      500.0
+        :source-threshold      2.0
+        :sink-threshold        1.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       1.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite

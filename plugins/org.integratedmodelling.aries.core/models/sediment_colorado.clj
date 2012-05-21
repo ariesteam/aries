@@ -123,7 +123,7 @@
 ;;    0                    NoAnnualSedimentSource))
 
 (defmodel sediment-source-value-annual colorado:AnnualSedimentSourceClass
-  (probabilistic-measurement soilRetentionService:AnnualSedimentSourceClass "t/ha"
+  (probabilistic-measurement colorado:AnnualSedimentSourceClass "t/ha"
     [9   17]    colorado:HighAnnualSedimentSource
     [4.9  9]    colorado:ModerateAnnualSedimentSource
     [0.01 4.9]  colorado:LowAnnualSedimentSource 
@@ -138,7 +138,7 @@
                vegetation-type percent-canopy-cover
                successional-stage mountain-pine-beetle]
     :required [SlopeClass]
-    :keep     [AnnualSedimentSourceClass]
+    :keep     [colorado:AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
 
 (defmodel source-no-fire colorado:AnnualSedimentSourceNoFire ; Delete this
@@ -150,7 +150,7 @@
                vegetation-type percent-canopy-cover
                successional-stage]
     :required [SlopeClass]
-    :keep     [AnnualSedimentSourceClass]
+    :keep     [colorado:AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
 
 ;; Add deterministic model for USLE: Have data for it for the western
@@ -208,20 +208,20 @@
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs-fire DetrimentalSedimentTransportFire
   (span SedimentTransport
-        AnnualSedimentSourceFire
+        colorado:AnnualSedimentSourceFire
         geofeatures:Reservoir
         ReservoirSedimentSink
         nil
         (geophysics:Altitude geofeatures:River FloodplainsCode)
-        :source-threshold   1000.0
-        :sink-threshold      500.0
+        :source-threshold      0.0
+        :sink-threshold        0.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       0.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 3
+        :downscaling-factor 9
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
@@ -239,25 +239,25 @@
                   InaccessibleSink
                   BlockedFlow
                   BlockedSource
-                  BlockedUse]))                        
+                  BlockedUse]))
 
 ;; Sediment flow model for deposition in hydro reservoirs
 (defmodel sediment-reservoirs-no-fire DetrimentalSedimentTransportNoFire
   (span SedimentTransport
-        AnnualSedimentSourceNoFire
+        colorado:AnnualSedimentSourceNoFire
         geofeatures:Reservoir
         ReservoirSedimentSink
         nil
         (geophysics:Altitude geofeatures:River FloodplainsCode)
-        :source-threshold   1000.0
-        :sink-threshold      500.0
+        :source-threshold      0.0
+        :sink-threshold        0.0
         :use-threshold         0.0
-        :trans-threshold     100.0
+        :trans-threshold       0.0
         :source-type        :finite
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :rival
-        :downscaling-factor 3
+        :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")

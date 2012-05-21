@@ -60,19 +60,20 @@
 (def- _15-miles  24150.0)
 (def- _20-miles  32200.0)
 (def- _40-miles  64400.0)
+(def- _60-miles  96600.0)
 
 (def- source-ramp-up        (get-line-fn {:slope (/  1.0  mile)      :intercept 0.0}))
 (def- slow-source-decay     (get-line-fn {:slope (/ -0.25 _4-miles)  :intercept 1.0625}))
 (def- fast-source-decay     (get-line-fn {:slope (/ -0.5  _15-miles) :intercept 0.9166667}))
-(def- moderate-source-decay (get-line-fn {:slope (/ -0.25 _20-miles) :intercept 0.5}))
+(def- moderate-source-decay (get-line-fn {:slope (/ -0.25 _40-miles) :intercept 0.375}))
 
 (def- slow-sink-decay (get-line-fn {:slope (/ -0.25 half-mile) :intercept 1.0}))
 (def- fast-sink-decay (get-line-fn {:slope (/ -0.75 half-mile) :intercept 1.5}))
 
-;; source decay = ramp up in 1 mile, slow decay to 5 miles, fast decay to 20 miles, moderate decay to 40 miles, then gone
+;; source decay = ramp up in 1 mile, slow decay to 5 miles, fast decay to 20 miles, moderate decay to 60 miles, then gone
 (defn- source-decay
   [distance]
-  (cond (> distance _40-miles)
+  (cond (> distance _60-miles)
         0.0
 
         (< distance mile)
