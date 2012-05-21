@@ -6692,6 +6692,8 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+<!-- Comment out for new NLCD Tree Canopy
+
   <measurement:Ranking id="canopy2_Project">
     <observation:hasObservable>
       <habitat:PercentTreeCanopyCover />
@@ -7068,6 +7070,93 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+
+-->
+
+ <measurement:Ranking id="canopy_NLCD_1">
+    <observation:hasObservable>
+      <habitat:PercentTreeCanopyCover />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+    <metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+        <geospace:hasCoverageId>usa:canopy_NLCD_1</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>82045</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>35483</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>39.4329301</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-110.1567691</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>51.6784761</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-81.8431065</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="canopy_NLCD_2">
+    <observation:hasObservable>
+      <habitat:PercentTreeCanopyCover />
+    </observation:hasObservable>
+      <rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+      <metadata:hasPriority>0</metadata:hasPriority> 
+      <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+      <metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+        <geospace:hasCoverageId>usa:canopy_NLCD_2</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>59432</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>36113</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>37.5148737</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-128.0067335</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>51.2519329</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-105.3998285</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
+  <measurement:Ranking id="canopy_NLCD_3">
+    <observation:hasObservable>
+      <habitat:PercentTreeCanopyCover />
+    </observation:hasObservable>
+      <rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
+      <metadata:hasPriority>0</metadata:hasPriority>
+      <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+      <metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+        <geospace:hasCoverageId>usa:canopy_NLCD_3</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>46206</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>50549</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>24.5825126</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-110.6153796</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>40.5717999</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-95.9997838</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Ranking>
+
 
   <!-- SWAT model data, uncalibrated, run through AGWA using default
        inputs and a 12-year precipitation record (1960-1972) from 7
