@@ -1,53 +1,42 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="SharpPeaks">
-			<state id="PeaksPresent" />
+		<cpt id="MountainPeaks">
+			<state id="SharpPeaks" />
+			<state id="OtherPeaks" />
 			<state id="PeaksAbsent" />
-			<probabilities>0.037 0.963</probabilities>
-		</cpt>
-		<cpt id="ConiferForests">
-			<state id="ConfiersPresent" />
-			<state id="ConfiersAbsent" />
-			<probabilities>0.53 0.47</probabilities>
+			<probabilities>0.1 0.05 0.85</probabilities>
 		</cpt>
 		<cpt id="Lake">
 			<state id="LakePresent" />
 			<state id="LakeAbsent" />
-			<probabilities>0.013 0.987</probabilities>
+			<probabilities>0.03 0.97</probabilities>
 		</cpt>
-		<cpt id="AspenForests">
-			<state id="AspensPresent" />
-			<state id="AspensAbsent" />
-			<probabilities>0.05 0.95</probabilities>
-		</cpt>
-		<cpt id="HighGrassOrShrubs">
-			<state id="HighGrassShrubsPresent" />
-			<state id="HighGrassShrubsAbsent" />
-			<probabilities>0.083 0.917</probabilities>
-		</cpt>
-		<cpt id="LowGrassOrShrubs">
-			<state id="LowGrassShrubsPresent" />
-			<state id="LowGrassShrubsAbsent" />
-			<probabilities>0.27 0.73</probabilities>
+		<cpt id="ScenicVegetationType">
+			<state id="ConiferForest" />
+			<state id="AspenForest" />
+			<state id="HighElevationGrassShrubs" />
+			<state id="LowElevationGrassShrubs" />
+			<state id="Other" />
+			<probabilities>0.35 0.1 0.25 0.25 0.05</probabilities>
 		</cpt>
 		<cpt id="TheoreticalNaturalBeauty">
 			<state id="HighNaturalBeauty" />
 			<state id="ModerateNaturalBeauty" />
 			<state id="LowNaturalBeauty" />
 			<state id="NoNaturalBeauty" />
-			<parents>SharpPeaks Lake AspenForests HighGrassOrShrubs LowGrassOrShrubs ConiferForests</parents>
-			<probabilities>1 0 0 0 0.75 0 0.15 0.1 0.95 0 0 0.05 0.85 0 0 0.15 0.9 0 0 0.1 0.65 0.15 0 0.2 0.85 0 0 0.15 0.65 0.1 0 0.25 0.75 0 0.15 0.1 0.65 0 0.15 0.2 0.75 0 0.1 0.15 0.65 0 0.1 0.25 0.65 0.15 0 0.2 0.65 0 0.05 0.3 0.65 0.1 0 0.25 0.65 0 0 0.35 0.7 0 0 0.3 0.45 0 0.15 0.4 0.35 0.3 0 0.35 0.45 0 0.1 0.45 0.35 0.25 0 0.4 0.35 0.15 0 0.5 0.35 0.2 0 0.45 0.35 0.1 0 0.55 0.45 0 0.15 0.4 0.35 0 0.15 0.5 0.45 0 0.1 0.45 0.35 0 0.1 0.55 0.35 0.15 0 0.5 0.35 0 0.05 0.6 0.35 0.1 0 0.55 0.35 0 0 0.65 0.3 0.35 0 0.35 0.4 0 0.15 0.45 0.3 0.3 0 0.4 0.4 0 0.1 0.5 0.3 0.25 0 0.45 0.3 0.15 0 0.55 0.3 0.2 0 0.5 0.3 0.1 0 0.6 0.4 0 0.15 0.45 0.3 0 0.15 0.55 0.4 0 0.1 0.5 0.3 0 0.1 0.6 0.3 0.15 0 0.55 0.3 0 0.05 0.65 0.3 0.1 0 0.6 0.3 0 0 0.7 0 0.35 0 0.65 0 0.1 0.15 0.75 0 0.3 0 0.7 0 0.1 0.1 0.8 0 0.25 0 0.75 0 0.15 0 0.85 0 0.2 0 0.8 0 0.1 0 0.9 0 0.1 0.15 0.75 0 0 0.15 0.85 0 0.1 0.1 0.8 0 0 0.1 0.9 0 0.15 0 0.85 0 0 0.05 0.95 0 0 0.1 0.9 0 0 0 1</probabilities>
+			<parents>Lake ScenicVegetationType MountainPeaks</parents>
+			<probabilities>1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 0.9 0.1 0 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.9 0.1 0 0 0.1 0.3 0.3 0.3 0.1 0.3 0.3 0.3 0.9 0.1 0 0 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0.9 0.1 0 0 0 0.1 0.3 0.6 0 0.1 0.3 0.6 0.9 0.1 0 0 0.7 0.2 0.1 0 0 0 0.1 0.9</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
-			<node id="SharpPeaks">
-				<name>SharpPeaks</name>
+			<node id="MountainPeaks">
+				<name>MountainPeaks</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>156 258 285 288</position>
+				<position>368 243 497 273</position>
 				<barchart active="true" width="162" height="54" />
 			</node>
 			<node id="TheoreticalNaturalBeauty">
@@ -55,7 +44,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>432 117 544 147</position>
+				<position>377 99 489 129</position>
 				<barchart active="true" width="226" height="90" />
 			</node>
 			<node id="Lake">
@@ -63,40 +52,16 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>46 260 88 286</position>
+				<position>222 251 264 277</position>
 				<barchart active="true" width="128" height="54" />
 			</node>
-			<node id="ConiferForests">
-				<name>ConiferForests</name>
+			<node id="ScenicVegetationType">
+				<name>ScenicVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>347 247 431 299</position>
-				<barchart active="true" width="158" height="54" />
-			</node>
-			<node id="AspenForests">
-				<name>AspenForests</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>511 247 595 299</position>
-				<barchart active="true" width="154" height="54" />
-			</node>
-			<node id="HighGrassOrShrubs">
-				<name>HighGrassOrShrubs</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>721 246 805 298</position>
-				<barchart active="true" width="249" height="54" />
-			</node>
-			<node id="LowGrassOrShrubs">
-				<name>LowGrassOrShrubs</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>977 245 1061 297</position>
-				<barchart active="true" width="248" height="54" />
+				<position>618 257 736 330</position>
+				<barchart active="true" width="265" height="108" />
 			</node>
 			<textbox>
 				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
