@@ -72,7 +72,7 @@
 ;; at Gary's plain-English description of the flow models.              
 (defmodel source ViewSource
   (bayesian ViewSource
-        :import  "aries.core::ViewSourceColoradoSimplified.xdsl"
+        :import  "aries.core::ViewSourceColorado.xdsl"
         :context [lake peaks scenic-vegetation]
         :keep    [TheoreticalNaturalBeauty]
         :result  theoretical-beauty))
@@ -101,15 +101,11 @@
     1          HighwaysPresent
     :otherwise HighwaysAbsent))
 
-(defmodel gray-kill colorado:GrayBeetleKill
-  (classification (binary-coding colorado:GrayBeetleStage)
-    1          colorado:GrayKillPresent
-    :otherwise colorado:GrayKillAbsent)) 
-
-(defmodel green-gray-kill colorado:GreenGrayBeetleKill
-  (classification (binary-coding colorado:GreenGrayBeetleStage)
-    1          colorado:GreenGrayKillPresent
-    :otherwise colorado:GreenGrayKillAbsent))
+(defmodel beetle-kill colorado:GreenGreyBeetleKill
+  (classification (count colorado:MountainPineBeetleDamageTreesPerHectare "/ha")
+    [19 1236]  colorado:GreyKillPresent
+    [ 1   19]  colorado:GreenGreyKillPresent
+    :otherwise colorado:BeetleKillAbsent))
 
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
@@ -122,7 +118,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkColorado.xdsl"
-    :context [general-disturbance clearcut transmission-line highway gray-kill green-gray-kill]
+    :context [general-disturbance clearcut transmission-line highway beetle-kill]
     :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -130,9 +126,16 @@
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
+;; Commenting out housing data until we get the parcel data for
+;Colorado completed.
+;(defmodel housing PresenceOfHousing
+; (classification (binary-coding aestheticService:PresenceOfHousing) ; This may give a problem being a binary coding when it's not for other case studies - hopefully this won't be an issue.
+;  1          HousingPresent
+;  :otherwise HousingAbsent))
+
 (defmodel housing PresenceOfHousing
-  (classification (binary-coding aestheticService:PresenceOfHousing) ; This may give a problem being a binary coding when it's not for other case studies - hopefully this won't be an issue.
-    1          HousingPresent
+  (classification (numeric-coding nlcd:NLCDNumeric)
+    [22 23 24] HousingPresent
     :otherwise HousingAbsent))
 
 (defmodel property-value HousingValue
