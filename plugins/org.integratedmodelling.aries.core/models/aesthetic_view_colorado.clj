@@ -47,40 +47,19 @@
     110        LakePresent
     :otherwise LakeAbsent))
 
-(defmodel peaks SharpPeaks
-  (classification (binary-coding colorado:SharpPeakPresence)
-    1          PeaksPresent
-    :otherwise PeaksAbsent))
-
-;; Consider combining the four below based on the simplified BN if
-;; Gary's flow model description.
-;(defmodel conifer colorado:ConiferForests
-;(classification (binary-coding colorado:ConiferForestPresence)
-;  1          colorado:ConifersPresent
-;  :otherwise colorado:ConifersAbsent))
-
-;(defmodel aspen colorado:AspenForests
-;(classification (binary-coding colorado:AspenForestPresence)
-;  1          colorado:AspensPresent
-;  :otherwise colorado:AspensAbsent))
-
-;(defmodel high-grass-shrubs colorado:HighGrassOrShrubs
-;(classification (binary-coding colorado:HighGrassShrubPresence)
-;  1          colorado:HighGrassShrubsPresent
-;  :otherwise colorado:HighGrassShrubsAbsent))
-
-;(defmodel low-grass-shrubs colorado:LowGrassOrShrubs
-;(classification (binary-coding colorado:LowGrassShrubPresence)
-;  1          colorado:LowGrassShrubsPresent
-;  :otherwise colorado:LowGrassShrubsAbsent))
+(defmodel peaks MountainPeaks
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    #{1 2 3 }           SharpPeaks
+    #{5 7 8 9 10 12 15} OtherPeaks
+    :otherwise          PeaksAbsent))
 
 (defmodel scenic-vegetation colorado:ScenicVegetationType
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{24 26 28 29 30 32 34 35 36 78 79} colorado:ConiferForest
-    #{22 38}                            colorado:AspenForest
-    #{69 70 71 77 86}                   colorado:HighGrassShrubs
-    #{41 42 48 62 67 82 85 114}         colorado:LowGrassShrubs
-    :otherwise                          colorado:Other))
+    #{24 26 28 29 30 32 33 34 35 36 78 79 92 103} colorado:ConiferForest
+    #{22 38}                                      colorado:AspenForest
+    #{39 44 62 69 70 71 77 86}                    colorado:HighElevationGrassShrubs
+    #{19 40 41 42 43 46 48 50 53 56 58 62 63 64 67 68 71 72 73 74 75 76 79 82 85 95 104 108 109 114 119 120 121 122} colorado:LowElevationGrassShrubs
+    :otherwise                                    colorado:Other))
 
 (defmodel theoretical-beauty TheoreticalNaturalBeauty
   (probabilistic-ranking TheoreticalNaturalBeauty
@@ -88,14 +67,6 @@
     [25  50] ModerateNaturalBeauty
     [ 1  25] LowNaturalBeauty
     [ 0   1] NoNaturalBeauty))
-
-;; source bayesian model                 
-;(defmodel source ViewSource
-;(bayesian ViewSource 
-;  :import  "aries.core::ViewSourceColorado.xdsl"
-;  :context [lake peaks conifer aspen high-grass-shrubs low-grass-shrubs]
-;  :keep    [TheoreticalNaturalBeauty]
-;  :result  theoretical-beauty))
 
 ;; Source bayesian model, simplified. Consider using when you can look
 ;; at Gary's plain-English description of the flow models.              
