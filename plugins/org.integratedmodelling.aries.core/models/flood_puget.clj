@@ -820,7 +820,7 @@ be added to this list if desired."
     #{0 1 2 3 8 9 10 11 12 13 14 15 16} puget:NotDevelopedOpen))
 
 (defscenario open-development-flood
-  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+ "Changes values in developed areas to low canopy cover, no forest successional stage, soil group D (lowest permeability), developed vegetation type, and housing present, and subs in a new impervious surface layer."
   (model puget:PercentTreeCanopyCoverClass
     (classification puget:PercentTreeCanopyCoverClass
       :context [open-development-scenario :as od percent-canopy-cover :as pcc]
@@ -872,10 +872,16 @@ be added to this list if desired."
       [20  50]            puget:ModeratelyHighImperviousCover
       [10  20]            puget:ModeratelyLowImperviousCover
       [ 5  10]            puget:LowImperviousCover
-      [ 0   5]            puget:VeryLowImperviousCover)))
+      [ 0   5]            puget:VeryLowImperviousCover))
+  (model aestheticService:PresenceOfHousing
+    (classification aestheticService:PresenceOfHousing
+      :context [open-development-scenario :as od housing :as h]
+      :state   #(if (is? (:od %) (conc 'puget:LowDensityDevelopedOpen))
+                  (conc 'aestheticService:HousingPresent)  
+                  (:h %)))))
 
 (defscenario constrained-development-flood
-  "Changes values in developed areas to no succession, low canopy cover, moderate hardwood-softwood ratio,low fire frequency, increased greenhouse gas emissions."
+  "Changes values in developed areas to low canopy cover, no forest successional stage, soil group D (lowest permeability), developed vegetation type, and housing present, and subs in a new impervious surface layer."
   (model puget:PercentTreeCanopyCoverClass
     (classification puget:PercentTreeCanopyCoverClass
       :context [constrained-development-scenario :as cd percent-canopy-cover :as pcc]
@@ -927,4 +933,10 @@ be added to this list if desired."
       [20  50]            puget:ModeratelyHighImperviousCover
       [10  20]            puget:ModeratelyLowImperviousCover
       [ 5  10]            puget:LowImperviousCover
-      [ 0   5]            puget:VeryLowImperviousCover)))
+      [ 0   5]            puget:VeryLowImperviousCover))
+  (model aestheticService:PresenceOfHousing
+    (classification aestheticService:PresenceOfHousing
+      :context [constrained-development-scenario :as cd housing :as h]
+      :state   #(if (is? (:cd %) (conc 'puget:LowDensityDevelopedConstrained))
+                  (conc 'aestheticService:HousingPresent)  
+                  (:h %)))))

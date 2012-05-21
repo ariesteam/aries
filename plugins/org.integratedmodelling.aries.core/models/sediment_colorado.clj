@@ -88,7 +88,12 @@
     29       colorado:LodgepolePine
     #{26 28} colorado:SpruceFir
     22       colorado:AspenWoodland))
-
+;;#{22 24 26 28 29 30 32 33 34 35 36 38 78 79 92 103}colorado:Forests
+;;#{19 39 40 41 42 43 44 46 48 50 53 56 58 77 81 82 104 108 109}colorado:Shrubland
+;;#{62 63 64 67 68 69 70 71 72 73 74 75 76 85 86 95 106}colorado:Grassland
+;;#{114 121 122}colorado:InvasiveAnnuals
+;;#{118 119 120}colorado:InvasivePerennials
+;;#{11 13 14 17 21 113 115 116 117 123 124 124}colorado:Barren
 (defmodel mountain-pine-beetle colorado:MountainPineBeetleDamageClass
   (classification (ranking colorado:MountainPineBeetleDamageSeverity)
      2         colorado:SevereDamage
@@ -105,11 +110,11 @@
 
 (defmodel successional-stage colorado:SuccessionalStage
   (classification (ranking ecology:SuccessionalStage)
-    1          colorado:OldGrowth
-    2          colorado:LateSuccession
+    5          colorado:OldGrowth
+    4          colorado:LateSuccession
     3          colorado:MidSuccession
-    4          colorado:PoleSuccession
-    5          colorado:EarlySuccession
+    2          colorado:PoleSuccession
+    1          colorado:EarlySuccession
     :otherwise colorado:NoSuccession))
 
 ;;Sediment source value - we have evidence for this but can't yet

@@ -60,13 +60,13 @@
 (defmodel vegetation-type colorado:CarbonVegetationType
   "Reclass of SWReGAP LULC"
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) 
-    #{24 26 28 29 30 32 34 35 36 92 103}                                             colorado:ConiferousForest
-    #{22 33 38 41}                                                                   colorado:DeciduousForest
-    #{68 70 71 72 73 74 75 76 106 119 120 121 122}                                   colorado:Grassland
-    #{40 41 42 43 44 46 48 50 53 56 58 62 63 64 67 69 82 95 104 108 109}             colorado:Shrubland
-    #{77 78 79 81 85 86 99 118}                                                      colorado:Wetland
+    #{24 26 28 29 30 32 33 34 35 36 78 92 103}                                       colorado:ConiferousForest
+    #{22 38}                                                                         colorado:DeciduousForest
+    #{62 63 64 67 68 69 70 71 72 73 74 75 76 86 95 106}                              colorado:Grassland
+    #{39 40 41 42 43 44 46 48 50 53 56 58 79 104 108 109}                            colorado:Shrubland
+    #{19 77 81 82 85 86}                                                             colorado:Wetland
     114                                                                              colorado:Cropland
-    #{1 2 4 5 7 8 9 10 11 13 14 15 17 19 21 110 111 112 113 115 116 117 123 124 125} colorado:Unvegetated))
+    #{1 2 4 5 7 8 9 10 11 13 14 15 17 21 111 112 113 115 116 117 123 124 125}        colorado:Unvegetated))
 
 ;; Annual precipitation used as the main climatic variable in the
 ;; model, as opposed to the difference between mean summer high and

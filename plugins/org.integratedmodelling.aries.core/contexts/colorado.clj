@@ -68,6 +68,12 @@
 ;; Changes to sediment model
   (transform 'colorado:MountainPineBeetleDamageClass 'colorado:NoDamage))
 
+(defcontext colorado
+  "Whole state of Colorado, currently just for data testing purposes"
+  (grid
+   "1 km"
+   "EPSG:4326 POLYGON((-109 41, -102 41, -102 37, -109 37, -109 41))"))
+
 (defcontext co-grand-county400
   "Grand County, CO, for viewshed & sediment analysis"
   (grid
