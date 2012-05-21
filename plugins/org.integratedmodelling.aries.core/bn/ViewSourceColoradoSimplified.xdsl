@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="SharpPeaks">
-			<state id="PeaksPresent" />
+		<cpt id="MountainPeaks">
+			<state id="SharpPeaks" />
+			<state id="OtherPeaks" />
 			<state id="PeaksAbsent" />
-			<probabilities>0.037 0.963</probabilities>
+			<probabilities>0.1 0.05 0.85</probabilities>
 		</cpt>
 		<cpt id="Lake">
 			<state id="LakePresent" />
 			<state id="LakeAbsent" />
-			<probabilities>0.013 0.987</probabilities>
+			<probabilities>0.03 0.97</probabilities>
 		</cpt>
 		<cpt id="ScenicVegetationType">
 			<state id="ConiferForest" />
 			<state id="AspenForest" />
-			<state id="HEGrassShrubs" />
-			<state id="LEGrassShrubs" />
+			<state id="HighElevationGrassShrubs" />
+			<state id="LowElevationGrassShrubs" />
 			<state id="Other" />
-			<probabilities>0.53 0.05 0.08 0.27 0.07000000000000001</probabilities>
+			<probabilities>0.35 0.1 0.25 0.25 0.05</probabilities>
 		</cpt>
 		<cpt id="TheoreticalNaturalBeauty">
 			<state id="HighNaturalBeauty" />
 			<state id="ModerateNaturalBeauty" />
 			<state id="LowNaturalBeauty" />
 			<state id="NoNaturalBeauty" />
-			<parents>SharpPeaks Lake ScenicVegetationType</parents>
-			<probabilities>1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 1 0 0 0 0.7 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.3 0.7 0 0 0.3 0.3 0.35 0 0.35 0.3 0.35 0 0.35 0.3 0.35 0 0.35 0.3 0.35 0 0.35 0.3 0.35 0 0.35 0 0.35 0 0.65 0 0.35 0 0.65 0 0.35 0 0.65 0 0.35 0 0.65 0 0.35 0 0.65</probabilities>
+			<parents>Lake ScenicVegetationType MountainPeaks</parents>
+			<probabilities>1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 1 0 0 0 0.8 0.1 0.1 0 0.8 0.1 0.1 0 0.9 0.1 0 0 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.9 0.1 0 0 0.1 0.3 0.3 0.3 0.1 0.3 0.3 0.3 0.9 0.1 0 0 0 0.2 0.4 0.4 0 0.2 0.4 0.4 0.9 0.1 0 0 0 0.1 0.3 0.6 0 0.1 0.3 0.6 0.9 0.1 0 0 0.7 0.2 0.1 0 0 0 0.1 0.9</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
-			<node id="SharpPeaks">
-				<name>SharpPeaks</name>
+			<node id="MountainPeaks">
+				<name>MountainPeaks</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
