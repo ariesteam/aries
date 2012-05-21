@@ -9571,6 +9571,31 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+  <observation:Categorization id="colorado_transmission_lines">
+    <observation:hasObservable>
+      <infrastructure:TransmissionLine/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: TIGER/Line files</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.esri.com/data/download/census2000-tigerline/index.html</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:transmission_lines</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>cfcc</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>36.9988589452074</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-109.0509037236293</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.00238468728435</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-102.05150554117725</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+    </observation:Categorization>
+
   <!-- SWAT model data, uncalibrated, run through AGWA using default
        inputs and a 12-year precipitation record (1960-1972) from 7
        rain gages in the Upper San Pedro watershed. These are average

@@ -120,10 +120,15 @@
     1          ClearcutsPresent
     :otherwise ClearcutsAbsent))
 
-(defmodel development-infrastructure colorado:DevelopmentInfrastructure 
-  (classification (binary-coding colorado:Development)
-    1          colorado:InfrastructurePresent
-    :otherwise colorado:InfrastructureAbsent))
+(defmodel transmission-line TransmissionLines 
+  (classification (categorization infrastructure:TransmissionLine)
+    "C20"      TransmissionLinesPresent
+    :otherwise TransmissionLinesAbsent))
+
+(defmodel highway Highways 
+  (classification (binary-coding infrastructure:Highway)
+    1          HighwaysPresent
+    :otherwise HighwaysAbsent))
 
 (defmodel gray-kill colorado:GrayBeetleKill
   (classification (binary-coding colorado:GrayBeetleStage)
@@ -146,7 +151,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkColorado.xdsl"
-    :context [general-disturbance clearcut development-infrastructure gray-kill green-gray-kill]
+    :context [general-disturbance clearcut transmission-line highway gray-kill green-gray-kill]
     :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 
