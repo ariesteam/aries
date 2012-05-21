@@ -59,8 +59,7 @@
   "Conditions with no pine beetle damage"
   (grid resolution grand-county)
 ;; Changes to aesthetic view model
-  (transform 'colorado:GrayBeetleKill 'colorado:GrayKillAbsent)  
-  (transform 'colorado:GreenGrayBeetleKill 'colorado:GreenGrayKillAbsent))
+  (transform 'colorado:GreenGrayBeetleKill 'colorado:BeetleKillAbsent))
 
 (defcontext no-mountain-pine-beetle-sediment
   "Conditions with no pine beetle damage"

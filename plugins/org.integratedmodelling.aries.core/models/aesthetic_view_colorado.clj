@@ -86,7 +86,7 @@
     1          colorado:DisturbancePresent
     :otherwise colorado:DisturbanceAbsent))
 
-(defmodel clearcut Clearcuts 
+(defmodel clearcut Clearcuts
   (classification (binary-coding geofeatures:Clearcut)
     1          ClearcutsPresent
     :otherwise ClearcutsAbsent))
@@ -96,15 +96,15 @@
     "C20"      TransmissionLinesPresent
     :otherwise TransmissionLinesAbsent))
 
-(defmodel highway Highways 
+(defmodel highway Highways
   (classification (binary-coding infrastructure:Highway)
     1          HighwaysPresent
     :otherwise HighwaysAbsent))
 
-(defmodel beetle-kill colorado:GreenGreyBeetleKill
+(defmodel beetle-kill colorado:GreenGrayBeetleKill
   (classification (count colorado:MountainPineBeetleDamageTreesPerHectare "/ha")
-    [19 1236]  colorado:GreyKillPresent
-    [ 1   19]  colorado:GreenGreyKillPresent
+    [19 1236]  colorado:GrayKillPresent
+    [ 1   19]  colorado:GreenGrayKillPresent
     :otherwise colorado:BeetleKillAbsent))
 
 (defmodel view-sink-undiscretizer VisualBlight

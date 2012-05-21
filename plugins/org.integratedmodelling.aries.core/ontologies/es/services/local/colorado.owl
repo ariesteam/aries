@@ -185,6 +185,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#BeetleKillAbsent -->
+
+    <Class rdf:about="&colorado;BeetleKillAbsent">
+        <rdfs:subClassOf rdf:resource="&colorado;GreenGrayBeetleKill"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#CarbonSinkValue -->
 
     <Class rdf:about="&colorado;CarbonSinkValue">
@@ -427,14 +435,6 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#GrayBeetleKill -->
-
-    <Class rdf:about="&colorado;GrayBeetleKill">
-        <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
-    </Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#GrayBeetleStage -->
 
     <Class rdf:about="&colorado;GrayBeetleStage">
@@ -443,18 +443,10 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#GrayKillAbsent -->
-
-    <Class rdf:about="&colorado;GrayKillAbsent">
-        <rdfs:subClassOf rdf:resource="&colorado;GrayBeetleKill"/>
-    </Class>
-    
-
-
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#GrayKillPresent -->
 
     <Class rdf:about="&colorado;GrayKillPresent">
-        <rdfs:subClassOf rdf:resource="&colorado;GrayBeetleKill"/>
+        <rdfs:subClassOf rdf:resource="&colorado;GreenGrayBeetleKill"/>
     </Class>
     
 
@@ -471,14 +463,6 @@
 
     <Class rdf:about="&colorado;GreenGrayBeetleStage">
         <rdfs:subClassOf rdf:resource="&colorado;MountainPineBeetle"/>
-    </Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#GreenGrayKillAbsent -->
-
-    <Class rdf:about="&colorado;GreenGrayKillAbsent">
-        <rdfs:subClassOf rdf:resource="&colorado;GreenGrayBeetleKill"/>
     </Class>
     
 
