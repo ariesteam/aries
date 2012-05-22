@@ -4379,34 +4379,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:BinaryCoding id="aspen_forests_co">
-    <observation:hasObservable>
-      <colorado:AspenForestPresence />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:aspen_forests_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
   <measurement:Ranking id="san_pedro_bird_rich">
     <observation:hasObservable>
       <habitat:AvianRichness />
@@ -4590,34 +4562,6 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
-
-  <measurement:BinaryCoding id="conifer_forests_co">
-    <observation:hasObservable>
-      <colorado:ConiferForestPresence />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:conifer_forests_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
 
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
@@ -5413,34 +5357,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:BinaryCoding id="high_elev_grass_shrubs_co">
-    <observation:hasObservable>
-      <colorado:HighGrassShrubPresence />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:high_elev_grass_shrubs_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
   <measurement:BinaryCoding id="sanPedro_mex_highway">
     <observation:hasObservable>
       <infrastructure:Highway />
@@ -5735,62 +5651,6 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
-
-  <measurement:BinaryCoding id="lakes_co">
-    <observation:hasObservable>
-      <geofeatures:Lake/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:lakes_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
-  <measurement:BinaryCoding id="low_elev_grass_shrubs_co">
-    <observation:hasObservable>
-      <colorado:LowGrassShrubPresence />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:low_elev_grass_shrubs_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
 
   <measurement:Ranking id="sanPedro_mammal_rich">
     <observation:hasObservable>
@@ -8272,34 +8132,6 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Measurement>
-
-  <measurement:BinaryCoding id="sharp_peaks_co">
-    <observation:hasObservable>
-      <colorado:SharpPeakPresence/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:sharp_peaks_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
 
   <measurement:Count id="sheep">
     <observation:hasObservable>
