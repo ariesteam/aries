@@ -9176,7 +9176,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Measurement id="stream_gradient_co1">
+  <measurement:Measurement id="stream_gradient_co">
     <observation:hasObservable>
       <habitat:StreamGradient/>
     </observation:hasObservable>
@@ -9186,99 +9186,18 @@ global data. -->
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:stream_gradient_co1</geospace:hasCoverageId>
+        <geospace:hasCoverageId>colorado:stream_gradient_co</geospace:hasCoverageId>
         <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:RasterGrid>
-        <geospace:hasXRangeMax>262</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>117</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4427710.997</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>499964.464</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4546710.997</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>763964.464</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
-  <measurement:Measurement id="stream_gradient_co2">
-    <observation:hasObservable>
-      <habitat:StreamGradient/>
-    </observation:hasObservable>
-    <measurement:unit>°</measurement:unit>
-    <rdfs:comment>Data source: Derived from Colorado DOT hydrography and SRTM slope layers</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:stream_gradient_co2</geospace:hasCoverageId>
-        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>262</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>343</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4094876.25</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>499962.011</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4439876.25</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>763962.011</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
-  <measurement:Measurement id="stream_gradient_co3">
-    <observation:hasObservable>
-      <habitat:StreamGradient/>
-    </observation:hasObservable>
-    <measurement:unit>°</measurement:unit>
-    <rdfs:comment>Data source: Derived from Colorado DOT hydrography and SRTM slope layers</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:stream_gradient_co3</geospace:hasCoverageId>
-        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>358</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>343</geospace:hasYRangeMax>
+        <geospace:hasXRangeMax>622</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>450</geospace:hasYRangeMax>
         <geospace:hasLatLowerBound>4094876.25</geospace:hasLatLowerBound>
         <geospace:hasLonLowerBound>140095.828</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4439876.25</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>500095.828</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
-  <measurement:Measurement id="stream_gradient_co4">
-    <observation:hasObservable>
-      <habitat:StreamGradient/>
-    </observation:hasObservable>
-    <measurement:unit>°</measurement:unit>
-    <rdfs:comment>Data source: Derived from Colorado DOT hydrography and SRTM slope layers</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:stream_gradient_co4</geospace:hasCoverageId>
-        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>358</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>117</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4427710.997</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>140095.828</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4546710.997</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>500095.828</geospace:hasLonUpperBound>
+        <geospace:hasLatUpperBound>4546876.25</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>764095.828</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
