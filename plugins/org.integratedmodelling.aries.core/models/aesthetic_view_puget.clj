@@ -85,11 +85,11 @@
     #{"EVEN-AGE" "EVEN R/W" "EVEN/SALVAGE"} ClearcutsPresent
     :otherwise                              ClearcutsAbsent))
 
-;; NLCD 1992 for Commercial/Industrial/Transportation land use
-(defmodel commercial-transportation CommercialIndustrialTransportation
-  (classification (numeric-coding nlcd:NLCD1992Typology)
-    23         TransportationInfrastructurePresent
-    :otherwise TransportationInfrastructureAbsent))
+(defmodel developed-land DevelopedLand
+  (classification (numeric-coding nlcd:NLCDNumeric)           
+    22         HighDensityDevelopment
+    #{23 24}   LowDensityDevelopment
+    :otherwise NoDevelopment))
 
 ;; The model below is needed to filter out ferry routes, which are
 ;; included in the highways layer and obviously don't act as sinks.
@@ -109,7 +109,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkPuget.xdsl"
-    :context [commercial-transportation clearcut highway]
+    :context [developed-land clearcut highway]
     :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 

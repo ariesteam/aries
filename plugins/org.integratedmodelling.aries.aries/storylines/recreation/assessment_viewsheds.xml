@@ -164,11 +164,11 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="open-space-class">
-    <concept>recreationService:OpenSpaceClass</concept>
-    <name>Open space class</name>
-    <title>Open space class</title>
-    <runninghead>Open space type</runninghead>
+  <page id="scenic-vegetation-type">
+    <concept>vermont:ScenicVegetationType</concept>
+    <name>Scenic vegetation type</name>
+    <title>Scenic vegetation type</title>
+    <runninghead>Scenic vegetation type</runninghead>
     <group>source</group>
     <description><![CDATA[
     <p>The presence of aesthetically valued land cover types as viewed
@@ -231,7 +231,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="development">
-    <concept>recreationService:Development</concept>
+    <concept>vermont:DevelopedLand</concept>
     <name>Developed land</name>
     <title>Presence of developed land</title>
     <runninghead>Developed land</runninghead>
@@ -261,7 +261,68 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="transportation-energy-infrastructure">
+  <page id="highway">
+    <concept>aestheticService:Highways</concept>
+    <name>Highways</name>
+    <title>Presence of highways</title>
+    <runninghead>Highways</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>The presence of aesthetically displeasing land use types, such
+    as highways.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land use, such as highways, is used as an input to a probabilistic
+    model to estimate visual blight that degrades view quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    highways.</p>
+    <h1>Source</h1> <p>Vermont Center for Geograhic Information.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">Aesthetic viewshed and proximity model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="transmission-line">
+    <concept>aestheticService:TransmissionLines</concept>
+    <name>Transmission lines</name>
+    <title>Presence of transmission lines</title>
+    <runninghead>Transmission lines</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>The presence of aesthetically displeasing infrastructure, such
+    as transmission lines.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    infrastructure, such as transmission lines, is used as an input to a
+    probabilistic model to estimate visual blight that degrades view
+    quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    transmission lines.</p>
+    <h1>Source</h1> <p>Census TIGER/Line Files.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">Aesthetic viewshed and proximity model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://arcdata.esri.com/data/tiger2000/tiger_download.cfm" target="_blank">Census TIGER/Line Files.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+<!--  <page id="transportation-energy-infrastructure">
     <concept>recreationService:TransportationEnergyInfrastructure</concept>
     <name>Transportation and energy infrastructure</name>
     <title>Presence of transportation and energy infrastructure</title>
@@ -291,7 +352,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <disabled>false</disabled>
     <plot-type default="true">geosurface-2d</plot-type>
     <plot-type>geocontour-2d</plot-type>
-  </page>
+  </page> -->
 
   <page id="view-sink">
     <concept>aestheticService:ViewSink</concept>
