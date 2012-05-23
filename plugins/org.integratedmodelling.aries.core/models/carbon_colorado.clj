@@ -60,13 +60,20 @@
 (defmodel vegetation-type colorado:CarbonVegetationType
   "Reclass of SWReGAP LULC"
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) 
-    #{24 26 28 29 30 32 33 34 35 36 78 92 103}                                       colorado:ConiferousForest
-    #{22 38}                                                                         colorado:DeciduousForest
-    #{62 63 64 67 68 69 70 71 72 73 74 75 76 86 95 106}                              colorado:Grassland
-    #{39 40 41 42 43 44 46 48 50 53 56 58 79 104 108 109}                            colorado:Shrubland
-    #{19 77 81 82 85 86}                                                             colorado:Wetland
-    114                                                                              colorado:Cropland
-    #{1 2 4 5 7 8 9 10 11 13 14 15 17 21 111 112 113 115 116 117 123 124 125}        colorado:Unvegetated))
+    #{24 26 28 29 30 32 33 34 35 36 78 92 103}
+    colorado:ConiferousForest
+    #{22 23 38}
+    colorado:DeciduousForest
+    #{62 63 64 67 68 69 70 71 72 73 74 75 76 86 95 106}
+    colorado:Grassland
+    #{39 40 41 42 43 44 46 48 50 53 56 58 79 104 108 109 118 119 120 121 122}
+    colorado:Shrubland
+    #{19 77 81 82 85 86 99}
+    colorado:Wetland
+    114
+    colorado:Cropland
+    #{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 115 116 117 123 124 125}
+    colorado:Unvegetated))
 
 ;; Annual precipitation used as the main climatic variable in the
 ;; model, as opposed to the difference between mean summer high and
@@ -79,6 +86,13 @@
     [600  :>] colorado:HighMeanAnnualPrecipitation
     [400 600] colorado:ModerateMeanAnnualPrecipitation
     [:<  400] colorado:LowMeanAnnualPrecipitation))
+;;These are from sediment model- need to decide which to go with
+   ;; [1150   :>] colorado:VeryHighMeanAnnualPrecipitation
+   ;; [ 700 1150] colorado:HighMeanAnnualPrecipitation
+   ;; [ 300  700] colorado:ModerateMeanAnnualPrecipitation
+   ;; [ 200  300] colorado:LowMeanAnnualPrecipitation
+   ;; [:<    200] colorado:VeryLowMeanAnnualPrecipitation))
+
 
 (defmodel veg-soil-sequestration colorado:VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
@@ -110,12 +124,12 @@
 
 (defmodel soil-type colorado:SoilType
   (classification (categorization colorado:CarbonSoilType)
-    "Alfisols"    colorado:Alfisols
-    "Aridisols"   colorado:Aridisols
-    "Entisols"    colorado:Entisols
-    "Inceptisols" colorado:Inceptisols
-    "Mollisols"   colorado:Mollisols
-    "Water"       colorado:Water))
+    "Alfisols"                 colorado:Alfisols
+    #{"Aridisols" "Vertisols"} colorado:AridisolsVertisols
+    #{"Entisols" "Ultisols"}   colorado:EntisolsUltisols
+    "Inceptisols"              colorado:Inceptisols
+    "Mollisols"                colorado:Mollisols
+    :otherwise                 colorado:RockAndWater))
 
 (defmodel beetle-kill colorado:MountainPineBeetleDamageClass
   (classification (count colorado:MountainPineBeetleDamageTreesPerHectare "/ha")
@@ -145,6 +159,7 @@
 (defmodel vegetation-carbon-storage colorado:VegetationCStorage 
   (bayesian colorado:VegetationCStorage 
     :import  "aries.core::CarbonSinkColorado.xdsl"
+
     :context [percent-tree-canopy-cover vegetation-type beetle-kill]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
