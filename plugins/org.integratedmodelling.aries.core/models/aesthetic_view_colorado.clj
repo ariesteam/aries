@@ -180,7 +180,7 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))                                    
+  (measurement geophysics:Altitude "m"))
 
 (defmodel data-homeowners LineOfSight
   (identification LineOfSight
@@ -197,7 +197,7 @@
         ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    4.0
+        :source-threshold    10.0
         :sink-threshold      5.0
         :use-threshold       0.05
         :trans-threshold     1.0
