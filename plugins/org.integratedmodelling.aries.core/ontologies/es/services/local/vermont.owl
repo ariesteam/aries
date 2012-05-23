@@ -9,22 +9,22 @@
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY carbonService "http://www.integratedmodelling.org/ks/es/carbonService.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
-    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#"
      xml:base="http://www.integratedmodelling.org/ks/aries/local/vermont.owl"
-     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
-     xmlns:carbonService="http://www.integratedmodelling.org/ks/es/carbonService.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:carbonService="http://www.integratedmodelling.org/ks/es/carbonService.owl#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl"/>
@@ -41,6 +41,14 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Agriculture -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Agriculture">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ScenicVegetationType"/>
+    </owl:Class>
     
 
 
@@ -79,10 +87,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#DevelopedLand -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#DevelopedLand">
+        <rdfs:subClassOf rdf:resource="&eserv;ContingentPolicyTarget"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Forest -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Forest">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Forests -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#Forests">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ScenicVegetationType"/>
     </owl:Class>
     
 
@@ -107,6 +131,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighCNRatio">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#SoilCNRatio"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighDensityDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#HighDensityDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#DevelopedLand"/>
     </owl:Class>
     
 
@@ -175,6 +207,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowDensityDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowDensityDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#DevelopedLand"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowMeanAnnualPrecipitation -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowMeanAnnualPrecipitation">
@@ -227,6 +267,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#LowVegetationStorage">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateDensityDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ModerateDensityDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#DevelopedLand"/>
     </owl:Class>
     
 
@@ -287,6 +335,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoDevelopment -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoDevelopment">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#DevelopedLand"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoRelease -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NoRelease">
@@ -327,6 +383,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NotOpenSpace -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#NotOpenSpace">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ScenicVegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#OpenWater -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#OpenWater">
@@ -335,10 +399,26 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#OtherOpenSpace -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#OtherOpenSpace">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ScenicVegetationType"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#RowCrops -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#RowCrops">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#CarbonVegetationType"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ScenicVegetationType -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/aries/local/vermont.owl#ScenicVegetationType">
+        <rdfs:subClassOf rdf:resource="&eserv;EcosystemResource"/>
     </owl:Class>
     
 
@@ -557,5 +637,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
 

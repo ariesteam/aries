@@ -7,11 +7,11 @@
 			<state id="NoMountain" />
 			<probabilities>0.0056 0.2964 0.698</probabilities>
 		</cpt>
-		<cpt id="OpenSpaceClass">
-			<state id="AgriculturalLand" />
-			<state id="ForestedLand" />
-			<state id="OtherOpenLand" />
-			<state id="NotOpenLand" />
+		<cpt id="ScenicVegetationType">
+			<state id="Agriculture" />
+			<state id="Forests" />
+			<state id="OtherOpenSpace" />
+			<state id="NotOpenSpace" />
 			<probabilities>0.105 0.728 0.103 0.064</probabilities>
 		</cpt>
 		<cpt id="WaterView">
@@ -25,7 +25,7 @@
 			<state id="ModerateNaturalBeauty" />
 			<state id="LowNaturalBeauty" />
 			<state id="NoNaturalBeauty" />
-			<parents>OpenSpaceClass Mountain WaterView</parents>
+			<parents>ScenicVegetationType Mountain WaterView</parents>
 			<probabilities>0.6 0.3 0.1 0 0.5 0.4 0.1 0 0.3 0.5 0.2 0 0.5 0.4 0.1 0 0.4 0.3 0.3 0 0.2 0.5 0.3 0 0.5 0.3 0.2 0 0.76 0.14 0.08 0.02 0 0.3 0.5 0.2 1 0 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.8 0.2 0 0 0.7 0.3 0 0 0.6 0.3 0.1 0 0.6 0.4 0 0 0.5 0.4 0.1 0 0.4 0.5 0.1 0 0.7 0.2 0.1 0 0.5 0.3 0.2 0 0.5 0.3 0.2 0 0.6 0.3 0.1 0 0.4 0.3 0.3 0 0.3 0.3 0.4 0 0.4 0.3 0.3 0 0.3 0.3 0.4 0 0.1 0.2 0.7 0 0 0 0.8 0.2 0 0 0.6 0.4 0 0 0.4 0.6 0 0 0.6 0.4 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0 1 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
@@ -47,8 +47,8 @@
 				<position>379 154 491 184</position>
 				<barchart active="true" width="237" height="90" />
 			</node>
-			<node id="OpenSpaceClass">
-				<name>OpenSpaceClass</name>
+			<node id="ScenicVegetationType">
+				<name>ScenicVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />

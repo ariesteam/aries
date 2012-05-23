@@ -1,71 +1,84 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="TransportationEnergyInfrastructure">
-			<state id="TransportEnergyInfrastructurePresent" />
-			<state id="TransportEnergyInfrastructureAbsent" />
-			<probabilities>0.01 0.99</probabilities>
+		<cpt id="Highways">
+			<state id="HighwaysPresent" />
+			<state id="HighwaysAbsent" />
+			<probabilities>0.008999999999999999 0.991</probabilities>
+		</cpt>
+		<cpt id="DevelopedLand">
+			<state id="HighIntensityDevelopment" />
+			<state id="ModerateIntensityDevelopment" />
+			<state id="LowIntensityDevelopment" />
+			<state id="NoDevelopment" />
+			<probabilities>0.002 0.008999999999999999 0.053 0.9360000000000001</probabilities>
 		</cpt>
 		<cpt id="Clearcuts">
 			<state id="ClearcutsPresent" />
 			<state id="ClearcutsAbsent" />
 			<probabilities>0.005 0.995</probabilities>
 		</cpt>
-		<cpt id="Development">
-			<state id="HighIntensityDevelopment" />
-			<state id="ModerateIntensityDevelopment" />
-			<state id="LowIntensityDevelopment" />
-			<state id="NotDeveloped" />
-			<probabilities>0.002 0.008999999999999999 0.053 0.9360000000000001</probabilities>
+		<cpt id="TransmissionLines">
+			<state id="TransmissionLinesPresent" />
+			<state id="TransmissionLinesAbsent" />
+			<probabilities>0.001 0.999</probabilities>
 		</cpt>
 		<cpt id="VisualBlight">
 			<state id="HighBlight" />
 			<state id="ModerateBlight" />
 			<state id="LowBlight" />
 			<state id="NoBlight" />
-			<parents>Development Clearcuts TransportationEnergyInfrastructure</parents>
-			<probabilities>1 0 0 0 0.9 0.1 0 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.3 0.6 0.1 0 0.1 0.6 0.3 0 0.1 0.6 0.3 0 0.1 0.4 0.5 0 0.1 0.4 0.5 0 0.1 0.2 0.7 0 0.1 0.2 0.7 0 0 0.2 0.8 0 0 0.2 0.8 0 0 0 0.8 0.2 0 0 0.8 0.2 0 0 0 1</probabilities>
+			<parents>DevelopedLand Clearcuts Highways TransmissionLines</parents>
+			<probabilities>1 0 0 0 0.9 0.1 0 0 1 0 0 0 0.7 0.3 0 0 0.6 0.3 0.1 0 0.5 0.4 0.1 0 0.55 0.35 0.1 0 0.4 0.5 0.1 0 0.3 0.6 0.1 0 0.2 0.7 0.1 0 0.25 0.65 0.1 0 0.1 0.6 0.3 0 0.1 0.6 0.3 0 0.1 0.5 0.4 0 0.1 0.55 0.35 0 0.1 0.4 0.5 0 0.1 0.4 0.5 0 0.1 0.3 0.6 0 0.1 0.35 0.55 0 0.1 0.2 0.7 0 0.1 0.2 0.7 0 0.05 0.15 0.7 0.1 0.05 0.2 0.65 0.1 0 0.1 0.7 0.2 0 0.2 0.8 0 0 0.1 0.8 0.1 0 0.15 0.75 0.1 0 0.2 0.6 0.2 0 0 0.6 0.4 0 0 0.2 0.8 0 0 0.25 0.75 0 0 0 1</probabilities>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network2" faultnameformat="nodestate">
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>857 60 1266 256</position>
+			</textbox>
+			<node id="Highways">
+				<name>Highways</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>752 340 807 377</position>
+				<barchart active="true" width="197" height="54" />
+			</node>
+			<node id="TransmissionLines">
+				<name>TransmissionLines</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>997 339 1052 376</position>
+				<barchart active="true" width="261" height="54" />
+			</node>
 			<node id="Clearcuts">
 				<name>Clearcuts</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>482 365 550 391</position>
+				<position>529 346 597 372</position>
 				<barchart active="true" width="190" height="54" />
 			</node>
-			<node id="Development">
-				<name>Development</name>
+			<node id="DevelopedLand">
+				<name>DevelopedLand</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>181 350 305 427</position>
+				<position>220 323 344 400</position>
 				<barchart active="true" width="303" height="90" />
-			</node>
-			<node id="TransportationEnergyInfrastructure">
-				<name>TransportationEnergyInfrastructure</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>837 356 892 393</position>
-				<barchart active="true" width="421" height="54" />
 			</node>
 			<node id="VisualBlight">
 				<name>VisualBlight</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>491 213 539 243</position>
+				<position>554 210 602 240</position>
 				<barchart active="true" width="218" height="90" />
 			</node>
-			<textbox>
-				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
-				<font color="000000" name="Arial" size="8" />
-				<position>857 60 1266 256</position>
-			</textbox>
 		</genie>
 	</extensions>
 </smile>

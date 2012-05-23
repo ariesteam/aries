@@ -69,13 +69,13 @@
     [457  914] aestheticService:SmallMountain ; 
     :otherwise aestheticService:NoMountain))  ; Will catch artifacts too         
 
-(defmodel open-space OpenSpaceClass
+(defmodel open-space vermont:ScenicVegetationType
   "Classifies an area as open space according to NLCD 2001 data"
   (classification (numeric-coding nlcd:NLCDNumeric)
-    #{81 82}       AgriculturalLand
-    #{41 42 43}    ForestedLand
-    #{31 90 95 52} OtherOpenLand
-    :otherwise     NotOpenLand))
+    #{81 82}       vermont:Agriculture
+    #{41 42 43}    vermont:Forests
+    #{31 90 95 52} vermont:OtherOpenSpace
+    :otherwise     vermont:NotOpenSpace))
 
 ;;This statement (not yet implemented) accounts for public recognition of a site, e.g., SPRNCA & Ramsy Canyon's high
 ;; values for birding, or Mt. Mansfield & Camels Hump's high values for hiking in the VT model.  Need to develop a
@@ -90,9 +90,9 @@
 (defmodel theoretical-beauty aestheticService:TheoreticalNaturalBeauty
   (probabilistic-ranking aestheticService:TheoreticalNaturalBeauty
     [75 100] aestheticService:HighNaturalBeauty
-    [50  75]  aestheticService:ModerateNaturalBeauty
-    [25  50]  aestheticService:LowNaturalBeauty
-    [ 0  25]   aestheticService:NoNaturalBeauty))
+    [50  75] aestheticService:ModerateNaturalBeauty
+    [25  50] aestheticService:LowNaturalBeauty
+    [ 0  25] aestheticService:NoNaturalBeauty))
 
 ;; source bayesian model                 
 (defmodel source aestheticService:ViewSource
@@ -110,26 +110,23 @@
 ;;we remove low-density development from this list?  Can we really
 ;;call views of small towns from mountain summits visually
 ;;displeasing?
-(defmodel development Development
+(defmodel development vermont:DevelopedLand
   "Development as defined by the NLCD 2001"
   (classification (numeric-coding nlcd:NLCDNumeric)
-    24         HighIntensityDevelopment
-    23         MediumIntensityDevelopment
-    22         LowIntensityDevelopment
-    :otherwise NotDeveloped))
+    24         vermont:HighDensityDevelopment
+    23         vermont:ModerateDensityDevelopment
+    22         vermont:LowDensityDevelopment
+    :otherwise vermont:NoDevelopment))
 
-(defmodel transportation-energy-infrastructure-code TransportationEnergyInfrastructureCode
-  (binary-coding TransportationEnergyInfrastructureCode
-    :context [(binary-coding infrastructure:Road)
-              (binary-coding infrastructure:TransmissionLine)]
-    :state   #(if (or (= (:road %) 1)
-                      (= (:transmission-line%) 1))
-                1
-                0))) 
-(defmodel transportation-energy-infrastructure TransportationEnergyInfrastructure
-  (classification transportation-energy-infrastructure-code
-    1 TransportationEnergyInfrastructurePresent
-    0 TransportationEnergyInfrastructureAbsent))                        
+(defmodel transmission-line aestheticService:TransmissionLines 
+  (classification (binary-coding infrastructure:TransmissionLine)
+    1          aestheticService:TransmissionLinesPresent
+    :otherwise aestheticService:TransmissionLinesAbsent))
+
+(defmodel highway aestheticService:Highways 
+  (classification (binary-coding infrastructure:Road)
+    1          aestheticService:HighwaysPresent
+    :otherwise aestheticService:HighwaysAbsent))
 
 (defmodel visual-blight aestheticService:VisualBlight
   (probabilistic-ranking aestheticService:VisualBlight
@@ -142,7 +139,7 @@
   "Whatever is ugly enough to absorb our enjoyment"
   (bayesian aestheticService:ViewSink 
     :import  "aries.core::RecreationSinkVtView.xdsl"
-    :context [development transportation-energy-infrastructure]
+    :context [development highway transmission-line]
     :keep    [aestheticService:VisualBlight]
     :result  visual-blight))
 

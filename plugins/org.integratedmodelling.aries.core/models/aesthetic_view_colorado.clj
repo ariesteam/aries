@@ -81,15 +81,20 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(defmodel general-disturbance colorado:GenericDisturbance
-  (classification (binary-coding colorado:GeneralDisturbance)
-    1          colorado:DisturbancePresent
-    :otherwise colorado:DisturbanceAbsent))
-
 (defmodel clearcut Clearcuts
-  (classification (binary-coding geofeatures:Clearcut)
-    1          ClearcutsPresent
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    #{123 124} ClearcutsPresent
     :otherwise ClearcutsAbsent))
+
+(defmodel mine Mines
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)         
+    117        MinesPresent
+    :otherwise MinesAbsent))
+
+(defmodel burn BurnedArea
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)         
+    116        BurnedAreaPresent
+    :otherwise BurnedAreaAbsent))
 
 (defmodel transmission-line TransmissionLines 
   (classification (categorization infrastructure:TransmissionLine)
@@ -100,6 +105,12 @@
   (classification (binary-coding infrastructure:Highway)
     1          HighwaysPresent
     :otherwise HighwaysAbsent))
+
+(defmodel developed-land DevelopedLand
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)           
+    112        HighDensityDevelopment
+    111        LowDensityDevelopment
+    :otherwise NoDevelopment))
 
 (defmodel beetle-kill colorado:GreenGrayBeetleKill
   (classification (count colorado:MountainPineBeetleDamageTreesPerHectare "/ha")
@@ -118,7 +129,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkColorado.xdsl"
-    :context [general-disturbance clearcut transmission-line highway beetle-kill]
+    :context [clearcut mine burn developed-land transmission-line highway beetle-kill]
     :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -134,8 +145,8 @@
 ;  :otherwise HousingAbsent))
 
 (defmodel housing PresenceOfHousing
-  (classification (numeric-coding nlcd:NLCDNumeric)
-    [22 23 24] HousingPresent
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) ;Use NLCD classes 22-24 once a seamless CO version is available.
+    111        HousingPresent
     :otherwise HousingAbsent))
 
 (defmodel property-value HousingValue
