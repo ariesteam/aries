@@ -36,7 +36,10 @@
 
 ;; defines the ontology associated with this namespace, which may or may not exist.
 (namespace-ontology carbonService
-	(CarbonVegetationType (CarbonVegetationTypeOpen) (CarbonVegetationTypeConstrained)))
+  (CarbonVegetationType (CarbonVegetationTypeOpen) (CarbonVegetationTypeConstrained))
+  (thinklab-core:BooleanRanking
+   (LandOrWater
+    (OnLand) (NotOnLand))))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
@@ -48,6 +51,11 @@
 ;; atmosphere.  The difference between carbon sinks and sources is the
 ;; amount remaining to mitigate direct anthropogenic emissions (aside
 ;; from land conversion and fire).
+
+;; Used to mask out open water, perennial snow & ice, barren land
+(defmodel land-selector LandOrWater
+  (classification  (numeric-coding nlcd:NLCDNumeric)
+    #{21 22 23 24 41 42 43 52 71 81 82 90 95} OnLand))
 
 (defmodel percent-tree-canopy-cover colorado:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
@@ -106,10 +114,11 @@
 ;; Bayesian source model
 (defmodel source colorado:CarbonSourceValue   
   (bayesian colorado:CarbonSourceValue 
-    :import  "aries.core::CarbonSourceColorado.xdsl"
-    :context [vegetation-type percent-tree-canopy-cover annual-precipitation]
-    :keep    [VegetationAndSoilCarbonSequestration]
-    :result  veg-soil-sequestration))
+    :import   "aries.core::CarbonSourceColorado.xdsl"
+    :context  [vegetation-type percent-tree-canopy-cover annual-precipitation land-selector]
+    :required [LandOrWater]
+    :keep     [VegetationAndSoilCarbonSequestration]
+    :result   veg-soil-sequestration))
 
 ;;;-------------------------------------------------------------------
 ;;; Sink models
@@ -160,7 +169,7 @@
   (bayesian colorado:VegetationCStorage 
     :import  "aries.core::CarbonSinkColorado.xdsl"
 
-    :context [percent-tree-canopy-cover vegetation-type beetle-kill]
+    :context [percent-tree-canopy-cover vegetation-type beetle-kill land-selector]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
@@ -168,7 +177,7 @@
 (defmodel vegetation-carbon-storage-no-beetle colorado:VegetationCStorageNoBeetle
   (bayesian colorado:VegetationCStorage 
     :import  "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
-    :context [percent-tree-canopy-cover vegetation-type]
+    :context [percent-tree-canopy-cover vegetation-type land-selector]
     :keep    [VegetationCarbonStorage]
     :result  veg-storage))
 
@@ -184,7 +193,7 @@
 (defmodel soil-carbon-storage colorado:SoilCStorage 
   (bayesian colorado:SoilCStorage 
     :import  "aries.core::CarbonSinkColorado.xdsl"
-    :context [soil-type annual-precipitation]
+    :context [soil-type annual-precipitation land-selector]
     :keep    [SoilCarbonStorage]
     :result  soil-storage))
 
@@ -232,7 +241,7 @@
 (defmodel sink colorado:CarbonSinkValue
   (bayesian colorado:CarbonSinkValue
     :import  "aries.core::CarbonSinkColorado.xdsl"
-    :context [veg-soil-storage fire-threat]
+    :context [veg-soil-storage fire-threat land-selector]
     :keep    [StoredCarbonRelease]
     :result  stored-carbon-release))
 
@@ -240,7 +249,7 @@
 (defmodel sink-no-beetle colorado:CarbonSinkValueNoBeetle
   (bayesian colorado:CarbonSinkValueNoBeetle
     :import  "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
-    :context [veg-soil-storage-no-beetle fire-threat]
+    :context [veg-soil-storage-no-beetle fire-threat land-selector]
     :keep    [StoredCarbonRelease]
     :result  stored-carbon-release))
 

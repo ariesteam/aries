@@ -11,24 +11,24 @@
     <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
     <!ENTITY colorado "http://www.integratedmodelling.org/ks/aries/local/colorado.owl#" >
-    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
+    <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
 ]>
 
 
 <rdf:RDF xmlns="http://www.w3.org/2002/07/owl#"
      xml:base="http://www.w3.org/2002/07/owl"
-     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
-     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
-     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:colorado="http://www.integratedmodelling.org/ks/aries/local/colorado.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:colorado="http://www.integratedmodelling.org/ks/aries/local/colorado.owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#"
-     xmlns:owl="http://www.w3.org/2002/07/owl#">
+     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
+     xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <Ontology rdf:about="http://www.integratedmodelling.org/ks/aries/local/colorado.owl">
         <imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
         <imports rdf:resource="http://www.integratedmodelling.org/ks/es/eserv.owl"/>
@@ -129,9 +129,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Aridisols -->
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#AridisolsVertisols -->
 
-    <Class rdf:about="&colorado;Aridisols">
+    <Class rdf:about="&colorado;AridisolsVertisols">
         <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
     </Class>
     
@@ -305,6 +305,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#CropsBarrenDeveloped -->
+
+    <Class rdf:about="&colorado;CropsBarrenDeveloped">
+        <rdfs:subClassOf rdf:resource="&colorado;SedimentVegetationType"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#DeciduousForest -->
 
     <Class rdf:about="&colorado;DeciduousForest">
@@ -353,9 +361,9 @@
     
 
 
-    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Entisols -->
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#EntisolsUltisols -->
 
-    <Class rdf:about="&colorado;Entisols">
+    <Class rdf:about="&colorado;EntisolsUltisols">
         <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
     </Class>
     
@@ -398,6 +406,14 @@
 
     <Class rdf:about="&colorado;Forest">
         <rdfs:subClassOf rdf:resource="&colorado;WaterSupplyVegetationType"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ForestShrublandGrasslandWetland -->
+
+    <Class rdf:about="&colorado;ForestShrublandGrasslandWetland">
+        <rdfs:subClassOf rdf:resource="&colorado;SedimentVegetationType"/>
     </Class>
     
 
@@ -649,6 +665,14 @@
 
     <Class rdf:about="&colorado;InfrastructurePresent">
         <rdfs:subClassOf rdf:resource="&colorado;DevelopmentInfrastructure"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#InvasiveAnnualsAndPerennials -->
+
+    <Class rdf:about="&colorado;InvasiveAnnualsAndPerennials">
+        <rdfs:subClassOf rdf:resource="&colorado;SedimentVegetationType"/>
     </Class>
     
 
@@ -1105,6 +1129,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#RockAndWater -->
+
+    <Class rdf:about="&colorado;RockAndWater">
+        <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#RollingToHilly -->
 
     <Class rdf:about="&colorado;RollingToHilly">
@@ -1547,7 +1579,6 @@
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#Water -->
 
     <Class rdf:about="&colorado;Water">
-        <rdfs:subClassOf rdf:resource="&colorado;SoilType"/>
         <rdfs:subClassOf rdf:resource="&colorado;WaterSupplyVegetationType"/>
     </Class>
     
@@ -1608,5 +1639,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
 

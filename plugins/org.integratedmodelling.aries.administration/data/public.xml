@@ -6771,6 +6771,8 @@ could be used in BN training. -->
   </observation:hasObservationExtent>
 </measurement:Ranking>
 
+<!-- Commented out for the time being as we work on seamless NLCD
+     raster data.
  <measurement:Ranking id="canopy_NLCD_1">
     <observation:hasObservable>
       <habitat:PercentTreeCanopyCover />
@@ -6799,7 +6801,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Ranking> 
 
-<!--  <measurement:Ranking id="canopy_NLCD_2">
+  <measurement:Ranking id="canopy_NLCD_2">
     <observation:hasObservable>
       <habitat:PercentTreeCanopyCover />
     </observation:hasObservable>
@@ -6825,7 +6827,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking> -->
+  </measurement:Ranking> 
 
   <measurement:Ranking id="canopy_NLCD_3">
     <observation:hasObservable>
@@ -6853,7 +6855,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Ranking> -->
 
 
   <!-- SWAT model data, uncalibrated, run through AGWA using default
@@ -11575,7 +11577,9 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:NumericCoding id="NLCD2001_6">
+<!--  Commented out for the time being as we work on seamless rasters
+     for NLCD.
+<measurement:NumericCoding id="NLCD2001_6">
     <observation:hasObservable>
       <nlcd:NLCDNumeric/>
     </observation:hasObservable>
@@ -11629,7 +11633,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:NumericCoding>
+  </measurement:NumericCoding> -->
 
   <measurement:NumericCoding id="nlcd_2001_landcover">
     <observation:hasObservable>
@@ -11657,7 +11661,6 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:NumericCoding> 
-
+  </measurement:NumericCoding>
 
 </kbox>

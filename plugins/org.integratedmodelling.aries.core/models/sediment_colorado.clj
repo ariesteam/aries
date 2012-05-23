@@ -36,11 +36,19 @@
                            bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology soilRetentionService)
+(namespace-ontology soilRetentionService
+  (thinklab-core:BooleanRanking
+   (LandOrWater
+    (OnLand) (NotOnLand))))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
 ;;;-------------------------------------------------------------------
+
+;; Used to mask out open water, perennial snow & ice, barren land
+(defmodel land-selector LandOrWater
+  (classification  (numeric-coding nlcd:NLCDNumeric)
+    #{12 21 22 23 24 31 41 42 43 52 71 81 82 90 95} OnLand))
 
 (defmodel soil-group colorado:HydrologicSoilsGroup
   "Relevant soil group"
@@ -86,11 +94,11 @@
 (defmodel vegetation-type colorado:SedimentVegetationType
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
     #{19 22 23 24 26 28 29 30 32 33 34 35 36 38 39 40 41 42 43 44 46 48 50 53 56 58 62 63 64 67 68 69 70 71 72 73 74 75 76 77 78 79 81 82 85 86 92 95 99 103 104 106 108 109 }
-    colorado:ForestsShrublandGrasslandWetland
+    colorado:ForestShrublandGrasslandWetland
     #{118 119 120 121 122}
-    colorado:Invasives
+    colorado:InvasiveAnnualsAndPerennials
     #{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 114 115 116 117 123 124 125}
-    colorado:CropBarrenDeveloped))
+    colorado:CropsBarrenDeveloped))
 
 ;;  These are further distinctions in case we decide to group classes
 ;;together differently in the future
@@ -100,7 +108,7 @@
 ;;#{ 121 122}colorado:InvasiveAnnuals
 ;;#{118 119 120}colorado:InvasivePerennials
 ;;#{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 115 116 117 123
-;;#124 125}colorado:CropBarrenDeveloped
+;;#124 125}colorado:CropsBarrenDeveloped
 (defmodel mountain-pine-beetle colorado:MountainPineBeetleDamageClass
   (classification (ranking colorado:MountainPineBeetleDamageSeverity)
      2         colorado:SevereDamage
@@ -148,7 +156,7 @@
     :import   "aries.core::SedimentSourceColoradoAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
-               successional-stage mountain-pine-beetle]
+               successional-stage mountain-pine-beetle land-selector]
     :required [SlopeClass]
     :keep     [colorado:AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
@@ -160,7 +168,7 @@
     :import   "aries.core::SedimentSourceColoradoAdHocNoFire.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
-               successional-stage]
+               successional-stage land-selector]
     :required [SlopeClass]
     :keep     [colorado:AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
