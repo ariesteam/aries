@@ -82,18 +82,25 @@
     [ 200  300] colorado:LowMeanAnnualPrecipitation
     [:<    200] colorado:VeryLowMeanAnnualPrecipitation))
 
+
 (defmodel vegetation-type colorado:SedimentVegetationType
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{30 34} colorado:PonderosaPine
-    29       colorado:LodgepolePine
-    #{26 28} colorado:SpruceFir
-    22       colorado:AspenWoodland))
-;;#{22 24 26 28 29 30 32 33 34 35 36 38 78 79 92 103}colorado:Forests
+    #{19 22 23 24 26 28 29 30 32 33 34 35 36 38 39 40 41 42 43 44 46 48 50 53 56 58 62 63 64 67 68 69 70 71 72 73 74 75 76 77 78 79 81 82 85 86 92 95 99 103 104 106 108 109 }
+    colorado:ForestsShrublandGrasslandWetland
+    #{118 119 120 121 122}
+    colorado:Invasives
+    #{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 114 115 116 117 123 124 125}
+    colorado:CropBarrenDeveloped))
+
+;;  These are further distinctions in case we decide to group classes
+;;together differently in the future
+;;#{22 23 24 26 28 29 30 32 33 34 35 36 38 78 79 92 99 103}colorado:Forests
 ;;#{19 39 40 41 42 43 44 46 48 50 53 56 58 77 81 82 104 108 109}colorado:Shrubland
 ;;#{62 63 64 67 68 69 70 71 72 73 74 75 76 85 86 95 106}colorado:Grassland
-;;#{114 121 122}colorado:InvasiveAnnuals
+;;#{ 121 122}colorado:InvasiveAnnuals
 ;;#{118 119 120}colorado:InvasivePerennials
-;;#{11 13 14 17 21 113 115 116 117 123 124 124}colorado:Barren
+;;#{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 115 116 117 123
+;;#124 125}colorado:CropBarrenDeveloped
 (defmodel mountain-pine-beetle colorado:MountainPineBeetleDamageClass
   (classification (ranking colorado:MountainPineBeetleDamageSeverity)
      2         colorado:SevereDamage
