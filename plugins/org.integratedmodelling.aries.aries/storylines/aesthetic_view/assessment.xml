@@ -402,37 +402,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="commercial-transportation">
-    <concept>aestheticService:CommercialIndustrialTransportation</concept>
-    <name>Commercial, industrial, transportation</name>
-    <title>Presence of commercial, industrial, or transportation land use</title>
-    <runninghead>Commercial, industrial, or transportation land use</runninghead>
-    <group>sink</group>
-    <description><![CDATA[
-    <p>The presence of aesthetically displeasing land use types, such
-    as commercial, industrial, or transportation land use.</p>
-    <h1>Role in models</h1> <p>The view of aesthetically displeasing
-    land use, such as commercial, industrial, or transportation land use,
-    is used as an input to a probabilistic model to estimate visual blight
-    that degrades view quality.</p>
-    <h1>Representation</h1> <p>Data show the presence or absence of
-    commercial, industrial, or transportation land use.</p>
-    <h1>Source</h1> <p>National Land Cover Dataset (NLCD, 1992).</p>
-    ]]></description>
-    <see-also language="html"><![CDATA[
-    <p>
-    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">Aesthetic viewshed and proximity model details from the ARIES website</a><br/>
-    </p>
-    ]]></see-also>
-    <credits><![CDATA[
-    <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a></br>
-    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
-    ]]></credits>
-    <disabled>false</disabled>
-    <plot-type default="true">geosurface-2d</plot-type>
-    <plot-type>geocontour-2d</plot-type>
-  </page>
-
   <page id="view-sink">
     <concept>aestheticService:ViewSink</concept>
     <name>Visual blight</name>

@@ -654,32 +654,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:NumericCoding id="comm_ind_trans_puget">
-    <observation:hasObservable>
-      <nlcd:NLCD1992Typology />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: NLCD 1992</rdfs:comment>
-    <metadata:hasPriority>5</metadata:hasPriority>
-    <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:comm_ind_trans_puget</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>23234</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>20021</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4958500.48</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>335717.398</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>5559190.48</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>1032797.398</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:NumericCoding>
-
   <!-- For use in USLE/RUSLE -->
   <measurement:Ranking id="pfactor1990_30min">
     <observation:hasObservable>
@@ -4456,33 +4430,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Count>
 
-<!-- To be replaced with a new soil orders layer for the whole state.
-  <observation:Categorization id="colorado_soil_orders_co">
-    <observation:hasObservable>
-      <colorado:CarbonSoilType/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Digitized based on NRCS Global Soil
-    Regions Map</rdfs:comment>
-    <metadata:hasPriority>10</metadata:hasPriority>
-    <metadata:hasURL>http://soils.usda.gov/use/worldsoils/mapindex/order.html</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:soil_orders_co</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>soil_name</geospace:hasValueAttribute>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>4391527.265422749</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>357247.9016186695</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4540586.529115257</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>505664.0137468534</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </observation:Categorization> -->
-
   <measurement:Count id="cattle">
     <observation:hasObservable>
       <waterSupplyService:CattlePopulation />
@@ -4509,34 +4456,6 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Count>
-
-  <measurement:BinaryCoding id="clearcuts_co">
-    <observation:hasObservable>
-      <geofeatures:Clearcut/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:clearcuts_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>127.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
 
   <observation:Categorization id="mexico_mex_lulc">
     <observation:hasObservable>
@@ -4746,34 +4665,6 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
-
-  <measurement:BinaryCoding id="development_co">
-    <observation:hasObservable>
-      <colorado:Development/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:development_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
 
   <measurement:NumericCoding id="DR_lulc">
     <observation:hasObservable>
@@ -5224,34 +5115,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <measurement:BinaryCoding id="human_disturbance_co">
-    <observation:hasObservable>
-      <colorado:GeneralDisturbance/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Reclassified from Southwest Regional
-    Gap Analysis Project LULC data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://fws-nmcfwru.nmsu.edu/swregap</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:human_disturbance_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
   <measurement:NumericCoding id="landcover_glc2000">
     <observation:hasObservable>
       <glc:GLCNumeric />
@@ -5304,58 +5167,6 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Count>
-
-  <measurement:BinaryCoding id="gray_beetle_kill_co">
-    <observation:hasObservable>
-      <colorado:GrayBeetleStage/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Derived from USFS aerial survey data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:gray_beetle_kill_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
-  <measurement:BinaryCoding id="green_gray_beetle_kill_co">
-    <observation:hasObservable>
-      <colorado:GreenGrayBeetleStage/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Derived from USFS aerial survey data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasCoverageId>colorado:green_gray_beetle_kill_co</geospace:hasCoverageId>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2954</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>3003</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>4392886.324</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>358250.964</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4483036.324</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>446930.964</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
 
   <measurement:BinaryCoding id="sanPedro_mex_highway">
     <observation:hasObservable>
