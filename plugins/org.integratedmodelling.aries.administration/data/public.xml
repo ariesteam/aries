@@ -6828,7 +6828,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking> -->
+  </measurement:Ranking> 
 
   <measurement:Ranking id="canopy_NLCD_3">
     <observation:hasObservable>
@@ -6856,7 +6856,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Ranking> -->
 
   <!-- SWAT model data, uncalibrated, run through AGWA using default
        inputs and a 12-year precipitation record (1960-1972) from 7
@@ -11605,7 +11605,9 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:NumericCoding> -->
+  </measurement:NumericCoding> 
+
+This is the one to re-enable after testing the 2006 NLCD layer.
 
   <measurement:NumericCoding id="NLCD2001_7">
     <observation:hasObservable>
@@ -11633,7 +11635,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:NumericCoding>
+  </measurement:NumericCoding> -->
 
 <!-- This layer is giving all kinds of messed up values for NLCD.
   <measurement:NumericCoding id="nlcd_2001_landcover">
