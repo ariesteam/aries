@@ -6595,7 +6595,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Ranking> -->
 
   <measurement:Ranking id="canopy4_Project">
     <observation:hasObservable>
@@ -6626,6 +6626,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+<!--
   <measurement:Ranking id="canopy6_Project">
     <observation:hasObservable>
       <habitat:PercentTreeCanopyCover />
@@ -6744,6 +6745,7 @@ could be used in BN training. -->
 
 -->
 
+<!-- This is the layer that's giving zeroes as nodata - very strange.
 <measurement:Ranking id="nlcd_2001_canopy">
   <observation:hasObservable>
     <habitat:PercentTreeCanopyCover />
@@ -6751,7 +6753,6 @@ could be used in BN training. -->
   <rdfs:comment>Data source: NLCD 2001 canopy density data</rdfs:comment>
   <metadata:hasPriority>0</metadata:hasPriority>
   <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
-  <metadata:belongsToDataset>USGS_NLCD_2001_canopy_cover</metadata:belongsToDataset>
   <observation:hasDataSource>
     <geospace:WCSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -6769,10 +6770,10 @@ could be used in BN training. -->
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:Ranking>
+</measurement:Ranking> -->
 
 <!-- Commented out for the time being as we work on seamless NLCD
-     raster data.
+     raster data. 
  <measurement:Ranking id="canopy_NLCD_1">
     <observation:hasObservable>
       <habitat:PercentTreeCanopyCover />
@@ -6856,7 +6857,6 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking> -->
-
 
   <!-- SWAT model data, uncalibrated, run through AGWA using default
        inputs and a 12-year precipitation record (1960-1972) from 7
@@ -10527,7 +10527,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-
   <measurement:NumericCoding id="nlcd_lc_ll_02">
     <observation:hasObservable>
       <nlcd:NLCDNumeric />
@@ -10638,7 +10637,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:NumericCoding>
+  </measurement:NumericCoding> -->
 
   <measurement:NumericCoding id="nlcd_lc_lll_04">
     <observation:hasObservable>
@@ -10668,6 +10667,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
+<!--
   <measurement:NumericCoding id="nlcd_lc_lll_05">
     <observation:hasObservable>
       <nlcd:NLCDNumeric/>
@@ -11605,7 +11605,9 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:NumericCoding>
+  </measurement:NumericCoding> 
+
+This is the one to re-enable after testing the 2006 NLCD layer.
 
   <measurement:NumericCoding id="NLCD2001_7">
     <observation:hasObservable>
@@ -11635,7 +11637,37 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding> -->
 
+<!-- This layer is giving all kinds of messed up values for NLCD.
   <measurement:NumericCoding id="nlcd_2001_landcover">
+    <observation:hasObservable>
+      <nlcd:NLCDNumeric/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:nlcd_2001_landcover</geospace:hasCoverageId>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>24013</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>15130</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>36.4400888</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-109.7866135</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.5269544</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-101.7135844</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:NumericCoding> -->
+
+<!-- 2006 NLCD for Colorado to test.  Need to create a 2006 NLCD
+concept in the ontologies (NLDCNumeric1992/2001/2006) -->
+
+  <measurement:NumericCoding id="nlcd_2006_landcover">
     <observation:hasObservable>
       <nlcd:NLCDNumeric/>
     </observation:hasObservable>
@@ -11646,7 +11678,7 @@ global data. -->
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:nlcd_2001_landcover</geospace:hasCoverageId>
+        <geospace:hasCoverageId>colorado:nlcd_2006_landcover</geospace:hasCoverageId>
         <geospace:hasNodataValue>255</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
