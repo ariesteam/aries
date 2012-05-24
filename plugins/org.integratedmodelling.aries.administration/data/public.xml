@@ -11663,4 +11663,32 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
+  <measurement:NumericCoding id="nlcd_2006_landcover">
+    <observation:hasObservable>
+      <nlcd:NLCDNumeric/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+    <metadata:belongsToDataset>USGS_NLCD_2001</metadata:belongsToDataset>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:nlcd_2006_landcover</geospace:hasCoverageId>
+        <geospace:hasNodataValue>255</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>24013</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>15130</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>36.4400888</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-109.7866135</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.5269544</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-101.7135844</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:NumericCoding>
+
 </kbox>
