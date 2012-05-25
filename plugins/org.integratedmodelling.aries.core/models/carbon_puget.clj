@@ -59,7 +59,7 @@
 
 ;; Used to mask out open water, perennial snow & ice, barren land
 (defmodel land-selector LandOrSea
-  (classification  (numeric-coding nlcd:NLCDNumeric)
+  (classification (numeric-coding nlcd:NLCDNumeric)
     #{21 22 23 24 41 42 43 52 71 81 82 90 95} OnLand))
 
 (defmodel successional-stage SuccessionalStage

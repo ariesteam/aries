@@ -54,8 +54,10 @@
 
 ;; Used to mask out open water, perennial snow & ice, barren land
 (defmodel land-selector LandOrWater
-  (classification  (numeric-coding nlcd:NLCDNumeric)
-    #{21 22 23 24 41 42 43 52 71 81 82 90 95} OnLand))
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    ;;    #{12 21 22 23 24 31 41 42 43 52 71 81 82 90 95} OnLand
+    ;;    Use this once NLCD is working again - much cleaner and simpler.
+    #{13 19 20 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 111 112 114 115 116 118 119 120 121 122 123 124 125} OnLand))
 
 (defmodel percent-tree-canopy-cover colorado:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
@@ -157,7 +159,7 @@
     [18 133] colorado:LowFireThreat))
 
 (defmodel veg-storage colorado:VegetationCarbonStorage
-  (probabilistic-measurement VegetationCarbonStorage "t/ha" 
+  (probabilistic-measurement colorado:VegetationCarbonStorage "t/ha" 
     [89  127]    colorado:VeryHighVegetationStorage
     [69   89]    colorado:HighVegetationStorage
     [37   69]    colorado:ModerateVegetationStorage
@@ -167,22 +169,23 @@
 
 (defmodel vegetation-carbon-storage colorado:VegetationCStorage 
   (bayesian colorado:VegetationCStorage 
-    :import  "aries.core::CarbonSinkColorado.xdsl"
-
-    :context [percent-tree-canopy-cover vegetation-type beetle-kill land-selector]
-    :keep    [VegetationCarbonStorage]
-    :result  veg-storage))
+    :import   "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
+    :context  [percent-tree-canopy-cover vegetation-type land-selector]
+    :required [LandOrWater]
+    :keep     [colorado:VegetationCarbonStorage]
+    :result   veg-storage))
 
 ;; Hack; remove once a proper context model is working
 (defmodel vegetation-carbon-storage-no-beetle colorado:VegetationCStorageNoBeetle
   (bayesian colorado:VegetationCStorage 
-    :import  "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
-    :context [percent-tree-canopy-cover vegetation-type land-selector]
-    :keep    [VegetationCarbonStorage]
-    :result  veg-storage))
+    :import   "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
+    :context  [percent-tree-canopy-cover vegetation-type land-selector]
+    :required [LandOrWater]
+    :keep     [colorado:VegetationCarbonStorage]
+    :result   veg-storage))
 
 (defmodel soil-storage colorado:SoilCarbonStorage
-  (probabilistic-measurement SoilCarbonStorage "t/ha" 
+  (probabilistic-measurement colorado:SoilCarbonStorage "t/ha" 
     [69   108]    colorado:VeryHighSoilStorage
     [46.6  69]    colorado:HighSoilStorage
     [27    46.6]  colorado:ModerateSoilStorage
@@ -192,10 +195,11 @@
 
 (defmodel soil-carbon-storage colorado:SoilCStorage 
   (bayesian colorado:SoilCStorage 
-    :import  "aries.core::CarbonSinkColorado.xdsl"
-    :context [soil-type annual-precipitation land-selector]
-    :keep    [SoilCarbonStorage]
-    :result  soil-storage))
+    :import   "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
+    :context  [soil-type annual-precipitation land-selector]
+    :required [LandOrWater]
+    :keep     [colorado:SoilCarbonStorage]
+    :result   soil-storage))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
   (measurement VegetationAndSoilCarbonStorage "t/ha"
@@ -230,7 +234,7 @@
     [  0     0.02] colorado:NoStorage))
 
 (defmodel stored-carbon-release colorado:StoredCarbonRelease
-  (probabilistic-measurement StoredCarbonRelease "t/ha*year"
+  (probabilistic-measurement colorado:StoredCarbonRelease "t/ha*year"
     [59   118]    colorado:VeryHighRelease ; Ceiling for stored carbon release is set as half of the total carbon in the system - check this assumption.
     [29.5  59]    colorado:HighRelease
     [14.8  29.5]  colorado:ModerateRelease
@@ -240,18 +244,20 @@
 
 (defmodel sink colorado:CarbonSinkValue
   (bayesian colorado:CarbonSinkValue
-    :import  "aries.core::CarbonSinkColorado.xdsl"
-    :context [veg-soil-storage fire-threat land-selector]
-    :keep    [StoredCarbonRelease]
-    :result  stored-carbon-release))
+    :import   "aries.core::CarbonSinkColorado.xdsl"
+    :context  [veg-soil-storage fire-threat land-selector]
+    :required [LandOrWater]
+    :keep     [colorado:StoredCarbonRelease]
+    :result   stored-carbon-release))
 
 ;; Hack, remove when contexts are working properly.
 (defmodel sink-no-beetle colorado:CarbonSinkValueNoBeetle
   (bayesian colorado:CarbonSinkValueNoBeetle
-    :import  "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
-    :context [veg-soil-storage-no-beetle fire-threat land-selector]
-    :keep    [StoredCarbonRelease]
-    :result  stored-carbon-release))
+    :import   "aries.core::CarbonSinkColoradoNoBeetle.xdsl"
+    :context  [veg-soil-storage-no-beetle fire-threat land-selector]
+    :required [LandOrWater]
+    :keep     [colorado:StoredCarbonRelease]
+    :result   stored-carbon-release))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
