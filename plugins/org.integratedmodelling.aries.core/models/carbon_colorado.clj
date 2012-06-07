@@ -140,7 +140,7 @@
     #{"Entisols" "Ultisols"}   colorado:EntisolsUltisols
     "Inceptisols"              colorado:Inceptisols
     "Mollisols"                colorado:Mollisols
-    :otherwise                 colorado:RockAndWater))
+    "RockAndWater"             colorado:RockAndWater))
 
 (defmodel beetle-kill colorado:MountainPineBeetleDamageClass
   (classification (count colorado:MountainPineBeetleDamageTreesPerHectare "/ha")
