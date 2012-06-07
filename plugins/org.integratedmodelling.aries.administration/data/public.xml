@@ -11522,6 +11522,33 @@ global data. -->
     </observation:hasObservationExtent>
   </observation:Categorization>
 
+  <observation:Categorization id="colorado_soil_orders3_co">
+    <observation:hasObservable>
+      <colorado:CarbonSoilType/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Digitized based on NRCS Global Soil
+    Regions Map</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://soils.usda.gov/use/worldsoils/mapindex/order.html</metadata:hasURL>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>colorado:soil_orders3_co</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>taxorder</geospace:hasValueAttribute>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>36.99242354971053</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-109.06026499128734</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>41.00344517452728</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-102.04148051575308</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+  </observation:Categorization>
+
+<!--
   <observation:Categorization id="colorado_soil_orders2_co">
     <observation:hasObservable>
       <colorado:CarbonSoilType/>
@@ -11547,6 +11574,7 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
+-->
 
   <!-- Native values are in decimal degrees, conversion below is to meters -->
   <measurement:Measurement id="floodplain_width">
