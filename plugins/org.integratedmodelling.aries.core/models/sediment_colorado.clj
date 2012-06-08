@@ -185,11 +185,73 @@
 ;; regions in the Rockies.  Hence all sediment that's eroded moves
 ;; downslope and eventually ends up in reservoirs.
 
-(defmodel sink ReservoirSedimentSink
+(defmodel reservoir-sediment-sink ReservoirSedimentSink
   (measurement ReservoirSedimentSink "t/ha"
     :context [(binary-coding geofeatures:Reservoir)]
     :state   #(if (== (:reservoir %) 1) 5000 0)))
- 
+
+(defmodel stream-gradient StreamGradientClass 
+  (classification (measurement habitat:StreamGradient "\u00b0")
+    [2.86   :>] HighStreamGradient
+    [1.15 2.86] ModerateStreamGradient
+    [:<   1.15] LowStreamGradient))
+
+(defmodel floodplains Floodplains
+  (classification (measurement habitat:FloodplainWidth "m")
+    [1 :>]     InFloodplain
+    :otherwise NotInFloodplain))
+
+(defmodel floodplain-tree-canopy-cover FloodplainTreeCanopyCover
+  (ranking FloodplainTreeCanopyCover
+    :context [(ranking     habitat:PercentTreeCanopyCover)
+              (measurement habitat:FloodplainWidth "m")]
+    :state   #(if (and (:floodplain-width %) ;;NEED TO BE ABLE TO SAY
+                       ;;"IF IT'S >0"
+                       (:percent-tree-canopy-cover %))
+                (int (* 100 (:percent-tree-canopy-cover %)))
+                0)))
+
+(defmodel floodplain-tree-canopy-cover-class FloodplainTreeCanopyCoverClass
+  (classification floodplain-tree-canopy-cover
+    [80 100 :inclusive] VeryHighFloodplainCanopyCover
+    [60  80]            HighFloodplainCanopyCover
+    [40  60]            ModerateFloodplainCanopyCover
+    [20  40]            LowFloodplainCanopyCover
+    [ 0  20]            VeryLowFloodplainCanopyCover))
+
+(defmodel floodplain-width FloodplainWidthClass 
+  (classification (measurement habitat:FloodplainWidth "m")
+    [1300   :>] VeryWideFloodplain
+    [ 800 1300] WideFloodplain
+    [ 350  800] NarrowFloodplain
+    [   0  350] VeryNarrowFloodplain))
+
+;; These are arbitrary numbers discretized based on the "low" soil
+;; erosion level defined by the US & global datasets, respectively.
+;; Have these numbers reviewed by someone knowledgable about
+;; sedimentation.
+(defmodel sediment-sink-annual AnnualSedimentSinkClass 
+  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
+    [20    30]    HighAnnualSedimentSink
+    [10    20]    ModerateAnnualSedimentSink
+    [ 0.01 10]    LowAnnualSedimentSink
+    [ 0     0.01] NoAnnualSedimentSink)) 
+
+(defmodel sediment-sink-us AnnualSedimentSink
+  (bayesian AnnualSedimentSink    
+    :import  "aries.core::SedimentSinkColorado.xdsl"
+    :context  [stream-gradient floodplain-tree-canopy-cover-class floodplain-width]
+    :required [StreamGradientClass]
+    :keep     [AnnualSedimentSinkClass]
+    :result   sediment-sink-annual))
+
+(defmodel sink-total TotalSedimentSink
+  (measurement TotalSedimentSink "t/ha"
+    :context [sediment-sink-us reservoir-sediment-sink]
+    :state   #(+ 
+               (if (nil? (:sediment-sink-us %)) 0.0 (.getMean (:sediment-sink-us %)))
+               (or       (:reservoir-sediment-sink %)   0.0))))
+
 ;;;-------------------------------------------------------------------
 ;;; Use models
 ;;;-------------------------------------------------------------------
@@ -201,22 +263,25 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel floodplains-code FloodplainsCode
+(defmodel floodplains-code FloodplainsCode ;This needs to be updated.
   (binary-coding geofeatures:Reservoir))
 
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
 (defmodel streams geofeatures:River
-  (binary-coding geofeatures:River))        
+  (binary-coding geofeatures:River))
+
+;;(defmodel levees Levee      ;Change to "LeveeClass" & add to ontology.
+;;  (categorization infrastructure:Levee)) ;"LEVEE" = present.
 
 (defmodel reservoir-deposition-data-fire ReservoirSoilDepositionFire
   (identification ReservoirSoilDepositionFire
-    :context [source-fire sink reservoirs altitude streams]))
+    :context [source-fire sink-total reservoirs altitude streams])) ; add levees
 
 (defmodel reservoir-deposition-data-no-fire ReservoirSoilDepositionNoFire
   (identification ReservoirSoilDepositionNoFire
-    :context [source-no-fire sink reservoirs altitude streams]))
+    :context [source-no-fire sink-total reservoirs altitude streams])) ; add levees
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -231,9 +296,9 @@
   (span SedimentTransport
         colorado:AnnualSedimentSourceFire
         geofeatures:Reservoir
-        ReservoirSedimentSink
+        TotalSedimentSink
         nil
-        (geophysics:Altitude geofeatures:River FloodplainsCode)
+        (geophysics:Altitude geofeatures:River FloodplainsCode) ;add infrastructure:Levee
         :source-threshold      0.0
         :sink-threshold        0.0
         :use-threshold         0.0
@@ -246,7 +311,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
-        :context [source-fire reservoirs sink altitude streams floodplains-code]
+        :context [source-fire reservoirs sink-total altitude streams floodplains-code] ; add levees
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse
@@ -267,9 +332,9 @@
   (span SedimentTransport
         colorado:AnnualSedimentSourceNoFire
         geofeatures:Reservoir
-        ReservoirSedimentSink
+        TotalSedimentSink
         nil
-        (geophysics:Altitude geofeatures:River FloodplainsCode)
+        (geophysics:Altitude geofeatures:River FloodplainsCode) ;add infrastructure:Levee
         :source-threshold      0.0
         :sink-threshold        0.0
         :use-threshold         0.0
@@ -282,7 +347,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
-        :context [source-no-fire reservoirs sink altitude streams floodplains-code]
+        :context [source-no-fire reservoirs sink-total altitude streams floodplains-code] ; add levees
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse

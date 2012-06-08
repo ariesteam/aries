@@ -10,8 +10,8 @@
     <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY modelling "http://www.integratedmodelling.org/ks/science/modelling.owl#" >
-    <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY ecology "http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
     <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
     <!ENTITY soilRetentionService "http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#" >
@@ -20,18 +20,18 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#"
      xml:base="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl"
-     xmlns:soilRetentionService="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#"
      xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
-     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:modelling="http://www.integratedmodelling.org/ks/science/modelling.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:soilRetentionService="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#"
      xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
      xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
-     xmlns:modelling="http://www.integratedmodelling.org/ks/science/modelling.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
-     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:ecology="http://www.integratedmodelling.org/ks/ecology/eco/ecology.owl#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/es/soilRetentionService.owl">
         <owl:imports rdf:resource="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl"/>
@@ -560,13 +560,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;RootDensity"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Replanting of trees by humans, with the goal of increasing forest cover.</rdfs:comment>
@@ -922,7 +922,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -934,7 +934,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Construction sites include areas of exposed soil that are highly susceptible to erosion.  Over the long term, increasing impervious area can  lead to alteration of stream geomorphic equilibrium, leading to downcutting, bank erosion, and downstream movement of sediment.</rdfs:comment>
@@ -1016,6 +1016,12 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -1023,12 +1029,6 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
                 <owl:someValuesFrom rdf:resource="&soilRetentionService;RootDensity"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Removal of trees from a region, generally as raw materials or to clear the land for other uses.</rdfs:comment>
@@ -1216,13 +1216,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;ConsumersOfFishAndAgGoods"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;DepositionProneFarmers"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;DepositionProneFarmers"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;ConsumersOfFishAndAgGoods"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Floodplain agriculture relies oin some input of new sediment to maintain soil fertility. Beyond this &quot;normal&quot; sediment input, excess sediment can damage crops. Canals important for water delivery may become overly sedimented, requiring additional labor to remove sediment.</rdfs:comment>
@@ -1415,13 +1415,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;ConsumersOfFishAndAgGoods"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;FishermenUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;FishermenUse"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;ConsumersOfFishAndAgGoods"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Excess sediment clouds the water, altering the freshwater food chain. Accumulation of excess sediment on stream and lake bottoms can change aquatic communities by covering hard, rocky substrates with sediment.</rdfs:comment>
@@ -1468,13 +1468,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;RootDensity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;RootDensity"/>
+                <owl:someValuesFrom rdf:resource="&habitat;SoilQuality"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Grazing can alter plant species composition and soil properties, and at high levels can increase susceptibility of erosion.</rdfs:comment>
@@ -2575,14 +2575,14 @@
         <rdfs:subClassOf rdf:resource="&eserv;EcosystemBenefit"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
-                <owl:allValuesFrom rdf:resource="&soilRetentionService;SoilRetention"/>
+                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
+                <owl:allValuesFrom rdf:resource="&soilRetentionService;SoilRetentionInPlace"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;hasUsage"/>
-                <owl:allValuesFrom rdf:resource="&soilRetentionService;SoilRetentionInPlace"/>
+                <owl:onProperty rdf:resource="&soilRetentionService;isBeneficialFor"/>
+                <owl:allValuesFrom rdf:resource="&soilRetentionService;SoilRetention"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Soil loss is a major cause of reduced soil productivity worldwide. The effects of soil loss are wide ranging, influencing slope stability and functional preservation of infrastructure such as dams and hydroelectric plants.</rdfs:comment>
@@ -2698,13 +2698,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToMore"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The gradual natural process of species turnover and community change, generally following disturbance.  Depending on the biome, disturbance type and intensity, this may include natural regrowth of trees.</rdfs:comment>
@@ -2734,13 +2734,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&soilRetentionService;leadsToLess"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Mechanically tilling the soil removes existing vegetation and exposes soil to greater erosion.  Frequency of plowing and when it occurs in relation to rainy periods are important determinants of how much erosion will occur.</rdfs:comment>
@@ -3111,7 +3111,7 @@
 
     <owl:Class rdf:about="&soilRetentionService;Scour">
         <rdfs:subClassOf rdf:resource="&soilRetentionService;SoilErosionProcesses"/>
-        <rdfs:comment rdf:datatype="&xsd;string">Scour can occur along rivers and streams, often due to changes in the river&#39;s flow regime and catchment land cover types (i.e., forest vs. impervious surface cover).</rdfs:comment>
+        <rdfs:comment rdf:datatype="&xsd;string">Scour can occur along rivers and streams, often due to changes in the river&apos;s flow regime and catchment land cover types (i.e., forest vs. impervious surface cover).</rdfs:comment>
     </owl:Class>
     
 
@@ -3162,13 +3162,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;DepositionProneFarmers"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;ConsumersOfFishAndAgGoods"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;ConsumersOfFishAndAgGoods"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;DepositionProneFarmers"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment>Provisioning of sediment is desirable to some locations (i.e., agricultural floodplains, river delta systems).</rdfs:comment>
@@ -3305,20 +3305,26 @@
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilParentMaterial"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilDepthToBedrock"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilTextureClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="&habitat;Slope"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilParentMaterial"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilCompaction"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3335,14 +3341,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilTextureClass"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilCompaction"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generic-dependent"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilDepthToBedrock"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Soil erodibility may be due to several factors, including texture, compaction, root density, and vegetative cover.</rdfs:comment>
@@ -3495,14 +3495,14 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;VegetativeMaturity"/>
+                <owl:onProperty rdf:resource="&soilRetentionService;matters-in-event-of"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;Precipitation"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&soilRetentionService;matters-in-event-of"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;Precipitation"/>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;VegetativeMaturity"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">The ability of a SoilRetainingEcosystem to provide the service of soil retention.</rdfs:comment>
@@ -3529,13 +3529,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;FishermenUse"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;HydroelectricUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;hasConsumer"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;HydroelectricUse"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;FishermenUse"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3561,14 +3561,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilLoss"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;NonErodedSystems"/>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;Food"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3579,20 +3573,26 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;Energy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&eserv;ecologicalFocus"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;SoilLoss"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
                 <owl:someValuesFrom rdf:resource="&soilRetentionService;NonSedimentedSystems"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;Food"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&eserv;humanFocus"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;Energy"/>
+                <owl:onProperty rdf:resource="&eserv;producesBenefit"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;NonErodedSystems"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3711,6 +3711,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#TotalSedimentSink -->
+
+    <owl:Class rdf:about="&soilRetentionService;TotalSedimentSink">
+        <rdfs:subClassOf rdf:resource="&representation;Mass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/es/soilRetentionService.owl#Transportation -->
 
     <owl:Class rdf:about="&soilRetentionService;Transportation">
@@ -3821,12 +3829,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
-                <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="&soilRetentionService;PercentTreeCanopyCoverClass"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -3834,6 +3836,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
                 <owl:someValuesFrom rdf:resource="&soilRetentionService;RootDensity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="&DOLCE-Lite;generically-dependent-on"/>
+                <owl:someValuesFrom rdf:resource="&soilRetentionService;CanopyLayering"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:comment rdf:datatype="&xsd;string">Vegetation composition  beyond which more or less full hydrologic services are provided.</rdfs:comment>
@@ -4060,5 +4068,5 @@
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
 
