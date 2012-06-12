@@ -1206,8 +1206,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="reservoirs">
-    <concept>soilRetentionService:ReservoirsClass</concept>
+  <page id="reservoir-sediment-sink">
+    <concept>soilRetentionService:ReservoirSedimentSink</concept>
     <name>Reservoir presence</name>
     <title>Reservoir presence</title>
     <runninghead>Reservoir presence</runninghead>
@@ -1215,10 +1215,10 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <description><![CDATA[
     <p>Reservoirs stop the downstream movement of sediment by trapping
     it in the reservoir and releasing low-sediment water downstream.</p>
-    <h1>Role in models</h1> <p>Reservoir locations enter into a
-    probabilistic model to estimate sediment sink values. Deposition
-    values in reservoirs are always set to high in the probabilistic
-    model.</p>
+    <h1>Role in models</h1> <p>Deposition of nearly all suspended
+    sediment is expected to occur in reservoirs. Deposition in
+    reservoirs is summed with deposition in floodplains to give a
+    total flood sink value.</p>
     <h1>Representation</h1> <p>Data show the presence or absence of
     reservoirs.</p>
     <h1>Source</h1> <p>National Atlas of the United States, Major Dams
@@ -1338,8 +1338,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
-  <page id="annual-sediment-sink">
-    <concept>soilRetentionService:AnnualSedimentSink</concept>
+  <page id="floodplain-sediment-sink">
+    <concept>soilRetentionService:FloodplainSedimentSink</concept>
     <name>Annual sediment sink</name>
     <title>Annual sediment sink</title>
     <runninghead>Annual sediment sink</runninghead>
@@ -1362,6 +1362,38 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Source</h1> <p>This map has been computed at your request by a
     Bayesian model built and calibrated by the ARIES server for the
     selected area.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="total-sediment-sink">
+    <concept>soilRetentionService:TotalSedimentSink</concept>
+    <name>Floodplain sediment sink</name>
+    <title>Floodplain sediment sink</title>
+    <runninghead>Floodplain sediment sink</runninghead>
+    <group>sink</group>
+    <units>t/ha</units>
+    <description><![CDATA[
+    <p>The total deposition of waterborne sediment in floodplains and reservoirs.</p>
+    <h1>Role in models</h1> <p>This is the total summed sediment
+    deposition in floodplains and reservoirs. These data are
+    passed to the flood flow model, which calculates actual sediment
+    flows given the locations of sediment sources, sinks, and users.</p>
+    <h1>Representation</h1> <p>Data are in physical units of tons of
+    sediment deposited per year.</p>
+    <h1>Source</h1> <p>Calculated as the sum of outputs from a
+    probabilistic model of floodplain sediment deposition plus
+    deposition in reservoirs.</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>

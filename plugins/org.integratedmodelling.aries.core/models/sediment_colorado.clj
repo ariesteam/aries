@@ -224,29 +224,27 @@
 ;; erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about
 ;; sedimentation.
-(defmodel sediment-sink-annual AnnualSedimentSinkClass 
-  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
-    [20    30]    HighAnnualSedimentSink
-    [10    20]    ModerateAnnualSedimentSink
-    [ 0.01 10]    LowAnnualSedimentSink
-    [ 0     0.01] NoAnnualSedimentSink)) 
+(defmodel sediment-sink-floodplain FloodplainSedimentSinkClass 
+  (probabilistic-measurement FloodplainSedimentSinkClass "t/ha"
+    [20    30]    HighFloodplainSedimentSink
+    [10    20]    ModerateFloodplainSedimentSink
+    [ 0.01 10]    LowFloodplainSedimentSink
+    [ 0     0.01] NoFloodplainSedimentSink))
 
-(defmodel floodplain-sediment-sink AnnualSedimentSink
-  (bayesian AnnualSedimentSink    
+(defmodel floodplain-sediment-sink FloodplainSedimentSink
+  (bayesian FloodplainSedimentSink
     :import  "aries.core::SedimentSinkColorado.xdsl"
     :context  [stream-gradient floodplain-tree-canopy-cover-class floodplain-width]
     :required [StreamGradientClass]
-    :keep     [AnnualSedimentSinkClass]
-    :result   sediment-sink-annual))
+    :keep     [FloodplainSedimentSinkClass]
+    :result   sediment-sink-floodplain))
 
-; Good to go except this isn't properly adding the two - check again
-; on the syntax.
 (defmodel sink-total TotalSedimentSink
   (measurement TotalSedimentSink "t/ha"
     :context [floodplain-sediment-sink reservoir-sediment-sink]
     :state   #(+ 
                (if (nil? (:floodplain-sediment-sink %)) 0.0 (.getMean (:floodplain-sediment-sink %)))
-               (or       (:reservoir-sediment-sink %)   0.0))))
+               (or       (:reservoir-sediment-sink %) 0.0))))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models

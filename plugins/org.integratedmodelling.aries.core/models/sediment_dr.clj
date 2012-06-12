@@ -172,10 +172,10 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(defmodel reservoirs ReservoirsClass 
-  (classification (binary-coding geofeatures:Reservoir)
-    1		   ReservoirPresent
-    :otherwise ReservoirAbsent))
+(defmodel reservoir-sediment-sink ReservoirSedimentSink
+  (measurement ReservoirSedimentSink "t/ha"
+    :context [(binary-coding geofeatures:Reservoir)]
+    :state   #(if (== (:reservoir %) 1) 5000 0)))
 
 (defmodel stream-gradient StreamGradientClass 
   (classification (measurement habitat:StreamGradient "\u00B0")
@@ -196,23 +196,30 @@
 
 ;;These are arbitrary numbers discretized based on the "low" soil erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about sedimentation.
-(defmodel sediment-sink-annual AnnualSedimentSinkClass 
+(defmodel sediment-sink-floodplain FloodplainSedimentSinkClass 
   ;; FV temporarily subst with dumb classification - see comment for sediment-source-value-annual
-  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
+  (probabilistic-measurement FloodplainSedimentSinkClass "t/ha"
     ;;	(classification (measurement AnnualSedimentSink "t/ha")
-    [10  15] HighAnnualSedimentSink
-    [ 5  10] ModerateAnnualSedimentSink
-    [0.01 5] LowAnnualSedimentSink
-    [0 0.01] NoAnnualSedimentSink))
+    [10  15] HighFloodplainSedimentSink
+    [ 5  10] ModerateFloodplainSedimentSink
+    [0.01 5] LowFloodplainSedimentSink
+    [0 0.01] NoFloodplainSedimentSink))
 
 ;;If we successfully get FPWidth data for Mg & DR, add these to the "context" part of the model.
-(defmodel sediment-sink-dr AnnualSedimentSink
-  (bayesian AnnualSedimentSink 
+(defmodel floodplain-sediment-sink FloodplainSedimentSink
+  (bayesian FloodplainSedimentSink 
 	:import	  "aries.core::SedimentSinkDR.xdsl"
-	:context  [reservoirs stream-gradient floodplain-canopy-cover]
+	:context  [stream-gradient floodplain-canopy-cover]
 	:required [StreamGradientClass]
-	:keep	  [AnnualSedimentSinkClass]
-	:result	  sediment-sink-annual))
+	:keep	  [FloodplainSedimentSinkClass]
+	:result	  sediment-sink-floodplain))
+
+(defmodel sink-total TotalSedimentSink
+  (measurement TotalSedimentSink "t/ha"
+    :context [floodplain-sediment-sink reservoir-sediment-sink]
+    :state   #(+ 
+               (if (nil? (:floodplain-sediment-sink %)) 0.0 (.getMean (:floodplain-sediment-sink %)))
+               (or       (:reservoir-sediment-sink %) 0.0))))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
@@ -272,12 +279,12 @@
 
 (defmodel farmland-soil-deposition-data FarmlandSoilDeposition
   (identification FarmlandSoilDeposition 
-    :context [source-dr sediment-sink-dr farmers-deposition-use-dr
+    :context [source-dr sink-total farmers-deposition-use-dr
               altitude streams]))
 
 (defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
   (identification ReservoirSoilDeposition 
-    :context [source-dr sediment-sink-dr hydroelectric-use-presence
+    :context [source-dr sink-total hydroelectric-use-presence
               altitude streams]))
 
 ;;;-------------------------------------------------------------------
@@ -293,7 +300,7 @@
   (span SedimentTransport
         AnnualSedimentSource
 		DepositionProneFarmers
-		AnnualSedimentSinkClass 
+		TotalSedimentSink 
 		nil
 		(geophysics:Altitude FloodplainsCode geofeatures:River)
 		:source-threshold	2.0 ; Note that threshold values are different in the Puget sediment SPAN models than in DR or Mg. This is because units are different, so keep these values (or similar ones)
@@ -307,7 +314,7 @@
 		:rv-max-states		10
 		:downscaling-factor 2
 		;;:save-file		  (str (System/getProperty "user.home") "/sediment_dr_data_beneficial.clj")
-        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains-code streams]
+        :context [source-dr farmers-deposition-use-dr sink-total altitude floodplains-code streams]
 		:keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse
@@ -330,7 +337,7 @@
   (span SedimentTransport
         AnnualSedimentSource
 		DepositionProneFarmers
-		AnnualSedimentSinkClass 
+		TotalSedimentSink 
 		nil
 		(geophysics:Altitude FloodplainsCode geofeatures:River)
 		:source-threshold	2.0
@@ -344,7 +351,7 @@
 		:rv-max-states		10
 		:downscaling-factor 2
 		;;:save-file		  (str (System/getProperty "user.home") "/sediment_dr_data_detrimental_farmers.clj")
-        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains-code streams] ; Change the beneficiary group as needed
+        :context [source-dr farmers-deposition-use-dr sink-total altitude floodplains-code streams] ; Change the beneficiary group as needed
 		:keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse
@@ -367,7 +374,7 @@
   (span SedimentTransport
         AnnualSedimentSource
 		HydroelectricUsePresenceClass
-		AnnualSedimentSinkClass 
+		TotalSedimentSink 
 		nil
 		(geophysics:Altitude FloodplainsCode geofeatures:River)
 		:source-threshold	2.0
@@ -381,7 +388,7 @@
 		:rv-max-states		10
 		:downscaling-factor 2
 		;;:save-file		  (str (System/getProperty "user.home") "/sediment_dr_data_detrimental_reservoirs.clj")
-		:context [source-dr hydroelectric-use-presence sediment-sink-dr altitude floodplains-code streams] ; Change the beneficiary group as needed
+		:context [source-dr hydroelectric-use-presence sink-total altitude floodplains-code streams] ; Change the beneficiary group as needed
 		:keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse
@@ -405,7 +412,7 @@
   (span SedimentTransport
         AnnualSedimentSource
 		WaterIntakeUse	; Change the beneficiary group as needed
-		AnnualSedimentSinkClass 
+		TotalSedimentSink 
 		nil
 		(geophysics:Altitude FloodplainsCode geofeatures:River)
 		:source-threshold	2.0
@@ -419,7 +426,7 @@
 		:rv-max-states		10
 		:downscaling-factor 2
 		;;:save-file		  (str (System/getProperty "user.home") "/sediment_dr_data_turbidity.clj")
-        :context [source-dr farmers-deposition-use-dr sediment-sink-dr altitude floodplains-code streams] ; Change the beneficiary group as needed
+        :context [source-dr farmers-deposition-use-dr sink-total altitude floodplains-code streams] ; Change the beneficiary group as needed
 		:keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse

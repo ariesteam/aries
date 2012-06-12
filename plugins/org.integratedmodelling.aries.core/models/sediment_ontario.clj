@@ -197,19 +197,19 @@
     [20  40]            LowFloodplainCanopyCover
     [ 0  20]            VeryLowFloodplainCanopyCover))
 
-(defmodel annual-sediment-sink-class AnnualSedimentSinkClass
-  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
-    [100.00 300.00] HighAnnualSedimentSink
-    [ 30.00 100.00] ModerateAnnualSedimentSink
-    [  0.01  30.00] LowAnnualSedimentSink
-    [  0.00   0.01] NoAnnualSedimentSink))
+(defmodel floodplain-sediment-sink-class FloodplainSedimentSinkClass
+  (probabilistic-measurement FloodplainSedimentSinkClass "t/ha"
+    [100.00 300.00] HighFloodplainSedimentSink
+    [ 30.00 100.00] ModerateFloodplainSedimentSink
+    [  0.01  30.00] LowFloodplainSedimentSink
+    [  0.00   0.01] NoFloodplainSedimentSink))
 
-(defmodel annual-sediment-sink AnnualSedimentSink
-  (bayesian AnnualSedimentSink
+(defmodel annual-sediment-sink FloodplainSedimentSink
+  (bayesian FloodplainSedimentSink
     :import   "aries.core::SedimentSinkOntario.xdsl"
     :context  [stream-gradient-class floodplains floodplain-tree-canopy-cover-class]
-    :keep     [AnnualSedimentSinkClass]
-    :result   annual-sediment-sink-class))
+    :keep     [FloodplainSedimentSinkClass]
+    :result   floodplain-sediment-sink-class))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
@@ -262,7 +262,7 @@
   (span SedimentTransport
         AnnualSedimentSource
         DepositionProneFarmers
-        AnnualSedimentSink
+        FloodplainSedimentSink
         nil
         (geophysics:Altitude geofeatures:River FloodplainsCode) ; we don't have information on levees
         :source-threshold   0.0
