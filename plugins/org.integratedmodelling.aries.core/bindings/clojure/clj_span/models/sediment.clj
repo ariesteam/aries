@@ -221,7 +221,7 @@
      (iterate-while-seq
       (p move-carriers-one-step-downstream! params)
       (create-initial-service-carriers params))))
-  (select-keys params [:stream-intakes :sink-layer :sink-AFs :cache-layer :actual-flow-layer :use-id?]))
+  (select-keys params [:stream-intakes :sink-layer :sink-AFs :cache-layer :possible-flow-layer :actual-flow-layer :use-id?]))
 
 (defn make-buckets
   "Stores maps from {ids -> tons-ref} for overland-sink-caps and floodplain-sink-caps in params."
