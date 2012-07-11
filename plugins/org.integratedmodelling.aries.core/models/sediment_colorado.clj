@@ -193,19 +193,19 @@
 (defmodel streams geofeatures:River
   (binary-coding geofeatures:River))
 
-;(defmodel stream-gradient StreamGradient
-; (ranking StreamGradient
-;  :context [(binary-coding geofeatures:River)
-; (measurement   geophysics:DegreeSlope "\u00b0")]
-; :state #(if (:river %) (pos? (:river %))
-;     *(:degree-slope %)
-;     0)))
+(defmodel stream-gradient StreamGradient
+  (measurement StreamGradient "\u00b0"
+    :context [(binary-coding geofeatures:River)
+              (measurement   geophysics:DegreeSlope "\u00b0")]
+    :state   #(if (and (:river %) (pos? (:river %)))
+                (:degree-slope %)
+                0.0)))
 
-;(defmodel stream-gradient-class StreamGradientClass 
-;(classification stream-gradient
-;  [2.86   :>] HighStreamGradient
-;  [1.15 2.86] ModerateStreamGradient
-;  [:<   1.15] LowStreamGradient))
+(defmodel stream-gradient-class StreamGradientClass 
+  (classification stream-gradient
+    [2.86   :>] HighStreamGradient
+    [1.15 2.86] ModerateStreamGradient
+    [:<   1.15] LowStreamGradient))
 
 (defmodel floodplain-tree-canopy-cover FloodplainTreeCanopyCover
   (ranking FloodplainTreeCanopyCover
