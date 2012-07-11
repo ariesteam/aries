@@ -190,11 +190,22 @@
     :context [(binary-coding geofeatures:Reservoir)]
     :state   #(if (== (:reservoir %) 1) 5000 0)))
 
-(defmodel stream-gradient StreamGradientClass 
-  (classification (measurement habitat:StreamGradient "\u00b0")
-    [2.86   :>] HighStreamGradient
-    [1.15 2.86] ModerateStreamGradient
-    [:<   1.15] LowStreamGradient))
+(defmodel streams geofeatures:River
+  (binary-coding geofeatures:River))
+
+;(defmodel stream-gradient StreamGradient
+; (ranking StreamGradient
+;  :context [(binary-coding geofeatures:River)
+; (measurement   geophysics:DegreeSlope "\u00b0")]
+; :state #(if (:river %) (pos? (:river %))
+;     *(:degree-slope %)
+;     0)))
+
+;(defmodel stream-gradient-class StreamGradientClass 
+;(classification stream-gradient
+;  [2.86   :>] HighStreamGradient
+;  [1.15 2.86] ModerateStreamGradient
+;  [:<   1.15] LowStreamGradient))
 
 (defmodel floodplain-tree-canopy-cover FloodplainTreeCanopyCover
   (ranking FloodplainTreeCanopyCover
@@ -234,7 +245,7 @@
 (defmodel floodplain-sediment-sink FloodplainSedimentSink
   (bayesian FloodplainSedimentSink
     :import  "aries.core::SedimentSinkColorado.xdsl"
-    :context  [stream-gradient floodplain-tree-canopy-cover-class floodplain-width]
+    :context  [floodplain-tree-canopy-cover-class floodplain-width] ;stream-gradient-class 
     :required [StreamGradientClass]
     :keep     [FloodplainSedimentSinkClass]
     :result   sediment-sink-floodplain))
@@ -264,9 +275,6 @@
 
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
-
-(defmodel streams geofeatures:River
-  (binary-coding geofeatures:River))
 
 (defmodel levees Levees
   (binary-coding Levees
