@@ -10473,6 +10473,30 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+<measurement:NumericCoding id="nlcd_lc_ll_01">
+<observation:hasObservable>
+<nlcd:NLCDNumeric/>
+</observation:hasObservable>
+<observation:hasDataSource>
+<geospace:WCSDataSource>
+<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+<geospace:hasCoverageId>usa:nlcd_lc_ll_01</geospace:hasCoverageId>
+ <geospace:hasNodataValue>127</geospace:hasNodataValue>
+</geospace:WCSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:RasterGrid>
+<geospace:hasXRangeMax>36404</geospace:hasXRangeMax>
+<geospace:hasYRangeMax>28645</geospace:hasYRangeMax>
+<geospace:hasLatLowerBound>40.142</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>-127.264</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>50.118</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>-114.586</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+</geospace:RasterGrid>
+</observation:hasObservationExtent>
+</measurement:NumericCoding>
+
 <!-- Commenting these out to test new NLCD's
   <measurement:NumericCoding id="nlcd_lc_ll_01">
     <observation:hasObservable>

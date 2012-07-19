@@ -245,7 +245,7 @@
 (defmodel floodplain-sediment-sink FloodplainSedimentSink
   (bayesian FloodplainSedimentSink
     :import  "aries.core::SedimentSinkColorado.xdsl"
-    :context  [floodplain-tree-canopy-cover-class floodplain-width stream-gradient-class] 
+    :context  [floodplain-tree-canopy-cover-class floodplain-width stream-gradient-class]
     :required [StreamGradientClass]
     :keep     [FloodplainSedimentSinkClass]
     :result   sediment-sink-floodplain))
