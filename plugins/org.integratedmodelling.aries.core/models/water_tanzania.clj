@@ -282,7 +282,7 @@
         (geophysics:Altitude geofeatures:River)
         :source-threshold   nil
         :sink-threshold     nil
-        :use-threshold      1250.0 ;; have to reduce number of users below number of stream pixels (1080 retains 6.4% of users, 1250 = 4%)
+        :use-threshold      1100.0 ;; have to reduce number of users below number of stream pixels (1080 retains 6.4% of users, 1250 = 4%)
         :trans-threshold    10.0
         :source-type        :finite
         :sink-type          :finite
