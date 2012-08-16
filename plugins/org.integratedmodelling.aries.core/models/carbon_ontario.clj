@@ -64,10 +64,10 @@
   (classification VegetatedLand
     :context [(numeric-coding ontario-lulc:MNRLULCNumeric)
               (binary-coding geofeatures:Lake)]
-    :state   #(if (or (= 1 (:lake %))
+    :state   #(if (or (== (:lake %) 1)
                       (contains? #{1 2 3 4 5 6 15 16 17 20 22 24 28 29} (:m-n-r-l-u-l-c-numeric %)))
-                (tl/conc 'NotOnVegetatedLand)
-                (tl/conc 'OnVegetatedLand))))
+                (tl/conc 'carbonService:NotOnVegetatedLand)
+                (tl/conc 'carbonService:OnVegetatedLand))))
 
 ;; ontario:successional_stage_alg
 (defmodel successional-stage SuccessionalStage
