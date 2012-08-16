@@ -169,15 +169,12 @@
 ;;ontario:canoe_use_alg
 (defmodel canoe-use CanoeUse
   "Use data from MNR park surveys where backcountry user indicated a canoe trip."
-(classification (numeric-coding CanoeUse)
-  1              CanoeUsePresent
-  :otherwise     CanoeUseAbsent))
+  (binary-coding CanoeUse))
 
-;; ontario:trails_alg
-(defmodel trails Trails
-  (binary-coding infrastructure:Path))
-
-
+;;ontario:hiking_use_alg
+(defmodel hiking-use HikingUse
+  "Use data from MNR park surveys where backcountry user indicated a hiking trip."
+  (binary-coding HikingUse))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
