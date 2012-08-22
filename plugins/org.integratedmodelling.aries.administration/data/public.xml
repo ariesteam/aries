@@ -148,7 +148,41 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
+  
+  <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
+       converts it to tonnes C/ha -->
 
+  <measurement:Measurement id="NBCD_MZ65_FIA_ALD_biomass_final">
+    <observation:hasObservable>
+      <carbonService:VegetationCarbonStorage />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+    <metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
+    <measurement:unit>t/ha</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>usa:biomass_65</geospace:hasCoverageId>
+        <geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+        <geospace:hasNodataValue>32767.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>11168</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>10493</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>40.515</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-74.156</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>44.54</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-69.872</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
+
+  <!-- 
   <measurement:Measurement id="dem90m">
     <observation:hasObservable>
       <geophysics:Altitude />
@@ -175,39 +209,42 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> 
+  -->
 
-<measurement:Measurement id="slope90m_smoothed">
-  <observation:hasObservable>
-    <geophysics:DegreeSlope/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Derived from Shuttle Radar Topography Mission (SRTM) data</rdfs:comment>
-  <metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
-  <measurement:unit>°</measurement:unit>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>global:slope90m_smoothed</geospace:hasCoverageId>
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>431999</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>143999</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-175.0</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>60.0</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>185.0</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:Measurement>
+  <!--
+  <measurement:Measurement id="slope90m_smoothed">
+	<observation:hasObservable>
+		<geophysics:DegreeSlope/>
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Derived from Shuttle Radar Topography Mission (SRTM) data</rdfs:comment>
+	<metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
+	<measurement:unit>°</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+		<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+		<geospace:hasCoverageId>global:slope90m_smoothed</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>431999</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>143999</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-175.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>60.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>185.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+  </measurement:Measurement>
+-->
 
   <!-- This should be the correct floodplains layer for Western Washington, capable of distinguishing
        between 100- and 500-year floodplains. -->
   <observation:Categorization id="puget_pugetfloodplain">
     <observation:hasObservable>
-      <geofeatures:Floodplain />
+      <geofeatures:Floodplain/>
     </observation:hasObservable>
     <rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -368,39 +405,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasLonUpperBound>554628.3863183097</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
-  <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
-       converts it to tonnes C/ha -->
-
-  <measurement:Measurement id="NBCD_MZ65_FIA_ALD_biomass_final">
-    <observation:hasObservable>
-      <carbonService:VegetationCarbonStorage />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
-    <metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
-    <measurement:unit>t/ha</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:biomass_65</geospace:hasCoverageId>
-        <geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
-        <geospace:hasNodataValue>32767.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>11168</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>10493</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>40.515</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-74.156</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>44.54</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-69.872</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
