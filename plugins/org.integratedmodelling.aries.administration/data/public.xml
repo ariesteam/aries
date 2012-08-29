@@ -148,7 +148,41 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
+  
+  <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
+       converts it to tonnes C/ha -->
 
+  <measurement:Measurement id="NBCD_MZ65_FIA_ALD_biomass_final">
+    <observation:hasObservable>
+      <carbonService:VegetationCarbonStorage />
+    </observation:hasObservable>
+    <rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+    <metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
+    <measurement:unit>t/ha</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>usa:biomass_65</geospace:hasCoverageId>
+        <geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+        <geospace:hasNodataValue>32767.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>11168</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>10493</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>40.515</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-74.156</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>44.54</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-69.872</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
+
+  <!-- 
   <measurement:Measurement id="dem90m">
     <observation:hasObservable>
       <geophysics:Altitude />
@@ -175,39 +209,42 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> 
+  -->
 
-<measurement:Measurement id="slope90m_smoothed">
-  <observation:hasObservable>
-    <geophysics:DegreeSlope/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Derived from Shuttle Radar Topography Mission (SRTM) data</rdfs:comment>
-  <metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
-  <measurement:unit>°</measurement:unit>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>global:slope90m_smoothed</geospace:hasCoverageId>
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>431999</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>143999</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-175.0</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>60.0</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>185.0</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:Measurement>
+  <!--
+  <measurement:Measurement id="slope90m_smoothed">
+	<observation:hasObservable>
+		<geophysics:DegreeSlope/>
+	</observation:hasObservable>
+	<rdfs:comment>Data source: Derived from Shuttle Radar Topography Mission (SRTM) data</rdfs:comment>
+	<metadata:hasURL>http://srtm.usgs.gov/index.php</metadata:hasURL>
+	<measurement:unit>°</measurement:unit>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+		<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+		<geospace:hasCoverageId>global:slope90m_smoothed</geospace:hasCoverageId>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>431999</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>143999</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>-175.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>60.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>185.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+  </measurement:Measurement>
+-->
 
   <!-- This should be the correct floodplains layer for Western Washington, capable of distinguishing
        between 100- and 500-year floodplains. -->
   <observation:Categorization id="puget_pugetfloodplain">
     <observation:hasObservable>
-      <geofeatures:Floodplain />
+      <geofeatures:Floodplain/>
     </observation:hasObservable>
     <rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
@@ -368,39 +405,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasLonUpperBound>554628.3863183097</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
-  <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
-       converts it to tonnes C/ha -->
-
-  <measurement:Measurement id="NBCD_MZ65_FIA_ALD_biomass_final">
-    <observation:hasObservable>
-      <carbonService:VegetationCarbonStorage />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
-    <metadata:belongsToDataset>National Biomass and Carbon Dataset</metadata:belongsToDataset>
-    <measurement:unit>t/ha</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:biomass_65</geospace:hasCoverageId>
-        <geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
-        <geospace:hasNodataValue>32767.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>11168</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>10493</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>40.515</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-74.156</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>44.54</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-69.872</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
@@ -879,6 +883,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+<!--
 <measurement:Ranking id="MgDeforest4">
   <observation:hasObservable>
     <carbonService:DeforestationRisk/>
@@ -905,6 +910,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:Ranking>
+-->
 
   <!-- Units for this are in fires/km2 from 1970-2007 -->
   <measurement:Measurement id="fire_freq_puget">
@@ -3932,6 +3938,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <!--
   <measurement:BinaryCoding id="usa_airports">
     <observation:hasObservable>
       <infrastructure:Airport />
@@ -3954,7 +3961,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
 
+  <!--
   <measurement:Ranking id="san_pedro_amphibian_rich">
     <observation:hasObservable>
       <habitat:AmphibianRichness />
@@ -3980,6 +3989,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <measurement:Ranking id="mean_days_precip_annual">
     <observation:hasObservable>
@@ -4328,6 +4338,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <!--
   <measurement:Ranking id="san_pedro_bird_rich">
     <observation:hasObservable>
       <habitat:AvianRichness />
@@ -4353,7 +4364,9 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
+  <!--
   <measurement:Ranking id="san_pedro_bsr_development_sites2">
     <observation:hasObservable>
       <sanPedro:BSRDevelopment />
@@ -4377,6 +4390,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <measurement:Count id="buffalo">
     <observation:hasObservable>
@@ -4457,6 +4471,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </observation:Categorization>
 
+  <!--
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:ConservationPractice />
@@ -4481,6 +4496,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <observation:Categorization id="national_boundaries">
     <observation:hasObservable>
@@ -4504,6 +4520,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </observation:Categorization>
 
+  <!--
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:CoverManagement />
@@ -4528,6 +4545,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <measurement:Ranking id="RUSLE_cover_management_co">
     <observation:hasObservable>
@@ -5143,6 +5161,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Count>
 
+  <!--
   <measurement:BinaryCoding id="sanPedro_mex_highway">
     <observation:hasObservable>
       <infrastructure:Highway />
@@ -5167,7 +5186,9 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
 
+  <!--
   <measurement:BinaryCoding id="usa_highways">
     <observation:hasObservable>
       <infrastructure:Highway />
@@ -5191,6 +5212,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
 
   <measurement:Measurement id="dam_storage_puget">
     <observation:hasObservable>
@@ -5438,6 +5460,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
+  <!--
   <measurement:Ranking id="sanPedro_mammal_rich">
     <observation:hasObservable>
       <habitat:MammalRichness />
@@ -5463,6 +5486,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <measurement:NumericCoding id="mearns_240">
     <observation:hasObservable>
@@ -5490,6 +5514,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
+  <!--
   <measurement:BinaryCoding id="sanPedro_mesquite_management2">
     <observation:hasObservable>
       <sanPedro:MesquiteManagement />
@@ -5512,6 +5537,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
 
   <measurement:NumericCoding id="os3">
     <observation:hasObservable>
@@ -5749,6 +5775,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <!--
   <measurement:BinaryCoding id="sanPedro_trails_sprnca2">
     <observation:hasObservable>
       <infrastructure:Path />
@@ -5771,6 +5798,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
 
   <measurement:Ranking id="FloodplainVegMg">
     <observation:hasObservable>
@@ -6899,6 +6927,7 @@ could be used in BN training. -->
   </measurement:Count>
 
   <!-- 2000 population density for Arizona -->
+  <!--
   <measurement:Count id="sanPedro_az_popdens">
     <observation:hasObservable>
       <policytarget:PopulationDensity />
@@ -6925,6 +6954,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Count>
+  -->
 
   <!-- 2007 population density for Washington -->
   <measurement:Count id="puget_pugetpopulationdensity">
@@ -7060,6 +7090,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <!--
   <measurement:BinaryCoding id="usa_railroads">
     <observation:hasObservable>
       <infrastructure:Railway />
@@ -7080,7 +7111,9 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
 
+  <!--
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:RainfallRunoffErosivityIndex />
@@ -7104,6 +7137,7 @@ could be used in BN training. -->
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <measurement:Ranking id="RUSLE_rainfall_runoff_index_co">
     <observation:hasObservable>
@@ -7159,6 +7193,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+  <!--
   <measurement:Ranking id="sanPedro_reptile_rich">
     <observation:hasObservable>
       <habitat:ReptileRichness />
@@ -7185,6 +7220,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <measurement:BinaryCoding id="dominican_drreservoirs2">
     <observation:hasObservable>
@@ -7308,6 +7344,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <!--
   <measurement:Ranking id="sanPedro_sprnca_condition_class">
     <observation:hasObservable>
       <sanPedro:RiparianConditionClass />
@@ -7332,8 +7369,10 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <!-- Scenario for a 0.5-meter rise in groundwater throughout the SPRNCA -->
+  <!--
   <measurement:Ranking id="sanPedro_sprnca_condition_class_hmr">
     <observation:hasObservable>
       <sanPedro:RiparianConditionClassHalfMeterRise />
@@ -7358,8 +7397,10 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <!-- Scenario for all segments with perennial surface flow throughout the SPRNCA -->
+  <!--
   <measurement:Ranking id="sanPedro_sprnca_condition_class_wet">
     <observation:hasObservable>
       <sanPedro:RiparianConditionClassAllWet />
@@ -7384,6 +7425,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <!-- This hydrography dataset is at too ridiculously high a spatial
        resolution to support flow modeling.  Testing the two below to
@@ -7785,6 +7827,7 @@ Not sure why DR rivers are commented out.  This will likely mean
   </measurement:BinaryCoding>
 
   <!-- Road classification for calculating travel cost; 9 numeric classes of highways -->
+  <!--
   <measurement:NumericCoding id="usa_highways">
     <observation:hasObservable>
       <recreationService:RoadTravelCapacity />
@@ -7809,6 +7852,7 @@ Not sure why DR rivers are commented out.  This will likely mean
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
+  -->
 
   <!-- KINEROS model data, uncalibrated, run through AGWA using
        default inputs and a 10-year, 1-hour design storm
@@ -7866,6 +7910,7 @@ Not sure why DR rivers are commented out.  This will likely mean
   </measurement:NumericCoding>
 
   <!-- Scenic drives for eastern Arizona, western Washington, Vermont only. -->
+  <!--
   <measurement:BinaryCoding id="usa_highways_scenic">
     <observation:hasObservable>
       <aestheticService:ScenicDrives />
@@ -7888,10 +7933,12 @@ Not sure why DR rivers are commented out.  This will likely mean
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
 
 <!-- This one is in t/ha, comparable to the global data. Use it in the
 probabilistic models and storylines for uniformity in units with the
 global data. -->
+  <!--
   <measurement:Measurement id="puget_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:AnnualSedimentSource />
@@ -7918,10 +7965,12 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Measurement>
+  -->
 
 <!-- This one is in kg/ha - the original form of the data. Use it in
      RUSLE models so that multiplication of the RUSLE factors gives
      the correct results. -->
+  <!--
   <measurement:Measurement id="puget_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:AnnualSedimentSourceRUSLE />
@@ -7947,6 +7996,7 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Measurement>
+  -->
 
   <measurement:Count id="sheep">
     <observation:hasObservable>
@@ -7975,6 +8025,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Count>
 
+  <!--
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:SlopeSteepnessAndLengthFactor />
@@ -7999,6 +8050,7 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
+  -->
 
   <measurement:Ranking id="RUSLE_slope_steepness_co">
     <observation:hasObservable>
@@ -9202,6 +9254,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+  <!--
   <measurement:BinaryCoding id="sanPedro_transmission_az">
     <observation:hasObservable>
       <infrastructure:TransmissionLine />
@@ -9225,6 +9278,7 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
 
   <observation:Categorization id="colorado_transmission_lines">
     <observation:hasObservable>
@@ -9429,6 +9483,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+  <!--
   <observation:Categorization id="usa_watersheds_us">
     <observation:hasObservable>
       <geofeatures:Watershed />
@@ -9453,6 +9508,7 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
+  -->
 
   <measurement:NumericCoding id="puget_wria_watersheds">
     <observation:hasObservable>
@@ -10473,6 +10529,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+<!--
 <measurement:NumericCoding id="nlcd_lc_ll_01">
 <observation:hasObservable>
 <nlcd:NLCDNumeric/>
@@ -10496,7 +10553,7 @@ global data. -->
 </geospace:RasterGrid>
 </observation:hasObservationExtent>
 </measurement:NumericCoding>
-
+-->
 <!-- Commenting these out to test new NLCD's
   <measurement:NumericCoding id="nlcd_lc_ll_01">
     <observation:hasObservable>
@@ -10638,6 +10695,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding> -->
 
+  <!--
   <measurement:NumericCoding id="nlcd_lc_lll_04">
     <observation:hasObservable>
       <nlcd:NLCDNumeric/>
@@ -10665,6 +10723,7 @@ global data. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
+  -->
 
 <!--
   <measurement:NumericCoding id="nlcd_lc_lll_05">
@@ -11497,6 +11556,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+  <!--
   <observation:Categorization id="usa_levees">
     <observation:hasObservable>
       <infrastructure:Levee/>
@@ -11520,6 +11580,7 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
+  -->
 
   <observation:Categorization id="colorado_soil_orders3_co">
     <observation:hasObservable>

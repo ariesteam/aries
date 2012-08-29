@@ -59,11 +59,15 @@
   (measurement geophysics:Altitude "m"))
 
 ;; ontario:lulc2000_alg
+;; ontario:lakes_alg
 (defmodel vegetated-land VegetatedLand
-  (classification (numeric-coding ontario-lulc:MNRLULCNumeric)
-    #{7 8 9 10 11 12 13 18 19 21 23 25 27} OnVegetatedLand
-    :otherwise                             NotOnVegetatedLand))
-    ;; #{1 2 3 4 5 6 15 16 17 20 22 24 28 29} NotOnVegetatedLand))
+  (classification VegetatedLand
+    :context [(numeric-coding ontario-lulc:MNRLULCNumeric)
+              (binary-coding geofeatures:Lake)]
+    :state   #(if (or (== (:lake %) 1)
+                      (contains? #{1 2 3 4 5 6 15 16 17 20 22 24 28 29} (:m-n-r-l-u-l-c-numeric %)))
+                (tl/conc 'carbonService:NotOnVegetatedLand)
+                (tl/conc 'carbonService:OnVegetatedLand))))
 
 ;; ontario:successional_stage_alg
 (defmodel successional-stage SuccessionalStage
@@ -137,14 +141,28 @@
 
 ;; Ceiling based off highest local values from MODIS NPP data
 ;; global:npp_modis -> measure -d carbonService:VegetationAndSoilCarbonSequestration t/ha*year core.contexts.ontario/algonquin-wgs84
+;;(defmodel vegetation-and-soil-carbon-sequestration VegetationAndSoilCarbonSequestration
+;;(probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
+;;  [26.00 33.00] VeryHighSequestration
+;;  [19.50 26.00] HighSequestration
+;;  [13.00 19.50] ModerateSequestration
+;;  [ 6.50 13.00] LowSequestration
+;;  [ 0.01  6.50] VeryLowSequestration
+;;  [ 0.00  0.01] NoSequestration))
+
+;; Ceiling based off data and references provided by Kim Taylor (24
+;; May 2012). Barr et al 2002 & FLUXNET data report from 2011 indicate
+;; that "All of the values in Ontario are under 3.0 t C/ha/yr they are
+;; about 1.7 t C/ha/yr for the province"
 (defmodel vegetation-and-soil-carbon-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
-    [26.00 33.00] VeryHighSequestration
-    [19.50 26.00] HighSequestration
-    [13.00 19.50] ModerateSequestration
-    [ 6.50 13.00] LowSequestration
-    [ 0.01  6.50] VeryLowSequestration
-    [ 0.00  0.01] NoSequestration))
+  [1.20  1.70] VeryHighSequestration
+  [0.85  1.20] HighSequestration
+  [0.50  0.85] ModerateSequestration
+  [0.15  0.50] LowSequestration
+  [0.01  0.15] VeryLowSequestration
+  [0.00  0.01] NoSequestration))
+
 
 (defmodel carbon-source-value CarbonSourceValue
   (bayesian CarbonSourceValue
