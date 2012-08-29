@@ -182,7 +182,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!-- 
   <measurement:Measurement id="dem90m">
     <observation:hasObservable>
       <geophysics:Altitude />
@@ -209,10 +208,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement> 
-  -->
+  </measurement:Measurement>
 
-  <!--
   <measurement:Measurement id="slope90m_smoothed">
 	<observation:hasObservable>
 		<geophysics:DegreeSlope/>
@@ -238,7 +235,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 		</geospace:RasterGrid>
 	</observation:hasObservationExtent>
   </measurement:Measurement>
--->
 
   <!-- This should be the correct floodplains layer for Western Washington, capable of distinguishing
        between 100- and 500-year floodplains. -->
@@ -3938,7 +3934,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!--
   <measurement:BinaryCoding id="usa_airports">
     <observation:hasObservable>
       <infrastructure:Airport />
@@ -3961,7 +3956,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
   <!--
   <measurement:Ranking id="san_pedro_amphibian_rich">
@@ -4471,7 +4465,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <!--
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:ConservationPractice />
@@ -4496,7 +4489,6 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
-  -->
 
   <observation:Categorization id="national_boundaries">
     <observation:hasObservable>
@@ -4520,7 +4512,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </observation:Categorization>
 
-  <!--
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:CoverManagement />
@@ -4545,7 +4536,6 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
-  -->
 
   <measurement:Ranking id="RUSLE_cover_management_co">
     <observation:hasObservable>
@@ -5188,7 +5178,6 @@ could be used in BN training. -->
   </measurement:BinaryCoding>
   -->
 
-  <!--
   <measurement:BinaryCoding id="usa_highways">
     <observation:hasObservable>
       <infrastructure:Highway />
@@ -5212,7 +5201,6 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
   <measurement:Measurement id="dam_storage_puget">
     <observation:hasObservable>
@@ -7090,7 +7078,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!--
   <measurement:BinaryCoding id="usa_railroads">
     <observation:hasObservable>
       <infrastructure:Railway />
@@ -7111,9 +7098,7 @@ could be used in BN training. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
-  <!--
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:RainfallRunoffErosivityIndex />
@@ -7137,7 +7122,6 @@ could be used in BN training. -->
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
   </measurement:Ranking>
-  -->
 
   <measurement:Ranking id="RUSLE_rainfall_runoff_index_co">
     <observation:hasObservable>
@@ -7909,8 +7893,7 @@ Not sure why DR rivers are commented out.  This will likely mean
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <!-- Scenic drives for eastern Arizona, western Washington, Vermont only. -->
-  <!--
+<!-- Scenic drives for eastern Arizona, western Washington, Vermont only. -->
   <measurement:BinaryCoding id="usa_highways_scenic">
     <observation:hasObservable>
       <aestheticService:ScenicDrives />
@@ -7933,7 +7916,6 @@ Not sure why DR rivers are commented out.  This will likely mean
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
 <!-- This one is in t/ha, comparable to the global data. Use it in the
 probabilistic models and storylines for uniformity in units with the
@@ -7970,7 +7952,6 @@ global data. -->
 <!-- This one is in kg/ha - the original form of the data. Use it in
      RUSLE models so that multiplication of the RUSLE factors gives
      the correct results. -->
-  <!--
   <measurement:Measurement id="puget_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:AnnualSedimentSourceRUSLE />
@@ -7996,7 +7977,6 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Measurement>
-  -->
 
   <measurement:Count id="sheep">
     <observation:hasObservable>
@@ -8025,7 +8005,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Count>
 
-  <!--
   <measurement:Ranking id="usa_pugeterosionmetrics">
     <observation:hasObservable>
       <soilRetentionService:SlopeSteepnessAndLengthFactor />
@@ -8050,7 +8029,6 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Ranking>
-  -->
 
   <measurement:Ranking id="RUSLE_slope_steepness_co">
     <observation:hasObservable>
@@ -8107,7 +8085,7 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-<!--  Not very useful; it's at the watershed scale.
+<!--  Not very useful; it's at the watershed scale. -->
 <measurement:Ranking id="puget_pugeterosionmetrics">
     <observation:hasObservable>
       <habitat:SoilErodibility />
@@ -8131,7 +8109,7 @@ global data. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:Ranking> -->
+  </measurement:Ranking>
 
   <!--
   <measurement:Ranking id="SoilErodibilty">
@@ -9483,7 +9461,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <!--
   <observation:Categorization id="usa_watersheds_us">
     <observation:hasObservable>
       <geofeatures:Watershed />
@@ -9508,7 +9485,6 @@ global data. -->
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
-  -->
 
   <measurement:NumericCoding id="puget_wria_watersheds">
     <observation:hasObservable>
