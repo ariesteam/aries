@@ -119,6 +119,24 @@
   "Colorado Water Division 1 (South Platte River watershed), for water analysis"
   (grid
    "400 m"
+   "EPSG:4326 POLYGON((-105.76 39.73, -105 39.73, -105 39.1, -105.76 39.1, -105.76 39.73))"))
+
+(defcontext view-test-pike
+  "Testing the viewshed flow model in Colorado Springs near Pike's Peak"
+  (grid
+   "200 m"
+   "EPSG:4326 POLYGON((-105.2 39.1, -104.6 39.1, -104.6 38.6, -105.2 38.6, -105.2 39.1))"))
+
+(defcontext view-test-south-denver
+  "Testing the viewshed flow model in the area of South Denver"
+  (grid
+   "200 m"
+   "EPSG:4326 POLYGON((-106.25 41.01, -102.04 41.01, -102.04 38.63, -106.25 38.63, -106.25 41.01))"))
+
+(defcontext view-test-south-denver-low-res
+  "Testing the viewshed flow model in the area of South Denver"
+  (grid
+   "2 km"
    "EPSG:4326 POLYGON((-106.25 41.01, -102.04 41.01, -102.04 38.63, -106.25 38.63, -106.25 41.01))"))
 
 (defcontext psi-view-30-mile
