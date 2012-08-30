@@ -158,15 +158,6 @@
     [7  12] ModeratePopulationDensity
     [:<  7] LowPopulationDensity))
 
-;; This layer is a nightmare to work with.  I've tried it as a
-;categorization and am going back to a ranking for the moment.
-;(defmodel deforestation-risk DeforestationRiskClass
-; (classification (categorization DeforestationRisk)
-;  "High"     HighDeforestationRisk
-;  "Moderate" ModerateDeforestationRisk
-;  "Low"      LowDeforestationRisk
-;  "none"     NoDeforestationRisk))
-
 (defmodel deforestation-risk DeforestationRiskClass
   (classification (ranking DeforestationRisk)
     3 HighDeforestationRisk

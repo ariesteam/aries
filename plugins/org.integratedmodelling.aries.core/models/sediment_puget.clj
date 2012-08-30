@@ -165,10 +165,10 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(defmodel reservoirs-class ReservoirsClass 
-  (classification (binary-coding geofeatures:Reservoir)
-    1          ReservoirPresent
-    :otherwise ReservoirAbsent))
+(defmodel reservoir-sediment-sink ReservoirSedimentSink
+  (measurement ReservoirSedimentSink "t/ha"
+    :context [(binary-coding geofeatures:Reservoir)]
+    :state   #(if (== (:reservoir %) 1) 5000 0)))
 
 (defmodel stream-gradient StreamGradientClass 
   (classification (measurement habitat:StreamGradient "\u00b0")
@@ -195,20 +195,27 @@
 ;; erosion level defined by the US & global datasets, respectively.
 ;; Have these numbers reviewed by someone knowledgable about
 ;; sedimentation.
-(defmodel sediment-sink-annual AnnualSedimentSinkClass 
-  (probabilistic-measurement AnnualSedimentSinkClass "t/ha"
-    [20    30]    HighAnnualSedimentSink
-    [10    20]    ModerateAnnualSedimentSink
-    [ 0.01 10]    LowAnnualSedimentSink
-    [ 0     0.01] NoAnnualSedimentSink)) 
+(defmodel sediment-sink-floodplain FloodplainSedimentSinkClass 
+  (probabilistic-measurement FloodplainSedimentSinkClass "t/ha"
+    [20    30]    HighFloodplainSedimentSink
+    [10    20]    ModerateFloodplainSedimentSink
+    [ 0.01 10]    LowFloodplainSedimentSink
+    [ 0     0.01] NoFloodplainSedimentSink)) 
 
-(defmodel sediment-sink-us AnnualSedimentSink
-  (bayesian AnnualSedimentSink    
+(defmodel floodplain-sediment-sink FloodplainSedimentSink
+  (bayesian FloodplainSedimentSink    
     :import  "aries.core::SedimentSinkPuget.xdsl"
-    :context  [reservoirs-class stream-gradient floodplain-canopy-cover floodplain-width]
+    :context  [stream-gradient floodplain-canopy-cover floodplain-width]
     :required [FloodplainWidthClass]
-    :keep     [AnnualSedimentSinkClass]
-    :result   sediment-sink-annual))
+    :keep     [FloodplainSedimentSinkClass]
+    :result   sediment-sink-floodplain))
+
+(defmodel sink-total TotalSedimentSink
+  (measurement TotalSedimentSink "t/ha"
+    :context [floodplain-sediment-sink reservoir-sediment-sink]
+    :state   #(+ 
+               (if (nil? (:floodplain-sediment-sink %)) 0.0 (.getMean (:floodplain-sediment-sink %)))
+               (or       (:reservoir-sediment-sink %) 0.0))))
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
@@ -293,11 +300,11 @@
 
 (defmodel reservoir-soil-deposition-data ReservoirSoilDeposition
   (identification ReservoirSoilDeposition 
-    :context [source-puget sediment-sink-us hydroelectric-use-level levees streams]))
+    :context [source-puget sink-total hydroelectric-use-level levees streams]))
 
 (defmodel farmland-soil-deposition-data FarmlandSoilDeposition
   (identification FarmlandSoilDeposition 
-    :context [source-puget sediment-sink-us farmers-deposition-use-puget levees]))
+    :context [source-puget sink-total farmers-deposition-use-puget levees]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -308,7 +315,7 @@
   (span SedimentTransport
         puget:AnnualSedimentSource
         DepositionProneFarmers
-        AnnualSedimentSink
+        TotalSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River) 
         :source-threshold      2.0
@@ -323,7 +330,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_farmers_puget_data.clj")
-        :context [source-puget farmers-deposition-use-puget sediment-sink-us altitude levees streams floodplains-code]
+        :context [source-puget farmers-deposition-use-puget sink-total altitude levees streams floodplains-code]
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse
@@ -345,7 +352,7 @@
   (span SedimentTransport
         puget:AnnualSedimentSource
         geofeatures:Reservoir
-        AnnualSedimentSink
+        TotalSedimentSink
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
         :source-threshold      2.0
@@ -360,7 +367,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_puget_data.clj")
-        :context [source-puget reservoirs sediment-sink-us altitude levees streams floodplains-code]
+        :context [source-puget reservoirs sink-total altitude levees streams floodplains-code]
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse
@@ -382,7 +389,7 @@
   (span SedimentTransport
         puget:AnnualSedimentSource
         WaterIntakeUse  ; Change the beneficiary group as needed.  This one is for drinking water intakes (though we currently lack information on their location)
-        AnnualSedimentSink 
+        TotalSedimentSink 
         nil
         (geophysics:Altitude FloodplainsCode infrastructure:Levee geofeatures:River)
         :source-threshold      2.0
@@ -397,7 +404,7 @@
         :rv-max-states      10
         :animation?         false
       ;;:save-file          (str (System/getProperty "user.home") "/sediment_turbidity_data.clj")
-        :context [source-puget sediment-sink-us altitude levees streams floodplains-code] ;change the beneficiary group as needed
+        :context [source-puget sink-total altitude levees streams floodplains-code] ;change the beneficiary group as needed
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse

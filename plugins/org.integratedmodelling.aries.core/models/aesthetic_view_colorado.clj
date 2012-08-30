@@ -72,7 +72,7 @@
 ;; at Gary's plain-English description of the flow models.              
 (defmodel source ViewSource
   (bayesian ViewSource
-        :import  "aries.core::ViewSourceColoradoSimplified.xdsl"
+        :import  "aries.core::ViewSourceColorado.xdsl"
         :context [lake peaks scenic-vegetation]
         :keep    [TheoreticalNaturalBeauty]
         :result  theoretical-beauty))
@@ -81,35 +81,42 @@
 ;;; Sink models
 ;;;-------------------------------------------------------------------
 
-(defmodel general-disturbance colorado:GenericDisturbance
-  (classification (binary-coding colorado:GeneralDisturbance)
-    1          colorado:DisturbancePresent
-    :otherwise colorado:DisturbanceAbsent))
-
-(defmodel clearcut Clearcuts 
-  (classification (binary-coding geofeatures:Clearcut)
-    1          ClearcutsPresent
+(defmodel clearcut Clearcuts
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    #{123 124} ClearcutsPresent
     :otherwise ClearcutsAbsent))
+
+(defmodel mine Mines
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)         
+    117        MinesPresent
+    :otherwise MinesAbsent))
+
+(defmodel burn BurnedArea
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)         
+    116        BurnedAreaPresent
+    :otherwise BurnedAreaAbsent))
 
 (defmodel transmission-line TransmissionLines 
   (classification (categorization infrastructure:TransmissionLine)
     "C20"      TransmissionLinesPresent
     :otherwise TransmissionLinesAbsent))
 
-(defmodel highway Highways 
+(defmodel highway Highways
   (classification (binary-coding infrastructure:Highway)
     1          HighwaysPresent
     :otherwise HighwaysAbsent))
 
-(defmodel gray-kill colorado:GrayBeetleKill
-  (classification (binary-coding colorado:GrayBeetleStage)
-    1          colorado:GrayKillPresent
-    :otherwise colorado:GrayKillAbsent)) 
+(defmodel developed-land DevelopedLand
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)           
+    112        HighDensityDevelopment
+    111        LowDensityDevelopment
+    :otherwise NoDevelopment))
 
-(defmodel green-gray-kill colorado:GreenGrayBeetleKill
-  (classification (binary-coding colorado:GreenGrayBeetleStage)
-    1          colorado:GreenGrayKillPresent
-    :otherwise colorado:GreenGrayKillAbsent))
+(defmodel beetle-kill colorado:GreenGrayBeetleKill
+  (classification (count colorado:MountainPineBeetleDamageTreesPerHectare "/ha")
+    [19 1236]  colorado:GrayKillPresent
+    [ 1   19]  colorado:GreenGrayKillPresent
+    :otherwise colorado:BeetleKillAbsent))
 
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
@@ -122,7 +129,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkColorado.xdsl"
-    :context [general-disturbance clearcut transmission-line highway gray-kill green-gray-kill]
+    :context [clearcut mine burn developed-land transmission-line highway beetle-kill]
     :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -130,9 +137,16 @@
 ;;; Use models
 ;;;-------------------------------------------------------------------
 
+;; Commenting out housing data until we get the parcel data for
+;Colorado completed.
+;(defmodel housing PresenceOfHousing
+; (classification (binary-coding aestheticService:PresenceOfHousing) ; This may give a problem being a binary coding when it's not for other case studies - hopefully this won't be an issue.
+;  1          HousingPresent
+;  :otherwise HousingAbsent))
+
 (defmodel housing PresenceOfHousing
-  (classification (binary-coding aestheticService:PresenceOfHousing) ; This may give a problem being a binary coding when it's not for other case studies - hopefully this won't be an issue.
-    1          HousingPresent
+  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) ;Use NLCD classes 22-24 once a seamless CO version is available.
+    111        HousingPresent
     :otherwise HousingAbsent))
 
 (defmodel property-value HousingValue
@@ -166,7 +180,7 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))                                    
+  (measurement geophysics:Altitude "m"))
 
 (defmodel data-homeowners LineOfSight
   (identification LineOfSight
@@ -183,7 +197,7 @@
         ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    4.0
+        :source-threshold    10.0
         :sink-threshold      5.0
         :use-threshold       0.05
         :trans-threshold     1.0

@@ -1,95 +1,124 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="GenericDisturbance">
-			<state id="DisturbancePresent" />
-			<state id="DisturbanceAbsent" />
-			<probabilities>0.001 0.999</probabilities>
-		</cpt>
-		<cpt id="DevelopmentInfrastructure">
-			<state id="InfrastructurePresent" />
-			<state id="InfrastructureAbsent" />
-			<probabilities>0.002 0.998</probabilities>
-		</cpt>
 		<cpt id="Clearcuts">
 			<state id="ClearcutsPresent" />
 			<state id="ClearcutsAbsent" />
 			<probabilities>0.011 0.989</probabilities>
 		</cpt>
-		<cpt id="GrayBeetleKill">
-			<state id="GrayKillPresent" />
-			<state id="GrayKillAbsent" />
-			<probabilities>0.19 0.8100000000000001</probabilities>
+		<cpt id="Highways">
+			<state id="HighwaysPresent" />
+			<state id="HighwaysAbsent" />
+			<probabilities>0.005 0.995</probabilities>
+		</cpt>
+		<cpt id="TransmissionLines">
+			<state id="TransmissionLinesPresent" />
+			<state id="TransmissionLinesAbsent" />
+			<probabilities>0.005 0.995</probabilities>
+		</cpt>
+		<cpt id="DevelopedLand">
+			<state id="HighDensityDevelopment" />
+			<state id="LowDensityDevelopment" />
+			<state id="NoDevelopment" />
+			<probabilities>0.008 0.007 0.985</probabilities>
+		</cpt>
+		<cpt id="Mines">
+			<state id="MinesPresent" />
+			<state id="MinesAbsent" />
+			<probabilities>0.005 0.995</probabilities>
+		</cpt>
+		<cpt id="BurnedArea">
+			<state id="BurnedAreaPresent" />
+			<state id="BurnedAreaAbsent" />
+			<probabilities>0.005 0.995</probabilities>
 		</cpt>
 		<cpt id="GreenGrayBeetleKill">
+			<state id="GrayKillPresent" />
 			<state id="GreenGrayKillPresent" />
-			<state id="GreenGrayKillAbsent" />
-			<probabilities>0.231 0.769</probabilities>
+			<state id="BeetleKillAbsent" />
+			<probabilities>0.19 0.23 0.58</probabilities>
 		</cpt>
-		<cpt id="VisualBlight">
+		<noisymax id="VisualBlight">
 			<state id="HighBlight" />
 			<state id="ModerateBlight" />
 			<state id="LowBlight" />
 			<state id="NoBlight" />
-			<parents>DevelopmentInfrastructure Clearcuts GenericDisturbance GreenGrayBeetleKill GrayBeetleKill</parents>
-			<probabilities>0.95 0.05 0 0 0.9 0.1 0 0 0.95 0.05 0 0 0.75 0.1 0.15 0 0.85 0.15 0 0 0.75 0.05 0.2 0 0.75 0.1 0.15 0 0.75 0 0.25 0 0.45 0.2 0.35 0 0.45 0.15 0.4 0 0.45 0.2 0.35 0 0.45 0.1 0.45 0 0.45 0.1 0.45 0 0.45 0.05 0.5 0 0.45 0.1 0.45 0 0.45 0 0.55 0 0.3 0.25 0.45 0 0.3 0.25 0.45 0 0.3 0.2 0.5 0 0.3 0.1 0.6 0 0.3 0.1 0.6 0 0.3 0.05 0.65 0 0.3 0.1 0.6 0 0.3 0 0.7 0 0 0.2 0.8 0 0 0.15 0.85 0 0 0.2 0.8 0 0 0.1 0.9 0 0 0.1 0.9 0 0 0 0.05 0.95 0 0.1 0.9 0 0 0 0 1</probabilities>
-		</cpt>
+			<parents>Highways TransmissionLines DevelopedLand Mines BurnedArea GreenGrayBeetleKill Clearcuts</parents>
+			<strengths>0 1 0 1 0 1 2 0 1 0 1 0 1 2 0 1</strengths>
+			<parameters>0.25 0.25 0.25 0.25 0 0 0 1 0.3 0.2999999999999999 0.3 0.1 0 0 0 1 0.45 0.3 0.25 0 0.2 0.3 0.4 0.1 0 0 0 1 0.09999999999999998 0.2999999999999999 0.3 0.3 0 0 0 1 0.09999999999999998 0.2999999999999999 0.3 0.3 0 0 0 1 0 0.2 0.3 0.5 0 0.09999999999999998 0.2 0.7 0 0 0 1 0.25 0.25 0.25 0.25 0 0 0 1 0 0 0.05000000000000004 0.95</parameters>
+		</noisymax>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network2" faultnameformat="nodestate">
-			<node id="Clearcuts">
-				<name>Clearcuts</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>347 344 415 370</position>
-				<barchart active="true" width="185" height="54" />
-			</node>
-			<node id="DevelopmentInfrastructure">
-				<name>DevelopmentInfrastructure</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>27 342 249 371</position>
-				<barchart active="true" width="275" height="54" />
-			</node>
+				<position>877 59 1286 255</position>
+			</textbox>
 			<node id="VisualBlight">
 				<name>VisualBlight</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>528 176 597 219</position>
+				<position>701 216 770 259</position>
 				<barchart active="true" width="230" height="90" />
 			</node>
-			<node id="GenericDisturbance">
-				<name>GenericDisturbance</name>
+			<node id="DevelopedLand">
+				<name>DevelopedLand</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>568 344 636 370</position>
-				<barchart active="true" width="228" height="54" />
+				<position>556 350 659 414</position>
+				<barchart active="true" width="255" height="72" />
 			</node>
-			<node id="GrayBeetleKill">
-				<name>GrayBeetleKill</name>
+			<node id="TransmissionLines">
+				<name>TransmissionLines</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>1042 345 1110 371</position>
-				<barchart active="true" width="185" height="54" />
+				<position>223 356 445 385</position>
+				<barchart active="true" width="281" height="54" />
+			</node>
+			<node id="Highways">
+				<name>Highways</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>61 356 135 383</position>
+				<barchart active="true" width="175" height="54" />
+			</node>
+			<node id="Mines">
+				<name>Mines</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>788 358 856 384</position>
+				<barchart active="true" width="162" height="54" />
+			</node>
+			<node id="BurnedArea">
+				<name>BurnedArea</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>983 359 1051 385</position>
+				<barchart active="true" width="214" height="54" />
 			</node>
 			<node id="GreenGrayBeetleKill">
 				<name>GreenGrayBeetleKill</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>816 344 884 370</position>
-				<barchart active="true" width="244" height="54" />
+				<position>1112 329 1395 434</position>
+				<barchart active="true" width="243" height="72" />
 			</node>
-			<textbox>
-				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+			<node id="Clearcuts">
+				<name>Clearcuts</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>857 59 1266 255</position>
-			</textbox>
+				<position>64 294 132 320</position>
+				<barchart active="true" width="185" height="54" />
+			</node>
 		</genie>
 	</extensions>
 </smile>

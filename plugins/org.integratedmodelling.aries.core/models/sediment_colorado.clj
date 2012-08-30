@@ -36,11 +36,21 @@
                            bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology soilRetentionService)
+(namespace-ontology soilRetentionService
+  (thinklab-core:BooleanRanking
+   (LandOrWater
+    (OnLand) (NotOnLand))))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
 ;;;-------------------------------------------------------------------
+
+;; Used to mask out open water
+(defmodel land-selector LandOrWater
+  (classification  (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
+    ;;    #{12 21 22 23 24 31 41 42 43 52 71 81 82 90 95} OnLand
+    ;;    Use this once NLCD is working again - much cleaner and simpler.
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125} OnLand))
 
 (defmodel soil-group colorado:HydrologicSoilsGroup
   "Relevant soil group"
@@ -84,16 +94,22 @@
 
 (defmodel vegetation-type colorado:SedimentVegetationType
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{30 34} colorado:PonderosaPine
-    29       colorado:LodgepolePine
-    #{26 28} colorado:SpruceFir
-    22       colorado:AspenWoodland))
-;;#{22 24 26 28 29 30 32 33 34 35 36 38 78 79 92 103}colorado:Forests
+    #{19 22 23 24 26 28 29 30 32 33 34 35 36 38 39 40 41 42 43 44 46 48 50 53 56 58 62 63 64 67 68 69 70 71 72 73 74 75 76 77 78 79 81 82 85 86 92 95 99 103 104 106 108 109 }
+    colorado:ForestShrublandGrasslandWetland
+    #{118 119 120 121 122}
+    colorado:InvasiveAnnualsAndPerennials
+    #{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 114 115 116 117 123 124 125}
+    colorado:CropsBarrenDeveloped))
+
+;;  These are further distinctions in case we decide to group classes
+;;together differently in the future
+;;#{22 23 24 26 28 29 30 32 33 34 35 36 38 78 79 92 99 103}colorado:Forests
 ;;#{19 39 40 41 42 43 44 46 48 50 53 56 58 77 81 82 104 108 109}colorado:Shrubland
 ;;#{62 63 64 67 68 69 70 71 72 73 74 75 76 85 86 95 106}colorado:Grassland
-;;#{114 121 122}colorado:InvasiveAnnuals
+;;#{ 121 122}colorado:InvasiveAnnuals
 ;;#{118 119 120}colorado:InvasivePerennials
-;;#{11 13 14 17 21 113 115 116 117 123 124 124}colorado:Barren
+;;#{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 115 116 117 123
+;;#124 125}colorado:CropsBarrenDeveloped
 (defmodel mountain-pine-beetle colorado:MountainPineBeetleDamageClass
   (classification (ranking colorado:MountainPineBeetleDamageSeverity)
      2         colorado:SevereDamage
@@ -141,8 +157,8 @@
     :import   "aries.core::SedimentSourceColoradoAdHoc.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
-               successional-stage mountain-pine-beetle]
-    :required [SlopeClass]
+               successional-stage mountain-pine-beetle land-selector]
+    :required [LandOrWater]
     :keep     [colorado:AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
 
@@ -153,8 +169,8 @@
     :import   "aries.core::SedimentSourceColoradoAdHocNoFire.xdsl"
     :context  [soil-group slope soil-texture precipitation-annual
                vegetation-type percent-canopy-cover
-               successional-stage]
-    :required [SlopeClass]
+               successional-stage land-selector]
+    :required [LandOrWater]
     :keep     [colorado:AnnualSedimentSourceClass]
     :result   sediment-source-value-annual))
 
@@ -169,11 +185,67 @@
 ;; regions in the Rockies.  Hence all sediment that's eroded moves
 ;; downslope and eventually ends up in reservoirs.
 
-(defmodel sink ReservoirSedimentSink
+(defmodel reservoir-sediment-sink ReservoirSedimentSink
   (measurement ReservoirSedimentSink "t/ha"
     :context [(binary-coding geofeatures:Reservoir)]
     :state   #(if (== (:reservoir %) 1) 5000 0)))
- 
+
+(defmodel stream-gradient StreamGradientClass 
+  (classification (measurement habitat:StreamGradient "\u00b0")
+    [2.86   :>] HighStreamGradient
+    [1.15 2.86] ModerateStreamGradient
+    [:<   1.15] LowStreamGradient))
+
+(defmodel floodplain-tree-canopy-cover FloodplainTreeCanopyCover
+  (ranking FloodplainTreeCanopyCover
+    :context [(ranking     habitat:PercentTreeCanopyCover)
+              (measurement habitat:FloodplainWidth "m")]
+    :state   #(if (and (:floodplain-width %) (pos? (:floodplain-width %))
+                       (:percent-tree-canopy-cover %))
+                (:percent-tree-canopy-cover %)
+                0)))
+
+(defmodel floodplain-tree-canopy-cover-class FloodplainTreeCanopyCoverClass
+  (classification floodplain-tree-canopy-cover
+    [80 100 :inclusive] VeryHighFloodplainCanopyCover
+    [60  80]            HighFloodplainCanopyCover
+    [40  60]            ModerateFloodplainCanopyCover
+    [20  40]            LowFloodplainCanopyCover
+    [ 0  20]            VeryLowFloodplainCanopyCover))
+
+(defmodel floodplain-width FloodplainWidthClass 
+  (classification (measurement habitat:FloodplainWidth "m")
+    [1300   :>] VeryWideFloodplain
+    [ 800 1300] WideFloodplain
+    [ 350  800] NarrowFloodplain
+    [   0  350] VeryNarrowFloodplain))
+
+;; These are arbitrary numbers discretized based on the "low" soil
+;; erosion level defined by the US & global datasets, respectively.
+;; Have these numbers reviewed by someone knowledgable about
+;; sedimentation.
+(defmodel sediment-sink-floodplain FloodplainSedimentSinkClass 
+  (probabilistic-measurement FloodplainSedimentSinkClass "t/ha"
+    [20    30]    HighFloodplainSedimentSink
+    [10    20]    ModerateFloodplainSedimentSink
+    [ 0.01 10]    LowFloodplainSedimentSink
+    [ 0     0.01] NoFloodplainSedimentSink))
+
+(defmodel floodplain-sediment-sink FloodplainSedimentSink
+  (bayesian FloodplainSedimentSink
+    :import  "aries.core::SedimentSinkColorado.xdsl"
+    :context  [stream-gradient floodplain-tree-canopy-cover-class floodplain-width]
+    :required [StreamGradientClass]
+    :keep     [FloodplainSedimentSinkClass]
+    :result   sediment-sink-floodplain))
+
+(defmodel sink-total TotalSedimentSink
+  (measurement TotalSedimentSink "t/ha"
+    :context [floodplain-sediment-sink reservoir-sediment-sink]
+    :state   #(+ 
+               (if (nil? (:floodplain-sediment-sink %)) 0.0 (.getMean (:floodplain-sediment-sink %)))
+               (or       (:reservoir-sediment-sink %) 0.0))))
+
 ;;;-------------------------------------------------------------------
 ;;; Use models
 ;;;-------------------------------------------------------------------
@@ -186,21 +258,28 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel floodplains-code FloodplainsCode
-  (binary-coding geofeatures:Reservoir))
+  (binary-coding FloodplainsCode
+    :context [(measurement habitat:FloodplainWidth "m")]
+    :state #(if (and (:floodplain-width %) (pos? (:floodplain-width %))) 1 0)))
 
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
 (defmodel streams geofeatures:River
-  (binary-coding geofeatures:River))        
+  (binary-coding geofeatures:River))
+
+(defmodel levees Levees
+  (binary-coding Levees
+    :context [(categorization infrastructure:Levee)]
+    :state #(if (= (:levee %) "LEVEE") 0 1)))
 
 (defmodel reservoir-deposition-data-fire ReservoirSoilDepositionFire
   (identification ReservoirSoilDepositionFire
-    :context [source-fire sink reservoirs altitude streams]))
+    :context [source-fire sink-total reservoirs altitude streams levees]))
 
 (defmodel reservoir-deposition-data-no-fire ReservoirSoilDepositionNoFire
   (identification ReservoirSoilDepositionNoFire
-    :context [source-no-fire sink reservoirs altitude streams]))
+    :context [source-no-fire sink-total reservoirs altitude streams levees]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -215,9 +294,9 @@
   (span SedimentTransport
         colorado:AnnualSedimentSourceFire
         geofeatures:Reservoir
-        ReservoirSedimentSink
+        TotalSedimentSink
         nil
-        (geophysics:Altitude geofeatures:River FloodplainsCode)
+        (geophysics:Altitude geofeatures:River FloodplainsCode Levees)
         :source-threshold      0.0
         :sink-threshold        0.0
         :use-threshold         0.0
@@ -230,7 +309,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
-        :context [source-fire reservoirs sink altitude streams floodplains-code]
+        :context [source-fire reservoirs sink-total altitude streams floodplains-code levees]
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse
@@ -251,9 +330,9 @@
   (span SedimentTransport
         colorado:AnnualSedimentSourceNoFire
         geofeatures:Reservoir
-        ReservoirSedimentSink
+        TotalSedimentSink
         nil
-        (geophysics:Altitude geofeatures:River FloodplainsCode)
+        (geophysics:Altitude geofeatures:River FloodplainsCode Levees)
         :source-threshold      0.0
         :sink-threshold        0.0
         :use-threshold         0.0
@@ -266,7 +345,7 @@
         :rv-max-states      10
         :animation?         false
         ;;:save-file          (str (System/getProperty "user.home") "/sediment_reservoirs_colorado_data.clj")
-        :context [source-no-fire reservoirs sink altitude streams floodplains-code]
+        :context [source-no-fire reservoirs sink-total altitude streams floodplains-code levees]
         :keep    [TheoreticalSource
                   TheoreticalSink
                   TheoreticalUse

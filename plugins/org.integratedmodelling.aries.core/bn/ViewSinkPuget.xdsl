@@ -6,10 +6,11 @@
 			<state id="HighwaysAbsent" />
 			<probabilities>0.025 0.975</probabilities>
 		</cpt>
-		<cpt id="CommercialIndustrialTransportation">
-			<state id="TransportationInfrastructurePresent" />
-			<state id="TransportationInfrastructureAbsent" />
-			<probabilities>0.15 0.85</probabilities>
+		<cpt id="DevelopedLand">
+			<state id="HighDensityDevelopment" />
+			<state id="LowDensityDevelopment" />
+			<state id="NoDevelopment" />
+			<probabilities>0.025 0.125 0.85</probabilities>
 		</cpt>
 		<cpt id="Clearcuts">
 			<state id="ClearcutsPresent" />
@@ -21,9 +22,9 @@
 			<state id="ModerateBlight" />
 			<state id="LowBlight" />
 			<state id="NoBlight" />
-			<parents>Highways CommercialIndustrialTransportation Clearcuts</parents>
-			<strengths>0 1 0 1 0 1</strengths>
-			<parameters>0.5 0.25 0.15 0.1 0 0 0 1 0.5 0.25 0.15 0.1 0 0 0 1 0.2 0.4 0.2 0.2 0 0 0 1 0.04999999999999993 0.05000000000000004 0.09999999999999998 0.8</parameters>
+			<parents>Highways DevelopedLand Clearcuts</parents>
+			<strengths>0 1 0 1 2 0 1</strengths>
+			<parameters>0.5 0.25 0.15 0.1 0 0 0 1 0.5 0.25 0.15 0.1 0.3 0.2999999999999999 0.3 0.1 0 0 0 1 0.2 0.4 0.2 0.2 0 0 0 1 0.04999999999999993 0.05000000000000004 0.09999999999999998 0.8</parameters>
 		</noisymax>
 	</nodes>
 	<extensions>
@@ -33,23 +34,23 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>782 300 850 326</position>
+				<position>704 287 772 313</position>
 				<barchart active="true" width="185" height="54" />
 			</node>
-			<node id="CommercialIndustrialTransportation">
-				<name>CommercialIndustrialTransportation</name>
+			<node id="DevelopedLand">
+				<name>DevelopedLand</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>403 297 625 326</position>
-				<barchart active="true" width="388" height="54" />
+				<position>397 294 619 323</position>
+				<barchart active="true" width="242" height="72" />
 			</node>
 			<node id="Highways">
 				<name>Highways</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>180 298 254 325</position>
+				<position>246 286 320 313</position>
 				<barchart active="true" width="175" height="54" />
 			</node>
 			<node id="VisualBlight">

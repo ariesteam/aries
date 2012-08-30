@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
 	<nodes>
+		<cpt id="StreamGradientClass">
+			<state id="HighStreamGradient" />
+			<state id="ModerateStreamGradient" />
+			<state id="LowStreamGradient" />
+			<probabilities>0.6 0.2 0.2</probabilities>
+		</cpt>
 		<cpt id="FloodplainWidthClass">
 			<state id="VeryWideFloodplain" />
 			<state id="WideFloodplain" />
@@ -8,19 +14,13 @@
 			<state id="VeryNarrowFloodplain" />
 			<probabilities>0.1 0.1 0.2 0.6</probabilities>
 		</cpt>
-		<cpt id="StreamGradientClass">
-			<state id="HighStreamGradient" />
-			<state id="ModerateStreamGradient" />
-			<state id="LowStreamGradient" />
-			<probabilities>0.125 0.125 0.75</probabilities>
-		</cpt>
 		<cpt id="FloodplainTreeCanopyCoverClass">
 			<state id="VeryHighFloodplainCanopyCover" />
 			<state id="HighFloodplainCanopyCover" />
 			<state id="ModerateFloodplainCanopyCover" />
 			<state id="LowFloodplainCanopyCover" />
 			<state id="VeryLowFloodplainCanopyCover" />
-			<probabilities>0.005 0.05 0.05 0.05 0.845</probabilities>
+			<probabilities>0.48 0.28 0.14 0.08 0.02</probabilities>
 		</cpt>
 		<cpt id="FloodplainSedimentSinkClass">
 			<state id="HighFloodplainSedimentSink" />
@@ -38,7 +38,7 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>545 96 687 132</position>
+				<position>461 187 603 223</position>
 				<comment>Erosion an absolute sink</comment>
 				<barchart active="true" width="322" height="90" />
 			</node>
@@ -47,30 +47,30 @@
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>230 234 339 274</position>
+				<position>152 354 261 394</position>
 				<comment>A proxy for the velocity of streamflow.  Use underlying DEM to calculate the slope of the stream.</comment>
-				<barchart active="true" width="276" height="72" />
-			</node>
-			<node id="FloodplainTreeCanopyCoverClass">
-				<name>FloodplainTreeCanopyCoverClass</name>
-				<interior color="ffffff" />
-				<outline color="000080" />
-				<font color="000000" name="Arial" size="8" />
-				<position>541 255 694 291</position>
-				<barchart active="true" width="374" height="108" />
+				<barchart active="true" width="257" height="72" />
 			</node>
 			<node id="FloodplainWidthClass">
 				<name>FloodplainWidthClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>884 246 988 283</position>
-				<barchart active="true" width="247" height="90" />
+				<position>793 364 897 401</position>
+				<barchart active="true" width="223" height="90" />
+			</node>
+			<node id="FloodplainTreeCanopyCoverClass">
+				<name>FloodplainTreeCanopyCoverClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>458 373 611 409</position>
+				<barchart active="true" width="374" height="108" />
 			</node>
 			<textbox>
 				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
 				<font color="000000" name="Arial" size="8" />
-				<position>885 339 1294 535</position>
+				<position>857 59 1266 255</position>
 			</textbox>
 		</genie>
 	</extensions>
