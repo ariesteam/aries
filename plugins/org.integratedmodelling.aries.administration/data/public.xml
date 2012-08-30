@@ -879,7 +879,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-<!--
 <measurement:Ranking id="MgDeforest4">
   <observation:hasObservable>
     <carbonService:DeforestationRisk/>
@@ -906,7 +905,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:Ranking>
--->
 
   <!-- Units for this are in fires/km2 from 1970-2007 -->
   <measurement:Measurement id="fire_freq_puget">
@@ -7466,10 +7464,8 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
+  </measurement:BinaryCoding> -->
 
-Not sure why DR rivers are commented out.  This will likely mean
-     the sediment model won't work. 
   <measurement:BinaryCoding id="dominicanRepublic_drrivers">
     <observation:hasObservable>
       <geofeatures:River />
@@ -7490,7 +7486,6 @@ Not sure why DR rivers are commented out.  This will likely mean
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
   <measurement:Ranking id="puget_hydrography_wa">
     <observation:hasObservable>
@@ -9122,62 +9117,6 @@ global data. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
-
-  <!-- Old version with pixels too small or at corners
-  <measurement:Measurement id="Diversions">
-    <observation:hasObservable>
-      <waterSupplyService:SurfaceDiversionCapacity />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Digitized locations of St. David and Pomerene diversions</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <measurement:unit>mm</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>san_pedro:diversions_san_pedro</geospace:hasCoverageId>
-        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>45</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>122</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>30.868</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-111.02</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>33.285</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-109.87</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
-  <measurement:Measurement id="Diversions2">
-    <observation:hasObservable>
-      <waterSupplyService:SurfaceDiversionCapacity/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Digitized locations of St. David and Pomerene diversions</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <measurement:unit>mm</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>san_pedro:Diversions2</geospace:hasCoverageId>
-        <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>3</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>10</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>31.803</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-110.255</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>31.923</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-110.205</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-  -->
 
   <measurement:Ranking id="global_terrestrialecoregions">
     <observation:hasObservable>
