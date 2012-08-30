@@ -415,7 +415,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-  <!--
   <observation:Categorization id="sanPedro_grassland_quality_az">
     <observation:hasObservable>
       <habitat:GrasslandQuality/>
@@ -440,7 +439,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
-  -->
 
   <measurement:BinaryCoding id="housing_views_puget">
     <observation:hasObservable>
@@ -517,7 +515,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <!--
   <measurement:NumericCoding id="sanPedro_az_land_ownership">
     <observation:hasObservable>
       <habitat:LandOwnership />
@@ -543,7 +540,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
   </measurement:NumericCoding>
-  -->
 
   <!-- Presence/absence of levees in Puget Sound and Chehalis watershed  -->
   <measurement:BinaryCoding id="puget_levees">
@@ -618,7 +614,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>  -->
+  </measurement:BinaryCoding>
 
   <measurement:BinaryCoding id="mountainfront_recharge">
     <observation:hasObservable>
@@ -645,9 +641,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
+  </measurement:BinaryCoding> -->
 
-<!--
 <measurement:BinaryCoding id="san_pedro_mountainfront_recharge2">
   <observation:hasObservable>
     <geofeatures:MountainFront/>
@@ -671,9 +666,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
-</measurement:BinaryCoding> -->
+</measurement:BinaryCoding>
 
-  <!--
   <measurement:BinaryCoding id="sanPedro_grazing_land_az">
     <observation:hasObservable>
       <habitat:PastureLand/>
@@ -696,7 +690,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
   <!-- Global population density, persons/mi^2, derived from raw LandScan data, which was counts/pixel -->
   <measurement:Count id="popDens2006">
@@ -881,7 +874,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   -->
 
   <!-- This one is just a presence/absence of roads -->
-  <!--
   <measurement:BinaryCoding id="sanPedro_az_roads">
     <observation:hasObservable>
       <infrastructure:Road />
@@ -905,12 +897,10 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-  -->
 
   <!-- Road classification for calculating travel cost; 6 categories
        of road (excluding access ramps) from interstate highways to
        trails, alleys, and primitive roads -->
-  <!--
   <observation:Categorization id="sanPedro_az_roads">
     <observation:hasObservable>
       <recreationService:RoadTravelCapacity />
@@ -935,7 +925,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </observation:Categorization>
-  -->
 
   <measurement:BinaryCoding id="springs3">
     <observation:hasObservable>
