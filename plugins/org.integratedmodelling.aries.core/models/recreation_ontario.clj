@@ -174,7 +174,7 @@
 ;;ontario:hiking_use_alg
 (defmodel hiking-use HikingUse
   "Use data from MNR park surveys where backcountry user indicated a hiking trip."
-  (binary-coding HikingUse))
+ (binary-coding HikingUse))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
@@ -190,7 +190,8 @@
 
 (defmodel data-homeowners aestheticService:LineOfSight
   (identification aestheticService:LineOfSight
-    :context [source canoe-use sink altitude]))
+    ;;:context [source canoe-use sink altitude]
+    :context [source hiking-use sink altitude]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -199,12 +200,15 @@
 (defmodel view aestheticService:AestheticViewsheds
   (span aestheticService:LineOfSight 
         aestheticService:ViewSource
-        CanoeUse
+        ;;CanoeUse
+        HikingUse
         ;;aestheticService:ViewUse
         aestheticService:ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    75.0  ;; Brian: NB, you've probably eliminated all sources by using such a high source theshold.
+        :source-threshold    25.0  ;; Brian: NB, you've probably
+        ;; eliminated all sources by using such a high source
+        ;; threshold. Reduced threshold from 75 to 25
         :sink-threshold      10.0
         :use-threshold       0.25
         :trans-threshold     1.0
@@ -212,7 +216,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 2
+        :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/recreation_ontario_data.clj")
