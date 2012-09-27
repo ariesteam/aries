@@ -221,7 +221,7 @@
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/recreation_ontario_data.clj")
         ;; need to add additional context(s) for use
-        :context [source sink canoe-use altitude]
+        :context [source sink hiking-use altitude]
         :keep    [aestheticService:TheoreticalSource
                   aestheticService:TheoreticalSink
                   aestheticService:TheoreticalUse
