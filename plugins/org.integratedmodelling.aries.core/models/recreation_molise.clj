@@ -41,35 +41,18 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
-(declare river
-         lake
-         ocean
+(declare ocean
          river-lake-code
          river-lake
          scenic-vegetation
          theoretical-beauty)
 
 ;;molise:rivers_molise
-(defmodel river River
-  "Identifies the presence of a river."
-  (classification (binary-coding River)
-    1            RiverPresent
-    :otherwise   RiverAbsent))
-
-;;molise:lakes_molise
-(defmodel lake Lake
-  "Identifies the presence of a lake."
-  (classification (binary-coding Lake)
-    1            LakePresent
-    :otherwise   LakeAbsent))
-
-;;molise:rivers_molise
 ;;molise:lakes_molise
 (defmodel river-lake-code RiverLakeCode
   (binary-coding RiverLakeCode
     :context [(binary-coding geofeatures:Lake)
-              (binary-coding geofeatures:River)
-              (binary-coding infrastructure:Railway)]
+              (binary-coding geofeatures:River)]
     :state   #(if (or (= (:lake %) 1)
                       (= (:river %) 1))
                 1
@@ -91,11 +74,11 @@
 (defmodel scenic-vegetation ScenicVegetationClass
   "Uses Corine 2006 land cover data to identify scenic vegetation."
   (classification (numeric-coding molise-lulc:CorineNumeric)
-    #{223}         OliveGroves
-    #{243}         Meadows
+    223            OliveGroves
+    243            Meadows
     #{3232 324}    Hedgerows
     #{3116 3121 1} DenseForestCover
-    #{2}           SparseForestCover
+    2              SparseForestCover
     :otherwise     NotScenicVegetation))
 
 (defmodel theoretical-beauty aestheticService:TheoreticalNaturalBeauty
@@ -109,7 +92,7 @@
 (defmodel source aestheticService:ViewSource
   (bayesian aestheticService:ViewSource
     :import  "aries.core::AestheticSourceMoliseView.xdsl"
-    :context [river-lake river-lake-code river lake ocean scenic-vegetation]
+    :context [river-lake ocean scenic-vegetation]
     :keep    [aestheticService:TheoreticalNaturalBeauty]
     :result  theoretical-beauty))
 ;;;-------------------------------------------------------------------
@@ -124,7 +107,7 @@
   "Uses Corine 2006 land cover data to identify development density."
   (classification (numeric-coding molise-lulc:CorineNumeric)
     #{111 131}     HighIntensityDevelopment
-    #{112}         ModerateIntensityDevelopment
+    112            ModerateIntensityDevelopment
     #{242 243}     LowIntensityDevelopment
     :otherwise     NoDevelopment))
 
@@ -156,24 +139,24 @@
 
 ;;molise:Trails
 (defmodel hiking-use HikingUse
-  "Trail network at the farm"
+  "Trail network at the farm."
  (binary-coding HikingUse))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
 ;;;-------------------------------------------------------------------
 
-;;;-------------------------------------------------------------------
-;;; Identification models
-;;;-------------------------------------------------------------------
-
 ;; molise:DEM_molise_20m
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
+;;;-------------------------------------------------------------------
+;;; Identification models
+;;;-------------------------------------------------------------------
+
 (defmodel data-homeowners aestheticService:LineOfSight
   (identification aestheticService:LineOfSight
-    :context [source hiking-use sink altitude]))
+    :context [source sink hiking-use altitude]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -183,13 +166,10 @@
   (span aestheticService:LineOfSight 
         aestheticService:ViewSource
         HikingUse
-        ;;aestheticService:ViewUse
         aestheticService:ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    55.0  ;; Brian: NB, you've probably
-        ;; eliminated all sources by using such a high source
-        ;; threshold. Reduced threshold from 75 to 25
+        :source-threshold    55.0
         :sink-threshold      10.0
         :use-threshold       0.25
         :trans-threshold     1.0
