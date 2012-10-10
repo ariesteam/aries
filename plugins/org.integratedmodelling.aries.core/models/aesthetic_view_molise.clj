@@ -17,13 +17,13 @@
 ;;;
 ;;;-------------------------------------------------------------------
 ;;;
-;;; Recreation model for Ontario
+;;; Aesthetic view model for Molise
 ;;;
-;;; Valid Contexts: core.contexts.ontario/algonquin-wgs84
-;;;                 core.contexts.ontario/algonquin-bbox-wgs84
+;;; Valid Contexts: core.contexts.molise/molise
+;;;
 ;;;-------------------------------------------------------------------
 
-(ns core.models.recreation-molise
+(ns core.models.aesthetic-view-molise
   (:refer-clojure :rename {count length})
   (:refer tl :only [is? conc])
   (:refer modelling :only [defscenario namespace-ontology model
@@ -35,7 +35,25 @@
                            identification bayesian count])
   (:refer aries :only [span]))
 
-(namespace-ontology recreationService)
+(namespace-ontology aestheticService
+  (thinklab-core:BooleanRanking
+   (RiverLakeCode)
+   (RiverLake
+    (RiverLakePresent)
+    (RiverLakeAbsent))
+   (Ocean
+    (OceanPresent)
+    (OceanAbsent)))
+  (lulc:LandClassificationNumericMapping
+   (CorineNumeric))
+  (ScenicViews
+   (ScenicVegetationClass
+    (OliveGroves)
+    (Meadows)
+    (Hedgerows)
+    (DenseForestCover)
+    (SparseForestCover)
+    (NotScenicVegetation))))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
@@ -66,14 +84,14 @@
 ;;molise:CorineLandCover
 (defmodel ocean Ocean
   "Identifies the presence of the ocean (sea)."
-  (classification (numeric-coding molise-lulc:CorineNumeric)
-    523           aestheticService:OceanPresent
-    :otherwise    aestheticService:OceanAbsent))
+  (classification (numeric-coding CorineNumeric)
+    523           OceanPresent
+    :otherwise    OceanAbsent))
 
 ;;molise:CorineLandCover
 (defmodel scenic-vegetation ScenicVegetationClass
   "Uses Corine 2006 land cover data to identify scenic vegetation."
-  (classification (numeric-coding molise-lulc:CorineNumeric)
+  (classification (numeric-coding CorineNumeric)
     223            OliveGroves
     243            Meadows
     #{3232 324}    Hedgerows
@@ -81,20 +99,21 @@
     2              SparseForestCover
     :otherwise     NotScenicVegetation))
 
-(defmodel theoretical-beauty aestheticService:TheoreticalNaturalBeauty
-  (probabilistic-ranking aestheticService:TheoreticalNaturalBeauty
-    [75 100]       aestheticService:HighNaturalBeauty
-    [50  75]       aestheticService:ModerateNaturalBeauty
-    [25  50]       aestheticService:LowNaturalBeauty
-    [ 0  25]       aestheticService:NoNaturalBeauty))
+(defmodel theoretical-beauty TheoreticalNaturalBeauty
+  (probabilistic-ranking TheoreticalNaturalBeauty
+    [75 100]       HighNaturalBeauty
+    [50  75]       ModerateNaturalBeauty
+    [25  50]       LowNaturalBeauty
+    [ 0  25]       NoNaturalBeauty))
 
-;; source bayesian model                 
-(defmodel source aestheticService:ViewSource
-  (bayesian aestheticService:ViewSource
+;; source bayesian model
+(defmodel source ViewSource
+  (bayesian ViewSource
     :import  "aries.core::AestheticSourceMoliseView.xdsl"
     :context [river-lake ocean scenic-vegetation]
-    :keep    [aestheticService:TheoreticalNaturalBeauty]
+    :keep    [TheoreticalNaturalBeauty]
     :result  theoretical-beauty))
+
 ;;;-------------------------------------------------------------------
 ;;; Sink models
 ;;;-------------------------------------------------------------------
@@ -105,32 +124,32 @@
 ;;molise:CorineLandCover
 (defmodel developed-land DevelopedLand
   "Uses Corine 2006 land cover data to identify development density."
-  (classification (numeric-coding molise-lulc:CorineNumeric)
-    #{111 131}     HighIntensityDevelopment
-    112            ModerateIntensityDevelopment
-    #{242 243}     LowIntensityDevelopment
+  (classification (numeric-coding CorineNumeric)
+    #{111 131}     HighDensityDevelopment
+    112            ModerateDensityDevelopment
+    #{242 243}     LowDensityDevelopment
     :otherwise     NoDevelopment))
 
 ;;molise:TransportInfrastructure
-(defmodel transport-infrastructure TransportationInfrastructure
+(defmodel transport-infrastructure CommercialIndustrialTransportation
   "Identifies the presence of transportation infrastructure."
-  (classification (binary-coding TransportationInfrastructure)
+  (classification (binary-coding infrastructure:Road)
     1            TransportationInfrastructurePresent
     :otherwise   TransportationInfrastructureAbsent))
 
-(defmodel view-sink-undiscretizer aestheticService:VisualBlight
-  (probabilistic-ranking aestheticService:VisualBlight
-    [50 100] aestheticService:HighBlight
-    [25  50] aestheticService:ModerateBlight
-    [ 5  25] aestheticService:LowBlight
-    [ 0   5] aestheticService:NoBlight))
+(defmodel view-sink-undiscretizer VisualBlight
+  (probabilistic-ranking VisualBlight
+    [50 100] HighBlight
+    [25  50] ModerateBlight
+    [ 5  25] LowBlight
+    [ 0   5] NoBlight))
 
-(defmodel sink aestheticService:ViewSink
+(defmodel sink ViewSink
   "Landscape features that reduce the quality of scenic views"
-  (bayesian aestheticService:ViewSink 
+  (bayesian ViewSink
     :import  "aries.core::AestheticSinkMoliseView.xdsl"
     :context [developed-land transport-infrastructure]
-    :keep    [aestheticService:VisualBlight]
+    :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 
 ;;;-------------------------------------------------------------------
@@ -138,9 +157,9 @@
 ;;;-------------------------------------------------------------------
 
 ;;molise:Trails
-(defmodel hiking-use HikingUse
+(defmodel hiking-use recreationService:HikingUse
   "Trail network at the farm."
- (binary-coding HikingUse))
+ (binary-coding recreationService:HikingUse))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
@@ -154,19 +173,19 @@
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
-(defmodel data-homeowners aestheticService:LineOfSight
-  (identification aestheticService:LineOfSight
+(defmodel data-homeowners LineOfSight
+  (identification LineOfSight
     :context [source sink hiking-use altitude]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
 ;;;-------------------------------------------------------------------
 
-(defmodel view aestheticService:AestheticViewsheds
-  (span aestheticService:LineOfSight 
-        aestheticService:ViewSource
-        HikingUse
-        aestheticService:ViewSink
+(defmodel view AestheticViewsheds
+  (span LineOfSight
+        ViewSource
+        recreationService:HikingUse
+        ViewSink
         nil
         (geophysics:Altitude)
         :source-threshold    55.0
@@ -180,25 +199,25 @@
         :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
-        ;; :save-file          (str (System/getProperty "user.home") "/recreation_ontario_data.clj")
+        ;; :save-file          (str (System/getProperty "user.home") "/aesthetic_ontario_data.clj")
         ;; need to add additional context(s) for use
         :context [source sink hiking-use altitude]
-        :keep    [aestheticService:TheoreticalSource
-                  aestheticService:TheoreticalSink
-                  aestheticService:TheoreticalUse
-                  aestheticService:PossibleFlow
-                  aestheticService:PossibleSource
-                  aestheticService:PossibleUse
-                  aestheticService:ActualFlow
-                  aestheticService:ActualSource
-                  aestheticService:ActualSink
-                  aestheticService:ActualUse
-                  aestheticService:InaccessibleSource
-                  aestheticService:InaccessibleSink
-                  aestheticService:InaccessibleUse
-                  aestheticService:BlockedFlow
-                  aestheticService:BlockedSource
-                  aestheticService:BlockedUse]))
+        :keep    [TheoreticalSource
+                  TheoreticalSink
+                  TheoreticalUse
+                  PossibleFlow
+                  PossibleSource
+                  PossibleUse
+                  ActualFlow
+                  ActualSource
+                  ActualSink
+                  ActualUse
+                  InaccessibleSource
+                  InaccessibleSink
+                  InaccessibleUse
+                  BlockedFlow
+                  BlockedSource
+                  BlockedUse]))
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios

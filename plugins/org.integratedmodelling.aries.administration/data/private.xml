@@ -1823,4 +1823,149 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 	</observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+<measurement:Measurement id="dem20m_molise">
+  <observation:hasObservable>
+    <geophysics:Altitude/>
+  </observation:hasObservable>
+  <measurement:unit>m</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>dem20m_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:NumericCoding id="corine_land_cover_molise_2006">
+  <observation:hasObservable>
+    <aestheticService:CorineNumeric/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>corine_land_cover_molise_2006</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
+
+<measurement:BinaryCoding id="lakes_molise">
+  <observation:hasObservable>
+    <geofeatures:Lake/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>lakes_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="transportation_infrastructure_molise">
+  <observation:hasObservable>
+    <infrastructure:Road/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>transportation_infrastructure_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="rivers_molise">
+  <observation:hasObservable>
+    <geofeatures:River/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>rivers_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="hike_use_molise">
+  <observation:hasObservable>
+    <recreationService:HikingUse/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>hike_use_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
 </kbox>
