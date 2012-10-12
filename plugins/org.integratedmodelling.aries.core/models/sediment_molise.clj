@@ -36,7 +36,24 @@
   (:refer aries :only [span]))
 
 (namespace-ontology soilRetentionService
-  (owl:Thing (AllSedimentData)))
+  (lulc:LandClassificationNumericMapping
+   (CorineNumeric))
+  (owl:Thing (AllSedimentData))
+  (thinklab-core:Categorical
+   (SedimentVegetationType
+    (ForestGrasslandWetland)
+    (ShrublandPasture)
+    (MineralExtraction)
+    (CropsBarrenDeveloped)))
+  (thinklab-core:OrdinalRanking
+   (PercentTreeCanopyCoverClass
+    (VeryHighCanopyCover)
+    (HighCanopyCover)
+    (ModerateCanopyCover)
+    (LowCanopyCover)
+    (VeryLowCanopyCover)))
+  (thinklab-core:BooleanRanking
+   (DepositionProneLand)))
 
 ;;;-------------------------------------------------------------------
 ;;; Source models
@@ -45,25 +62,27 @@
 (declare sediment-vegetation-type
          percent-tree-canopy-cover-class
          annual-runoff-class
-         slope-class
-         soil-drainage-class)
+         soil-erodibility-class
+         annual-sediment-source-class
+         annual-sediment-source)
 
 ;; molise:CorineLandCover
-(defmodel sediment-vegetation-type molise:SedimentVegetationType
+(defmodel sediment-vegetation-type SedimentVegetationType
   (classification (numeric-coding CorineNumeric)
-    #{1 2 311 312 313 321 323 221 222 223} molise:ForestGrasslandWetland
-    #{231 324}                             molise:ShrublandPasture
-    131                                    molise:MineralExtraction
-    #{111 112 241 242 243 244}             molise:CropsBarrenDeveloped))
+    #{1 2 311 312 313 321 323 221 222 223} ForestGrasslandWetland
+    #{231 324}                             ShrublandPasture
+    131                                    MineralExtraction
+    #{111 112 241 242 243 244}             CropsBarrenDeveloped))
 
 ;; molise:CanopyCover
-(defmodel percent-tree-canopy-cover-class molise:PercentTreeCanopyCoverClass
+(defmodel percent-tree-canopy-cover-class PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [0.80 1.00 :inclusive] molise:VeryHighCanopyCover
-    [0.60 0.80]            molise:HighCanopyCover
-    [0.30 0.60]            molise:ModerateCanopyCover
-    [0.05 0.30]            molise:LowCanopyCover
-    [0.00 0.05]            molise:VeryLowCanopyCover))
+    [0.80 1.00 :inclusive] VeryHighCanopyCover
+    [0.60 0.80]            HighCanopyCover
+
+    [0.30 0.60]            ModerateCanopyCover
+    [0.05 0.30]            LowCanopyCover
+    [0.00 0.05]            VeryLowCanopyCover))
 
 ;; may use this in the revised model, but there is no data to support
 ;;this for the current version
@@ -81,22 +100,22 @@
 ;;                (- (+ p s) e))))
 
 ;; molise:AnnualRunoff
-(defmodel annual-runoff-class molise:AnnualRunoffClass
-  (probabilistic-measurement annual-runoff "mm"
-    [800  :>] molise:VeryHighMeanAnnualRunoff
-    [600 800] molise:HighMeanAnnualRunoff
-    [400 600] molise:ModerateMeanAnnualRunoff
-    [200 400] molise:LowMeanAnnualRunoff
-    [ 0  200] molise:VeryLowMeanAnnualRunoff))
+(defmodel annual-runoff-class AnnualRunoffClass
+  (classification (measurement AnnualRunoff "mm")
+    [800  :>] VeryHighAnnualRunoff
+    [600 800] HighAnnualRunoff
+    [400 600] ModerateAnnualRunoff
+    [200 400] LowAnnualRunoff
+    [ 0  200] VeryLowAnnualRunoff))
 
 ;; molise:PotentialErosion
-(defmodel soil-erodibility-class molise:SoilErodibilityClass
-  (classification (ranking molise:SoilErodibilityClass)
-    1      molise:NoErosion
-    #{2 5} molise:LowErosion
-    4      molise:ModerateErosion
-    3      molise:HighErosion
-    6      molise:VeryHighErosion))
+(defmodel soil-erodibility-class SoilErodibilityClass
+  (classification (ranking SoilErodibility)
+    1      VeryLowSoilErodibility
+    #{2 5} LowSoilErodibility
+    4      ModerateSoilErodibility
+    3      HighSoilErodibility
+    6      VeryHighSoilErodibility))
 
 (defmodel annual-sediment-source-class AnnualSedimentSourceClass
   (probabilistic-measurement AnnualSedimentSourceClass "t/ha"
@@ -112,7 +131,7 @@
                percent-tree-canopy-cover-class
                annual-runoff-class
                soil-erodibility-class]
-    :required [molise:SedimentVegetationType]
+    :required [SedimentVegetationType]
     :keep     [AnnualSedimentSourceClass]
     :result   annual-sediment-source-class))
 
@@ -124,7 +143,7 @@
          floodplains
          floodplain-tree-canopy-cover
          floodplain-tree-canopy-cover-class
-         annual-sediment-sink-class
+         floodplain-sediment-sink-class
          annual-sediment-sink)
 
 ;; molise:StreamGradient
@@ -178,7 +197,7 @@
 (declare deposition-prone-land)
 
 ;; molise:Floodplain
-(defmodel deposition-prone-land molise:DepositionProneLand
+(defmodel deposition-prone-land DepositionProneLand
   (binary-coding DepositionProneLand))
 
 ;;;-------------------------------------------------------------------
