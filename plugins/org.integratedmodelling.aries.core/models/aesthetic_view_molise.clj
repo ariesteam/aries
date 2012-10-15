@@ -196,7 +196,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 2
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/aesthetic_ontario_data.clj")
