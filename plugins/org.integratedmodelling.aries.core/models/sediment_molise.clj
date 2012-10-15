@@ -66,7 +66,7 @@
          annual-sediment-source-class
          annual-sediment-source)
 
-;; molise:CorineLandCover
+;; molise:corine_land_cover_molise_2006
 (defmodel sediment-vegetation-type SedimentVegetationType
   (classification (numeric-coding CorineNumeric)
     #{1 2 311 312 313 321 323 221 222 223} ForestGrasslandWetland
@@ -74,15 +74,14 @@
     131                                    MineralExtraction
     #{111 112 241 242 243 244}             CropsBarrenDeveloped))
 
-;; molise:CanopyCover
+;; molise:percent_canopy_cover_molise
 (defmodel percent-tree-canopy-cover-class PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
-    [0.80 1.00 :inclusive] VeryHighCanopyCover
-    [0.60 0.80]            HighCanopyCover
-
-    [0.30 0.60]            ModerateCanopyCover
-    [0.05 0.30]            LowCanopyCover
-    [0.00 0.05]            VeryLowCanopyCover))
+    [80 100 :inclusive] VeryHighCanopyCover
+    [60  80]            HighCanopyCover
+    [30  60]            ModerateCanopyCover
+    [ 5  30]            LowCanopyCover
+    [ 0   5]            VeryLowCanopyCover))
 
 ;; may use this in the revised model, but there is no data to support
 ;;this for the current version
@@ -99,16 +98,17 @@
 ;;                    e (or (:annual-evapotranspiration %) 0.0)]
 ;;                (- (+ p s) e))))
 
-;; molise:AnnualRunoff
+;; molise:annual_runoff_molise
 (defmodel annual-runoff-class AnnualRunoffClass
-  (classification (measurement AnnualRunoff "mm")
+  (classification (measurement habitat:AnnualPrecipitation "mm")
     [800  :>] VeryHighAnnualRunoff
     [600 800] HighAnnualRunoff
     [400 600] ModerateAnnualRunoff
     [200 400] LowAnnualRunoff
     [ 0  200] VeryLowAnnualRunoff))
 
-;; molise:PotentialErosion
+;; molise:potential_erosion_molise
+;; FIXME: What data layer and units do I use here?
 (defmodel soil-erodibility-class SoilErodibilityClass
   (classification (ranking SoilErodibility)
     1      VeryLowSoilErodibility
@@ -146,24 +146,25 @@
          floodplain-sediment-sink-class
          annual-sediment-sink)
 
-;; molise:StreamGradient
+;; molise:stream_gradient_molise
 (defmodel stream-gradient-class StreamGradientClass
   (classification (measurement habitat:StreamGradient "\u00b0")
     [2.86   :>] HighStreamGradient
     [1.15 2.86] ModerateStreamGradient
     [:<   1.15] LowStreamGradient))
 
-;; molise:Floodplain
+;; molise:floodplain_molise
 (defmodel floodplains Floodplains
-  (classification (binary-coding FloodplainsCode)
+  (classification (binary-coding geofeatures:Floodplain)
     1 InFloodplain
     0 NotInFloodplain))
 
+;; molise:percent_canopy_cover_molise
 (defmodel floodplain-tree-canopy-cover FloodplainTreeCanopyCover
   (ranking FloodplainTreeCanopyCover
     :context [(ranking habitat:PercentTreeCanopyCover)
-              (binary-coding FloodplainsCode)]
-    :state   #(if (and (:floodplains-code %)
+              (binary-coding geofeatures:Floodplain)]
+    :state   #(if (and (:floodplain %)
                        (:percent-tree-canopy-cover %))
                 (int (* 100 (:percent-tree-canopy-cover %)))
                 0)))
@@ -196,9 +197,10 @@
 
 (declare deposition-prone-land)
 
-;; molise:Floodplain
+;; molise:floodplain_molise
+;; FIXME: Is this the right datasource?!
 (defmodel deposition-prone-land DepositionProneLand
-  (binary-coding DepositionProneLand))
+  (binary-coding geofeatures:Floodplain))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
@@ -208,7 +210,7 @@
          river
          floodplains-code)
 
-;;  molise:DEM_molise_20m
+;; molise:dem20m_molise
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
@@ -216,9 +218,9 @@
 (defmodel river geofeatures:River
   (binary-coding geofeatures:River))
 
-;; molise:Floodplain
+;; molise:floodplain_molise
 (defmodel floodplains-code FloodplainsCode
-  (binary-coding FloodplainsCode))
+  (binary-coding geofeatures:Floodplain))
 
 ;;;-------------------------------------------------------------------
 ;;; Identification models
