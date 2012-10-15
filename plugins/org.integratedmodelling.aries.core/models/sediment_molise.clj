@@ -243,7 +243,7 @@
         DepositionProneFarmers
         FloodplainSedimentSink
         nil
-        (geophysics:Altitude geofeatures:River FloodplainsCode) ; we don't have information on levees
+        (geophysics:Altitude geofeatures:River FloodplainsCode)
         :source-threshold   0.0
         :sink-threshold     0.0
         :use-threshold      0.0
@@ -252,7 +252,7 @@
         :sink-type          :finite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 1
+        :downscaling-factor 2
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/beneficial_sediment_transport_ontario_data.clj")
