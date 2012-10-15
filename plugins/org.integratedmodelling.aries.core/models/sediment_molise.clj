@@ -108,7 +108,6 @@
     [ 0  200] VeryLowAnnualRunoff))
 
 ;; molise:potential_erosion_molise
-;; FIXME: What data layer and units do I use here?
 (defmodel soil-erodibility-class SoilErodibilityClass
   (classification (ranking SoilErodibility)
     1      VeryLowSoilErodibility
@@ -166,7 +165,7 @@
               (binary-coding geofeatures:Floodplain)]
     :state   #(if (and (:floodplain %)
                        (:percent-tree-canopy-cover %))
-                (int (* 100 (:percent-tree-canopy-cover %)))
+                (int (:percent-tree-canopy-cover %))
                 0)))
 
 (defmodel floodplain-tree-canopy-cover-class FloodplainTreeCanopyCoverClass
@@ -198,7 +197,6 @@
 (declare deposition-prone-land)
 
 ;; molise:floodplain_molise
-;; FIXME: Is this the right datasource?!
 (defmodel deposition-prone-land DepositionProneLand
   (binary-coding geofeatures:Floodplain))
 
@@ -242,7 +240,7 @@
 (defmodel beneficial-sediment-transport BeneficialSedimentTransport
   (span SedimentTransport
         AnnualSedimentSource
-        DepositionProneFarmers
+        DepositionProneLand
         FloodplainSedimentSink
         nil
         (geophysics:Altitude geofeatures:River FloodplainsCode)

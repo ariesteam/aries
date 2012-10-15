@@ -1997,6 +1997,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <habitat:AnnualPrecipitation/>
   </observation:hasObservable>
   <measurement:unit>mm</measurement:unit>
+  <metadata:hasPriority>-5</metadata:hasPriority>
   <observation:hasDataSource>
     <geospace:WCSDataSource>
 	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2065,11 +2066,10 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </observation:hasObservationExtent>
 </measurement:Ranking>
 
-<measurement:Measurement id="potential_erosion_molise">
+<measurement:Ranking id="potential_erosion_molise">
   <observation:hasObservable>
-    <soilRetentionService:AnnualSedimentSource/>
+    <soilRetentionService:SoilErodibility/>
   </observation:hasObservable>
-  <measurement:unit>t/ha</measurement:unit>
   <observation:hasDataSource>
     <geospace:WCSDataSource>
 	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
@@ -2088,7 +2088,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:Measurement>
+</measurement:Ranking>
 
 <measurement:Measurement id="stream_gradient_molise">
   <observation:hasObservable>
