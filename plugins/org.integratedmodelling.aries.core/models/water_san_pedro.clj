@@ -316,7 +316,7 @@
 (defmodel altitude geophysics:Altitude
   (measurement geophysics:Altitude "m"))
 
-(defmodel streams-simple geofeatures:River ; This could be rasterized to speed the process, though probably not critical.
+(defmodel streams-simple geofeatures:River
   (binary-coding geofeatures:River))
 
 ;; (defmodel groundwater-elevation GroundwaterElevation
