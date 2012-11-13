@@ -52,6 +52,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     xmlns:sanPedro="http://www.integratedmodelling.org/ks/es/services/local/sanPedro.owl#"
     xmlns:colorado="http://www.integratedmodelling.org/ks/es/services/local/colorado.owl#"
     xmlns:ontario="http://www.integratedmodelling.org/ks/es/services/local/ontario.owl#"
+    xmlns:usa="http://www.integratedmodelling.org/ks/es/services/local/usa.owl#"
     xmlns:coastalProtection="http://www.integratedmodelling.org/ks/es/services/marine/coastalProtection.owl#"
     xmlns:fisheries="http://www.integratedmodelling.org/ks/es/services/marine/fisheries.owl#"
     xmlns:ontario-lulc="http://www.integratedmodelling.org/ks/ecology/lulc/ontario-lulc.owl#"
@@ -5302,6 +5303,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
+<!-- Test out these two and delete the old one if possible -->
   <measurement:Measurement id="incoming_water_transfer_co">
     <observation:hasObservable>
       <waterSupplyService:IncomingWaterTransfer/>
@@ -5328,6 +5330,35 @@ could be used in BN training. -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Measurement>
+
+<measurement:Measurement id="incoming_water_transfer_co2">
+  <observation:hasObservable>
+    <waterSupplyService:IncomingWaterTransfer/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Derived from Colorado Division of Water
+  Resources data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://water.state.co.us/</metadata:hasURL>
+  <measurement:unit>mm</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>colorado:incoming_water_transfer_co2</geospace:hasCoverageId>
+      <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>266</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>513</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4132843.44</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>255498.305</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4529393.44</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>461858.305</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
 
   <!-- KINEROS model data, uncalibrated, run through AGWA using
        default inputs and a 10-year, 1-hour design storm and 1997 land
@@ -11560,17 +11591,6 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
 
-<!--
-- psi roads - binary coding at the moment - OK but could use an attribute
-- Corine soils somehow didn't make it into geoserver.
-- former forests need to make it into .xml
-- Some of these may need to go into private (LandScan, DCW (?),
-GlobCover (?)
-- US levees, NLCD06 LULC, transmission need to make it into shp2db,
-GeoServer, .xml
-- Review data sources /w James & Zach as needed
-- Test out potential hasnodata values for CO, US, global rasters-->
-
 <measurement:BinaryCoding id="colorado_psi_recreation_trails">
   <observation:hasObservable>
     <infrastructure:Path/>
@@ -11594,8 +11614,7 @@ GeoServer, .xml
   </observation:hasObservationExtent>
 </measurement:BinaryCoding>
 
-<!-- problems with the ontology for the moment so commenting it out
-for testing other new layers.
+<!-- commenting it out.  Serious problems with run aries.initdb.
 <measurement:BinaryCoding id="usa_state_trust_land">
   <observation:hasObservable>
     <usa:StateTrustLand/>
@@ -12271,35 +12290,6 @@ for testing other new layers.
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:Ranking>
-
-<measurement:Measurement id="incoming_water_transfer_co2">
-  <observation:hasObservable>
-    <waterSupplyService:IncomingWaterTransfer/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Derived from Colorado Division of Water
-  Resources data</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://water.state.co.us/</metadata:hasURL>
-  <measurement:unit>mm</measurement:unit>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>colorado:incoming_water_transfer_co2</geospace:hasCoverageId>
-      <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>266</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>513</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>4132843.44</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>255498.305</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>4529393.44</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>461858.305</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:Measurement>
 
 <measurement:Measurement id="outgoing_water_transfer_co">
   <observation:hasObservable>
