@@ -133,6 +133,12 @@
     1          colorado:EarlySuccession
     :otherwise colorado:NoSuccession))
 
+(defmodel slope-stability puget:SlopeStabilityClass
+  (classification (categorization soilRetentionService:SlopeStability)         
+    "low"                           puget:HighSlopeStability
+    #{"mod" "sus-mod"}              puget:ModerateSlopeStability
+    #{"high" "combo-hi" "sus-high"} puget:LowSlopeStability))
+
 ;;Sediment source value - we have evidence for this but can't yet
 ;; train so keep this commented out for now and use the
 ;; undiscretization statement below (?)

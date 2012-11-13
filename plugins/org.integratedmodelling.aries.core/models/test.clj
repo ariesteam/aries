@@ -51,6 +51,16 @@
 (defmodel altitude-ft geophysics:Altitude
   (measurement geophysics:Altitude "ft"))
 
+(defmodel highway aestheticService:Highways 
+  (classification (categorization infrastructure:Road)
+    #{"Primary Route" "Secondary Route" "Unknown"} aestheticService:HighwaysPresent
+    :otherwise                                     aestheticService:HighwaysAbsent))
+
+(defmodel railway aestheticService:Railways
+  (classification (categorization infrastructure:Railway)
+    #{"Operational" "Under Construction" "Unexamined/Unsurveyed"} aestheticService:RailwaysPresent
+    :otherwise                                                    aestheticService:RailwaysAbsent))
+
 (defmodel slope geophysics:Slope
   (modelling.gis/slope (measurement geophysics:Altitude "m")))
 

@@ -151,7 +151,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </measurement:NumericCoding>
   
   <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
-       converts it to tonnes C/ha -->
+       converts it to tonnes C/ha 
 
   <measurement:Measurement id="NBCD_MZ65_FIA_ALD_biomass_final">
     <observation:hasObservable>
@@ -181,7 +181,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> -->
 
   <measurement:Measurement id="dem90m">
     <observation:hasObservable>
@@ -405,6 +405,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+<!--
   <measurement:Measurement id="NBCD_MZ66_FIA_ALD_biomass_final">
     <observation:hasObservable>
       <carbonService:VegetationCarbonStorage />
@@ -433,7 +434,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> -->
 
   <measurement:Measurement id="surface_water_prox_la">
     <observation:hasObservable>
@@ -1849,7 +1850,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </measurement:Measurement>
 
   <!-- NBCD values are tonnes biomass/ha: multiplying by 0.5 (the
-       standard rule of thumb) converts it to tonnes C/ha -->
+       standard rule of thumb) converts it to tonnes C/ha 
   <measurement:Measurement id="NBCD_MZ01_FIA_ALD_biomass_final">
     <observation:hasObservable>
       <carbonService:VegetationCarbonStorage />
@@ -3678,7 +3679,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> -->
 
   <!-- Global vegetation carbon storage layer, below, is in tonnes
        C/ha, and does NOT need to be divided by 2, like the US
@@ -3878,7 +3879,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Measurement>
-  -->
 
   <measurement:Measurement id="irrigation_water_use_co">
     <observation:hasObservable>
@@ -3905,7 +3905,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> -->
 
   <measurement:BinaryCoding id="usa_airports">
     <observation:hasObservable>
@@ -7286,7 +7286,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:Measurement id="municipal_water_use_co">
+<!--  <measurement:Measurement id="municipal_water_use_co">
     <observation:hasObservable>
       <waterSupplyService:ResidentialSurfaceWaterUse/>
     </observation:hasObservable>
@@ -7311,7 +7311,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> -->
 
   <measurement:Ranking id="sanPedro_sprnca_condition_class">
     <observation:hasObservable>
@@ -9067,54 +9067,55 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:BinaryCoding id="sanPedro_transmission_az">
+<measurement:BinaryCoding id="usa_transmission_lines_us">
+  <observation:hasObservable>
+    <infrastructure:TransmissionLine/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: TIGER/Line files</rdfs:comment>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <metadata:hasURL>http://www.esri.com/data/download/census2000-tigerline/index.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:transmission_lines_us</geospace:hasCoverageId>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>17.9452953338623</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-163.412780761719</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>70.260856628418</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.6440505981445</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+  <!-- VT energy transmission lines - a bit higher quality data so
+  keeping as the local layer -->
+  <measurement:BinaryCoding id="vt_utility_lines">
     <observation:hasObservable>
       <infrastructure:TransmissionLine />
     </observation:hasObservable>
-    <rdfs:comment>Data source: TIGER/Line files</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://www.esri.com/data/download/census2000-tigerline/index.html</metadata:hasURL>
+    <rdfs:comment>Data source: VCGI</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://www.vcgi.org/</metadata:hasURL>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>san_pedro:transmission_az</geospace:hasCoverageId>
+        <geospace:hasCoverageId>vermont:transmission_vt</geospace:hasCoverageId>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>498853.85500464373</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>134933.7738281882</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4105081.8290773137</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>697575.8714159467</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+        <geospace:hasLatLowerBound>-443.9106652097295</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>414344.5695535828</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>285399.2477500888</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>583186.8473425076</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
-
-  <observation:Categorization id="colorado_transmission_lines">
-    <observation:hasObservable>
-      <infrastructure:TransmissionLine/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: TIGER/Line files</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://www.esri.com/data/download/census2000-tigerline/index.html</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>colorado:transmission_lines</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>cfcc</geospace:hasValueAttribute>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>36.9988589452074</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-109.0509037236293</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>41.00238468728435</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-102.05150554117725</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-    </observation:Categorization>
 
   <!-- SWAT model data, uncalibrated, run through AGWA using default
        inputs and a 12-year precipitation record (1960-1972) from 7
@@ -10859,28 +10860,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <!-- VT energy transmission lines -->
-  <measurement:BinaryCoding id="vt_utility_lines">
-    <observation:hasObservable>
-      <infrastructure:TransmissionLine />
-    </observation:hasObservable>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:transmission_vt</geospace:hasCoverageId>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>-443.9106652097295</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>414344.5695535828</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>285399.2477500888</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>583186.8473425076</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:32145</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
-
   <!-- VT roads -->
   <measurement:BinaryCoding id="vt_roads">
     <observation:hasObservable>
@@ -11641,9 +11620,9 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
   <observation:hasObservable>
     <infrastructure:Railway/>
   </observation:hasObservable>
-  <rdfs:comment>Data source: Digital Chart of the World (?)</rdfs:comment>
+  <rdfs:comment>Data source: Derived from Digital Chart of the World</rdfs:comment>
   <metadata:hasPriority>10</metadata:hasPriority>
-  <metadata:hasURL>http:?</metadata:hasURL>
+  <metadata:hasURL>http://www.diva-gis.org/gdata</metadata:hasURL>
   <observation:hasDataSource>
     <geospace:WFSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -11716,9 +11695,9 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
   <observation:hasObservable>
     <observation:GenericObservable/>
   </observation:hasObservable>
-  <rdfs:comment>Data source: USGS (?)</rdfs:comment>
+  <rdfs:comment>Data source: USGS</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
-  <metadata:hasURL>http:?</metadata:hasURL>
+  <metadata:hasURL>http://www.nationalatlas.gov/atlasftp.html#lsoverp</metadata:hasURL>
   <observation:hasDataSource>
     <geospace:WFSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -11734,7 +11713,7 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
-</observation:Categorization> -->
+</observation:Categorization> 
 
 <measurement:Count id="usa_census_2010_pop_den">
   <observation:hasObservable>
@@ -11784,15 +11763,15 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
       <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
-</measurement:Count>
+</measurement:Count> -->
 
 <observation:Categorization id="global_roads_global">
   <observation:hasObservable>
     <infrastructure:Highway/>
   </observation:hasObservable>
-  <rdfs:comment>Data source: Digital Chart of the World (?)</rdfs:comment>
+  <rdfs:comment>Data source: Derived from Digital Chart of the World</rdfs:comment>
   <metadata:hasPriority>10</metadata:hasPriority>
-  <metadata:hasURL>http:?</metadata:hasURL>
+  <metadata:hasURL>http://www.diva-gis.org/gdata</metadata:hasURL>
   <observation:hasDataSource>
     <geospace:WFSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -11815,9 +11794,9 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
   <observation:hasObservable>
     <soilRetentionService:SlopeStability/>
   </observation:hasObservable>
-  <rdfs:comment>Data source: USGS (?)</rdfs:comment>
+  <rdfs:comment>Data source: USGS</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
-  <metadata:hasURL>http:?</metadata:hasURL>
+  <metadata:hasURL>http:http://www.nationalatlas.gov/atlasftp.html#lsoverp</metadata:hasURL>
   <observation:hasDataSource>
     <geospace:WFSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -11835,91 +11814,6 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
 </observation:Categorization>
-
-<measurement:NumericCoding id="landcover_globcover_2005-06">
-  <observation:hasObservable>
-    <glc:GlobcoverNumeric/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: European Space Agency</rdfs:comment>
-  <metadata:hasPriority>8</metadata:hasPriority>
-  <metadata:hasURL>http://due.esrin.esa.int/globcover/</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>global:landcover_globcover_2005-06</geospace:hasCoverageId>
-      <!-- Not sure if this one needs a hasNodataValue. Test it out (model
-           -o) -->
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>129598</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>64798</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>-89.9986111</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-180.0013889</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>90.0013889</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>179.9986111</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:NumericCoding>
-
-<measurement:NumericCoding id="landcover_globcover_2009">
-  <observation:hasObservable>
-    <glc:GlobcoverNumeric/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: European Space Agency</rdfs:comment>
-  <metadata:hasPriority>8</metadata:hasPriority>
-  <metadata:hasURL>http://due.esrin.esa.int/globcover/</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>global:landcover_globcover_2009</geospace:hasCoverageId>
-      <!-- Not sure if this one needs a hasNodataValue. Test it out (model
-           -o) -->
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>129598</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>55798</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>-64.9986111</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-180.0013889</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>90.0013889</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>179.9986111</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:NumericCoding>
-
-<measurement:Count id="popdens_2011">
-  <observation:hasObservable>
-    <policytarget:PopulationDensity/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Oak Ridge National Laboratory LandScan Dataset</rdfs:comment>
-  <metadata:hasPriority>10</metadata:hasPriority>
-  <metadata:hasURL>http://www.ornl.gov/sci/landscan/</metadata:hasURL>
-  <measurement:unit>/km^2</measurement:unit>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>global:popdens_2011</geospace:hasCoverageId>
-      <!-- Not sure if this one needs a hasNodataValue. Test it out (model
-           -o) -->
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>20878</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>84.0</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:Count>
 
 <measurement:Measurement id="slope_bathymetric_global">
   <observation:hasObservable>
@@ -12357,7 +12251,7 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
     <geospace:WCSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>colorado:municipal_water_use_co2</geospace:hasCoverageId>
-      <!-- Not sure if this one needs a hasNodataValue. Test it out (model
+       <!-- Not sure if this one needs a hasNodataValue. Test it out (model
            -o) -->
     </geospace:WCSDataSource>
   </observation:hasDataSource>
@@ -12385,7 +12279,7 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
     <geospace:WCSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>colorado:irrigation_water_use_co2</geospace:hasCoverageId>
-      <!-- Not sure if this one needs a hasNodataValue. Test it out (model
+   <!--    Not sure if this one needs a hasNodataValue. Test it out (model
            -o) -->
     </geospace:WCSDataSource>
   </observation:hasDataSource>
@@ -12473,7 +12367,7 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>colorado:interstate_compact_structures</geospace:hasCoverageId>
       <!-- Not sure if this one needs a hasNodataValue. Test it out (model
-           -o) -->
+           -o). Possible that 110763.0 is a NodataValue. -->
     </geospace:WCSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
@@ -12488,5 +12382,89 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:Measurement>
+
+<!-- Need to separate out "NON" to remove open water - blank, NF,
+     TBMF, TDF, TMF are all actual former forests. Commented it out
+     for now as it doesn't enter any of our models, though it seems
+     like it could be useful. Still needs an ontologic concept and to
+     be tested.
+<observation:Categorization id="global_former_forests">
+  <observation:hasObservable>
+    <observation:GenericObservable/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: UNEP-WCMC World Forest Map</rdfs:comment>
+  <metadata:hasPriority>10</metadata:hasPriority>
+  <metadata:hasURL>http://geodata.grid.unep.ch/results.php</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>global:former_forests</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>type</geospace:hasValueAttribute>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>-55.6851806640625</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-172.699798583984</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>72.5322265625</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>179.947616577148</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</observation:Categorization> -->
+
+<!-- Need to separate out "LEVEE." Could also use the data to identify
+     seawalls. -->
+<observation:Categorization id="usa_levees2_us">
+  <observation:hasObservable>
+    <infrastructure:Levee/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: FEMA - National Flood Hazard dataset</rdfs:comment>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <observation:hasDataSource>
+    <geospace:WFSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:levees2_us</geospace:hasCoverageId>
+      <geospace:hasValueAttribute>struct_typ</geospace:hasValueAttribute>
+    </geospace:WFSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:ArealFeatureSet>
+      <geospace:hasLatLowerBound>17.94175273849895</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-165.43631796060345</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>64.50107555115626</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.44304676070377</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+    </geospace:ArealFeatureSet>
+  </observation:hasObservationExtent>
+</observation:Categorization>
+
+<measurement:NumericCoding id="nlcd_2006">
+  <observation:hasObservable>
+    <nlcd:NLCDNumeric/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: NLCD 2006</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:nlcd_2006</geospace:hasCoverageId>
+      <!-- Not sure if this one needs a hasNodataValue. Test it out (model
+           -o) -->
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>21.829643</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-64.4591392</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
 
 </kbox>
