@@ -61,6 +61,11 @@
     #{"Operational" "Under Construction" "Unexamined/Unsurveyed"} aestheticService:RailwaysPresent
     :otherwise                                                    aestheticService:RailwaysAbsent))
 
+(defmodel streams-nhd AestheticService:River
+  (classification (ranking geofeatures:River)
+    [2 10]     aestheticService:RiverPresent
+    :otherwise aestheticService:RiverAbsent))
+
 (defmodel slope geophysics:Slope
   (modelling.gis/slope (measurement geophysics:Altitude "m")))
 
