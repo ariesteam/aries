@@ -5303,7 +5303,9 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-<!-- Test out these two and delete the old one if possible -->
+<!-- Test out these two and delete the old one if possible. New one (second)
+was tested first and is very likely right - just need to check to make
+sure it wasn't misprojected. 
   <measurement:Measurement id="incoming_water_transfer_co">
     <observation:hasObservable>
       <waterSupplyService:IncomingWaterTransfer/>
@@ -5329,7 +5331,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:26913</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Measurement>
+  </measurement:Measurement> -->
 
 <measurement:Measurement id="incoming_water_transfer_co2">
   <observation:hasObservable>
@@ -6900,90 +6902,6 @@ could be used in BN training. -->
         <geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound><geospace:hasCoordinateReferenceSystem>EPSG:4326
       </geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Count>
-
-  <!-- 2000 population density for Arizona -->
-  <measurement:Count id="sanPedro_az_popdens">
-    <observation:hasObservable>
-      <policytarget:PopulationDensity />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: U.S. Census Bureau 2000 population estimates and TIGER block group files</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <measurement:unit>/km^2</measurement:unit>
-    <metadata:belongsToDataset>Census_population_density</metadata:belongsToDataset>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>san_pedro:population_density_az</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>popdens00</geospace:hasValueAttribute>
-        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>30.868001600279342</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-114.81700548244825</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>37.01100029892272</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-109.04500647198498</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Count>
-
-  <!-- 2007 population density for Washington -->
-  <measurement:Count id="puget_pugetpopulationdensity">
-    <observation:hasObservable>
-      <policytarget:PopulationDensity />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Washington State Office of Financial Management 2007 Census Block Group data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://www.ofm.wa.gov/pop/smallarea/default.asp</metadata:hasURL>
-    <metadata:belongsToDataset>Census_population_density</metadata:belongsToDataset>
-    <measurement:unit>/km^2</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:population_density_puget</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>personskm2</geospace:hasValueAttribute>
-        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>54007.72199547973</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>508412.22498618934</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>1385120.9910318155</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>2612573.0955876815</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:2927</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </measurement:Count>
-
-  <measurement:Count id="vermont_population_density_vt">
-    <observation:hasObservable>
-      <policytarget:PopulationDensity />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: U.S. Census Bureau 2000 population estimates and TIGER block group files</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <measurement:unit>/km^2</measurement:unit>
-    <metadata:belongsToDataset>Census_population_density</metadata:belongsToDataset>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>vermont:population_density_vt</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>pop_dens</geospace:hasValueAttribute>
-        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>42.7268600463867</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-73.4305191040039</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>45.0166702270508</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-71.4645538330078</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:Count>
 
@@ -11344,32 +11262,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <!--
-  <observation:Categorization id="usa_levees">
-    <observation:hasObservable>
-      <infrastructure:Levee/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: FEMA Q3 flood data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>usa:levees</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>struct_typ</geospace:hasValueAttribute>
-      </geospace:WFSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>17.94175273849895</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-165.43631796060345</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>64.50107555115626</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>-65.44304676070377</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
-    </observation:hasObservationExtent>
-  </observation:Categorization>
-  -->
-
   <observation:Categorization id="colorado_soil_orders3_co">
     <observation:hasObservable>
       <colorado:CarbonSoilType/>
@@ -11713,13 +11605,13 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:ArealFeatureSet>
   </observation:hasObservationExtent>
-</observation:Categorization> 
+</observation:Categorization> -->
 
 <measurement:Count id="usa_census_2010_pop_den">
   <observation:hasObservable>
     <policytarget:PopulationDensity/>
   </observation:hasObservable>
-  <rdfs:comment>Data source: U.S. Census Bureau 2000 population estimates and TIGER block group files</rdfs:comment>
+  <rdfs:comment>Data source: U.S. Census Bureau 2010 population estimates and TIGER block group files</rdfs:comment>
   <metadata:hasPriority>0</metadata:hasPriority>
   <measurement:unit>/km^2</measurement:unit>
   <observation:hasDataSource>
@@ -11727,6 +11619,7 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>usa:census_2010_pop_den</geospace:hasCoverageId>
       <geospace:hasValueAttribute>pop_dense</geospace:hasValueAttribute>
+      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
     </geospace:WFSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
@@ -11740,6 +11633,7 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
   </observation:hasObservationExtent>
 </measurement:Count>
 
+<!-- Keeping the 2010 Census data active until we can temporally tag data.
 <measurement:Count id="usa_census_2000_pop_den">
   <observation:hasObservable>
     <policytarget:PopulationDensity/>
@@ -11752,6 +11646,7 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>usa:census_2000_pop_den</geospace:hasCoverageId>
       <geospace:hasValueAttribute>pop_dense</geospace:hasValueAttribute>
+      <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
     </geospace:WFSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
