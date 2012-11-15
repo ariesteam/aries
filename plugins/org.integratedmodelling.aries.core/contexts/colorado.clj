@@ -73,6 +73,12 @@
    "1 km"
    "EPSG:4326 POLYGON((-109 41, -102 41, -102 37, -109 37, -109 41))"))
 
+(defcontext colorado-expanded
+  "Colorado and just beyond, for testing interstate compact data"
+  (grid
+   "500 m"
+   "EPSG:4326 POLYGON((-109.25 41.25, -101.75 41.25, -101.75 36.75, -109.25 36.75, -109.25 41.25))"))
+
 (defcontext co-grand-county400
   "Grand County, CO, for viewshed & sediment analysis"
   (grid
