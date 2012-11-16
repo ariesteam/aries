@@ -9519,92 +9519,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <!-- FV: this is still the BS layer so I reverted to a ranking. The models are in sync
-       with the BS numbers. KB: This layer still has major issues.  Commenting it out and using the mg layer until global is needed.
-  <measurement:Ranking id="BathSlope">
-    <observation:hasObservable>
-      <geophysics:BathymetricSlope />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: General Bathymetric Chart of the Oceans (GEBCO)</rdfs:comment>
-    <metadata:hasPriority>10</metadata:hasPriority>
-    <metadata:hasURL>http://www.gebco.net/data_and_products/gridded_bathymetry_data/</metadata:hasURL>
-    <measurement:unit>°</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:ocean_slope</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>21598</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Ranking>
-  -->
-
-  <measurement:Measurement id="slope_mg">
-    <observation:hasObservable>
-      <geophysics:BathymetricSlope />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Derived from NASA ETOPO1 Global Relief Model</rdfs:comment>
-    <metadata:hasPriority>10</metadata:hasPriority>
-    <metadata:hasURL>http://www.ngdc.noaa.gov/mgg/global/global.html/</metadata:hasURL>
-    <measurement:unit>°</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mg:slope_mg</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>899</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>1259</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>-30.0083333</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>39.9916667</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>-8.9916625</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>55.0083364</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
-<!-- This layer should be removed once the global layer is shown to
-     work. -->
-  <measurement:Measurement id="mg_bath1-171_ProjectRaster1">
-    <observation:hasObservable>
-      <geophysics:Bathymetry />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: NASA ETOPO1 Global Relief Model</rdfs:comment>
-    <metadata:hasPriority>10</metadata:hasPriority>
-    <metadata:hasURL>http://www.ngdc.noaa.gov/mgg/global/global.html/</metadata:hasURL>
-    <measurement:unit>m</measurement:unit>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>mg:bathymetry_mg</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>899</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>1259</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>-30.008</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>39.992</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>-8.992</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>55.008</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Measurement>
-
   <measurement:Measurement id="bathymetry_etopo1">
     <observation:hasObservable>
       <geophysics:Bathymetry/>
@@ -11722,8 +11636,6 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
     <geospace:WCSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>global:slope_bathymetric_global</geospace:hasCoverageId>
-      <!-- Not sure if this one needs a hasNodataValue. Test it out (model
-           -o) -->
     </geospace:WCSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
