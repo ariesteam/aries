@@ -12276,4 +12276,161 @@ concept in the ontologies (NLDCNumeric1992/2001/2006) -->
   </observation:hasObservationExtent>
 </measurement:NumericCoding>
 
+<measurement:Ranking id="KFFACT_TIF">
+  <observation:hasObservable>
+    <habitat:SoilErodibility/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:KFFACT_TIF</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Measurement id="SOC_TIF">
+  <observation:hasObservable>
+    <carbonService:SoilCarbonStorage/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <measurement:unit>kg/m^2</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:SOC_TIF</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:Ranking id="Clay_TIF">
+  <observation:hasObservable>
+    <habitat:PercentClay/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:Clay_TIF</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="Silt_TIF">
+  <observation:hasObservable>
+    <habitat:PercentSilt/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:Silt_TIF</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="Sand_TIF">
+  <observation:hasObservable>
+    <habitat:PercentSand/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:Sand_TIF</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="HYDRO2_TIF">
+  <observation:hasObservable>
+    <habitat:HydrologicSoilsGroup/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>usa:HYDRO2_TIF</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
 </kbox>
