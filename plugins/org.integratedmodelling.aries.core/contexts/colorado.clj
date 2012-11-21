@@ -73,6 +73,12 @@
    "1 km"
    "EPSG:4326 POLYGON((-109 41, -102 41, -102 37, -109 37, -109 41))"))
 
+(defcontext colorado-500
+  "Whole state of Colorado, currently just for data testing purposes"
+  (grid
+   "500 m"
+   "EPSG:4326 POLYGON((-109 41, -102 41, -102 37, -109 37, -109 41))"))
+
 (defcontext colorado-expanded
   "Colorado and just beyond, for testing interstate compact data"
   (grid

@@ -2115,6 +2115,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </observation:hasObservationExtent>
 </measurement:Measurement>
 
+<!-- A problem layer. Zach is going to gdalinfo it ASAP.
  <measurement:NumericCoding id="landcover_globcover_2005-06">
   <observation:hasObservable>
     <glc:GlobcoverNumeric/>
@@ -2126,8 +2127,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <geospace:WCSDataSource>
       <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
       <geospace:hasCoverageId>global:landcover_globcover_2005-06</geospace:hasCoverageId>
-       <!-- Not sure if this one needs a hasNodataValue. Test it out (model
-           -o) -->
+        Not sure if this one needs a hasNodataValue. Test it out (model
+           -o)
     </geospace:WCSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
@@ -2141,7 +2142,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:NumericCoding>
+</measurement:NumericCoding> -->
 
 <!--
 <measurement:NumericCoding id="landcover_globcover_2009">
