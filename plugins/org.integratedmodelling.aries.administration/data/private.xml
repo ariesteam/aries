@@ -311,7 +311,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-<!--  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
+  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
     <observation:hasObservable>
       <geofeatures:EphemeralStream/>
     </observation:hasObservable>
@@ -333,60 +333,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding> -->
-
-<measurement:BinaryCoding id="hydrography_az_ephemeral2">
-  <observation:hasObservable>
-    <geofeatures:EphemeralStream/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Derived from Arizona Geographic Information Council data</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>san_pedro:hydrography_az_ephemeral2</geospace:hasCoverageId>
-      <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>5440</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>6328</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>3466439.0</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>141387.869</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>4099439.0</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>685587.869</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<!--
-<measurement:BinaryCoding id="san_pedro_hydrograph_az_ephemeral3">
-  <observation:hasObservable>
-    <geofeatures:EphemeralStream/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Derived from Arizona Geographic Information Council data</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WFSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>san_pedro:hydrograph_az_ephemeral3</geospace:hasCoverageId>
-      <geospace:hasValueAttribute>stream</geospace:hasValueAttribute>
-    </geospace:WFSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:ArealFeatureSet>
-      <geospace:hasLatLowerBound>3460315.4458506647</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>116430.08374469791</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>4106933.4803717462</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>698611.8138701736</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-    </geospace:ArealFeatureSet>
-  </observation:hasObservationExtent>
-</measurement:BinaryCoding> -->
+  </measurement:BinaryCoding>
 
   <measurement:NumericCoding id="Reclass_fire_Clip">
     <observation:hasObservable>
@@ -547,7 +494,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <infrastructure:Levee />
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from King, Lewis, and Pierce county GIS point data</rdfs:comment>
-    <metadata:hasPriority>5</metadata:hasPriority>
+    <metadata:hasPriority>0</metadata:hasPriority>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -640,7 +587,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <!-- Global population density, persons/mi^2, derived from raw LandScan data, which was counts/pixel -->
+  <!-- Global population density, persons/mi^2, derived from raw LandScan data, which was counts/pixel 
   <measurement:Count id="popDens2006">
     <observation:hasObservable>
       <policytarget:PopulationDensity />
@@ -668,6 +615,66 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
     <metadata:belongsToDataset>Census_population_density</metadata:belongsToDataset>
+  </measurement:Count>
+
+2011 LandScan pop density works fine on the UVM GeoServer. Testing it
+out on the USGS ArcGIS server (next .xml below).
+<measurement:Count id="popdens_2011">
+  <observation:hasObservable>
+    <policytarget:PopulationDensity/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Oak Ridge National Laboratory LandScan Dataset</rdfs:comment>
+  <metadata:hasPriority>10</metadata:hasPriority>
+  <metadata:hasURL>http://www.ornl.gov/sci/landscan/</metadata:hasURL>
+  <measurement:unit>/km^2</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>global:popdens_2011</geospace:hasCoverageId>
+      <geospace:hasNodataValue>-2.147483647E9</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>20878</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>84.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Count> -->
+
+<!-- This is the 2011 LandScan - seeing if it'll work from the USGS
+     ArcGIS server.-->
+  <measurement:Count id="2">
+    <observation:hasObservable>
+      <policytarget:PopulationDensity/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Oak Ridge National Laboratory LandScan Dataset</rdfs:comment>
+    <metadata:hasPriority>10</metadata:hasPriority>
+    <metadata:hasURL>http://www.ornl.gov/sci/landscan/</metadata:hasURL>
+    <measurement:unit>/km^2</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://my-beta.usgs.gov/arcgis/services/WCS_testing/test_layers/MapServer/WCSServer</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>2</geospace:hasCoverageId>
+        <geospace:hasNodataValue>-2.147483647E9</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>20878</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>-90.00000000000001</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-180.00000000000003</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>83.99999999999933</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>179.9999999999986</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
   </measurement:Count>
 
  <measurement:BinaryCoding id="housing_presence_grand_co">
@@ -821,6 +828,31 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
   -->
+
+  <measurement:BinaryCoding id="san_pedro_hydrography_az_3">
+    <observation:hasObservable>
+      <geofeatures:River/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
+    <metadata:belongsToDataset>san-pedro-hydrography</metadata:belongsToDataset>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>san_pedro:hydrography_az_3</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>3460316.9198390865</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>116430.37599796552</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4106928.2415295388</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>698532.9688473609</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+    </measurement:BinaryCoding>
 
   <!-- This one is just a presence/absence of roads -->
   <measurement:BinaryCoding id="sanPedro_az_roads">
@@ -2114,5 +2146,63 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:Measurement>
+
+<!-- A problem layer. Zach is going to gdalinfo it ASAP.
+ <measurement:NumericCoding id="landcover_globcover_2005-06">
+  <observation:hasObservable>
+    <glc:GlobcoverNumeric/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: European Space Agency</rdfs:comment>
+  <metadata:hasPriority>8</metadata:hasPriority>
+  <metadata:hasURL>http://due.esrin.esa.int/globcover/</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>global:landcover_globcover_2005-06</geospace:hasCoverageId>
+        Not sure if this one needs a hasNodataValue. Test it out (model
+           -o)
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>129598</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>64798</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>-89.9986111</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-180.0013889</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>90.0013889</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>179.9986111</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding> -->
+
+<!--
+<measurement:NumericCoding id="landcover_globcover_2009">
+  <observation:hasObservable>
+    <glc:GlobcoverNumeric/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: European Space Agency</rdfs:comment>
+  <metadata:hasPriority>8</metadata:hasPriority>
+  <metadata:hasURL>http://due.esrin.esa.int/globcover/</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>global:landcover_globcover_2009</geospace:hasCoverageId>
+       Not sure if this one needs a hasNodataValue. Test it out (model
+           -o)
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>129598</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>55798</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>-64.9986111</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-180.0013889</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>90.0013889</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>179.9986111</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding> -->
 
 </kbox>
