@@ -101,10 +101,10 @@
 
 (defmodel theoretical-beauty TheoreticalNaturalBeauty
   (probabilistic-ranking TheoreticalNaturalBeauty
-    [75 100]       HighNaturalBeauty
-    [50  75]       ModerateNaturalBeauty
-    [25  50]       LowNaturalBeauty
-    [ 0  25]       NoNaturalBeauty))
+    [80 100]       HighNaturalBeauty
+    [30  80]       ModerateNaturalBeauty
+    [10  30]       LowNaturalBeauty
+    [ 0  10]       NoNaturalBeauty))
 
 ;; source bayesian model
 (defmodel source ViewSource
@@ -139,8 +139,8 @@
 
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
-    [50 100] HighBlight
-    [25  50] ModerateBlight
+    [75 100] HighBlight
+    [25  75] ModerateBlight
     [ 5  25] LowBlight
     [ 0   5] NoBlight))
 
@@ -188,7 +188,7 @@
         ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    55.0
+        :source-threshold    10.0
         :sink-threshold      10.0
         :use-threshold       0.25
         :trans-threshold     1.0
@@ -196,7 +196,7 @@
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 2
+        :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/aesthetic_ontario_data.clj")
