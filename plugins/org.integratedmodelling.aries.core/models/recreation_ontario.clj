@@ -89,10 +89,10 @@
 
 (defmodel theoretical-beauty aestheticService:TheoreticalNaturalBeauty
   (probabilistic-ranking aestheticService:TheoreticalNaturalBeauty
-    [75 100] aestheticService:HighNaturalBeauty
+    [75 100]  aestheticService:HighNaturalBeauty
     [50  75]  aestheticService:ModerateNaturalBeauty
     [25  50]  aestheticService:LowNaturalBeauty
-    [ 0  25]   aestheticService:NoNaturalBeauty))
+    [ 0  25]  aestheticService:NoNaturalBeauty))
 
 ;; source bayesian model                 
 (defmodel source aestheticService:ViewSource
@@ -147,10 +147,10 @@
 
 (defmodel view-sink-undiscretizer aestheticService:VisualBlight
   (probabilistic-ranking aestheticService:VisualBlight
-    [50 100] aestheticService:HighBlight
-    [25  50] aestheticService:ModerateBlight
-    [ 5  25] aestheticService:LowBlight
-    [ 0   5] aestheticService:NoBlight))
+    [75 100] aestheticService:HighBlight
+    [25  75] aestheticService:ModerateBlight
+    [10  25] aestheticService:LowBlight
+    [ 0  10] aestheticService:NoBlight))
 
 (defmodel sink aestheticService:ViewSink
   "Landscape features that reduce the quality of scenic views"
@@ -190,8 +190,9 @@
 
 (defmodel data-homeowners aestheticService:LineOfSight
   (identification aestheticService:LineOfSight
-    ;;:context [source canoe-use sink altitude]
-    :context [source hiking-use sink altitude]))
+    :context [source canoe-use sink altitude]
+    ;;:context [source hiking-use sink altitude]
+    ))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -200,16 +201,14 @@
 (defmodel view aestheticService:AestheticViewsheds
   (span aestheticService:LineOfSight 
         aestheticService:ViewSource
-        ;;CanoeUse
-        HikingUse
+        CanoeUse
+        ;;HikingUse
         ;;aestheticService:ViewUse
         aestheticService:ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    55.0  ;; Brian: NB, you've probably
-        ;; eliminated all sources by using such a high source
-        ;; threshold. Reduced threshold from 75 to 25
-        :sink-threshold      10.0
+        :source-threshold    25.0
+        :sink-threshold      6.0
         :use-threshold       0.25
         :trans-threshold     1.0
         :source-type        :infinite
@@ -221,7 +220,7 @@
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/recreation_ontario_data.clj")
         ;; need to add additional context(s) for use
-        :context [source sink hiking-use altitude]
+        :context [source sink canoe-use altitude]
         :keep    [aestheticService:TheoreticalSource
                   aestheticService:TheoreticalSink
                   aestheticService:TheoreticalUse

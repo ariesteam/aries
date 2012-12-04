@@ -178,10 +178,10 @@
 
 (defmodel floodplain-sediment-sink-class FloodplainSedimentSinkClass
   (probabilistic-measurement FloodplainSedimentSinkClass "t/ha"
-    [100.00 300.00] HighFloodplainSedimentSink
-    [ 30.00 100.00] ModerateFloodplainSedimentSink
-    [  0.01  30.00] LowFloodplainSedimentSink
-    [  0.00   0.01] NoFloodplainSedimentSink))
+    [60.00 100.00] HighFloodplainSedimentSink
+    [25.00  60.00] ModerateFloodplainSedimentSink
+    [ 1.00  25.00] LowFloodplainSedimentSink
+    [ 0.00   1.00] NoFloodplainSedimentSink))
 
 (defmodel annual-sediment-sink FloodplainSedimentSink
   (bayesian FloodplainSedimentSink
