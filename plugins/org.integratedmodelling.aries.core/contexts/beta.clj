@@ -44,6 +44,24 @@
    "1 km"
    "EPSG:4326 POLYGON((-81.3 42.2, -80 42.2, -80 38, -81.3 38, -81.3 42.2))"))
 
+(defcontext globcover-test-patagonia
+  ""
+  (grid
+   "500 m"
+   "EPSG:4326 POLYGON((-75.5 -51.5, -72 -51.5, -72 -55, -75.5 -55, -75.5 -51.5))"))
+
+(defcontext globcover-test-red-sea
+  ""
+  (grid
+   "500 m"
+   "EPSG:4326 POLYGON((41 14, 45 14, 45 10, 41 10, 41 14))"))
+
+(defcontext globcover-test-sulawesi
+  ""
+  (grid
+   "500 m"
+   "EPSG:4326 POLYGON((119 -4, 123 -4, 123 -6, 119 -6, 119 -4))"))
+
 (defcontext europe-bbox
   ""
   (grid

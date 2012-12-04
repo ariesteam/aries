@@ -97,8 +97,8 @@
     :otherwise BurnedAreaAbsent))
 
 (defmodel transmission-line TransmissionLines 
-  (classification (categorization infrastructure:TransmissionLine)
-    "C20"      TransmissionLinesPresent
+  (classification (binary-coding infrastructure:TransmissionLine)
+    1          TransmissionLinesPresent
     :otherwise TransmissionLinesAbsent))
 
 (defmodel highway Highways

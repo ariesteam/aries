@@ -659,7 +659,7 @@ out on the USGS ArcGIS server (next .xml below).
     <measurement:unit>/km^2</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://my-beta.usgs.gov/arcgis/services/WCS_testing/test_layers/MapServer/WCSServer</geospace:hasServiceUrl>
+        <geospace:hasServiceUrl>http://my-beta.usgs.gov/arcgis/services/aries/test_layers/MapServer/WCSServer</geospace:hasServiceUrl>
         <geospace:hasCoverageId>2</geospace:hasCoverageId>
         <geospace:hasNodataValue>-2.147483647E9</geospace:hasNodataValue>
       </geospace:WCSDataSource>
@@ -2176,8 +2176,8 @@ out on the USGS ArcGIS server (next .xml below).
   </observation:hasObservationExtent>
 </measurement:NumericCoding> -->
 
-<!--
-<measurement:NumericCoding id="landcover_globcover_2009">
+<!--Globcover 2009 from the ArcGIS server. 
+<measurement:NumericCoding id="1">
   <observation:hasObservable>
     <glc:GlobcoverNumeric/>
   </observation:hasObservable>
@@ -2186,23 +2186,47 @@ out on the USGS ArcGIS server (next .xml below).
   <metadata:hasURL>http://due.esrin.esa.int/globcover/</metadata:hasURL>
   <observation:hasDataSource>
     <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>global:landcover_globcover_2009</geospace:hasCoverageId>
-       Not sure if this one needs a hasNodataValue. Test it out (model
-           -o)
+      <geospace:hasServiceUrl>http://my-beta.usgs.gov/arcgis/services/aries/test_bigtiff/MapServer/WCSServer</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>1</geospace:hasCoverageId>
     </geospace:WCSDataSource>
   </observation:hasDataSource>
   <observation:hasObservationExtent>
     <geospace:RasterGrid>
       <geospace:hasXRangeMax>129598</geospace:hasXRangeMax>
       <geospace:hasYRangeMax>55798</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>-64.9986111</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-180.0013889</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>90.0013889</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>179.9986111</geospace:hasLonUpperBound>
+      <geospace:hasLatLowerBound>-64.99861111111123</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-180.0013888888889</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>90.00138888888888</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>179.9986111111114</geospace:hasLonUpperBound>
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:NumericCoding> -->
+
+<measurement:NumericCoding id="ARIES:Globcover_2009">
+  <observation:hasObservable>
+    <glc:GlobcoverNumeric/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: European Space Agency</rdfs:comment>
+  <metadata:hasPriority>8</metadata:hasPriority>
+  <metadata:hasURL>http://due.esrin.esa.int/globcover/</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:Globcover_2009</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>129598</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>55798</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>-64.99861111111123</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-180.0013888888889</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>90.00138888888888</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>179.9986111111114</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
 
 </kbox>
