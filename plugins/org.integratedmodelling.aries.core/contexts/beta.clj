@@ -23,7 +23,7 @@
 (defcontext usa-bbox
   ""
   (grid
-   256
+   1024
    "EPSG:4326 POLYGON((-124.7625 24.5210, -66.9326  24.5210, -66.9326 49.3845, -124.7625 49.3845, -124.7625 24.5210))"))
 
 (defcontext usa-bbox-4096
@@ -41,7 +41,7 @@
 (defcontext nlcd-test
   ""
   (grid
-   "1 km"
+   "200 m"
    "EPSG:4326 POLYGON((-81.3 42.2, -80 42.2, -80 38, -81.3 38, -81.3 42.2))"))
 
 (defcontext globcover-test-patagonia
