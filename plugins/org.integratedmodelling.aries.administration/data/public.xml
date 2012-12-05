@@ -7976,33 +7976,33 @@ global data. -->
 
   <!-- These values are tonnes biomass/ha: multiplying by 0.5 (the standard rule of thumb)
        converts it to tonnes C/ha -->
-<measurement:Measurement id="ARIES:Mosaic_Bio">
-<observation:hasObservable>
-<carbonService:VegetationCarbonStorage/>
-</observation:hasObservable>
-<rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
-  <measurement:unit>t/ha</measurement:unit>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>ARIES:Mosaic_Bio</geospace:hasCoverageId>
-<geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>184660</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>79577</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>24.332069800751206</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-126.0124687074804</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>50.19140538946503</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-66.00622800977072</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
-</measurement:Measurement>
+  <measurement:Measurement id="ARIES:Mosaic_Bio">
+    <observation:hasObservable>
+      <carbonService:VegetationCarbonStorage/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: National_Biomass_and_Carbon_Dataset</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://www.whrc.org/mapping/nbcd/index.html</metadata:hasURL>
+    <measurement:unit>t/ha</measurement:unit>
+    <observation:hasDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>ARIES:Mosaic_Bio</geospace:hasCoverageId>
+        <geospace:hasTransformation>self * 0.5</geospace:hasTransformation>
+      </geospace:WCSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>184660</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>79577</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>24.332069800751206</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-126.0124687074804</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>50.19140538946503</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-66.00622800977072</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
+    </observation:hasObservationExtent>
+  </measurement:Measurement>
 
 <!-- -9999 may be a hasnodata value - need to look at the data more
 closely. -->
@@ -8062,111 +8062,112 @@ closely. -->
 </measurement:Measurement> -->
 
 <!-- 111 is water - may be a hasnodata value - need to look at the data more
-closely. -->
+closely. 
 <measurement:NumericCoding id="ARIES:FRI_2001">
-<observation:hasObservable>
-<habitat:FireThreat/>
-</observation:hasObservable>
-<rdfs:comment>Data source: LANDFIRE 2001 data</rdfs:comment>
+  <observation:hasObservable>
+    <habitat:FireThreat/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: LANDFIRE 2001 data</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
   <metadata:hasURL>http://www.landfire.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>ARIES:FRI_2001</geospace:hasCoverageId>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>180687</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>83402</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>22.691113088424107</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>51.67847607918071</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-65.20761558201296</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
-</measurement:NumericCoding>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:FRI_2001</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>180687</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>83402</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>22.691113088424107</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>51.67847607918071</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.20761558201296</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding> -->
 
 <measurement:NumericCoding id="ARIES:FRI_2008">
-<observation:hasObservable>
-<habitat:FireThreat/>
-</observation:hasObservable>
-<rdfs:comment>Data source: LANDFIRE 2008 data</rdfs:comment>
+  <observation:hasObservable>
+    <habitat:FireThreat/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: LANDFIRE 2008 data</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
   <metadata:hasURL>http://www.landfire.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>ARIES:FRI_2008</geospace:hasCoverageId>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>180687</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>83402</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>22.691113088424107</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>51.67847607918071</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-65.20761558201296</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:FRI_2008</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>180687</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>83402</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>22.691113088424107</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>51.67847607918071</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.20761558201296</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
 </measurement:NumericCoding>
 
 <!-- 111 is water - may be a hasnodata value (also -9999) - need to
-     look at the data more closely. -->
+     look at the data more closely. 2001 data staying commented out
+     for the time being.
 <measurement:Ranking id="ARIES:S_Stage_01">
-<observation:hasObservable>
-<ecology:SuccessionalStage/>
-</observation:hasObservable>
-<rdfs:comment>Data source: LANDFIRE 2008 data</rdfs:comment>
+  <observation:hasObservable>
+    <ecology:SuccessionalStage/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: LANDFIRE 2001 data</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
   <metadata:hasURL>http://www.landfire.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>ARIES:S_Stage_01</geospace:hasCoverageId>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>180687</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>83402</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>22.691113088424114</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>51.67847607918071</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-65.20761558201296</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
-</measurement:Ranking>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:S_Stage_01</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>180687</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>83402</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>22.691113088424114</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>51.67847607918071</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.20761558201296</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking> -->
 
 <measurement:Ranking id="ARIES:S_Stage_2008">
-<observation:hasObservable>
-<ecology:SuccessionalStage/>
-</observation:hasObservable>
-<rdfs:comment>Data source: LANDFIRE 2008 data</rdfs:comment>
+  <observation:hasObservable>
+    <ecology:SuccessionalStage/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: LANDFIRE 2008 data</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
   <metadata:hasURL>http://www.landfire.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>ARIES:S_Stage_2008</geospace:hasCoverageId>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>180687</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>83402</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>22.691113088424107</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>51.67847607918071</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-65.20761558201296</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:S_Stage_2008</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>180687</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>83402</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>22.691113088424107</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>51.67847607918071</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.20761558201296</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
 </measurement:Ranking>
 
 <measurement:Measurement id="outgoing_water_transfer_co">
@@ -8586,164 +8587,164 @@ closely. -->
   </observation:hasObservationExtent>
 </measurement:Ranking>
 
-<!-- <measurement:NumericCoding id="11">
-<observation:hasObservable>
-<nlcd:NLCDNumeric/>
-</observation:hasObservable>
-<rdfs:comment>Data source: NLCD 2001</rdfs:comment>
+<!-- Leaving 2001 NLCD commented out until temporal contexts are enabled
+<measurement:Ranking id="ARIES:NLCD_US_Im">
+  <observation:hasObservable>
+    <habitat:PercentImperviousSurface/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
   <metadata:hasPriority>0</metadata:hasPriority>
   <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://my-beta.usgs.gov/arcgis/services/aries/test_large_datasets/MapServer/WCSServer</geospace:hasServiceUrl>
-<geospace:hasCoverageId>11</geospace:hasCoverageId>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>21.829643001776</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-64.45913922653101</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
-</measurement:NumericCoding>
-
-<measurement:Ranking id="9">
-<observation:hasObservable>
-<habitat:PercentImperviousSurface/>
-</observation:hasObservable>
-<rdfs:comment>Data source: NLCD 2001</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://my-beta.usgs.gov/arcgis/services/aries/test_large_datasets/MapServer/WCSServer</geospace:hasServiceUrl>
-<geospace:hasCoverageId>9</geospace:hasCoverageId>
-<geospace:hasNodataValue>127</geospace:hasNodataValue>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>21.829643001776</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-64.45913922653104</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
-</measurement:Ranking> -->
-
-<measurement:Ranking id="4">
-<observation:hasObservable>
-<habitat:PercentTreeCanopyCover/>
-</observation:hasObservable>
-<rdfs:comment>Data source: NLCD 2001</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://my-beta.usgs.gov/arcgis/services/aries/test_large_datasets/MapServer/WCSServer</geospace:hasServiceUrl>
-<geospace:hasCoverageId>4</geospace:hasCoverageId>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>197886</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>91630</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>22.695263702420377</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>51.67847609994959</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-65.41473578896509</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:NLCD_US_Im</geospace:hasCoverageId>
+      <geospace:hasNodataValue>127</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>21.829643001776</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-64.45913922653104</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
 </measurement:Ranking>
 
-<!-- Testing on the GeoServer (ArcServer tests above) -->
-<measurement:Ranking id="ARIES:NLCD06_US_Im">
-<observation:hasObservable>
-<habitat:PercentImperviousSurface/>
-</observation:hasObservable>
-<rdfs:comment>Data source: NLCD 2006</rdfs:comment>
+<measurement:NumericCoding id="ARIES:NLCD_US_LC">
+  <observation:hasObservable>
+    <nlcd:NLCDNumeric/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
   <metadata:hasPriority>0</metadata:hasPriority>
   <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>ARIES:NLCD06_US_Im</geospace:hasCoverageId>
-<geospace:hasNodataValue>127</geospace:hasNodataValue>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>21.829643001776</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-64.45913922653104</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:NLCD_US_LC</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>21.829643001776</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-64.45913922653101</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding> -->
+
+<measurement:Ranking id="ARIES:NLCD_US_TC">
+  <observation:hasObservable>
+    <habitat:PercentTreeCanopyCover/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: NLCD 2001</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:NLCD_US_TC</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>197886</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>91630</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>22.695263702420377</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-128.00673350725418</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>51.67847609994959</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.41473578896509</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="ARIES:NLCD06_US_Im">
+  <observation:hasObservable>
+    <habitat:PercentImperviousSurface/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: NLCD 2006</rdfs:comment>
+  <metadata:hasPriority>0</metadata:hasPriority>
+  <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:NLCD06_US_Im</geospace:hasCoverageId>
+      <geospace:hasNodataValue>127</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>21.829643001776</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-64.45913922653104</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
 </measurement:Ranking>
 
 <measurement:Ranking id="ARIES:NLCD06_US_LC">
-<observation:hasObservable>
-<nlcd:NLCDNumeric/>
-</observation:hasObservable>
-<rdfs:comment>Data source: NLCD 2006</rdfs:comment>
+  <observation:hasObservable>
+    <nlcd:NLCDNumeric/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: NLCD 2006</rdfs:comment>
   <metadata:hasPriority>0</metadata:hasPriority>
   <metadata:hasURL>http://www.mrlc.gov/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>ARIES:NLCD06_US_LC</geospace:hasCoverageId>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>21.829643001776</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-64.45913922653101</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:NLCD06_US_LC</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>187407</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>88462</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>21.829643001776</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-130.232828</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>52.877264</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-64.45913922653101</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
 </measurement:Ranking>
 
-<!--NWGAP on ArcGIS Server -->
-<measurement:Ranking id="13">
-<observation:hasObservable>
-<puget:NorthwestGapAnalysisLULC/>
-</observation:hasObservable>
-<rdfs:comment>Data source: Northwest GAP Analysis landcover</rdfs:comment>
+<measurement:Ranking id="ARIES:NW_GAP">
+  <observation:hasObservable>
+    <puget:NorthwestGapAnalysisLULC/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Northwest GAP Analysis landcover</rdfs:comment>
   <metadata:hasPriority>5</metadata:hasPriority>
   <metadata:hasURL>http://gap.uidaho.edu/index.php/landcover/</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://my-beta.usgs.gov/arcgis/services/aries/test_large_datasets/MapServer/WCSServer</geospace:hasServiceUrl>
-<geospace:hasCoverageId>13</geospace:hasCoverageId>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>66519</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>54118</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>31.375387642583664</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-128.10766556673425</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>51.68514684630739</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-103.14414945455935</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://beta.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:NW_GAP</geospace:hasCoverageId>
+      <geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>66519</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>54118</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>31.375387642583664</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-128.10766556673425</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>51.68514684630739</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-103.14414945455935</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
 </measurement:Ranking>
 
 </kbox>
