@@ -179,7 +179,7 @@
 
 ;; NB: this assumes each well uses 5 million gallons, a nonconservative estimate (range is 2-5 million).
 (defmodel oil-and-gas-surface-water-use OilAndGasSurfaceWaterUse
-  (measurement OilAndGasSurfaceWaterUse "mm")) 
+  (measurement OilAndGasSurfaceWaterUse "mm"))
 
 ;; Total surface water use. Add the rival user groups
 (defmodel total-surface-water-use TotalSurfaceWaterUse
@@ -202,6 +202,8 @@
                    (or r 0)))))
 
 ;; Need to account for the South Platte River Compact, in which 47% (?) is promised to downstream Nebraska (check also the Republican River Compact).
+
+;; Arkansas River Compact gives 40% to Kansas and 60% to Colorado.
 
 ;;;-------------------------------------------------------------------
 ;;; Groundwater use models
@@ -230,7 +232,7 @@
 
 (defmodel data-all-no-fracking colorado:WaterSupplyNoFracking
   (identification WaterSupply
-    :context [precipitation-annual surface-water-sink
+    :context [runoff surface-water-sink
               total-surface-water-use-no-fracking altitude streams-simple]))
 
 ;;;-------------------------------------------------------------------
@@ -278,24 +280,24 @@
 
 (defmodel surface-flow-no-fracking colorado:SurfaceWaterMovementNoFracking
   (span SurfaceWaterMovement
-        AnnualPrecipitation
+        AnnualRunoffSummed
         colorado:TotalSurfaceWaterUseNoFracking
         SurfaceWaterSink
         nil
         (geophysics:Altitude geofeatures:River)
         :source-threshold   0.0
-        :sink-threshold     0.0
+        :sink-threshold     0.0 ; May want to set a source & use threshold.
         :use-threshold      0.0
         :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
-        :downscaling-factor 1
+        :downscaling-factor 2  ; Ran OK at 4, crashed at 1. Try intermediate values.
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/water_colorado_data_no_fracking.clj")
-        :context            [precipitation-annual surface-water-sink
+        :context            [runoff surface-water-sink
                              total-surface-water-use-no-fracking altitude
                              streams-simple]
         :keep               [TheoreticalSource
