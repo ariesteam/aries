@@ -192,18 +192,25 @@
                    (or r 0)
                    (or o 0)))))
 
+;; Water compacts. Actual is in mm, for the South Platte, though it needs to be moved. Testing, below, to see what the percentage of average flows are for the Arkansas and Republican. After getting that, need to create another layer with those actual values.
+;;(defmodel water-compact-mm InterstateCompactActual
+;;  (measurement InterstateCompactActual "mm"))
+
+(defmodel water-compact-percent InterstateCompactActual
+  (measurement InterstateCompactActual "mm"
+    :context [(ranking InterstateCompactPercent)]
+    :state   #(if (nil? (:interstate-compact-percent %)) nil (* (:interstate-compact-percent %) 10000000000))))
+
 ;; Total surface water use, without hydrofracking.
 (defmodel total-surface-water-use-no-fracking colorado:TotalSurfaceWaterUseNoFracking
   (measurement TotalSurfaceWaterUse "mm"  ;;This is an annual value
-    :context [agricultural-surface-water-use residential-surface-water-use]
+    :context [agricultural-surface-water-use residential-surface-water-use water-compact-percent]
     :state   #(let [a (:agricultural-surface-water-use %)
-                    r (:residential-surface-water-use  %)]
+                    r (:residential-surface-water-use  %)
+                    c (:interstate-compact-actual      %)]
                 (+ (or a 0)
-                   (or r 0)))))
-
-;; Need to account for the South Platte River Compact, in which 47% (?) is promised to downstream Nebraska (check also the Republican River Compact).
-
-;; Arkansas River Compact gives 40% to Kansas and 60% to Colorado.
+                   (or r 0)
+                   (or c 0)))))
 
 ;;;-------------------------------------------------------------------
 ;;; Groundwater use models
