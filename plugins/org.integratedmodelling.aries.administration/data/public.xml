@@ -7676,7 +7676,7 @@ global data. -->
       <habitat:FloodplainWidth/>
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from FEMA Q3 flood data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasPriority>1</metadata:hasPriority>
     <measurement:unit>m</measurement:unit>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
@@ -8424,6 +8424,8 @@ closely.
   </observation:hasObservationExtent>
 </observation:Categorization>
 
+<!-- These layers are problematic - image mosaics that aren't true
+tiles - they have boundary problems. Zach is reworking them 
 <measurement:Ranking id="KFFACT_TIF">
   <observation:hasObservable>
     <habitat:SoilErodibility/>
@@ -8585,7 +8587,7 @@ closely.
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:Ranking>
+</measurement:Ranking> -->
 
 <!-- Leaving 2001 NLCD commented out until temporal contexts are enabled
 <measurement:Ranking id="ARIES:NLCD_US_Im">
