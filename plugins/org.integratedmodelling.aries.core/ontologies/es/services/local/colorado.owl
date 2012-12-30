@@ -85,6 +85,15 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#AnnualMaximumTemperature -->
+
+    <Class rdf:about="&colorado;AnnualMaximumTemperature">
+        <rdfs:subClassOf rdf:resource="&habitat;AtmosphericTemperature"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#AnnualPrecipitationClass -->
 
     <Class rdf:about="&colorado;AnnualPrecipitationClass">
@@ -491,6 +500,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighAnnualMaximumTemperature -->
+
+    <Class rdf:about="&colorado;HighAnnualMaximumTemperature">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualMaximumTemperature"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighAnnualSedimentSource -->
 
     <Class rdf:about="&colorado;HighAnnualSedimentSource">
@@ -559,6 +576,14 @@
 
     <Class rdf:about="&colorado;HighGrassShrubsPresent">
         <rdfs:subClassOf rdf:resource="&colorado;HighGrassOrShrubs"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#HighImperviousCover -->
+
+    <Class rdf:about="&colorado;HighImperviousCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentImperviousCoverClass"/>
     </Class>
     
 
@@ -701,6 +726,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowAnnualMaximumTemperature -->
+
+    <Class rdf:about="&colorado;LowAnnualMaximumTemperature">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualMaximumTemperature"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowAnnualSedimentSource -->
 
     <Class rdf:about="&colorado;LowAnnualSedimentSource">
@@ -777,6 +810,14 @@
 
     <Class rdf:about="&colorado;LowGrassShrubsPresent">
         <rdfs:subClassOf rdf:resource="&colorado;LowGrassOrShrubs"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#LowImperviousCover -->
+
+    <Class rdf:about="&colorado;LowImperviousCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentImperviousCoverClass"/>
     </Class>
     
 
@@ -858,6 +899,14 @@
 
     <Class rdf:about="&colorado;MidSuccession">
         <rdfs:subClassOf rdf:resource="&colorado;SuccessionalStage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModerateAnnualMaximumTemperature -->
+
+    <Class rdf:about="&colorado;ModerateAnnualMaximumTemperature">
+        <rdfs:subClassOf rdf:resource="&colorado;AnnualMaximumTemperature"/>
     </Class>
     
 
@@ -963,6 +1012,22 @@
 
     <Class rdf:about="&colorado;ModerateVegetationStorage">
         <rdfs:subClassOf rdf:resource="&colorado;VegetationCarbonStorage"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModeratelyHighImperviousCover -->
+
+    <Class rdf:about="&colorado;ModeratelyHighImperviousCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentImperviousCoverClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#ModeratelyLowImperviousCover -->
+
+    <Class rdf:about="&colorado;ModeratelyLowImperviousCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentImperviousCoverClass"/>
     </Class>
     
 
@@ -1100,6 +1165,15 @@
 
     <Class rdf:about="&colorado;PeaksPresent">
         <rdfs:subClassOf rdf:resource="&colorado;SharpPeaks"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#PercentImperviousCoverClass -->
+
+    <Class rdf:about="&colorado;PercentImperviousCoverClass">
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </Class>
     
 
@@ -1454,6 +1528,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighImperviousCover -->
+
+    <Class rdf:about="&colorado;VeryHighImperviousCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentImperviousCoverClass"/>
+    </Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryHighMeanAnnualPrecipitation -->
 
     <Class rdf:about="&colorado;VeryHighMeanAnnualPrecipitation">
@@ -1515,6 +1597,14 @@
 
     <Class rdf:about="&colorado;VeryLowCanopyCover">
         <rdfs:subClassOf rdf:resource="&colorado;PercentTreeCanopyCoverClass"/>
+    </Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/aries/local/colorado.owl#VeryLowImperviousCover -->
+
+    <Class rdf:about="&colorado;VeryLowImperviousCover">
+        <rdfs:subClassOf rdf:resource="&colorado;PercentImperviousCoverClass"/>
     </Class>
     
 
