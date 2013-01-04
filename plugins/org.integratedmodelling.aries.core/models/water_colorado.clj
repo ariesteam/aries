@@ -140,11 +140,18 @@
     [ 0   5]            colorado:VeryLowImperviousCover))
 
 ;; Global dataset values are in the range of 18-39 mm for Colorado.
+; (defmodel evapotranspiration colorado:EvapotranspirationClass
+;   (probabilistic-measurement colorado:EvapotranspirationClass "mm"
+;     [30 40] colorado:HighEvapotranspiration
+;     [24 30] colorado:ModerateEvapotranspiration
+;     [18 24] colorado:LowEvapotranspiration))
+
+;; Brown et al. 2008 values are in the range of 137-768 mm for Colorado.
 (defmodel evapotranspiration colorado:EvapotranspirationClass
   (probabilistic-measurement colorado:EvapotranspirationClass "mm"
-    [30 40] colorado:HighEvapotranspiration
-    [24 30] colorado:ModerateEvapotranspiration
-    [18 24] colorado:LowEvapotranspiration))
+    [400 768] colorado:HighEvapotranspiration
+    [310 400] colorado:ModerateEvapotranspiration
+    [137 310] colorado:LowEvapotranspiration))
 
 (defmodel infiltration colorado:SoilInfiltrationClass
   (probabilistic-measurement colorado:SoilInfiltrationClass "mm"

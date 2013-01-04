@@ -165,6 +165,7 @@
 ;; Pedro but (uncalibrated) SWAT model results say 99-482.  Need to
 ;; resolve which is correct.  Later on this should be used for
 ;; training, but not yet.
+;; Brown et al. 2008 say 91-656 for the whole state of Arizona, with the highest values found on the Mogollon Rim. A reasonable discretization using these numbers, which are more compatible with the SWAT results, would be 90-300, 300-425, 425-650.
 (defmodel evapotranspiration sanPedro:EvapotranspirationClass
   (probabilistic-measurement sanPedro:EvapotranspirationClass "mm"
     [60 120] sanPedro:HighEvapotranspiration

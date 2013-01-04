@@ -209,13 +209,23 @@
     [ 5  10]            puget:LowImperviousCover
     [ 0   5]            puget:VeryLowImperviousCover))
 
+;; Global dataset values are in the range of 0-60 mm for Puget Sound.
+;(defmodel evapotranspiration EvapotranspirationClass
+;  (classification (measurement habitat:ActualEvapotranspiration "mm")
+;    [45 60] VeryHighEvapotranspiration
+;    [30 45] HighEvapotranspiration
+;    [20 30] ModerateEvapotranspiration
+;    [10 20] LowEvapotranspiration
+;    [ 0 10] VeryLowEvapotranspiration))
+
+;; Brown et al. 2008 values are in the range of 245-632 mm for Puget Sound. Values get as high as 780 mm heading south into Oregon but staying west of the Cascades.
 (defmodel evapotranspiration EvapotranspirationClass
   (classification (measurement habitat:ActualEvapotranspiration "mm")
-    [45 60] VeryHighEvapotranspiration
-    [30 45] HighEvapotranspiration
-    [20 30] ModerateEvapotranspiration
-    [10 20] LowEvapotranspiration
-    [ 0 10] VeryLowEvapotranspiration))
+    [540 632] VeryHighEvapotranspiration
+    [480 540] HighEvapotranspiration
+    [430 480] ModerateEvapotranspiration
+    [345 430] LowEvapotranspiration
+    [245 345] VeryLowEvapotranspiration))
 
 (defmodel infiltration puget:SoilInfiltrationClass
   (classification (measurement waterSupplyService:SoilInfiltrationClass "mm")
