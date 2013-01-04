@@ -161,6 +161,10 @@
 ;; statement and set the prior to its actual value from the data
 ;; (LowActualEvapotranspiration) - a good temporary solution for WCH
 ;; but change if you ran it again for Southern California.
+;; Brown et al. 2008 say 325-1150 for southern coastal California,
+;; with the highest values found on the Mogollon Rim. A reasonable
+;; discretization using these numbers would be 325-430, 430-560,
+;; 560-700, 700-850, 850-1150.
 (defmodel evapotranspiration EvapotranspirationClass
   (classification (measurement habitat:ActualEvapotranspiration "mm")
     [45 60] VeryHighEvapotranspiration
