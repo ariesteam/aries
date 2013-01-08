@@ -109,6 +109,7 @@
 ;;#{118 119 120}colorado:InvasivePerennials
 ;;#{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 115 116 117 123
 ;;#124 125}colorado:CropsBarrenDeveloped
+
 (defmodel mountain-pine-beetle colorado:MountainPineBeetleDamageClass
   (classification (ranking colorado:MountainPineBeetleDamageSeverity)
      2         colorado:SevereDamage

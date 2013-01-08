@@ -147,8 +147,8 @@
 ;; than nodata - for now just use LULC.
 (defmodel oxygen SoilOxygenConditions
   (classification (numeric-coding mglulc:MGLULCNumeric)
-    #{2 4 5 14} AnoxicSoils
-    :otherwise  OxicSoils))
+    #{2 4 5 14}                                             AnoxicSoils
+    #{0 1 3 6 7 8 9 10 11 12 13 16 17 18 20 21 23 27 30 31} OxicSoils))
 
 ;;No data on fire frequency for Madagascar - use Bayesian priors until we can get a layer.
 

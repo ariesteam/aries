@@ -31,22 +31,23 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <!-- All the models that apply and in which context. -->
   <model>
-    <id>core.models.water-la-antigua/surface-flow</id>
+    <id>core.models.water-la-antigua/data</id> <!-- sub
+    "surface-flow" to deactivate flow models.--> 
     <context>core.contexts.la-antigua/la-antigua-watershed512</context> <!-- Change this if necessary, not sure which context you're running it on these days. -->
   </model>
 
   <model>
-    <id>core.models.water-tanzania/surface-flow</id>
+    <id>core.models.water-tanzania/data</id> <!-- sub
+    "surface-flow" to deactivate flow models.--> 
     <context>core.contexts.tanzania/grr-tanzania</context>
   </model>
 
-<!--Figure out what's going on with the tree canopy cover data
-    gap and the South Platte Compact as a user before posting the
-    Colorado models, below, to the online explorer.
+<!--Still need to finalize handling of the compacts for Colorado. -->
   <model>
-    <id>core.models.water-colorado/surface-flow</id>
-    <context>core.contexts.colorado/co-south-platte</context>
-  </model> -->
+    <id>core.models.water-colorado/data-all-no-fracking</id> <!-- sub
+    "surface-flow" to deactivate flow models.--> 
+    <context>core.contexts.colorado/colorado-400</context>
+  </model>
 
   <!-- Storyline description. -->
   <page id="info">
@@ -354,6 +355,43 @@ water.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="hydrologic-soils-group">
+    <concept>colorado:HydrologicSoilsGroup</concept>
+    <name>Hydrologic soils group</name>
+    <title>Hydrologic soils group</title>
+    <runninghead>Hydrologic soils group</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Different soil types have different infiltration capacities.
+    See <a
+    href="http://www.ems-i.com/wmshelp/Hydrologic_Models/Calculators/Composite_Runoff_Coefficients/Selecting_the_Method.htm"
+    target="_blank">Computing composite CN and runoff
+    coefficients</a>.</p>
+    <h1>Role in models</h1> <p>Soils are classified from group A
+    (highest infiltraiton capacity) to D (lowest infiltration capacity);
+    group accounts for maximum yearly wetness, degree of soil freezing,
+    bare soil surface, and swelling of clays, but does not account for
+    slope. HSG is used along with slope and impervious surface data to
+    estimate the soil infiltration component of surface water sink
+    models.</p>
+    <h1>Representation</h1> <p>Data are categorical.</p>
+    <h1>Source</h1> <p>SSURGO soils data (U.S.); University of Vermont
+    Spatial Analysis Lab, derived from FAO soils data (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">Water supply model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a href="http://soils.usda.gov/survey/geography/ssurgo/" target="_blank">USDA-NRCS SSURGO soils database.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="percent-impervious-cover">
     <concept>waterSupplyService:PercentImperviousCoverClass</concept>
     <name>Percent impervious cover</name>
@@ -377,7 +415,38 @@ water.
     </p>
     ]]></see-also>
     <credits language="html"><![CDATA[
-    <b>Data source</b>: <b>Data source</b>: <a href="http://www.ngdc.noaa.gov/dmsp/download_global_isa.html" target="_blank">NOAA-NGDC global impervious surface data</a>/br>
+    <b>Data source</b>: <b>Data source</b>: <a href="http://www.ngdc.noaa.gov/dmsp/download_global_isa.html" target="_blank">NOAA-NGDC global impervious surface data</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="percent-impervious-cover">
+    <concept>colorado:PercentImperviousCoverClass</concept>
+    <name>Percent impervious cover</name>
+    <title>Percent impervious cover</title>
+    <runninghead>Percent impervious surface cover</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>The amount of impervious surface (e.g., buildings, pavement) on
+    the landscape.</p>
+    <h1>Role in models</h1> <p>Impervious surface data are used along
+    with slope and hydrologic soils group to estimate the soil
+    infiltration component of the surface water sink models. Zero
+    infiltration is expected on impervious surfaces.</p>
+    <h1>Representation</h1> <p>Data show the percentage of the land
+    surface with impervious cover.</p>
+    <h1>Source</h1> <p>National Land Cover Dataset (NLCD).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">Water supply model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <b>Data source</b>: <a href="http://www.mrlc.gov/" target="_blank">National Land Cover Dataset.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -451,7 +520,7 @@ water.
   </page>
 
   <page id="soil-infiltration">
-    <concept>waterSupplyService:SoilInfiltration</concept>
+    <concept>waterSupplyService:SoilInfiltrationClass</concept>
     <name>Soil infiltration</name>
     <title>Soil infiltration</title>
     <runninghead>Soil infiltration</runninghead>
@@ -497,7 +566,7 @@ water.
   </page>
 
  <page id="soil-infiltration">
-    <concept>colorado:SoilInfiltration</concept>
+    <concept>colorado:SoilInfiltrationClass</concept>
     <name>Soil infiltration</name>
     <title>Soil infiltration</title>
     <runninghead>Soil infiltration</runninghead>
@@ -544,6 +613,39 @@ water.
 
   <page id="annual-maximum-temperature">
     <concept>waterSupplyService:AnnualMaximumTemperature</concept>
+    <name>Annual maximum temperature</name>
+    <title>Annual maximum temperature</title>
+    <runninghead>Annual maximum temperature</runninghead>
+    <group>sink</group>
+    <units>degrees Celsius</units>
+    <description><![CDATA[
+    <p>Annual maximum temperature influences water demand by plants
+    and potential levels of evaporation.</p>
+    <h1>Role in models</h1> <p>Particularly in water limited
+    environments, annual maximum temperature is used as an influence on
+    evapotranspiration, with greater evapotranspiration under higher
+    temperatures.</p>
+    <h1>Representation</h1> <p>Data are in physical units of degrees
+    Celsius.</p>
+    <h1>Source</h1> <p>PRISM Climate Group, Oregon State University
+    (U.S.); WorldClim (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/water.html" target="_blank">Water supply model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a href="http://www.worldclim.org/current" target="_blank">WorldClim,</a> <a href="http://www.prism.oregonstate.edu/" target="_blank">PRISM</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="annual-maximum-temperature">
+    <concept>colorado:AnnualMaximumTemperature</concept>
     <name>Annual maximum temperature</name>
     <title>Annual maximum temperature</title>
     <runninghead>Annual maximum temperature</runninghead>
@@ -768,7 +870,7 @@ water.
   </page>
 
   <page id="evapotranspiration">
-    <concept>waterSupplyService:Evapotranspiration</concept>
+    <concept>waterSupplyService:EvapotranspirationClass</concept>
     <name>Evapotranspiration</name>
     <title>Evapotranspiration</title>
     <runninghead>Evapotranspiration</runninghead>

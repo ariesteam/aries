@@ -38,12 +38,14 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <!-- All the models that apply and in which context.-->
   <model>
-    <id>core.models.aesthetic-proximity-puget/proximity</id>
+    <id>core.models.aesthetic-proximity-puget/data</id> <!--sub
+    "proximity" to activate the flow models. -->
     <context>core.contexts.puget/western-wa512</context>
   </model>
 
   <model>
-    <id>core.models.aesthetic-proximity-san-pedro/proximity</id>
+    <id>core.models.aesthetic-proximity-san-pedro/data</id> <!--sub
+    "proximity" to activate the flow models. -->
     <context>core.contexts.san-pedro/san-pedro-us512</context>
   </model>
 
@@ -600,7 +602,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="proximity-source">
-    <concept>aestheticService:ProximitySource</concept>
+    <concept>aestheticService:TheoreticalProximitySource</concept>
     <name>Potential proximity value</name>
     <title>Potential proximity value</title>
     <runninghead>Potential proximity value</runninghead>
@@ -769,7 +771,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="proximity-use">
-    <concept>aestheticService:ProximityUse</concept>
+    <concept>aestheticService:HomeownerProximityUse</concept>
     <name>Potential homeowner proximity use</name>
     <title>Potential homeowner proximity use</title>
     <runninghead>Potential homeowner proximity use</runninghead>
