@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <smile version="1.0" id="RivalUser" numsamples="1000" discsamples="10000">
 	<nodes>
-		<cpt id="SlopeClass">
-			<state id="Level" />
-			<state id="GentlyUndulating" />
-			<state id="RollingToHilly" />
-			<state id="SteeplyDissectedToMountainous" />
-			<probabilities>0.8 0.12 0.06 0.02</probabilities>
-		</cpt>
 		<cpt id="WaterSupplyVegetationType">
 			<state id="Forest" />
 			<state id="ScrubBrush" />
 			<state id="ShortgrassPrairie" />
 			<state id="Water" />
-			<state id="UrbanBarren" />
 			<state id="Agriculture" />
+			<state id="UrbanBarren" />
 			<probabilities>0.211 0.223 0.414 0.004 0.008 0.14</probabilities>
 		</cpt>
 		<cpt id="PercentTreeCanopyCoverClass">
@@ -23,75 +16,128 @@
 			<state id="ModerateCanopyCover" />
 			<state id="LowCanopyCover" />
 			<state id="VeryLowCanopyCover" />
-			<probabilities>0.1 0.1 0.05 0.7 0.05</probabilities>
+			<probabilities>0.05 0.05 0.05 0.1 0.75</probabilities>
 		</cpt>
-		<cpt id="SoilInfiltrationClass">
-			<state id="HighInfiltration" />
-			<state id="ModerateInfiltration" />
-			<state id="LowInfiltration" />
-			<parents>WaterSupplyVegetationType SlopeClass PercentTreeCanopyCoverClass</parents>
-			<probabilities>0.9 0.1 0 0.85 0.15 0 0.75 0.25 0 0.2000000000000001 0.7000000000000001 0.1 0.8 0.1 0.1 0.7000000000000001 0.2000000000000001 0.1 0.7 0.25 0.05 0.6 0.35 0.05 0.15 0.75 0.1 0.6000000000000001 0.3 0.1 0.2 0.4 0.4 0.15 0.4 0.45 0.1 0.45 0.45 0.1 0.65 0.25 0.2 0.5 0.3 0.05 0.2 0.75 0.05 0.15 0.8 0 0.15 0.85 0 0.1 0.9 0 0.05 0.95 0.8 0.2 0 0.85 0.15 0 0.75 0.25 0 0.4 0.4 0.2 0.85 0.1 0.05 0.65 0.25 0.1 0.7 0.25 0.05 0.7 0.25 0.05 0.4 0.35 0.25 0.6000000000000001 0.3 0.1 0.15 0.4 0.45 0.25 0.4 0.35 0.25 0.4 0.35 0.2 0.55 0.25 0.2 0.5 0.3 0.05 0.2 0.75 0.05 0.15 0.8 0 0.15 0.85 0 0.1 0.9 0 0.05 0.95 1 0 0 0.9 0.1 0 0.85 0.15 0 0.8 0.15 0.05 0.75 0.15 0.1 0.95 0.05 0 0.85 0.1 0.05 0.8 0.15 0.05 0.55 0.35 0.1 0.55 0.35 0.1 0.25 0.5 0.25 0.25 0.4 0.35 0.25 0.4 0.35 0.2 0.3 0.5 0.35 0.25 0.4 0.1 0.2 0.7 0.05 0.2 0.75 0.05 0.15 0.8 0 0.15 0.85 0 0.15 0.85 1 0 0 0.95 0.05 0 0.9 0.1 0 1 0 0 0.9 0.1 0 0.95 0.05 0 0.85 0.1 0.05 0.8 0.1 0.1 0.9 0.1 0 0.8 0.1 0.1 0.85 0.1 0.05 0.2 0.6 0.2 0.2 0.6 0.2 0.5 0.4 0.1 0.2 0.6 0.2 0.3 0.5 0.2 0.4 0.5 0.1 0.4 0.5 0.1 0.3 0.5 0.2 0 0 1 0.4 0.3 0.3 0.2 0.2 0.6 0.05 0.15 0.8 0 0.05 0.95 0 0.1 0.9 0.35 0.35 0.3 0.15 0.15 0.7 0.1 0.2 0.7 0 0.07000000000000001 0.9300000000000001 0 0.05 0.95 0.2 0.3 0.5 0.05 0.1 0.85 0 0.08 0.92 0 0.1 0.9 0 0.05 0.95 0 0.1 0.9 0 0.05 0.95 0 0.05 0.95 0 0 1 0 0 1 1 0 0 0.9 0.1 0 0.85 0.15 0 0.8 0.15 0.05 0.75 0.15 0.1 0.95 0.05 0 0.9 0.1 0 0.8 0.15 0.05 0.55 0.35 0.1 0.55 0.35 0.1 0.25 0.5 0.25 0.25 0.45 0.3 0.25 0.4 0.35 0.2 0.3 0.5 0.35 0.25 0.4 0.1 0.2 0.7 0.05 0.2 0.75 0.05 0.15 0.8 0 0.15 0.85 0 0.15 0.85</probabilities>
+		<cpt id="AnnualMaximumTemperature">
+			<state id="HighAnnualMaximumTemperature" />
+			<state id="ModerateAnnualMaximumTemperature" />
+			<state id="LowAnnualMaximumTemperature" />
+			<probabilities>0.6 0.3 0.1</probabilities>
 		</cpt>
 		<cpt id="EvapotranspirationClass">
 			<state id="HighEvapotranspiration" />
 			<state id="ModerateEvapotranspiration" />
 			<state id="LowEvapotranspiration" />
-			<parents>WaterSupplyVegetationType SlopeClass PercentTreeCanopyCoverClass</parents>
-			<probabilities>0.2 0.3 0.5 0.3 0.35 0.35 0.3 0.3 0.4 0.4 0.3 0.3 0.5 0.3 0.2 0.15 0.2 0.65 0.2 0.3 0.5 0.25 0.25 0.5 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.4 0.3 0.3 0.05 0.1 0.85 0.15 0.15 0.7 0.15 0.2 0.65 0.2 0.3 0.5 0.3 0.35 0.35 0.05 0.1 0.85 0.1 0.1 0.8 0.15 0.15 0.7 0.15 0.2 0.65 0.2 0.3 0.5 0.2 0.3 0.5 0.3 0.3 0.4 0.35 0.35 0.3 0.35 0.35 0.3 0.65 0.2 0.15 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.4 0.3 0.3 0.5 0.3 0.2 0.25 0.25 0.5 0.2 0.3 0.5 0.2 0.25 0.55 0.3 0.3 0.4 0.3 0.3 0.4 0.15 0.2 0.65 0.15 0.2 0.65 0.15 0.2 0.65 0.2 0.3 0.5 0.15 0.2 0.65 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.35 0.35 0.3 0.4 0.3 0.3 0.25 0.25 0.5 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.2 0.3 0.5 0.25 0.25 0.5 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.2 0.25 0.55 0.2 0.3 0.5 0.25 0.25 0.5 0.3 0.3 0.4 0.3 0.3 0.4 0.5 0.3 0.2 0.2 0.25 0.55 0.2 0.25 0.55 0.65 0.2 0.15 0.55 0.25 0.2 0.2 0.3 0.5 0.2 0.3 0.5 0.2 0.3 0.5 0.5 0.25 0.25 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.15 0.2 0.65 0.2 0.25 0.55 0.2 0.3 0.5 0.25 0.25 0.5 0.3 0.3 0.4 0.1 0.1 0.8 0.15 0.15 0.7 0.15 0.2 0.65 0.15 0.2 0.65 0.2 0.3 0.5 0.15 0.2 0.65 0.25 0.25 0.5 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.5 0.3 0.2 0.85 0.1 0.05 0.3 0.3 0.4 0.3 0.3 0.4 0.3 0.3 0.4 0.4 0.3 0.3 0.5 0.3 0.2 0.2 0.3 0.5 0.25 0.25 0.5 0.3 0.3 0.4 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.4 0.3 0.3 0.15 0.2 0.65 0.2 0.25 0.55 0.2 0.3 0.5 0.3 0.3 0.4 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.2 0.3 0.5 0.3 0.3 0.4 0.35 0.35 0.3 0.35 0.35 0.3 0.65 0.2 0.15 0.3 0.3 0.4 0.3 0.3 0.4 0.3 0.35 0.35 0.3333333333333333 0.3333333333333333 0.3333333333333334 0.5 0.3 0.2 0.25 0.25 0.5 0.2 0.3 0.5 0.2 0.25 0.55 0.3 0.3 0.4 0.3 0.3 0.4 0.15 0.2 0.65 0.15 0.2 0.65 0.15 0.2 0.65 0.2 0.3 0.5 0.15 0.2 0.65</probabilities>
+			<parents>WaterSupplyVegetationType PercentTreeCanopyCoverClass AnnualMaximumTemperature</parents>
+			<probabilities>0.5 0.5 0 0.4 0.6 0 0.3 0.7 0 0.45 0.55 0 0.35 0.65 0 0.25 0.75 0 0.25 0.65 0.1 0.15 0.65 0.2 0.05 0.65 0.3 0.3333333333333333 0.3333333333333333 0.3333333333333333 0.3 0.3 0.4 0.25 0.25 0.5 0 0.5 0.5 0 0.4 0.6 0 0.3 0.7 0.2000000000000001 0.7000000000000001 0.1 0.1 0.7000000000000001 0.2 0.1 0.6 0.3 0.15 0.7 0.15 0.05 0.75 0.2 0.05 0.7 0.25 0.15 0.6 0.25 0.05 0.6 0.35 0.05 0.5 0.45 0.1 0.45 0.45 0.05 0.4 0.55 0.05 0.3 0.65 0 0.4 0.6 0 0.3 0.7 0 0.2 0.8 0 0.2 0.8 0 0.1 0.9 0 0.05 0.95 0 0.15 0.85 0 0.1 0.9 0 0.05 0.95 0 0.1 0.9 0 0.05 0.95 0 0 1 0 0.05 0.95 0 0 1 0 0 1 0 0 1 0 0 1 0 0 1 0.9 0.1 0 0.8 0.2 0 0.7 0.3 0 0.9 0.1 0 0.8 0.2 0 0.7 0.3 0 0.7 0.3 0 0.6 0.4 0 0.5 0.4 0.1 0.3 0.7 0 0.2 0.8 0 0.2 0.7 0.1 0.1 0.9 0 0.05 0.8 0.15 0.05 0.7 0.25 0.2000000000000001 0.7000000000000001 0.1 0.1 0.7000000000000001 0.2 0.05 0.65 0.3 0.1 0.8 0.1 0.05 0.8 0.15 0 0.8 0.2 0.05 0.8 0.15 0 0.8 0.2 0 0.7 0.3 0 0.8 0.2 0 0.7 0.3 0 0.6 0.4 0 0.6 0.4 0 0.5 0.5 0 0.4 0.6 0.1 0.3 0.6 0.05 0.25 0.7 0.05 0.2 0.75 0.1 0.2 0.7 0.05 0.15 0.8 0.05 0.1 0.85 0 0.2 0.8 0 0.1 0.9 0 0.05 0.95 0 0.1 0.9 0 0.05 0.95 0 0 1 0 0.05 0.95 0 0 1 0 0 1</probabilities>
 			<property id="VegetativeInfiltrationAndInterception">VegetativeInfiltrationAndInterception=((ObservedVegetationHeight/MaxVegetationHeight)/3)+((ObservedVegetationCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)</property>
+		</cpt>
+		<cpt id="SlopeClass">
+			<state id="Level" />
+			<state id="GentlyUndulating" />
+			<state id="RollingToHilly" />
+			<state id="SteeplyDissectedToMountainous" />
+			<probabilities>0.6 0.225 0.125 0.05</probabilities>
+		</cpt>
+		<cpt id="HydrologicSoilsGroup">
+			<state id="SoilGroupA" />
+			<state id="SoilGroupB" />
+			<state id="SoilGroupC" />
+			<state id="SoilGroupD" />
+			<probabilities>0.25 0.25 0.25 0.25</probabilities>
+		</cpt>
+		<cpt id="PercentImperviousCoverClass">
+			<state id="VeryHighImperviousCover" />
+			<state id="HighImperviousCover" />
+			<state id="ModeratelyHighImperviousCover" />
+			<state id="ModeratelyLowImperviousCover" />
+			<state id="LowImperviousCover" />
+			<state id="VeryLowImperviousCover" />
+			<probabilities>0.025 0.075 0.1 0.2 0.3 0.3</probabilities>
+		</cpt>
+		<cpt id="SoilInfiltrationClass">
+			<state id="HighInfiltration" />
+			<state id="ModerateInfiltration" />
+			<state id="LowInfiltration" />
+			<parents>SlopeClass HydrologicSoilsGroup PercentImperviousCoverClass</parents>
+			<probabilities>0.075 0.175 0.75 0.15 0.375 0.475 0.775 0.2 0.025 0.9 0.1 0 0.95 0.05 0 0.975 0.025 0 0.03 0.21 0.76 0.1 0.42 0.48 0.73 0.24 0.03 0.875 0.125 0 0.925 0.075 0 0.95 0.05 0 0 0.275 0.725 0.05 0.575 0.375 0.1 0.55 0.35 0.15 0.7 0.15 0.4 0.6 0 0.6 0.4 0 0 0.15 0.85 0 0.5 0.5 0.05 0.5 0.45 0.1 0.7 0.2 0.3 0.65 0.05 0.35 0.55 0.1 0.03 0.22 0.75 0.11 0.41 0.48 0.725 0.25 0.025 0.875 0.125 0 0.9 0.1 0 0.94 0.06 0 0.01 0.21 0.78 0.1 0.45 0.45 0.7 0.275 0.025 0.85 0.15 0 0.875 0.125 0 0.9 0.1 0 0 0.25 0.75 0.03 0.59 0.38 0.08 0.5600000000000001 0.36 0.125 0.725 0.15 0.36 0.64 0 0.55 0.45 0 0 0.125 0.875 0 0.45 0.55 0.025 0.525 0.45 0.08 0.71 0.21 0.26 0.69 0.05 0.31 0.59 0.1 0 0 1 0 0.125 0.875 0 0.14 0.86 0 0.175 0.825 0 0.225 0.775 0 0.25 0.75 0 0 1 0 0.075 0.925 0 0.125 0.875 0 0.15 0.85 0 0.2 0.8 0 0.225 0.775 0 0 1 0 0.05 0.95 0 0.075 0.925 0 0.1 0.9 0 0.15 0.85 0 0.2 0.8 0 0 1 0 0.025 0.975 0 0.075 0.925 0 0.1 0.9 0 0.15 0.85 0 0.175 0.825 0 0 1 0 0.075 0.925 0 0.11 0.89 0 0.125 0.875 0 0.175 0.825 0 0.2 0.8 0 0 1 0 0.05 0.95 0 0.075 0.925 0 0.1 0.9 0 0.15 0.85 0 0.175 0.825 0 0 1 0 0.025 0.975 0 0.05 0.95 0 0.075 0.925 0 0.11 0.89 0 0.15 0.85 0 0 1 0 0 1 0 0.05 0.95 0 0.075 0.925 0 0.1 0.9 0 0.125 0.875</probabilities>
+			<property id="SoilInfiltration">SoilInfiltration=1-((ObservedSlope/MaxSlope)/3)-((ObservedHSG/HSGD)/3)-((ObservedImperviousCover/100)/3)</property>
 		</cpt>
 	</nodes>
 	<extensions>
 		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
+			<textbox>
+				<caption>Copyright 2013 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>1257 59 1666 255</position>
+			</textbox>
+			<node id="EvapotranspirationClass">
+				<name>EvapotranspirationClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>815 401 1031 435</position>
+				<barchart active="true" width="330" height="72" />
+			</node>
 			<node id="PercentTreeCanopyCoverClass">
 				<name>PercentTreeCanopyCoverClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>94 372 206 406</position>
-				<comment>The Vegetative Density of Each landcover can provide secondary analysis of land use.   Vegetative density adds value to the analysis by taking hetergeneity in landscapes into account.  \n\nFor Example: A Land Use of Urban can have parks, impervious surfaces, yard....  Using the vegetative density these variations are considered.\n\nNoCover: Open Water, Snow/Ice, Developed Roads, Barren, Quarries, fallow idle cropland\n\nLowCover: Developed-Upland Herbaceous, Herbaceous &lt;=70%, grain crops, close ground crop, close ground crop, Shrub &lt;=40%, Tree &lt;= 30%\n\nModerateCover: Shrub Cover, Cropland, Hay, Developed Upland Shrub Cover, Pasture and Hayland, Row Crop, Herbaceous 70-90%, Shrub 40-90%, Tree 30-60%\n\nHighCover: Tree Cover, Developed Upland Tree Cover, Mixed Forest, Herbaceous &gt;90%, Shrub &gt;90%, Tree &gt; 60%</comment>
-				<barchart active="true" width="254" height="108" />
+				<position>872 550 984 584</position>
+				<barchart active="true" width="245" height="108" />
 			</node>
 			<node id="WaterSupplyVegetationType">
 				<name>WaterSupplyVegetationType</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>707 380 802 410</position>
-				<comment>Land Use determines how wate reacts with the landscape.  We are assuming that how the water reacts with the landscape can be used to identify amounts being either be evaporated, absorbed.  The remaining will be considered run of to be collected in streams. \n\nLULC layer:\nForest: 16-27, 53-55, 59-62, 72-75, 80-81\nScrub: 0-15, 28-39, 52, 56, 63, 65-66, 70\nPlains: 40-51, 57-58, 64, 76-79\nUrban: 68, 69, 82\nAgriculture: 71\nWater: 67</comment>
-				<barchart active="true" width="243" height="126" />
+				<position>1130 562 1225 592</position>
+				<barchart active="true" width="222" height="126" />
+			</node>
+			<node id="AnnualMaximumTemperature">
+				<name>AnnualMaximumTemperature</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>588 535 636 565</position>
+				<barchart active="true" width="374" height="72" />
 			</node>
 			<node id="SoilInfiltrationClass">
 				<name>SoilInfiltrationClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>552 221 600 251</position>
-				<barchart active="true" width="195" height="72" />
+				<position>695 115 784 150</position>
+				<comment>(IF we had data for bulk density, which I haven&apos;t been able to find at a reasonable spatial resolution):\nWe could replace this whole section of the BN with bulk density -&gt; even asphalt has bulk density; organic vs. conventional farming produces different bulk density (it&apos;s well-known, quantitative, well understood).  Might still want to keep slope but impervious surface and HSG are quite related to bulk density.\n\nConsider adding soil texture: e.g., coarser soils can hold more water but keep it for a shorter time period, while fine soils store less but keep it longer.\n\nCategories for bulk density: Ted has these.  Bulk density also quite important for soil erosion.  Bulk dens. 1.6 a threshold for tree growth, unhealthy vegetation, 1.8 the texture of rock, 2.0 soil &amp; asphalt. (Bulk dens. is a more information-rich variable than impervious surface cover)</comment>
+				<barchart active="true" width="188" height="72" />
 			</node>
 			<node id="SlopeClass">
 				<name>SlopeClass</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>434 364 482 394</position>
-				<comment>The effect of slope on the two child nodes is very simple the higher the slope the less the residences time at that location (water flows down hill), and is therefore less likely to have the opurtunity to be subject to environmental factors. \n\nDiscretization based on the natural breaks for slope values on the front range.\n\nExtreme: &gt;11\nModerate: 6-11\nLow: 2-6\nFlat: 0-2\n</comment>
-				<barchart active="true" width="324" height="90" />
+				<position>713 250 758 278</position>
+				<comment>See folder C:\\GIS\\new data La Atigua\\DEM there you can find digital elevation model for the whole country.\n\nThis is not a DEM. Not sure what it is. Will default to global data unless other data is specified. Brian</comment>
+				<barchart active="true" width="349" height="90" />
 			</node>
-			<node id="EvapotranspirationClass">
-				<name>EvapotranspirationClass</name>
+			<node id="HydrologicSoilsGroup">
+				<name>HydrologicSoilsGroup</name>
 				<interior color="ffffff" />
 				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>140 223 356 257</position>
-				<comment>Evaporation is affected by land cover. Urban areas tend to hava a very high evaporation due to concrete and asphalt cover that doesn&apos;t absorb water. The heat absorbed during the day by these surfaces also increases evaporation. Areas with low ground cover will have higher evaporation because the plants will not sheild sitting water from the heat. Trees reduce evaporation because water filters through and sun rays are blocked from hitting sitting water. Moving water ways have a lower evaporation if the river is moving at a fast pace or is heavily covered by tree canopy. The rivers along the plains will have a higher evaporation rate because water moves at a sower pace and their is less tree cover. \n\nKB: I don&apos;t understand your interpretation of these concepts: the relevant concept is evapotranspiration, which includes the plant component of the process!</comment>
-				<barchart active="true" width="273" height="72" />
+				<position>417 242 540 272</position>
+				<comment>Mexico uses a different soil classification, so we need to figure out how to deal with this. \n\nIn file: new data La Atigua\\CONAFOR\\INEGI TIPOS SUELO\\LATLONG there is information at the national scale on soils tuxture that I think can help on this.Octavio\n\nNeed more detail on the different attributes, which one to use, and some translation help. Brian\n\nSee Table 1-1 in Jimena&apos;s thesis (page 17) for soil classification information. The available data will support a three class breakdown (coarse, medium, fine) so we should probably just use that. See CLA_TEX in the soil data for the correct attribute to use. Brian</comment>
+				<barchart active="true" width="128" height="90" />
 			</node>
-			<textbox>
-				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+			<node id="PercentImperviousCoverClass">
+				<name>PercentImperviousCoverClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
 				<font color="000000" name="Arial" size="8" />
-				<position>857 59 1266 255</position>
-			</textbox>
+				<position>1014 262 1162 294</position>
+				<barchart active="true" width="326" height="126" />
+			</node>
 		</genie>
 	</extensions>
 </smile>

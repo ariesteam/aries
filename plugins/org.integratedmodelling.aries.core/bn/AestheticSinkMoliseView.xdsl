@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="TransportInfrastructure">
+			<state id="TransportInfrastructurePresent" />
+			<state id="TransportInfrastructureAbsent" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="DevelopedLand">
+			<state id="HighIntensityDevelopment" />
+			<state id="ModerateIntensityDevelopment" />
+			<state id="LowIntensityDevelopment" />
+			<state id="NoDevelopment" />
+			<probabilities>0.05 0.25 0.35 0.35</probabilities>
+		</cpt>
+		<cpt id="VisualBlight">
+			<state id="HighBlight" />
+			<state id="ModerateBlight" />
+			<state id="LowBlight" />
+			<state id="NoBlight" />
+			<parents>DevelopedLand TransportInfrastructure</parents>
+			<probabilities>1 0 0 0 0.75 0.25 0 0 0.6 0.3 0.1 0 0.5 0.3 0.15 0.05 0.2 0.3 0.4 0.1 0.1 0.2 0.4 0.3 0 0.1 0.6 0.3 0 0.05 0.15 0.8</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network2" faultnameformat="nodestate">
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>857 60 1266 256</position>
+			</textbox>
+			<node id="TransportInfrastructure">
+				<name>TransportInfrastructure</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>197 198 252 235</position>
+				<barchart active="true" width="303" height="54" />
+			</node>
+			<node id="DevelopedLand">
+				<name>DevelopedLand</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>162 51 286 128</position>
+				<comment>this could / should include high intensity agricultural development, gravel pits / mining\n</comment>
+				<barchart active="true" width="303" height="90" />
+			</node>
+			<node id="VisualBlight">
+				<name>VisualBlight</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>494 201 542 231</position>
+				<barchart active="true" width="218" height="90" />
+			</node>
+			<textbox>
+				<caption>There are no transmission lines within the study area. There is data, just no observations within our area of interest. Are there other energy infrasctructure factors that should be included in the model? \n\nOther data we should consider?\n\nOther land use(s) or land cover(s) that have a negative effect on scenic view quality?</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>71 337 557 421</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>

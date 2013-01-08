@@ -23,20 +23,62 @@
 (defcontext usa-bbox
   ""
   (grid
-   256
+   1024
    "EPSG:4326 POLYGON((-124.7625 24.5210, -66.9326  24.5210, -66.9326 49.3845, -124.7625 49.3845, -124.7625 24.5210))"))
+
+(defcontext usa-bbox-4096
+  ""
+  (grid
+   4096
+   "EPSG:4326 POLYGON((-124.7625 24.5210, -66.9326  24.5210, -66.9326 49.3845, -124.7625 49.3845, -124.7625 24.5210))"))
+
+(defcontext usa-interior
+  ""
+  (grid
+   "1 km"
+   "EPSG:4326 POLYGON((-102 34, -99 34, -99 32, -102 32, -102 34))"))
 
 (defcontext nlcd-test
   ""
   (grid
-   "1 km"
+   "200 m"
    "EPSG:4326 POLYGON((-81.3 42.2, -80 42.2, -80 38, -81.3 38, -81.3 42.2))"))
+
+(defcontext globcover-test-patagonia
+  ""
+  (grid
+   "500 m"
+   "EPSG:4326 POLYGON((-75.5 -51.5, -72 -51.5, -72 -55, -75.5 -55, -75.5 -51.5))"))
+
+(defcontext globcover-test-red-sea
+  ""
+  (grid
+   "500 m"
+   "EPSG:4326 POLYGON((41 14, 45 14, 45 10, 41 10, 41 14))"))
+
+(defcontext globcover-test-sulawesi
+  ""
+  (grid
+   "500 m"
+   "EPSG:4326 POLYGON((119 -4, 123 -4, 123 -6, 119 -6, 119 -4))"))
 
 (defcontext europe-bbox
   ""
   (grid
    256
    "EPSG:4326 POLYGON((-21.2660 27.6363, -21.2660 61.0088, 39.8693 61.0088, 39.8693 27.6363, -21.2660 27.6363))"))
+
+(defcontext europe-bbox-2048
+  ""
+  (grid
+   2048
+   "EPSG:4326 POLYGON((-21.2660 27.6363, -21.2660 61.0088, 39.8693 61.0088, 39.8693 27.6363, -21.2660 27.6363))"))
+
+(defcontext europe-test
+  ""
+  (grid
+   2048
+   "EPSG:4326 POLYGON((0 52, 8 52, 8 46, 0 46, 0 52))"))
 
 (defcontext agri
   ""

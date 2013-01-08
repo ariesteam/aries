@@ -89,10 +89,10 @@
 
 (defmodel theoretical-beauty aestheticService:TheoreticalNaturalBeauty
   (probabilistic-ranking aestheticService:TheoreticalNaturalBeauty
-    [75 100] aestheticService:HighNaturalBeauty
+    [75 100]  aestheticService:HighNaturalBeauty
     [50  75]  aestheticService:ModerateNaturalBeauty
     [25  50]  aestheticService:LowNaturalBeauty
-    [ 0  25]   aestheticService:NoNaturalBeauty))
+    [ 0  25]  aestheticService:NoNaturalBeauty))
 
 ;; source bayesian model                 
 (defmodel source aestheticService:ViewSource
@@ -147,10 +147,10 @@
 
 (defmodel view-sink-undiscretizer aestheticService:VisualBlight
   (probabilistic-ranking aestheticService:VisualBlight
-    [50 100] aestheticService:HighBlight
-    [25  50] aestheticService:ModerateBlight
-    [ 5  25] aestheticService:LowBlight
-    [ 0   5] aestheticService:NoBlight))
+    [75 100] aestheticService:HighBlight
+    [25  75] aestheticService:ModerateBlight
+    [10  25] aestheticService:LowBlight
+    [ 0  10] aestheticService:NoBlight))
 
 (defmodel sink aestheticService:ViewSink
   "Landscape features that reduce the quality of scenic views"
@@ -169,15 +169,12 @@
 ;;ontario:canoe_use_alg
 (defmodel canoe-use CanoeUse
   "Use data from MNR park surveys where backcountry user indicated a canoe trip."
-(classification (numeric-coding CanoeUse)
-  1              CanoeUsePresent
-  :otherwise     CanoeUseAbsent))
+  (binary-coding CanoeUse))
 
-;; ontario:trails_alg
-(defmodel trails Trails
-  (binary-coding infrastructure:Path))
-
-
+;;ontario:hiking_use_alg
+(defmodel hiking-use HikingUse
+  "Use data from MNR park surveys where backcountry user indicated a hiking trip."
+ (binary-coding HikingUse))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
@@ -193,7 +190,9 @@
 
 (defmodel data-homeowners aestheticService:LineOfSight
   (identification aestheticService:LineOfSight
-    :context [source canoe-use sink altitude]))
+    :context [source canoe-use sink altitude]
+    ;;:context [source hiking-use sink altitude]
+    ))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
@@ -203,19 +202,20 @@
   (span aestheticService:LineOfSight 
         aestheticService:ViewSource
         CanoeUse
+        ;;HikingUse
         ;;aestheticService:ViewUse
         aestheticService:ViewSink
         nil
         (geophysics:Altitude)
-        :source-threshold    75.0  ;; Brian: NB, you've probably eliminated all sources by using such a high source theshold.
-        :sink-threshold      10.0
+        :source-threshold    25.0
+        :sink-threshold      6.0
         :use-threshold       0.25
         :trans-threshold     1.0
         :source-type        :infinite
         :sink-type          :infinite
         :use-type           :infinite
         :benefit-type       :non-rival
-        :downscaling-factor 2
+        :downscaling-factor 4
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/recreation_ontario_data.clj")

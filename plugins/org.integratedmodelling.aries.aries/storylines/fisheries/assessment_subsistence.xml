@@ -30,7 +30,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <!-- All the models that apply and in which context. -->
   <model>
-    <id>marine.models.fisheries/fisheries-subsistence-flow</id>
+    <id>marine.models.fisheries/fisheries-subsistence-data</id> <!--sub
+    "fisheries-subsistence-flow" to activate the flow models. -->
     <context>core.contexts.mg/mg512</context>
   </model>
 
@@ -181,7 +182,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page>
-    <concept>fisheries:SubsistenceFishing</concept>
+    <concept>fisheries:SubsistenceUse</concept>
     <name>Subsistence demand</name>
     <title>Subsistence demand</title>
     <runninghead>Subsistence use</runninghead>

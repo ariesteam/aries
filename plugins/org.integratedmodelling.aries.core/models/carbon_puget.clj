@@ -69,7 +69,7 @@
     3                                MidSuccession
     2                                PoleSuccession
     1                                EarlySuccession
-    #{21 22 23 24 25 26 27 28 40 41} NoSuccession))
+    #{21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} NoSuccession))
 
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")

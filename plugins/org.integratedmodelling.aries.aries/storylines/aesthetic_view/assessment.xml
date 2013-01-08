@@ -38,22 +38,22 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <!-- All the models that apply and in which context. -->
   <model>
-    <id>core.models.aesthetic-view-puget/view</id>
+    <id>core.models.aesthetic-view-puget/data</id> <!--sub
+    "view" to activate the flow models. -->
     <context>core.contexts.puget/western-wa512</context>
   </model>
 
   <model>
-    <id>core.models.aesthetic-view-san-pedro/view</id>
+    <id>core.models.aesthetic-view-san-pedro/data-homeowners</id> <!--sub
+    "view" to activate the flow models. -->
     <context>core.contexts.san-pedro/san-pedro-us512</context>
   </model>
 
-<!-- Add Colorado to the storyline - but need to add correct concepts
-     if Gary ever finishes the plain English flow model descriptions and I
-     can determine the best model structure.
   <model>
-    <id>core.models.aesthetic-view-colorado/view</id>
-    <context>core.contexts.colorado/co-grand-county400</context>
-  </model> -->
+    <id>core.models.aesthetic-view-colorado/data-homeowners</id> <!--sub
+    "view" to activate the flow models. -->
+    <context>core.contexts.colorado/colorado-400</context>
+  </model>
 
   <!-- Storyline description. -->
   <page id="info">
@@ -148,6 +148,36 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="peaks">
+    <concept>aestheticService:MountainPeaks</concept>
+    <name>Mountain peaks</name>
+    <title>Presence of mountain peaks</title>
+    <runninghead>Mountain peaks</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>The presence of mountains peaks as aesthetically valued natural
+    features.</p>
+    <h1>Role in models</h1> <p>The view of mountain peaks is used as an input to a probabilistic model to estimate view
+    quality.</p>
+    <h1>Representation</h1> <p>Data show the presence of land cover
+    types corresponding to high-elevation mountain peaks.</p>
+    <h1>Source</h1> <p>Southwest Regional GAP Analysis (SWReGAP) land
+    cover data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">Aesthetic viewshed and proximity model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis land cover data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="mountain">
     <concept>aestheticService:Mountain</concept>
     <name>Mountains</name>
@@ -211,8 +241,40 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="scenic-vegetation">
+    <concept>colorado:ScenicVegetationType</concept>
+    <name>Scenic vegetation type</name>
+    <title>Scenic vegetation type</title>
+    <runninghead>Scenic vegetation type</runninghead>
+    <group>source</group>
+    <description><![CDATA[
+    <p>The presence of aesthetically pleasing land cover types, such
+    as conifer and aspen forests, which are visually valued vegetation
+    types in the Rocky Mountains.</p>
+    <h1>Role in models</h1> <p>The view of particular types of natural
+    land cover, such as conifer or aspen forests, is used as an input to
+    a probabilistic model to estimate view quality.</p>
+    <h1>Representation</h1> <p>Data are categorical, derived from
+    SWReGAP land cover classes.</p>
+    <h1>Source</h1> <p>Southwest Regional GAP Analysis (SWReGAP) land
+    cover data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">Aesthetic viewshed and proximity model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis land cover data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="view-source">
-    <concept>aestheticService:ViewSource</concept>
+    <concept>aestheticService:TheoreticalNaturalBeauty</concept>
     <name>Potential view quality</name>
     <title>Potential view quality</title>
     <runninghead>Potential view quality</runninghead>
@@ -371,6 +433,39 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page id="burn">
+    <concept>aestheticService:BurnedArea</concept>
+    <name>Burned area</name>
+    <title>Presence of burned areas</title>
+    <runninghead>Burned area</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>The presence of aesthetically displeasing land use types, such
+    as areas that were recently burned by forest fires.</p>
+    <h1>Role in models</h1> <p>The view of aesthetically displeasing
+    land cover, such as recently burned areas, is used as an input to a
+    probabilistic model to estimate visual blight that degrades view
+    quality.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    recently burned forests.</p>
+    <h1>Source</h1> <p>Southwest Regional GAP Analysis (SWReGAP) land
+    cover data.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/aesth.html" target="_blank">Aesthetic viewshed and proximity model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits><![CDATA[
+    <b>Data source</b>: <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis land cover data.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+
   <page id="clearcuts">
     <concept>aestheticService:Clearcuts</concept>
     <name>Clearcuts</name>
@@ -386,7 +481,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Representation</h1> <p>Data show the presence or absence of
     clearcuts.</p>
     <h1>Source</h1> <p>Washington State Department of Natural
-    Resources.</p>
+    Resources (Washington State); Southwest Regional GAP Analysis land
+    cover data (SWReGAP; Southwestern U.S.).</p>
     ]]></description>
     <see-also language="html"><![CDATA[
     <p>
@@ -394,7 +490,9 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </p>
     ]]></see-also>
     <credits><![CDATA[
-    <b>Data source</b>: <a href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html" target="_blank">Washington State DNR.</a></br>
+    <b>Data source</b>: <a
+    href="http://fortress.wa.gov/dnr/app1/dataweb/dmmatrix.html"
+    target="_blank">Washington State DNR.</a>; <a href="http://fws-nmcfwru.nmsu.edu/swregap" target="_blank">Southwest Regional GAP Analysis land cover data.</a></br>
     <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
     ]]></credits>
     <disabled>false</disabled>
@@ -402,8 +500,43 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <plot-type>geocontour-2d</plot-type>
   </page>
 
+  <page>
+    <concept>colorado:GreenGrayBeetleKill</concept>
+    <name>Mountain pine beetle damage class</name>
+    <title>Mountain pine beetle damage class</title>
+    <runninghead>Mountain pine beetle damage</runninghead>
+    <group>sink</group>
+    <description><![CDATA[
+    <p>Mountain pine beetle _(Dendroctonus ponderosae)_ is native to
+    western North American forests. Periodic mountain pine beetle
+    outbreaks impact multiple ecosystem services in these regions by
+    killing large numbers of native pines.</p>
+    <h1>Role in models</h1> <p>Mountain pine beetle mortality affects
+    viewsheds, as views of beetle-killed forest stands are generally
+    seen as less visually appealing than live trees within lodgepole and ponderosa pine
+    forests.</p>
+    <h1>Representation</h1> <p>Data are reclassified from the number of pine
+    beetle-killed trees killed per hectare.</p>
+    <h1>Source</h1> <p>USDA Forest Service aerial surveys.</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/carbon.html" target="_blank">Carbon model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data source</b>: <a
+    href="http://www.fs.usda.gov/wps/portal/fsinternet/!ut/p/c4/04_SB8K8xLLM9MSSzPy8xBz9CP0os3gjAwhwtDDw9_AI8zPyhQoY6BdkOyoCAGixyPg!/?ss=1102&navtype=BROWSEBYSUBJECT&cid=fsbdev3_041629&navid=140000000000000&pnavid=null&position=Not%2520Yet%2520Determined.Html&ttype=detail&pname=Region%25202-%2520Forest%2520&%2520Grassland%2520Health"
+    target="_blank">USDA Forest Service, Forest Health Protection and
+    its partners.</a></br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
   <page id="view-sink">
-    <concept>aestheticService:ViewSink</concept>
+    <concept>aestheticService:VisualBlight</concept>
     <name>Visual blight</name>
     <title>Visual blight</title>
     <runninghead>Visual blight</runninghead>
@@ -504,7 +637,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="view-use">
-    <concept>aestheticService:ViewUse</concept>
+    <concept>aestheticService:HomeownerViewUse</concept>
     <name>Potential homeowner view use</name>
     <title>Potential homeowner view use</title>
     <runninghead>Potential homeowner view use</runninghead>

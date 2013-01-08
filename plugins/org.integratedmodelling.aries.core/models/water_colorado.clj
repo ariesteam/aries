@@ -1,4 +1,4 @@
-;;; Copyright 2011 The ARIES Consortium (http://www.ariesonline.org)
+;;; Copyright 2013 The ARIES Consortium (http://www.ariesonline.org)
 ;;;
 ;;; This file is part of ARIES.
 ;;;
@@ -94,11 +94,11 @@
 (defmodel vegetation-type colorado:WaterSupplyVegetationType
   "Reclass of SWReGAP LULC layer"
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{22 24 26 28 29 30 32 33 34 35 36 38 78 79 81 92 95 99 103 116 118 123 124}                       colorado:Forest
-    #{1 2 4 5 7 8 9 10 11 13 14 15 17 19 21 40 41 42 43 44 46 48 50 53 56 58 62 77 82 104 108 109 113} colorado:ScrubBrush
-    #{63 64 67 68 69 70 71 72 73 74 75 76 85 86 106 119 120 121 122}                                   colorado:ShortgrassPrairie
+    #{22 24 26 28 29 30 32 33 34 35 36 38 63 64 78 79 81 92 95 103 118}                       colorado:Forest
+    #{19 39 40 41 42 43 44 46 48 50 53 56 58 62 67 77 82 104 108 109} colorado:ScrubBrush
+    #{68 69 70 71 72 73 74 75 76 85 86 99 106 119 120 121 122}                                   colorado:ShortgrassPrairie
     110                                                                                                colorado:Water
-    #{111 112 115 117 125}                                                                             colorado:UrbanBarren
+    #{1 2 4 5 7 8 9 10 11 12 13 14 15 17 21 111 112 113 115 116 117 123 124 125}                                                                             colorado:UrbanBarren
     114                                                                                                colorado:Agriculture))
 
 (defmodel percent-canopy-cover colorado:PercentTreeCanopyCoverClass
@@ -109,6 +109,12 @@
     [ 5 30]             colorado:LowCanopyCover
     [ 0  5]             colorado:VeryLowCanopyCover))
 
+(defmodel annual-temperature colorado:AnnualMaximumTemperature
+  (classification (measurement geophysics:AnnualMaximumGroundSurfaceTemperature "\u00b0C")
+    [15 :>]   colorado:HighAnnualMaximumTemperature
+    [10 15]   colorado:ModerateAnnualMaximumTemperature
+    [:< 10]   colorado:LowAnnualMaximumTemperature)) 
+
 (defmodel slope colorado:SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
     [    0  1.15] colorado:Level
@@ -116,12 +122,36 @@
     [ 4.57 16.70] colorado:RollingToHilly
     [16.70    :>] colorado:SteeplyDissectedToMountainous))
 
+(defmodel soil-group colorado:HydrologicSoilsGroup
+  "Relevant soil group"
+  (classification (ranking habitat:HydrologicSoilsGroup)
+    1 colorado:SoilGroupA
+    2 colorado:SoilGroupB
+    3 colorado:SoilGroupC
+    4 colorado:SoilGroupD))
+
+(defmodel imperviousness colorado:PercentImperviousCoverClass
+  (classification (ranking habitat:PercentImperviousSurface)
+    [80 100 :inclusive] colorado:VeryHighImperviousCover
+    [50  80]            colorado:HighImperviousCover
+    [20  50]            colorado:ModeratelyHighImperviousCover
+    [10  20]            colorado:ModeratelyLowImperviousCover
+    [ 5  10]            colorado:LowImperviousCover
+    [ 0   5]            colorado:VeryLowImperviousCover))
+
 ;; Global dataset values are in the range of 18-39 mm for Colorado.
+; (defmodel evapotranspiration colorado:EvapotranspirationClass
+;   (probabilistic-measurement colorado:EvapotranspirationClass "mm"
+;     [30 40] colorado:HighEvapotranspiration
+;     [24 30] colorado:ModerateEvapotranspiration
+;     [18 24] colorado:LowEvapotranspiration))
+
+;; Brown et al. 2008 values are in the range of 137-768 mm for Colorado.
 (defmodel evapotranspiration colorado:EvapotranspirationClass
   (probabilistic-measurement colorado:EvapotranspirationClass "mm"
-    [30 40] colorado:HighEvapotranspiration
-    [24 30] colorado:ModerateEvapotranspiration
-    [18 24] colorado:LowEvapotranspiration))
+    [400 768] colorado:HighEvapotranspiration
+    [310 400] colorado:ModerateEvapotranspiration
+    [137 310] colorado:LowEvapotranspiration))
 
 (defmodel infiltration colorado:SoilInfiltrationClass
   (probabilistic-measurement colorado:SoilInfiltrationClass "mm"
@@ -132,14 +162,14 @@
 (defmodel et-sink colorado:Evapotranspiration
   (bayesian colorado:Evapotranspiration
     :import   "aries.core::SurfaceWaterSinkColorado.xdsl"
-    :context  [slope vegetation-type percent-canopy-cover]
+    :context  [annual-temperature vegetation-type percent-canopy-cover]
     :keep     [colorado:EvapotranspirationClass]
     :result   evapotranspiration))
 
 (defmodel infiltration-sink colorado:SoilInfiltration
   (bayesian colorado:SoilInfiltration
     :import   "aries.core::SurfaceWaterSinkColorado.xdsl"
-    :context  [slope vegetation-type percent-canopy-cover]
+    :context  [slope imperviousness soil-group]
     :keep     [colorado:SoilInfiltrationClass]
     :result   infiltration))
 
@@ -179,7 +209,7 @@
 
 ;; NB: this assumes each well uses 5 million gallons, a nonconservative estimate (range is 2-5 million).
 (defmodel oil-and-gas-surface-water-use OilAndGasSurfaceWaterUse
-  (measurement OilAndGasSurfaceWaterUse "mm")) 
+  (measurement OilAndGasSurfaceWaterUse "mm"))
 
 ;; Total surface water use. Add the rival user groups
 (defmodel total-surface-water-use TotalSurfaceWaterUse
@@ -192,16 +222,25 @@
                    (or r 0)
                    (or o 0)))))
 
+;; Water compacts. Actual is in mm, for the South Platte, though it needs to be moved. Testing, below, to see what the percentage of average flows are for the Arkansas and Republican. After getting that, need to create another layer with those actual values.
+;;(defmodel water-compact-mm InterstateCompactActual
+;;  (measurement InterstateCompactActual "mm"))
+
+(defmodel water-compact-percent InterstateCompactActual
+  (measurement InterstateCompactActual "mm"
+    :context [(ranking InterstateCompactPercent)]
+    :state   #(if (nil? (:interstate-compact-percent %)) nil (* (:interstate-compact-percent %) 10000000000))))
+
 ;; Total surface water use, without hydrofracking.
 (defmodel total-surface-water-use-no-fracking colorado:TotalSurfaceWaterUseNoFracking
   (measurement TotalSurfaceWaterUse "mm"  ;;This is an annual value
-    :context [agricultural-surface-water-use residential-surface-water-use]
+    :context [agricultural-surface-water-use residential-surface-water-use water-compact-percent]
     :state   #(let [a (:agricultural-surface-water-use %)
-                    r (:residential-surface-water-use  %)]
+                    r (:residential-surface-water-use  %)
+                    c (:interstate-compact-actual      %)]
                 (+ (or a 0)
-                   (or r 0)))))
-
-;; Need to account for the South Platte River Compact, in which 47% (?) is promised to downstream Nebraska (check also the Republican River Compact).
+                   (or r 0)
+                   (or c 0)))))
 
 ;;;-------------------------------------------------------------------
 ;;; Groundwater use models
@@ -230,7 +269,7 @@
 
 (defmodel data-all-no-fracking colorado:WaterSupplyNoFracking
   (identification WaterSupply
-    :context [precipitation-annual surface-water-sink
+    :context [runoff surface-water-sink
               total-surface-water-use-no-fracking altitude streams-simple]))
 
 ;;;-------------------------------------------------------------------
@@ -278,24 +317,24 @@
 
 (defmodel surface-flow-no-fracking colorado:SurfaceWaterMovementNoFracking
   (span SurfaceWaterMovement
-        AnnualPrecipitation
+        AnnualRunoffSummed
         colorado:TotalSurfaceWaterUseNoFracking
         SurfaceWaterSink
         nil
         (geophysics:Altitude geofeatures:River)
         :source-threshold   0.0
-        :sink-threshold     0.0
+        :sink-threshold     0.0 ; May want to set a source & use threshold.
         :use-threshold      0.0
         :trans-threshold    0.1
         :source-type        :finite
         :sink-type          :finite
         :use-type           :finite
         :benefit-type       :rival
-        :downscaling-factor 1
+        :downscaling-factor 2  ; Ran OK at 4, crashed at 1. Try intermediate values.
         :rv-max-states      10
         :animation?         false
         ;; :save-file          (str (System/getProperty "user.home") "/water_colorado_data_no_fracking.clj")
-        :context            [precipitation-annual surface-water-sink
+        :context            [runoff surface-water-sink
                              total-surface-water-use-no-fracking altitude
                              streams-simple]
         :keep               [TheoreticalSource

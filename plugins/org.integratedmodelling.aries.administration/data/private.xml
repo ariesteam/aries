@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright 2011 The ARIES Consortium (http://www.ariesonline.org)
+Copyright 2012 The ARIES Consortium (http://www.ariesonline.org)
 
 This file is part of ARIES.
 
@@ -182,6 +182,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
 <!-- Dummy layer to hopefully enable proximity model runs in the
      Noosack River watershed in Washington State.-->
+<!--
 <measurement:Ranking id="housing_value_noosack">
   <observation:hasObservable>
     <economics:AppraisedPropertyValue />
@@ -205,6 +206,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:Ranking>
+-->
 
   <measurement:Measurement id="aquacultural_use_la">
     <observation:hasObservable>
@@ -309,7 +311,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-<!--  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
+  <measurement:BinaryCoding id="sanPedro_hydrography_az_ephemeral">
     <observation:hasObservable>
       <geofeatures:EphemeralStream/>
     </observation:hasObservable>
@@ -331,60 +333,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding> -->
-
-<measurement:BinaryCoding id="hydrography_az_ephemeral2">
-  <observation:hasObservable>
-    <geofeatures:EphemeralStream/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Derived from Arizona Geographic Information Council data</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>san_pedro:hydrography_az_ephemeral2</geospace:hasCoverageId>
-      <geospace:hasNodataValue>128.0</geospace:hasNodataValue>
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>5440</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>6328</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>3466439.0</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>141387.869</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>4099439.0</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>685587.869</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:BinaryCoding>
-
-<!--
-<measurement:BinaryCoding id="san_pedro_hydrograph_az_ephemeral3">
-  <observation:hasObservable>
-    <geofeatures:EphemeralStream/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Derived from Arizona Geographic Information Council data</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WFSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>san_pedro:hydrograph_az_ephemeral3</geospace:hasCoverageId>
-      <geospace:hasValueAttribute>stream</geospace:hasValueAttribute>
-    </geospace:WFSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:ArealFeatureSet>
-      <geospace:hasLatLowerBound>3460315.4458506647</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>116430.08374469791</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>4106933.4803717462</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>698611.8138701736</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-    </geospace:ArealFeatureSet>
-  </observation:hasObservationExtent>
-</measurement:BinaryCoding> -->
+  </measurement:BinaryCoding>
 
   <measurement:NumericCoding id="Reclass_fire_Clip">
     <observation:hasObservable>
@@ -545,7 +494,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <infrastructure:Levee />
     </observation:hasObservable>
     <rdfs:comment>Data source: Derived from King, Lewis, and Pierce county GIS point data</rdfs:comment>
-    <metadata:hasPriority>5</metadata:hasPriority>
+    <metadata:hasPriority>0</metadata:hasPriority>
     <observation:hasDataSource>
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
@@ -588,32 +537,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-<!--  <measurement:BinaryCoding id="mountainfront_recharge">
-    <observation:hasObservable>
-      <geofeatures:MountainFront/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Derived from AGIC geology layer</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/geology.htm</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>san_pedro:mountainfront_recharge</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>5333</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>6361</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>3464504.4</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>153487.996</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4100804.4</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>686987.996</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:BinaryCoding>  -->
-
   <measurement:BinaryCoding id="mountainfront_recharge">
     <observation:hasObservable>
       <geofeatures:MountainFront/>
@@ -641,32 +564,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-<!--
-<measurement:BinaryCoding id="san_pedro_mountainfront_recharge2">
-  <observation:hasObservable>
-    <geofeatures:MountainFront/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: Derived from AGIC geology layer</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/geology.htm</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WFSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>san_pedro:mountainfront_recharge2</geospace:hasCoverageId>
-      <geospace:hasValueAttribute>azbound</geospace:hasValueAttribute>
-    </geospace:WFSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:ArealFeatureSet>
-      <geospace:hasLatLowerBound>3458387.4268580014</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>116360.28249919426</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>4108348.9125906997</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>700115.0029737583</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
-    </geospace:ArealFeatureSet>
-  </observation:hasObservationExtent>
-</measurement:BinaryCoding> -->
-
   <measurement:BinaryCoding id="sanPedro_grazing_land_az">
     <observation:hasObservable>
       <habitat:PastureLand/>
@@ -690,7 +587,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <!-- Global population density, persons/mi^2, derived from raw LandScan data, which was counts/pixel -->
+  <!-- Global population density, persons/mi^2, derived from raw LandScan data, which was counts/pixel 
   <measurement:Count id="popDens2006">
     <observation:hasObservable>
       <policytarget:PopulationDensity />
@@ -719,6 +616,36 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
     <metadata:belongsToDataset>Census_population_density</metadata:belongsToDataset>
   </measurement:Count>
+
+2011 LandScan pop density works fine on the UVM GeoServer. Testing it
+out on the USGS ArcGIS server (next .xml below). -->
+<measurement:Count id="popdens_2011">
+  <observation:hasObservable>
+    <policytarget:PopulationDensity/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Oak Ridge National Laboratory LandScan Dataset</rdfs:comment>
+  <metadata:hasPriority>10</metadata:hasPriority>
+  <metadata:hasURL>http://www.ornl.gov/sci/landscan/</metadata:hasURL>
+  <measurement:unit>/km^2</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>global:popdens_2011</geospace:hasCoverageId>
+      <geospace:hasNodataValue>-2.147483647E9</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>20878</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>-90.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>84.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Count>
 
  <measurement:BinaryCoding id="housing_presence_grand_co">
     <observation:hasObservable>
@@ -845,6 +772,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
+  <!--
   <measurement:BinaryCoding id="sanPedro_hydrography_az_2">
     <observation:hasObservable>
       <geofeatures:River />
@@ -869,6 +797,32 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
+  -->
+
+  <measurement:BinaryCoding id="san_pedro_hydrography_az_3">
+    <observation:hasObservable>
+      <geofeatures:River/>
+    </observation:hasObservable>
+    <rdfs:comment>Data source: Arizona Geographic Information Council</rdfs:comment>
+    <metadata:hasPriority>0</metadata:hasPriority>
+    <metadata:hasURL>http://agic.az.gov/portal/data/metadata/html/streams.htm</metadata:hasURL>
+    <metadata:belongsToDataset>san-pedro-hydrography</metadata:belongsToDataset>
+    <observation:hasDataSource>
+      <geospace:WFSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>san_pedro:hydrography_az_3</geospace:hasCoverageId>
+      </geospace:WFSDataSource>
+    </observation:hasDataSource>
+    <observation:hasObservationExtent>
+      <geospace:ArealFeatureSet>
+        <geospace:hasLatLowerBound>3460316.9198390865</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>116430.37599796552</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>4106928.2415295388</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>698532.9688473609</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:3742</geospace:hasCoordinateReferenceSystem>
+      </geospace:ArealFeatureSet>
+    </observation:hasObservationExtent>
+    </measurement:BinaryCoding>
 
   <!-- This one is just a presence/absence of roads -->
   <measurement:BinaryCoding id="sanPedro_az_roads">
@@ -1823,28 +1777,421 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:NumericCoding id="canoe_use_alg">
-    <observation:hasObservable>
-      <recreationService:CanoeUse/>
-    </observation:hasObservable>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>ontario:canoe_use_alg</geospace:hasCoverageId>
-        <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-       <geospace:hasXRangeMax>1010</geospace:hasXRangeMax>
-       <geospace:hasYRangeMax>904</geospace:hasYRangeMax>
-       <geospace:hasLatLowerBound>4994090.0</geospace:hasLatLowerBound>
-       <geospace:hasLonLowerBound>166010.0</geospace:hasLonLowerBound>
-       <geospace:hasLatUpperBound>5129990.0</geospace:hasLatUpperBound>
-       <geospace:hasLonUpperBound>317810.0</geospace:hasLonUpperBound>
-       <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:NumericCoding>
+  <measurement:BinaryCoding id="canoe_use_alg">
+	<observation:hasObservable>
+		<recreationService:CanoeUse/>
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>ontario:canoe_use_alg</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>877</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>771</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>5120040.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>307860.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+  
+  <measurement:BinaryCoding id="hike_use_alg">
+	<observation:hasObservable>
+		<recreationService:HikingUse/>
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>hike_use_alg</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>877</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>771</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>5120040.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>307860.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+  
+  <measurement:BinaryCoding id="campground_use_alg">
+	<observation:hasObservable>
+		<recreationService:CampgroundUse/>
+	</observation:hasObservable>
+	<observation:hasDataSource>
+		<geospace:WCSDataSource>
+			<geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+			<geospace:hasCoverageId>campground_use_alg</geospace:hasCoverageId>
+			<geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+		</geospace:WCSDataSource>
+	</observation:hasDataSource>
+	<observation:hasObservationExtent>
+		<geospace:RasterGrid>
+			<geospace:hasXRangeMax>877</geospace:hasXRangeMax>
+			<geospace:hasYRangeMax>771</geospace:hasYRangeMax>
+			<geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
+			<geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
+			<geospace:hasLatUpperBound>5120040.0</geospace:hasLatUpperBound>
+			<geospace:hasLonUpperBound>307860.0</geospace:hasLonUpperBound>
+			<geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
+		</geospace:RasterGrid>
+	</observation:hasObservationExtent>
+  </measurement:BinaryCoding>
+
+<measurement:Measurement id="dem20m_molise">
+  <observation:hasObservable>
+    <geophysics:Altitude/>
+  </observation:hasObservable>
+  <measurement:unit>m</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>dem20m_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:NumericCoding id="corine_land_cover_molise_2006">
+  <observation:hasObservable>
+    <aestheticService:CorineNumeric/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>corine_land_cover_molise_2006</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
+
+<measurement:NumericCoding id="corine_land_cover_molise_2006">
+  <observation:hasObservable>
+    <soilRetentionService:CorineNumeric/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>corine_land_cover_molise_2006</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding>
+
+<measurement:BinaryCoding id="lakes_molise">
+  <observation:hasObservable>
+    <geofeatures:Lake/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>lakes_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="transportation_infrastructure_molise">
+  <observation:hasObservable>
+    <infrastructure:Road/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>transportation_infrastructure_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="rivers_molise">
+  <observation:hasObservable>
+    <geofeatures:River/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>rivers_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:BinaryCoding id="hike_use_molise">
+  <observation:hasObservable>
+    <recreationService:HikingUse/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>hike_use_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:Measurement id="annual_runoff_molise">
+  <observation:hasObservable>
+    <habitat:AnnualPrecipitation/>
+  </observation:hasObservable>
+  <measurement:unit>mm</measurement:unit>
+  <metadata:hasPriority>-5</metadata:hasPriority>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>annual_runoff_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:BinaryCoding id="floodplain_molise">
+  <observation:hasObservable>
+    <geofeatures:Floodplain/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>floodplain_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:BinaryCoding>
+
+<measurement:Ranking id="percent_canopy_cover_molise">
+  <observation:hasObservable>
+    <habitat:PercentTreeCanopyCover/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>percent_canopy_cover_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="potential_erosion_molise">
+  <observation:hasObservable>
+    <soilRetentionService:SoilErodibility/>
+  </observation:hasObservable>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>potential_erosion_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Measurement id="stream_gradient_molise">
+  <observation:hasObservable>
+    <habitat:StreamGradient/>
+  </observation:hasObservable>
+  <measurement:unit>°</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+	  <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>stream_gradient_molise</geospace:hasCoverageId>
+	  <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>498</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>998</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>4640010.0</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>480010.0</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>4660010.0</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>490010.0</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:32633</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<!-- Leaving 09 as the active layer until we figure out temporal contexts.
+<measurement:NumericCoding id="ARIES:Globcover_0506">
+<observation:hasObservable>
+<glc:GlobcoverNumeric/>
+</observation:hasObservable>
+<rdfs:comment>Data source: European Space Agency</rdfs:comment>
+  <metadata:hasPriority>8</metadata:hasPriority>
+  <metadata:hasURL>http://due.esrin.esa.int/globcover/</metadata:hasURL>
+<observation:hasDataSource>
+<geospace:WCSDataSource>
+<geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+<geospace:hasCoverageId>ARIES:Globcover_0506</geospace:hasCoverageId>
+</geospace:WCSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:RasterGrid>
+<geospace:hasXRangeMax>129598</geospace:hasXRangeMax>
+<geospace:hasYRangeMax>64798</geospace:hasYRangeMax>
+<geospace:hasLatLowerBound>-89.99861111125513</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>-180.0013888888889</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>90.00138888888888</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>179.99861111139913</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+</geospace:RasterGrid>
+</observation:hasObservationExtent>
+</measurement:NumericCoding> -->
+
+<measurement:NumericCoding id="ARIES:Globcover_2009">
+  <observation:hasObservable>
+    <glc:GlobcoverNumeric/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: European Space Agency</rdfs:comment>
+  <metadata:hasPriority>8</metadata:hasPriority>
+  <metadata:hasURL>http://due.esrin.esa.int/globcover/</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:Globcover_2009</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>129598</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>55798</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>-64.99861111111123</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-180.0013888888889</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>90.00138888888888</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>179.9986111111114</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:NumericCoding> 
 
 </kbox>

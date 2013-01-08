@@ -34,17 +34,20 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <!-- All the models that apply and in which context. -->
   <model>
-    <id>core.models.sediment-puget/sediment-farmers</id>
+    <id>core.models.sediment-puget/farmland-soil-deposition-data</id> <!--sub
+    "sediment-farmers" to activate the flow models. -->
     <context>core.contexts.puget/western-wa-real</context>
   </model>
 
   <model>
-    <id>core.models.sediment-mg/sediment-detrimental-farmers</id>
+    <id>core.models.sediment-mg/farmland-soil-deposition-data</id> <!--sub
+    "sediment-detrimental-farmers" to activate the flow models. -->
     <context>core.contexts.mg/mg-sed1024</context>
   </model>
 
   <model>
-    <id>core.models.sediment-dr/sediment-detrimental-farmers</id>
+    <id>core.models.sediment-dr/farmland-soil-deposition-data</id> <!--sub
+    "sediment-detrimental-farmers" to activate the flow models. -->
     <context>core.contexts.dominican/DR512</context>
   </model>
 
@@ -826,7 +829,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- Saying this is the output of a probabilistic model isn't strictly correct.  What we want to do ideally is
        use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, using intelligent model selection. -->
   <page id="annual-sediment-source">
-    <concept>soilRetentionService:AnnualSedimentSource</concept>
+    <concept>soilRetentionService:AnnualSedimentSourceClass</concept>
     <name>Annual sediment source</name>
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source</runninghead>
@@ -868,7 +871,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="annual-sediment-source">
-    <concept>puget:AnnualSedimentSource</concept>
+    <concept>puget:AnnualSedimentSourceClass</concept>
     <name>Annual sediment source</name>
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source</runninghead>
@@ -1042,7 +1045,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="floodplain-sediment-sink">
-    <concept>soilRetentionService:FloodplainSedimentSink</concept>
+    <concept>soilRetentionService:FloodplainSedimentSinkClass</concept>
     <name>Floodplain sediment sink</name>
     <title>Floodplain sediment sink</title>
     <runninghead>Floodplain sediment sink</runninghead>

@@ -139,6 +139,14 @@ public class WebZKVisualization extends WebVisualization {
 	
 	public ZK.ZKComponent getStateDescriptionAt(IConcept concept, int imgX, int imgY, String units) throws ThinklabException {
 		
+		System.out.println("---------------------------------------------------------------------------");
+		System.out.println("You asked for: " + concept + ". Available states are: ");
+		for (IState s : context.getStates()) {
+			System.out.println(s.getObservableClass() + " " + (s instanceof CategoricalDistributionDatasource ? "WITH distribution info" : "WITHOUT distribution info"));
+		}
+		System.out.println("Make sure the state you want to show is in the storyline with the intended concept");
+		System.out.println("---------------------------------------------------------------------------");
+		
 		Object o = getDataAt(concept, imgX, imgY);
 		DecimalFormat df = new DecimalFormat("#.####");
 		DecimalFormat df3 = new DecimalFormat("#.###");
@@ -171,7 +179,16 @@ public class WebZKVisualization extends WebVisualization {
 					ZK.spacer(20),
 					ZK.label(df.format((Double)o) + units).sclass(STYLE.TEXT_SMALL));
 			
-		} else if (o instanceof IConcept) {
+		} else if (o instanceof IndexedCategoricalDistribution && !(state instanceof CategoricalDistributionDatasource)) {
+			
+			o = new Double(((IndexedCategoricalDistribution)o).getMean());
+			
+			dvis = 
+				ZK.vbox(
+					ZK.spacer(20),
+					ZK.label(df.format((Double)o) + units).sclass(STYLE.TEXT_SMALL));
+			
+		}else if (o instanceof IConcept) {
 			
 			VisualConcept vc = TypeManager.get().getVisualConcept((IConcept)o);
 			HashMap<IConcept, String> leg = VisualizationFactory.get().getClassLegend(state);
@@ -195,7 +212,7 @@ public class WebZKVisualization extends WebVisualization {
 					ZK.spacer(20),
 					ZK.label((String)o).sclass(STYLE.TEXT_SMALL));
 
-		} else if (o instanceof IndexedCategoricalDistribution) {
+		} else if (o instanceof IndexedCategoricalDistribution && state instanceof CategoricalDistributionDatasource) {
 			
 			IndexedCategoricalDistribution dist = (IndexedCategoricalDistribution) o;
 			CategoricalDistributionDatasource z = (CategoricalDistributionDatasource)state;
@@ -210,7 +227,7 @@ public class WebZKVisualization extends WebVisualization {
 						"): " +
 						df.format(stats.probabilities[1]));
 			} else {
-			
+				
 				double h = 36;
 				int    w = 48/dist.data.length;
 				ArrayList<ZKComponent> bars = new ArrayList<ZK.ZKComponent>();

@@ -33,34 +33,37 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
 
   <!-- All the models that apply and in which context. -->
   <model>
-    <id>core.models.sediment-puget/sediment-reservoirs</id>
+    <id>core.models.sediment-puget/reservoir-soil-deposition-data</id> <!--sub
+    "sediment-reservoirs" to activate the flow models. -->
     <context>core.contexts.puget/western-wa-real</context>
   </model>
 
   <model>
-    <id>core.models.sediment-mg/sediment-detrimental-reservoirs</id>
+    <id>core.models.sediment-mg/reservoir-soil-deposition-data</id> <!--sub
+    "sediment-detrimental-reservoirs" to activate the flow models. -->
     <context>core.contexts.mg/mg-sed1024</context>
   </model>
 
   <model>
-    <id>core.models.sediment-dr/sediment-detrimental-reservoirs</id>
+    <id>core.models.sediment-dr/reservoir-soil-deposition-data</id> <!--sub
+    "sediment-detrimental-reservoirs" to activate the flow models. -->
     <context>core.contexts.dominican/DR512</context>
   </model>
 
 <!-- Need to add the Colorado scenarios but there's a fire/no fire
      component to it - so not sure how to best represent those in the
-     stoyrylines.  Many contexts are also possible for this one.
+     stoyrylines, so keeping "no fire" active for now.
 
   <model>
     <id>core.models.sediment-colorado/sediment-reservoirs-fire</id>
-    <context>core.contexts.colorado/co-blue</context>
-  </model>
+    <context>core.contexts.colorado/colorado-400</context>
+  </model> -->
 
   <model>
-    <id>core.models.sediment-colorado/sediment-reservoirs-no-fire</id>
-    <context>core.contexts.colorado/co-blue</context>
+    <id>core.models.sediment-colorado/reservoir--deposition-data-no-fire</id> <!--sub
+    "sediment-reservoirs-no-fire" to activate the flow models. -->
+    <context>core.contexts.colorado/colorado-400</context>
   </model>
--->
 
   <!-- Storylines right now defined only for deposition prone farmers (beneficial or detrimental sedimentation) and
        reservoirs as beneficiary groups.  Could also write storylines for erosion prone farmers (who benefit from soil
@@ -1082,7 +1085,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- Saying this is the output of a probabilistic model isn't strictly correct.  What we want to do ideally is
        use probabilistic models in steeply sloped areas (>20%) and RUSLE elsewhere, using intelligent model selection. -->
   <page id="annual-sediment-source">
-    <concept>soilRetentionService:AnnualSedimentSource</concept>
+    <concept>soilRetentionService:AnnualSedimentSourceClass</concept>
     <name>Annual sediment source</name>
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source</runninghead>
@@ -1124,7 +1127,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="annual-sediment-source">
-    <concept>colorado:AnnualSedimentSource</concept>
+    <concept>colorado:AnnualSedimentSourceClass</concept>
     <name>Annual sediment source</name>
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source</runninghead>
@@ -1165,7 +1168,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="annual-sediment-source">
-    <concept>puget:AnnualSedimentSource</concept>
+    <concept>puget:AnnualSedimentSourceClass</concept>
     <name>Annual sediment source</name>
     <title>Annual sediment source</title>
     <runninghead>Annual sediment source</runninghead>
@@ -1339,7 +1342,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   </page>
 
   <page id="floodplain-sediment-sink">
-    <concept>soilRetentionService:FloodplainSedimentSink</concept>
+    <concept>soilRetentionService:FloodplainSedimentSinkClass</concept>
     <name>Annual sediment sink</name>
     <title>Annual sediment sink</title>
     <runninghead>Annual sediment sink</runninghead>
@@ -1455,6 +1458,39 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     <h1>Role in models</h1> <p>The location of reservoirs for
     hydroelectric dams, where generation capacity or storage data are
     unavailable. These data are use values for hydroelectric dams as
+    beneficiaries of sediment regulation. Their use and location is passed
+    to flow models which map actual sediment delivery to reservoirs.</p>
+    <h1>Representation</h1> <p>Data show the presence or absence of
+    reservoirs.</p>
+    <h1>Source</h1> <p>FAO AQUASTAT (Africa); Global Database of Dams
+    (global).</p>
+    ]]></description>
+    <see-also language="html"><![CDATA[
+    <p>
+    <a href="http://www.ariesonline.org/modules/soil.html" target="_blank">Sediment regulation model details from the ARIES website</a><br/>
+    </p>
+    ]]></see-also>
+    <credits language="html"><![CDATA[
+    <b>Data sources</b>: <a href="http://www.fao.org/nr/water/aquastat/gis/index2.stm" target="_blank">FAO AQUASTAT, </a> <a href="earth.google.com/gallery/kmz/dams_database.kmz" target="_blank">Global Database of Dams.</br>
+    <b>Funding</b>: <a href="http://www.nsf.gov" target="_blank">U.S. National Science Foundation</a>.
+    ]]></credits>
+    <disabled>false</disabled>
+    <plot-type default="true">geosurface-2d</plot-type>
+    <plot-type>geocontour-2d</plot-type>
+  </page>
+
+  <page id="reservoir-presence">
+    <concept>geofeatures:Reservoir</concept>
+    <name>Reservoir presence</name>
+    <title>Reservoir presence</title>
+    <runninghead>Reservoir presence</runninghead>
+    <group>use</group>
+    <description><![CDATA[
+    <p>When dam storage capacities are unavailable, reservoir location
+    data are used to map impacts of sedimentation on the hydroelectric
+    generation and water supply benefits provided by reservoirs.</p>
+    <h1>Role in models</h1> <p>The location of reservoirs, where generation capacity or storage data are
+    unavailable. These data are use values for reservoirs as
     beneficiaries of sediment regulation. Their use and location is passed
     to flow models which map actual sediment delivery to reservoirs.</p>
     <h1>Representation</h1> <p>Data show the presence or absence of

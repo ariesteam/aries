@@ -32,7 +32,8 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
   <!-- All the models that apply and in which context. -->
 
   <model>
-    <id>core.models.water-san-pedro/surface-flow-dry</id>
+    <id>core.models.water-san-pedro/data-dry-year</id> <!--sub
+    "surface-flow-dry" to activate the flow models. -->
     <context>core.contexts.san-pedro/san-pedro-watershed-us-real</context>
   </model>
 
@@ -346,7 +347,7 @@ water.
   </page>
 
   <page id="soil-infiltration">
-    <concept>sanPedro:SoilInfiltration</concept>
+    <concept>sanPedro:SoilInfiltrationClass</concept>
     <name>Soil infiltration</name>
     <title>Soil infiltration</title>
     <runninghead>Soil infiltration</runninghead>
@@ -491,7 +492,7 @@ water.
   </page>
 
   <page id="evapotranspiration">
-    <concept>waterSupplyService:Evapotranspiration</concept>
+    <concept>waterSupplyService:EvapotranspirationClass</concept>
     <name>Evapotranspiration</name>
     <title>Evapotranspiration</title>
     <runninghead>Evapotranspiration</runninghead>

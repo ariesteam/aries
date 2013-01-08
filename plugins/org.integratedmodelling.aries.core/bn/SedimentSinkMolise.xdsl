@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="StreamGradientClass">
+			<state id="HighStreamGradient" />
+			<state id="ModerateStreamGradient" />
+			<state id="LowStreamGradient" />
+			<probabilities>0.026 0.032 0.942</probabilities>
+		</cpt>
+		<cpt id="Floodplains">
+			<state id="InFloodplain" />
+			<state id="NotInFloodplain" />
+			<probabilities>0.1 0.9</probabilities>
+		</cpt>
+		<cpt id="FloodplainTreeCanopyCoverClass">
+			<state id="VeryHighFloodplainCanopyCover" />
+			<state id="HighFloodplainCanopyCover" />
+			<state id="ModerateFloodplainCanopyCover" />
+			<state id="LowFloodplainCanopyCover" />
+			<state id="VeryLowFloodplainCanopyCover" />
+			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+		</cpt>
+		<cpt id="FloodplainSedimentSinkClass">
+			<state id="HighFloodplainSedimentSink" />
+			<state id="ModerateFloodplainSedimentSink" />
+			<state id="LowFloodplainSedimentSink" />
+			<state id="NoFloodplainSedimentSink" />
+			<parents>StreamGradientClass FloodplainTreeCanopyCoverClass Floodplains</parents>
+			<probabilities>0 0.35 0.35 0.3 0 0.2 0.2 0.6 0 0.3 0.35 0.35 0 0.15 0.25 0.6 0 0 0.5 0.5 0 0 0.35 0.65 0 0 0.4 0.6 0 0 0.25 0.75 0 0 0.35 0.65 0 0 0.2 0.8 0.05 0.3 0.35 0.3 0 0.2 0.2 0.6 0.05 0.35 0.3 0.3 0 0.15 0.25 0.6 0.05 0.25 0.3 0.4 0 0.05 0.35 0.6 0.05 0.05 0.4 0.5 0 0 0.25 0.75 0.1 0.1 0.4 0.4 0 0 0.2 0.8 0.6 0.3 0.05 0.05 0.45 0.3 0.15 0.1 0.55 0.25 0.15 0.05 0.4 0.25 0.2 0.15 0.5 0.25 0.2 0.05 0.35 0.25 0.25 0.15 0.45 0.225 0.225 0.1 0.3 0.3 0.25 0.15 0.4 0.3 0.2 0.1 0.25 0.25 0.25 0.25</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network2" faultnameformat="nodestate">
+			<node id="FloodplainSedimentSinkClass">
+				<name>FloodplainSedimentSinkClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>514 219 656 255</position>
+				<comment>Erosion an absolute sink\n\nEliminate &quot;reservoir&quot; from the model because there is no data to support this.</comment>
+				<barchart active="true" width="327" height="90" />
+			</node>
+			<node id="StreamGradientClass">
+				<name>StreamGradientClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>162 101 271 141</position>
+				<comment>A proxy for the velocity of streamflow.  Use underlying DEM to calculate the slope of the stream.</comment>
+				<barchart active="true" width="257" height="72" />
+			</node>
+			<node id="Floodplains">
+				<name>Floodplains</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>181 333 285 370</position>
+				<barchart active="true" width="223" height="54" />
+			</node>
+			<node id="FloodplainTreeCanopyCoverClass">
+				<name>FloodplainTreeCanopyCoverClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>108 218 261 254</position>
+				<barchart active="true" width="322" height="108" />
+			</node>
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>857 59 1266 255</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>

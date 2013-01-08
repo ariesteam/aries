@@ -37,7 +37,7 @@
 (defcontext algonquin-bbox-wgs84
   "Two Algonquin Provincial Park region."
   (grid
-   "50 m"
+   "350 m"
    "EPSG:4326 POLYGON ((-79.18 46.1710058593745,  -77.4700000000009 46.1710058593745, -77.4700000000009 45.138994140625,  -79.18 45.138994140625, -79.18 46.1710058593745))"))
 
 (defcontext lakeofthewoods-wshed2

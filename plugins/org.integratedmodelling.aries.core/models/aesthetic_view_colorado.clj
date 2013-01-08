@@ -49,7 +49,7 @@
 
 (defmodel peaks MountainPeaks
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{1 2 3 }           SharpPeaks
+    #{1 2 3}            SharpPeaks
     #{5 7 8 9 10 12 15} OtherPeaks
     :otherwise          PeaksAbsent))
 
@@ -97,8 +97,8 @@
     :otherwise BurnedAreaAbsent))
 
 (defmodel transmission-line TransmissionLines 
-  (classification (categorization infrastructure:TransmissionLine)
-    "C20"      TransmissionLinesPresent
+  (classification (binary-coding infrastructure:TransmissionLine)
+    1          TransmissionLinesPresent
     :otherwise TransmissionLinesAbsent))
 
 (defmodel highway Highways

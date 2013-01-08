@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="VeryHighCanopyCover" />
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
+			<state id="VeryLowCanopyCover" />
+			<probabilities>0.38 0.36 0.18 0 0.08</probabilities>
+		</cpt>
+		<cpt id="SedimentVegetationType">
+			<state id="ForestGrasslandWetland" />
+			<state id="ShrublandPasture" />
+			<state id="ImpairedForest" />
+			<state id="CropsBarrenDeveloped" />
+			<probabilities>0.21 0.02 0.74 0.03</probabilities>
+		</cpt>
+		<cpt id="VegetativeMaturity">
+			<state id="HighVegetativeMaturity" />
+			<state id="ModerateVegetativeMaturity" />
+			<state id="LowVegetativeMaturity" />
+			<state id="NoVegetativeMaturity" />
+			<parents>SedimentVegetationType PercentTreeCanopyCoverClass</parents>
+			<probabilities>1 0 0 0 0.9 0.1 0 0 0.8 0.1 0.1 0 0.6 0.15 0.15 0.1 0.4 0.3 0.2 0.1 0 0.1 0.2 0.7 0 0.05 0.15 0.8 0 0.05 0.05 0.9 0 0 0.1 0.9 0 0 0 1 0 0.6 0.2 0.2 0 0.15 0.25 0.6 0 0.1 0.2 0.7 0 0 0.3 0.7 0 0 0.2 0.8 0 0.05 0.3 0.65 0 0.05 0.2 0.75 0 0.05 0.1 0.85 0 0 0.1 0.9 0 0 0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="SoilErodibilityClass">
+			<state id="VeryHighSoilErodibility" />
+			<state id="HighSoilErodibility" />
+			<state id="ModerateSoilErodibility" />
+			<state id="LowSoilErodibility" />
+			<state id="VeryLowSoilErodibility" />
+			<probabilities>0 0.1 0.2 0.3 0.4</probabilities>
+		</cpt>
+		<cpt id="AnnualRunoffClass">
+			<state id="VeryHighMeanAnnualRunoff" />
+			<state id="HighMeanAnnualRunoff" />
+			<state id="ModerateMeanAnnualRunoff" />
+			<state id="LowMeanAnnualRunoff" />
+			<state id="VeryLowMeanAnnualRunoff" />
+			<probabilities>0.2 0.2 0.2 0.2 0.2</probabilities>
+		</cpt>
+		<cpt id="AnnualSedimentSourceClass">
+			<state id="HighAnnualSedimentSource" />
+			<state id="ModerateAnnualSedimentSource" />
+			<state id="LowAnnualSedimentSource" />
+			<state id="NoAnnualSedimentSource" />
+			<parents>SoilErodibilityClass VegetativeMaturity AnnualRunoffClass</parents>
+			<probabilities>0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.4 0.3 0.2 0.1 0.3 0.25 0.25 0.2 0.25 0.2 0.3 0.25 0.65 0.25 0.1 0 0.55 0.3 0.15 0 0.45 0.35 0.2 0 0.35 0.25 0.25 0.15 0.3 0.25 0.25 0.2 0.85 0.1 0.05 0 0.7 0.25 0.05 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.4 0.3 0.2 0.1 0.95 0.05 0 0 0.85 0.1 0.05 0 0.7 0.25 0.05 0 0.6 0.3 0.1 0 0.5 0.3 0.2 0 0.55 0.3 0.1 0.05 0.45 0.25 0.2 0.1 0.4 0.25 0.2 0.15 0.3 0.3 0.2 0.2 0.2 0.2 0.3 0.3 0.7 0.25 0.05 0 0.6 0.3 0.1 0 0.5 0.35 0.1 0.05 0.35 0.35 0.2 0.1 0.3 0.25 0.25 0.2 0.85 0.1 0.05 0 0.75 0.2 0.05 0 0.65 0.3 0.05 0 0.55 0.3 0.1 0.05 0.35 0.3 0.2 0.15 0.95 0.05 0 0 0.85 0.1 0.05 0 0.7 0.25 0.05 0 0.55 0.3 0.1 0.05 0.4 0.3 0.2 0.1 0.5 0.3 0.1 0.1 0.4 0.25 0.2 0.15 0.35 0.25 0.2 0.2 0.3 0.225 0.225 0.25 0.2 0.2 0.3 0.3 0.6 0.25 0.1 0.05 0.5 0.3 0.15 0.05 0.4 0.35 0.15 0.1 0.3 0.35 0.2 0.15 0.25 0.25 0.25 0.25 0.8 0.1 0.05 0.05 0.75 0.1 0.1 0.05 0.65 0.15 0.1 0.1 0.55 0.2 0.15 0.1 0.45 0.25 0.2 0.1 0.9 0.1 0 0 0.8 0.1 0.1 0 0.7 0.15 0.1 0.05 0.55 0.2 0.15 0.1 0.4 0.3 0.2 0.1 0.4 0.25 0.25 0.1 0.3 0.3 0.25 0.15 0.25 0.3 0.3 0.15 0.2 0.3 0.35 0.15 0.1 0.2 0.3 0.4 0.6 0.25 0.1 0.05 0.5 0.3 0.15 0.05 0.4 0.35 0.15 0.1 0.3 0.35 0.2 0.15 0.2 0.3 0.3 0.2 0.8 0.1 0.05 0.05 0.75 0.1 0.1 0.05 0.65 0.15 0.1 0.1 0.55 0.2 0.15 0.1 0.45 0.25 0.2 0.1 0.9 0.1 0 0 0.8 0.1 0.1 0 0.7 0.15 0.1 0.05 0.55 0.2 0.15 0.1 0.4 0.3 0.2 0.1 0 0.3 0.3 0.4 0.2 0.2 0.3 0.3 0 0.2 0.3 0.5 0 0.1 0.1 0.8 0 0 0 1 0.1 0.1 0.3 0.5 0.1 0.2 0.3 0.4 0.05 0.1 0.3 0.55 0 0.1 0.1 0.8 0 0 0 1 0 0.1 0.2 0.7 0 0.05 0.15 0.8 0 0 0.1 0.9 0 0 0.05 0.95 0 0.05 0.15 0.8 0.1 0.1 0.2 0.6 0 0.1 0.2 0.7 0 0.05 0.15 0.8 0.05 0.05 0.1 0.8 0 0.1 0.1 0.8</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network1" faultnameformat="nodestate">
+			<node id="AnnualSedimentSourceClass">
+				<name>AnnualSedimentSourceClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>834 272 968 305</position>
+				<barchart active="true" width="323" height="90" />
+			</node>
+			<node id="VegetativeMaturity">
+				<name>VegetativeMaturity</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>495 404 619 443</position>
+				<barchart active="true" width="279" height="90" />
+			</node>
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>175 331 286 365</position>
+				<barchart active="true" width="277" height="108" />
+			</node>
+			<node id="SedimentVegetationType">
+				<name>SedimentVegetationType</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>195 483 300 513</position>
+				<barchart active="true" width="243" height="90" />
+			</node>
+			<node id="SoilErodibilityClass">
+				<name>SoilErodibilityClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>545 137 634 174</position>
+				<barchart active="true" width="215" height="108" />
+			</node>
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>960 668 1369 864</position>
+			</textbox>
+			<node id="AnnualRunoffClass">
+				<name>AnnualRunoffClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>486 255 595 323</position>
+				<barchart active="true" width="314" height="108" />
+			</node>
+		</genie>
+	</extensions>
+</smile>
