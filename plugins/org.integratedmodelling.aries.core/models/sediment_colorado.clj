@@ -93,7 +93,7 @@
 
 (defmodel vegetation-type colorado:SedimentVegetationType
   (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC)
-    #{19 22 23 24 26 28 29 30 32 33 34 35 36 38 39 40 41 42 43 44 46 48 50 53 56 58 62 63 64 67 68 69 70 71 72 73 74 75 76 77 78 79 81 82 85 86 92 95 99 103 104 106 108 109 }
+    #{19 22 23 24 26 28 29 30 32 33 34 35 36 38 39 40 41 42 43 44 46 48 50 53 56 58 62 63 64 67 68 69 70 71 72 73 74 75 76 77 78 79 81 82 85 86 92 95 99 103 104 106 108 109}
     colorado:ForestShrublandGrasslandWetland
     #{118 119 120 121 122}
     colorado:InvasiveAnnualsAndPerennials

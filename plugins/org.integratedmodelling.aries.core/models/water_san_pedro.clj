@@ -150,7 +150,7 @@
     #{"Mezquital-huizachal"}                                                     sanPedro:MesquiteWoodland
     #{"Pastizal natural"}                                                        sanPedro:Grassland
     #{"Chaparral" "Matorral desertico microfilo" "Mattoral sarcocrasicaule" "Vegetacion halofila y gipsofila" "Vegetacion de suelos arenosos"} sanPedro:DesertScrub
-    #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Riparian
+    #{"Manejo agricola, pecuario y forestal (plantaciones)"}                     sanPedro:Agriculture
     #{"Cuerpos de agua" "Ciudades importantes" "Areas sin vegetacion aparente"}  sanPedro:UrbanBarrenWater))
 
 (defmodel percent-canopy-cover sanPedro:PercentTreeCanopyCoverClass
