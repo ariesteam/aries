@@ -1298,30 +1298,30 @@ out on the USGS ArcGIS server (next .xml below). -->
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:NumericCoding>
-
-  <measurement:BinaryCoding id="park_infrastructure_alg">
+  
+  <measurement:NumericCoding id="park_infrastructure_no_cottages_alg">
     <observation:hasObservable>
-      <infrastructure:ParkInfrastructure/>
+      <infrastructure:ParkInfrastructureNoCottages/>
     </observation:hasObservable>
     <observation:hasDataSource>
       <geospace:WCSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>ontario:park_infrastructure_alg</geospace:hasCoverageId>
+        <geospace:hasCoverageId>park_infrastructure_no_cottages_alg</geospace:hasCoverageId>
         <geospace:hasNodataValue>-9999</geospace:hasNodataValue>
       </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
       <geospace:RasterGrid>
-        <geospace:hasXRangeMax>877</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>771</geospace:hasYRangeMax>
+        <geospace:hasXRangeMax>13173</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>11580</geospace:hasYRangeMax>
         <geospace:hasLatLowerBound>5004090.0</geospace:hasLatLowerBound>
         <geospace:hasLonLowerBound>176010.0</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>5120040.0</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>307860.0</geospace:hasLonUpperBound>
+        <geospace:hasLatUpperBound>5119910.0</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>307760.0</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:26918</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
+  </measurement:NumericCoding>  
 
   <measurement:Ranking id="canopy_alg">
     <observation:hasObservable>
