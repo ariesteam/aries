@@ -157,19 +157,19 @@
     [10  25] aestheticService:LowBlight
     [ 0  10] aestheticService:NoBlight))
 
-;;(defmodel sink aestheticService:ViewSink
-;;  "Landscape features that reduce the quality of scenic views"
-;;  (bayesian aestheticService:ViewSink 
-;;    :import  "aries.core::RecreationSinkOntarioView.xdsl"
-;;    :context [clearcuts transportation-energy-infrastructure transportation-energy-infrastructure-code park-infrastructure]
-;;    :keep    [aestheticService:VisualBlight]
-;;    :result  view-sink-undiscretizer))
-
 (defmodel sink aestheticService:ViewSink
   "Landscape features that reduce the quality of scenic views"
   (bayesian aestheticService:ViewSink 
+    :import  "aries.core::RecreationSinkOntarioView.xdsl"
+    :context [clearcuts park-infrastructure transportation-energy-infrastructure-code] ;; transportation-energy-infrastructure
+    :keep    [aestheticService:VisualBlight]
+    :result  view-sink-undiscretizer))
+
+(defmodel sink-no-cottage aestheticService:ViewSink
+  "Landscape features that reduce the quality of scenic views"
+  (bayesian aestheticService:ViewSink 
     :import  "aries.core::RecreationSinkOntarioViewNoCottages.xdsl"
-    :context [clearcuts transportation-energy-infrastructure transportation-energy-infrastructure-code park-infrastructure-no-cottages]
+    :context [clearcuts park-infrastructure-no-cottages transportation-energy-infrastructure-code] ;; transportation-energy-infrastructure
     :keep    [aestheticService:VisualBlight]
     :result  view-sink-undiscretizer))
 
