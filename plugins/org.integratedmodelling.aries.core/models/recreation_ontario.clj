@@ -19,8 +19,8 @@
 ;;;
 ;;; Recreation model for Ontario
 ;;;
-;;; Valid Contexts: core.contexts.ontario/algonquin-wgs84
-;;;                 core.contexts.ontario/algonquin-bbox-wgs84
+;;; Valid Contexts: core.contexts.ontario/algonquin-bbox-wgs84
+;;;                 core.contexts.ontario/algonquin-bbox-scenario-wgs84
 ;;;-------------------------------------------------------------------
 
 (ns core.models.recreation-ontario
@@ -59,8 +59,8 @@
 (defmodel river-stream RiverStream
   "Identifies the presence of a river or stream"
   (classification (binary-coding geofeatures:River)
-    0            RiverStreamAbsent
-    :otherwise   RiverStreamPresent))
+    1            RiverStreamPresent
+    :otherwise   RiverStreamAbsent))
 
 ;;ontario:lakes_alg
 (defmodel lake aestheticService:Lake
@@ -108,7 +108,8 @@
 (declare clearcuts
          transportation-energy-infrastructure-code
          transportation-energy-infrastructure
-         park-infrastructure)
+         park-infrastructure
+         park-infrastructure-no-cottages)
 
 ;;ontario:lulc2000_alg
 (defmodel clearcuts aestheticService:Clearcuts
@@ -137,13 +138,17 @@
     :otherwise TransportationEnergyInfrastructureAbsent))
 
 ;;ontario:park_infrastructure_alg
-;; still a problem here that needs to be resolved.
 (defmodel park-infrastructure infrastructure:ParkInfrastructureCode
   "Use data supplied by MNR to identify locations within Algonquin Provincial Park where Park-related infrastructure is located."
   (binary-coding infrastructure:ParkInfrastructure))
 ;;  (classification (binary-coding infrastructure:ParkInfrastructure)
 ;;    1            infrastructure:ParkInfrastructurePresent
 ;;    :otherwise   infrastructure:ParkInfrastructureAbsent))
+
+;;ontario:park_infrastructure_no_cottages_alg
+(defmodel park-infrastructure-no-cottages infrastructure:ParkInfrastructureCode
+  "Same as the park_infrastructure_alg layer without the park cottages included."
+  (binary-coding infrastructure:ParkInfrastructureNoCottages))
 
 (defmodel view-sink-undiscretizer aestheticService:VisualBlight
   (probabilistic-ranking aestheticService:VisualBlight
@@ -152,11 +157,19 @@
     [10  25] aestheticService:LowBlight
     [ 0  10] aestheticService:NoBlight))
 
+;;(defmodel sink aestheticService:ViewSink
+;;  "Landscape features that reduce the quality of scenic views"
+;;  (bayesian aestheticService:ViewSink 
+;;    :import  "aries.core::RecreationSinkOntarioView.xdsl"
+;;    :context [clearcuts transportation-energy-infrastructure transportation-energy-infrastructure-code park-infrastructure]
+;;    :keep    [aestheticService:VisualBlight]
+;;    :result  view-sink-undiscretizer))
+
 (defmodel sink aestheticService:ViewSink
   "Landscape features that reduce the quality of scenic views"
   (bayesian aestheticService:ViewSink 
-    :import  "aries.core::RecreationSinkOntarioView.xdsl"
-    :context [clearcuts transportation-energy-infrastructure transportation-energy-infrastructure-code park-infrastructure]
+    :import  "aries.core::RecreationSinkOntarioViewNoCottages.xdsl"
+    :context [clearcuts transportation-energy-infrastructure transportation-energy-infrastructure-code park-infrastructure-no-cottages]
     :keep    [aestheticService:VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -174,7 +187,12 @@
 ;;ontario:hiking_use_alg
 (defmodel hiking-use HikingUse
   "Use data from MNR park surveys where backcountry user indicated a hiking trip."
- (binary-coding HikingUse))
+  (binary-coding HikingUse))
+
+;;ontario:campground_use_alg
+(defmodel campground-use CampgroundUse
+  "Use data from MNR park surveys where user indicated a campground stay."
+  (binary-coding CampgroundUse))
 
 ;;;-------------------------------------------------------------------
 ;;; Routing models
@@ -192,6 +210,7 @@
   (identification aestheticService:LineOfSight
     :context [source canoe-use sink altitude]
     ;;:context [source hiking-use sink altitude]
+    ;;:context [source campground-use sink altitude]
     ))
 
 ;;;-------------------------------------------------------------------
@@ -203,6 +222,7 @@
         aestheticService:ViewSource
         CanoeUse
         ;;HikingUse
+        ;;CampgroundUse
         ;;aestheticService:ViewUse
         aestheticService:ViewSink
         nil
@@ -236,8 +256,9 @@
                   aestheticService:InaccessibleUse
                   aestheticService:BlockedFlow
                   aestheticService:BlockedSource
-                  aestheticService:BlockedUse]))
+                  aestheticService:BlockedUse]
 
 ;;;-------------------------------------------------------------------
 ;;; Scenarios
 ;;;-------------------------------------------------------------------
+))
