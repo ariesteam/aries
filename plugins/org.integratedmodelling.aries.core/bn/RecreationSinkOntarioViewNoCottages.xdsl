@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network2" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="TransportationEnergyInfrastructure">
+			<state id="TransportEnergyInfrastructurePresent" />
+			<state id="TransportEnergyInfrastructureAbsent" />
+			<probabilities>0.01 0.99</probabilities>
+		</cpt>
+		<cpt id="Clearcuts">
+			<state id="ClearcutsPresent" />
+			<state id="ClearcutsAbsent" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="ParkInfrastructureNoCottages">
+			<state id="ParkInfrastructureNoCottagesPresent" />
+			<state id="ParkInfrastructureNoCottagesAbsent" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="VisualBlight">
+			<state id="HighBlight" />
+			<state id="ModerateBlight" />
+			<state id="LowBlight" />
+			<state id="NoBlight" />
+			<parents>ParkInfrastructureNoCottages Clearcuts TransportationEnergyInfrastructure</parents>
+			<probabilities>0.8 0.2 0 0 0.5 0.3 0.2 0 0.5 0.3 0.1 0.1 0.4 0.25 0.25 0.1 0.4 0.3 0.2 0.1 0.3 0.3 0.3 0.1 0.25 0.35 0.35 0.05 0 0 0.1 0.9</probabilities>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.4334.1" name="Network2" faultnameformat="nodestate">
+			<node id="Clearcuts">
+				<name>Clearcuts</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>183 154 251 180</position>
+				<barchart active="true" width="368" height="54" />
+			</node>
+			<node id="ParkInfrastructureNoCottages">
+				<name>ParkInfrastructureNoCottages</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>155 56 279 133</position>
+				<barchart active="true" width="367" height="59" />
+			</node>
+			<node id="TransportationEnergyInfrastructure">
+				<name>TransportationEnergyInfrastructure</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>184 222 239 259</position>
+				<barchart active="true" width="379" height="66" />
+			</node>
+			<node id="VisualBlight">
+				<name>VisualBlight</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>582 152 630 182</position>
+				<barchart active="true" width="218" height="90" />
+			</node>
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>857 60 1266 256</position>
+			</textbox>
+			<textbox>
+				<caption>All of the priors have been assigned following a review of the input data sets. CPT table completed. 27 March 2012.\n\nCPT complete 28 March 2012. </caption>
+				<font color="ff0000" name="Arial" size="14" />
+				<position>581 588 1311 676</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>
