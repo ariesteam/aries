@@ -125,10 +125,14 @@
     1                                puget:EarlySuccession
     #{20 21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} puget:NoSuccession))
 
-;; Used to mask out ocean (elevation = 0)
+;; Used to mask out ocean (elevation = 0) - this no longer seems to be working, so using the one below, which masks out water and perennial ice/snow.
+;(defmodel land-selector LandOrSea
+;  (classification  (measurement geophysics:Altitude "m")
+;    [:exclusive 0 :>] OnLand))
+
 (defmodel land-selector LandOrSea
-  (classification  (measurement geophysics:Altitude "m")
-    [:exclusive 0 :>] OnLand))
+  (classification (numeric-coding nlcd:NLCDNumeric)
+    #{21 22 23 24 31 41 42 43 52 71 81 82 90 95} OnLand))
 
 ;;Sediment source value - we have evidence for this but can't yet
 ;; train so keep this commented out for now and use the

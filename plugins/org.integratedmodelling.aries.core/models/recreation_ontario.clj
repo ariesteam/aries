@@ -161,7 +161,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian aestheticService:ViewSink 
     :import  "aries.core::RecreationSinkOntarioView.xdsl"
-    :context [clearcuts park-infrastructure transportation-energy-infrastructure-code] ;; transportation-energy-infrastructure
+    :context [clearcuts park-infrastructure transportation-energy-infrastructure] ;; transportation-energy-infrastructure-code
     :keep    [aestheticService:VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -169,7 +169,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian aestheticService:ViewSink 
     :import  "aries.core::RecreationSinkOntarioViewNoCottages.xdsl"
-    :context [clearcuts park-infrastructure-no-cottages transportation-energy-infrastructure-code] ;; transportation-energy-infrastructure
+    :context [clearcuts park-infrastructure-no-cottages transportation-energy-infrastructure] ;; transportation-energy-infrastructure-code
     :keep    [aestheticService:VisualBlight]
     :result  view-sink-undiscretizer))
 

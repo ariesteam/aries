@@ -180,9 +180,9 @@
 ;; how to model density based on existing data.
 (defmodel seagrass SeagrassPresenceClass
   "Indicates presence or absence of seagrass."
-  (classification (binary-coding SeagrassPresence)
-    1 SeagrassPresent
-    0 SeagrassAbsent))
+  (classification (numeric-coding SeagrassPresence)
+    [1 41619] SeagrassPresent
+    0         SeagrassAbsent))
 
 (defmodel terrestrial-vegetation TerrestrialVegetationType
   "Reclasses Madagascar LULC into 5 discrete categories."

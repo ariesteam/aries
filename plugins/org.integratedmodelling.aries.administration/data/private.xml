@@ -903,7 +903,7 @@ out on the USGS ArcGIS server (next .xml below). -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-  <measurement:BinaryCoding id="marine_seagrass">
+  <measurement:NumericCoding id="marine_seagrass">
     <observation:hasObservable>
       <coastalProtection:SeagrassPresence />
     </observation:hasObservable>
@@ -914,6 +914,8 @@ out on the USGS ArcGIS server (next .xml below). -->
       <geospace:WFSDataSource>
         <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
         <geospace:hasCoverageId>global:seagrass_global</geospace:hasCoverageId>
+        <geospace:hasValueAttribute>objectid</geospace:hasValueAttribute>
+        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
       </geospace:WFSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
@@ -925,7 +927,7 @@ out on the USGS ArcGIS server (next .xml below). -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
+  </measurement:NumericCoding>
 
   <observation:Categorization id="tanzania_tanzania_land_cover">
     <observation:hasObservable>
