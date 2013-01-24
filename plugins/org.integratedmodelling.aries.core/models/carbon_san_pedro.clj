@@ -68,7 +68,7 @@
     #{62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 90 93}                              sanPedro:Grassland
     #{19 39 40 42 43 44 46 47 48 49 50 51 53 54 55 56 57 58 59 60 61 94 95 96 105 108} sanPedro:DesertScrub
     #{77 78 79 80 81 83 84 85 98 118}                                                  sanPedro:Riparian
-    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112 114}              sanPedro:UrbanBarrenWaterAgriculture))
+    #{1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 20 21 110 111 112 113 114 117}      sanPedro:UrbanBarrenWaterAgriculture))
 ;;  (classification (categorization mexico:CONABIOLULCCategory)
 ;;    #{"Bosque de coniferas distintas a Pinus" "Bosque de pino"}                  sanPedro:Forest
 ;;    #{"Bosque de encino" "Vegetacion de galeria"}                                sanPedro:OakWoodland
@@ -259,7 +259,7 @@
 
 (defmodel identification-carbon CarbonSequestrationAndStorage
   (identification CarbonSequestrationAndStorage
-    :context [source sink use-simple]))
+    :context [source sink use-simple-us]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
