@@ -111,7 +111,7 @@
     :import   "aries.core::CarbonSourceCa.xdsl"
     :context  [percent-canopy-cover land-use land-selector]
     :required [LandOrSea]
-    :keep     [VegetationAndSoilCarbonSequestration]
+    :keep     [california:VegetationAndSoilCarbonSequestration]
     :result   veg-soil-sequestration))
 
 ;; See above statement for AET: Add back in if you use it for wider
@@ -121,7 +121,7 @@
     :import   "aries.core::CarbonSourceCa.xdsl"
     :context  [percent-canopy-cover vegetation-type land-use land-selector]
     :required [LandOrSea]
-    :keep     [VegetationAndSoilCarbonSequestration]
+    :keep     [california:VegetationAndSoilCarbonSequestration]
     :result   veg-soil-sequestration))
 
 ;;;-------------------------------------------------------------------
@@ -170,14 +170,16 @@
   (bayesian california:VegetationCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [land-use percent-canopy-cover land-selector]
-    :keep    [VegetationCarbonStorage]
+    :required [LandOrSea]
+    :keep    [california:VegetationCarbonStorage]
     :result  veg-storage))
 
 (defmodel vegetation-carbon-storage california:VegetationCStorage 
   (bayesian california:VegetationCStorage 
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [vegetation-type land-use percent-canopy-cover land-selector]
-    :keep    [VegetationCarbonStorage]
+    :required [LandOrSea]
+    :keep    [california:VegetationCarbonStorage]
     :result  veg-storage))
 
 (defmodel soil-storage california:SoilCarbonStorage
@@ -198,7 +200,8 @@
   (bayesian california:SoilCStorage
     :import  "aries.core::CarbonSinkCa.xdsl"
     :context [soil-ph percent-canopy-cover soil-oxygen-conditions land-selector]
-    :keep    [SoilCarbonStorage]
+    :required [LandOrSea]
+    :keep    [california:SoilCarbonStorage]
     :result  soil-storage))
 
 ;; This is a hack to run the model for San Joaquin.  Hopefully can remove it soon.
@@ -248,7 +251,7 @@
     :import   "aries.core::CarbonSinkCa.xdsl"
     :context  [veg-soil-storage-sj fire-threat land-selector]
     :required [LandOrSea]
-    :keep     [StoredCarbonRelease]
+    :keep     [california:StoredCarbonRelease]
     :result   stored-carbon-release))
 
 ;; Source and sink values are still calculated over the ocean, though
@@ -260,7 +263,7 @@
     :import   "aries.core::CarbonSinkCa.xdsl"
     :context  [veg-soil-storage fire-threat land-selector]
     :required [LandOrSea]
-    :keep     [StoredCarbonRelease]
+    :keep     [california:StoredCarbonRelease]
     :result   stored-carbon-release))
 
 ;;;-------------------------------------------------------------------

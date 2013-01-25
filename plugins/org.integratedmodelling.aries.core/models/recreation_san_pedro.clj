@@ -41,18 +41,18 @@
 ;;; Birding source models
 ;;;-------------------------------------------------------------------
 
-(defmodel bird-richness BirdSpeciesRichness
+(defmodel bird-richness sanPedro:BirdSpeciesRichness
   (classification (ranking habitat:AvianRichness)
-    [8 10 :inclusive] VeryHighBirdSpeciesRichness
-    [6  8]            HighBirdSpeciesRichness
-    [4  6]            ModerateBirdSpeciesRichness
-    [0  4]            LowBirdSpeciesRichness))
+    [8 10 :inclusive] sanPedro:VeryHighBirdSpeciesRichness
+    [6  8]            sanPedro:HighBirdSpeciesRichness
+    [4  6]            sanPedro:ModerateBirdSpeciesRichness
+    [0  4]            sanPedro:LowBirdSpeciesRichness))
 
-(defmodel bird-rarity RareCharismaticBirdHabitat
+(defmodel bird-rarity sanPedro:RareCharismaticBirdHabitat
   (classification (ranking habitat:RareBirdHabitat)
-    #{4 5}   HighRareCharismaticBirdHabitat
-    #{1 2 3} ModerateRareCharismaticBirdHabitat
-    0        LowRareCharismaticBirdHabitat))
+    #{4 5}   sanPedro:HighRareCharismaticBirdHabitat
+    #{1 2 3} sanPedro:ModerateRareCharismaticBirdHabitat
+    0        sanPedro:LowRareCharismaticBirdHabitat))
 
 ;; Riparian zones as important to birding and hunting because of their
 ;; importance to valued animal species and for human preferences to
@@ -114,27 +114,27 @@
 ;;     3 LowSiteRecognition))
 
 ;;Undiscretization statements to be use in BNs
-(defmodel birding-quality SiteBirdingQuality
-  (probabilistic-ranking SiteBirdingQuality
-    [67 100] HighBirdingQuality
-    [33  67] ModerateBirdingQuality
-    [10  33] LowBirdingQuality 
-    [ 0  10] VeryLowBirdingQuality))
+(defmodel birding-quality sanPedro:SiteBirdingQuality
+  (probabilistic-ranking sanPedro:SiteBirdingQuality
+    [67 100] sanPedro:HighBirdingQuality
+    [33  67] sanPedro:ModerateBirdingQuality
+    [10  33] sanPedro:LowBirdingQuality 
+    [ 0  10] sanPedro:VeryLowBirdingQuality))
 
 ;; Bayesian source models
-(defmodel source-birding BirdingSourceValue   
-  (bayesian BirdingSourceValue                
+(defmodel source-birding sanPedro:BirdingSourceValue   
+  (bayesian sanPedro:BirdingSourceValue                
     :import  "aries.core::RecreationSourceSanPedroBirding.xdsl"
     :context [bird-richness bird-rarity riparian-wetland public-lands]
-    :keep    [SiteBirdingQuality]
+    :keep    [sanPedro:SiteBirdingQuality]
     :result  birding-quality))
 
 ;;;-------------------------------------------------------------------
 ;;; Wildlife viewing source models
 ;;;-------------------------------------------------------------------
 
-(defmodel wildlife-species-richness WildlifeSpeciesRichness
-  (ranking WildlifeSpeciesRichness
+(defmodel wildlife-species-richness sanPedro:WildlifeSpeciesRichness
+  (ranking sanPedro:WildlifeSpeciesRichness
     :context [(ranking habitat:AvianRichness)   (ranking habitat:MammalRichness)
               (ranking habitat:ReptileRichness) (ranking habitat:AmphibianRichness)]
     :state   #(Math/round (* (+ (or (:avian-richness %) 0)  
@@ -147,25 +147,25 @@
 ;;                      r (:reptile-species-richness %)
 ;;                      a (:amphibian-species-richness %)] 
 ;;                  (Math/round (* 0.25 (reduce + 0 (remove nil? [b m r a])))))))
-(defmodel wildlife-species-richness-class WildlifeSpeciesRichnessClass
+(defmodel wildlife-species-richness-class sanPedro:WildlifeSpeciesRichnessClass
   (classification wildlife-species-richness
-    [8 10] VeryHighWildlifeSpeciesRichness
-    [6  8] HighWildlifeSpeciesRichness
-    [4  6] ModerateWildlifeSpeciesRichness
-    [0  4] LowWildlifeSpeciesRichness))
+    [8 10] sanPedro:VeryHighWildlifeSpeciesRichness
+    [6  8] sanPedro:HighWildlifeSpeciesRichness
+    [4  6] sanPedro:ModerateWildlifeSpeciesRichness
+    [0  4] sanPedro:LowWildlifeSpeciesRichness))
 
-(defmodel wildlife-quality SiteWildlifeQuality
-  (probabilistic-ranking SiteWildlifeQuality
-    [67 100] HighWildlifeQuality
-    [33  67] ModerateWildlifeQuality
-    [10  33] LowWildlifeQuality
-    [ 0  10] VeryLowWildlifeQuality))
+(defmodel wildlife-quality sanPedro:SiteWildlifeQuality
+  (probabilistic-ranking sanPedro:SiteWildlifeQuality
+    [67 100] sanPedro:HighWildlifeQuality
+    [33  67] sanPedro:ModerateWildlifeQuality
+    [10  33] sanPedro:LowWildlifeQuality
+    [ 0  10] sanPedro:VeryLowWildlifeQuality))
 
-(defmodel source-wildlife WildlifeViewingSourceValue
-  (bayesian WildlifeViewingSourceValue
+(defmodel source-wildlife sanPedro:WildlifeViewingSourceValue
+  (bayesian sanPedro:WildlifeViewingSourceValue
     :import  "aries.core::RecreationSourceSanPedroWildlife.xdsl"
     :context [riparian-wetland public-lands wildlife-species-richness-class]
-    :keep    [SiteWildlifeQuality]
+    :keep    [sanPedro:SiteWildlifeQuality]
     :result  wildlife-quality))
 
 ;;;-------------------------------------------------------------------
@@ -234,61 +234,61 @@
 ;; RECREATION (SUMMED, WEIGHTED UTILITY FUNCTION)
 
 ;; Undiscretization statements to be use in BNs
-(defmodel deer-hunting-quality SiteDeerHuntingQuality
-  (probabilistic-ranking SiteDeerHuntingQuality
-    [67 100] HighDeerHuntingQuality
-    [33  67] ModerateDeerHuntingQuality
-    [ 5  33] LowDeerHuntingQuality 
-    [ 0   5] VeryLowDeerHuntingQuality))
+(defmodel deer-hunting-quality sanPedro:SiteDeerHuntingQuality
+  (probabilistic-ranking sanPedro:SiteDeerHuntingQuality
+    [67 100] sanPedro:HighDeerHuntingQuality
+    [33  67] sanPedro:ModerateDeerHuntingQuality
+    [ 5  33] sanPedro:LowDeerHuntingQuality 
+    [ 0   5] sanPedro:VeryLowDeerHuntingQuality))
 
-(defmodel javelina-hunting-quality SiteJavelinaHuntingQuality
-  (probabilistic-ranking SiteJavelinaHuntingQuality
-    [67 100] HighJavelinaHuntingQuality
-    [33  67] ModerateJavelinaHuntingQuality
-    [ 5  33] LowJavelinaHuntingQuality
-    [ 0   5] VeryLowJavelinaHuntingQuality))
+(defmodel javelina-hunting-quality sanPedro:SiteJavelinaHuntingQuality
+  (probabilistic-ranking sanPedro:SiteJavelinaHuntingQuality
+    [67 100] sanPedro:HighJavelinaHuntingQuality
+    [33  67] sanPedro:ModerateJavelinaHuntingQuality
+    [ 5  33] sanPedro:LowJavelinaHuntingQuality
+    [ 0   5] sanPedro:VeryLowJavelinaHuntingQuality))
 
-(defmodel dove-hunting-quality SiteDoveHuntingQuality
-  (probabilistic-ranking SiteDoveHuntingQuality
-    [67 100] HighDoveHuntingQuality
-    [33  67] ModerateDoveHuntingQuality
-    [ 5  33] LowDoveHuntingQuality
-    [ 0   5] VeryLowDoveHuntingQuality))
+(defmodel dove-hunting-quality sanPedro:SiteDoveHuntingQuality
+  (probabilistic-ranking sanPedro:SiteDoveHuntingQuality
+    [67 100] sanPedro:HighDoveHuntingQuality
+    [33  67] sanPedro:ModerateDoveHuntingQuality
+    [ 5  33] sanPedro:LowDoveHuntingQuality
+    [ 0   5] sanPedro:VeryLowDoveHuntingQuality))
 
-(defmodel quail-hunting-quality SiteQuailHuntingQuality
-  (probabilistic-ranking SiteQuailHuntingQuality
-    [67 100] HighQuailHuntingQuality
-    [33  67] ModerateQuailHuntingQuality
-    [ 5  33] LowQuailHuntingQuality
-    [ 0   5] VeryLowQuailHuntingQuality))
+(defmodel quail-hunting-quality sanPedro:SiteQuailHuntingQuality
+  (probabilistic-ranking sanPedro:SiteQuailHuntingQuality
+    [67 100] sanPedro:HighQuailHuntingQuality
+    [33  67] sanPedro:ModerateQuailHuntingQuality
+    [ 5  33] sanPedro:LowQuailHuntingQuality
+    [ 0   5] sanPedro:VeryLowQuailHuntingQuality))
 
 ;; Bayesian source models
-(defmodel source-deer-hunting DeerHuntingSourceValue
-  (bayesian DeerHuntingSourceValue                
+(defmodel source-deer-hunting sanPedro:DeerHuntingSourceValue
+  (bayesian sanPedro:DeerHuntingSourceValue                
     :import   "aries.core::RecreationSourceSanPedroDeerHunting.xdsl"
     :context  [riparian-wetland public-lands deer-habitat]
-    :keep     [SiteDeerHuntingQuality]
+    :keep     [sanPedro:SiteDeerHuntingQuality]
     :result   deer-hunting-quality))
 
-(defmodel source-javelina-hunting JavelinaHuntingSourceValue  
-  (bayesian JavelinaHuntingSourceValue                
+(defmodel source-javelina-hunting sanPedro:JavelinaHuntingSourceValue  
+  (bayesian sanPedro:JavelinaHuntingSourceValue                
     :import   "aries.core::RecreationSourceSanPedroJavelinaHunting.xdsl"
     :context  [riparian-wetland public-lands javelina-habitat]
-    :keep     [SiteJavelinaHuntingQuality]
+    :keep     [sanPedro:SiteJavelinaHuntingQuality]
     :result   javelina-hunting-quality))
 
-(defmodel source-dove-hunting DoveHuntingSourceValue
-  (bayesian DoveHuntingSourceValue
+(defmodel source-dove-hunting sanPedro:DoveHuntingSourceValue
+  (bayesian sanPedro:DoveHuntingSourceValue
     :import   "aries.core::RecreationSourceSanPedroDoveHunting.xdsl"
     :context  [riparian-wetland public-lands dove-habitat]
-    :keep     [SiteDoveHuntingQuality]
+    :keep     [sanPedro:SiteDoveHuntingQuality]
     :result   dove-hunting-quality))
 
-(defmodel source-quail-hunting QuailHuntingSourceValue
-  (bayesian QuailHuntingSourceValue                
+(defmodel source-quail-hunting sanPedro:QuailHuntingSourceValue
+  (bayesian sanPedro:QuailHuntingSourceValue                
     :import   "aries.core::RecreationSourceSanPedroQuailHunting.xdsl"
     :context  [riparian-wetland public-lands quail-habitat]
-    :keep     [SiteQuailHuntingQuality]
+    :keep     [sanPedro:SiteQuailHuntingQuality]
     :result   quail-hunting-quality))
 
 ;;;-------------------------------------------------------------------

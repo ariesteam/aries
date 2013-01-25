@@ -9,8 +9,8 @@
     <!ENTITY DOLCE-Lite "http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#" >
     <!ENTITY eserv "http://www.integratedmodelling.org/ks/es/eserv.owl#" >
     <!ENTITY lulc "http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#" >
-    <!ENTITY observation "http://www.integratedmodelling.org/ks/science/observation.owl#" >
     <!ENTITY habitat "http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#" >
+    <!ENTITY observation "http://www.integratedmodelling.org/ks/science/observation.owl#" >
     <!ENTITY waterSupplyService "http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#" >
     <!ENTITY representation "http://www.integratedmodelling.org/ks/science/representation.owl#" >
     <!ENTITY thinklab-core "http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#" >
@@ -19,17 +19,17 @@
 
 <rdf:RDF xmlns="http://www.integratedmodelling.org/ks/local/sanPedro.owl#"
      xml:base="http://www.integratedmodelling.org/ks/local/sanPedro.owl"
-     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
-     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
-     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
-     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
-     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
-     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#"
      xmlns:waterSupplyService="http://www.integratedmodelling.org/ks/es/waterSupplyService.owl#"
-     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:DOLCE-Lite="http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#"
+     xmlns:observation="http://www.integratedmodelling.org/ks/science/observation.owl#"
+     xmlns:lulc="http://www.integratedmodelling.org/ks/ecology/lulc/lulc.owl#"
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:habitat="http://www.integratedmodelling.org/ks/ecology/eco/habitat.owl#"
+     xmlns:representation="http://www.integratedmodelling.org/ks/science/representation.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
      xmlns:owl="http://www.w3.org/2002/07/owl#"
      xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:eserv="http://www.integratedmodelling.org/ks/es/eserv.owl#"
      xmlns:thinklab-core="http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#">
     <owl:Ontology rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl">
         <owl:versionInfo rdf:datatype="&xsd;string">Created with TopBraid Composer</owl:versionInfo>
@@ -160,6 +160,23 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="&habitat;AvianRichness"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdingSourceValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdingSourceValue">
+        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentation -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#CAPWaterAugmentation">
@@ -242,6 +259,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHuntingSourceValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHuntingSourceValue">
+        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerSpeciesAbsent -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerSpeciesAbsent">
@@ -295,6 +320,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHabitatCode">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HarvestableSpeciesHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHuntingSourceValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHuntingSourceValue">
+        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
     </owl:Class>
     
 
@@ -431,10 +464,42 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighBirdSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighBirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdSpeciesRichness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighBirdingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighBirdingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteBirdingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighCanopyCover -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighCanopyCover">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighDeerHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDeerHuntingQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighDoveHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDoveHuntingQuality"/>
     </owl:Class>
     
 
@@ -471,6 +536,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighJavelinaHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteJavelinaHuntingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighMeanAnnualPrecipitation -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighMeanAnnualPrecipitation">
@@ -487,6 +560,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQuailHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteQuailHuntingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianOrWetlandPresent -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianOrWetlandPresent">
@@ -499,6 +580,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighQualityRiparianSpringWetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighRareCharismaticBirdHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighRareCharismaticBirdHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RareCharismaticBirdHabitat"/>
     </owl:Class>
     
 
@@ -543,6 +632,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighWildlifeQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteWildlifeQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighWildlifeSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HighWildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichnessClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#HydrographySimple -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#HydrographySimple">
@@ -583,6 +688,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHuntingSourceValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHuntingSourceValue">
+        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Level -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Level">
@@ -591,10 +704,42 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowBirdSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowBirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdSpeciesRichness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowBirdingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowBirdingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteBirdingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowCanopyCover -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowCanopyCover">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowDeerHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDeerHuntingQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowDoveHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDoveHuntingQuality"/>
     </owl:Class>
     
 
@@ -631,6 +776,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowJavelinaHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteJavelinaHuntingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowMeanAnnualPrecipitation -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowMeanAnnualPrecipitation">
@@ -647,6 +800,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQuailHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteQuailHuntingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianOrWetlandPresent -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianOrWetlandPresent">
@@ -659,6 +820,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowQualityRiparianSpringWetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowRareCharismaticBirdHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowRareCharismaticBirdHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RareCharismaticBirdHabitat"/>
     </owl:Class>
     
 
@@ -703,6 +872,22 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowWildlifeQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteWildlifeQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowWildlifeSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#LowWildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichnessClass"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#MearnsQuailHabitat -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#MearnsQuailHabitat">
@@ -736,10 +921,42 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateBirdSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateBirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdSpeciesRichness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateBirdingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateBirdingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteBirdingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateCanopyCover -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateCanopyCover">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateDeerHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDeerHuntingQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateDoveHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDoveHuntingQuality"/>
     </owl:Class>
     
 
@@ -776,6 +993,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateJavelinaHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteJavelinaHuntingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateMeanAnnualPrecipitation -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateMeanAnnualPrecipitation">
@@ -792,6 +1017,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQuailHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteQuailHuntingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianOrWetlandPresent -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianOrWetlandPresent">
@@ -804,6 +1037,14 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateQualityRiparianSpringWetland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RiparianSpringWetlandQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateRareCharismaticBirdHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateRareCharismaticBirdHabitat">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RareCharismaticBirdHabitat"/>
     </owl:Class>
     
 
@@ -844,6 +1085,22 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateVegetationStorage">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VegetationCarbonStorage"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateWildlifeQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteWildlifeQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateWildlifeSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ModerateWildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichnessClass"/>
     </owl:Class>
     
 
@@ -1067,10 +1324,27 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHuntingSourceValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHuntingSourceValue">
+        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailSpeciesAbsent -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailSpeciesAbsent">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RareCharismaticBirdHabitat -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RareCharismaticBirdHabitat">
+        <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1200,6 +1474,68 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SingleQuailSpeciesPresent">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHabitat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteBirdingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteBirdingQuality">
+        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDeerHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDoveHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality">
+        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteJavelinaHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteQuailHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteWildlifeQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
     </owl:Class>
     
 
@@ -1488,6 +1824,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighBirdSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighBirdSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdSpeciesRichness"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighCanopyCover -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighCanopyCover">
@@ -1544,10 +1888,58 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighWildlifeSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryHighWildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichnessClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowBirdingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowBirdingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteBirdingQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowCanopyCover -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowCanopyCover">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#PercentTreeCanopyCoverClass"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowDeerHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowDeerHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDeerHuntingQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowDoveHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowDoveHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDoveHuntingQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowJavelinaHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowJavelinaHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteJavelinaHuntingQuality"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowQuailHuntingQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowQuailHuntingQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteQuailHuntingQuality"/>
     </owl:Class>
     
 
@@ -1592,6 +1984,14 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowWildlifeQuality -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#VeryLowWildlifeQuality">
+        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteWildlifeQuality"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterPresence -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WaterPresence">
@@ -1632,14 +2032,47 @@
     
 
 
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichness -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichness">
+        <rdfs:subClassOf rdf:resource="&habitat;SpeciesRichness"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichnessClass -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichnessClass">
+        <rdfs:subClassOf rdf:resource="&habitat;SpeciesRichness"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeViewingSourceValue -->
+
+    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeViewingSourceValue">
+        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#Woodland -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Woodland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
+
+    <rdf:Description rdf:about="&thinklab-core;OrderedRangeMapping">
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
+    </rdf:Description>
 </rdf:RDF>
 
 
 
-<!-- Generated by the OWL API (version 3.2.3.1824) http://owlapi.sourceforge.net -->
+<!-- Generated by the OWL API (version 3.3.1957) http://owlapi.sourceforge.net -->
 

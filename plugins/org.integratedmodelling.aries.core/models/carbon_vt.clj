@@ -113,7 +113,7 @@
     :import   "aries.core::CarbonSourceVt.xdsl"
     :context  [summer-high-winter-low mean-annual-precip soil-CN-ratio veg-type slope]
     :required [SlopeClass]
-    :keep     [VegetationAndSoilCarbonSequestration]
+    :keep     [vermont:VegetationAndSoilCarbonSequestration]
     :result   veg-soil-sequestration))
 
 ;;;-------------------------------------------------------------------
@@ -140,7 +140,7 @@
   (bayesian vermont:VegetationCStorage
     :import  "aries.core::CarbonSinkVt.xdsl"
     :context [veg-type summer-high-winter-low mean-annual-precip]
-    :keep    [VegetationCarbonStorage]
+    :keep    [vermont:VegetationCarbonStorage]
     :result   veg-storage))
 
 (defmodel soil-storage vermont:SoilCarbonStorage
@@ -156,7 +156,7 @@
   (bayesian vermont:SoilCStorage
     :import  "aries.core::CarbonSinkVt.xdsl"
     :context [veg-type soil-CN-ratio]
-    :keep    [SoilCarbonStorage]
+    :keep    [vermont:SoilCarbonStorage]
     :result  soil-storage))
 
 (defmodel vegetation-soil-storage VegetationAndSoilCarbonStorage
@@ -188,7 +188,7 @@
     :import   "aries.core::CarbonSinkVt.xdsl"
     :context  [veg-soil-storage]
     :required [SlopeClass]
-    :keep     [StoredCarbonRelease]
+    :keep     [vermont:StoredCarbonRelease]
     :result   stored-carbon-release)); add biomass-removal-rate if there's supporting data
 
 ;;;-------------------------------------------------------------------
