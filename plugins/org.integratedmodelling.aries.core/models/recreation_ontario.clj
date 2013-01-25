@@ -121,8 +121,8 @@
 ;;ontario:roads_alg
 ;;ontario:utility_lines_alg
 ;;ontario:railway_alg
-(defmodel transportation-energy-infrastructure-code TransportationEnergyInfrastructureCode
-  (binary-coding TransportationEnergyInfrastructureCode
+(defmodel transportation-energy-infrastructure-code aestheticService:TransportationEnergyInfrastructureCode
+  (binary-coding aestheticService:TransportationEnergyInfrastructureCode
     :context [(binary-coding infrastructure:Road)
               (binary-coding infrastructure:TransmissionLine)
               (binary-coding infrastructure:Railway)]
@@ -132,23 +132,26 @@
                 1
                 0)))
 
-(defmodel transportation-energy-infrastructure TransportationEnergyInfrastructure
+(defmodel transportation-energy-infrastructure aestheticService:TransportationEnergyInfrastructure
   (classification transportation-energy-infrastructure-code
-    1          TransportationEnergyInfrastructurePresent
-    :otherwise TransportationEnergyInfrastructureAbsent))
+    1          aestheticService:TransportationEnergyInfrastructurePresent
+    :otherwise aestheticService:TransportationEnergyInfrastructureAbsent))
 
 ;;ontario:park_infrastructure_alg
-(defmodel park-infrastructure infrastructure:ParkInfrastructureCode
+(defmodel park-infrastructure aestheticService:ParkInfrastructureCode
   "Use data supplied by MNR to identify locations within Algonquin Provincial Park where Park-related infrastructure is located."
-  (binary-coding infrastructure:ParkInfrastructure))
-;;  (classification (binary-coding infrastructure:ParkInfrastructure)
-;;    1            infrastructure:ParkInfrastructurePresent
-;;    :otherwise   infrastructure:ParkInfrastructureAbsent))
+;;  (binary-coding aestheticService:ParkInfrastructure))
+  (classification (binary-coding aestheticService:ParkInfrastructure)
+    1            aestheticService:ParkInfrastructurePresent
+    :otherwise   aestheticService:ParkInfrastructureAbsent))
 
 ;;ontario:park_infrastructure_no_cottages_alg
-(defmodel park-infrastructure-no-cottages infrastructure:ParkInfrastructureCode
+(defmodel park-infrastructure-no-cottages aestheticService:ParkInfrastructureCode
   "Same as the park_infrastructure_alg layer without the park cottages included."
-  (binary-coding infrastructure:ParkInfrastructureNoCottages))
+;;  (binary-coding aestheticService:ParkInfrastructureNoCottages))
+  (classification (binary-coding aestheticService:ParkInfrastructureNoCottages)
+    1             aestheticService:ParkInfrastructureNoCottagesPresent
+    :otherwise    aestheticService:ParkInfrastructureNoCottagesAbsent))
 
 (defmodel view-sink-undiscretizer aestheticService:VisualBlight
   (probabilistic-ranking aestheticService:VisualBlight
@@ -161,15 +164,15 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian aestheticService:ViewSink 
     :import  "aries.core::RecreationSinkOntarioView.xdsl"
-    :context [clearcuts park-infrastructure transportation-energy-infrastructure] ;; transportation-energy-infrastructure-code
+    :context [clearcuts park-infrastructure transportation-energy-infrastructure]
     :keep    [aestheticService:VisualBlight]
     :result  view-sink-undiscretizer))
 
-(defmodel sink-no-cottage aestheticService:ViewSink
+(defmodel sink-no-cottages aestheticService:ViewSink
   "Landscape features that reduce the quality of scenic views"
   (bayesian aestheticService:ViewSink 
     :import  "aries.core::RecreationSinkOntarioViewNoCottages.xdsl"
-    :context [clearcuts park-infrastructure-no-cottages transportation-energy-infrastructure] ;; transportation-energy-infrastructure-code
+    :context [clearcuts park-infrastructure-no-cottages transportation-energy-infrastructure]
     :keep    [aestheticService:VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -208,9 +211,9 @@
 
 (defmodel data-homeowners aestheticService:LineOfSight
   (identification aestheticService:LineOfSight
-    :context [source canoe-use sink altitude]
+    ;;:context [source canoe-use sink altitude]
     ;;:context [source hiking-use sink altitude]
-    ;;:context [source campground-use sink altitude]
+    :context [source campground-use sink altitude]
     ))
 
 ;;;-------------------------------------------------------------------
