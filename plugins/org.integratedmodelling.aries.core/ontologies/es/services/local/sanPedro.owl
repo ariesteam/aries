@@ -172,7 +172,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdingSourceValue -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#BirdingSourceValue">
-        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -262,7 +262,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHuntingSourceValue -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DeerHuntingSourceValue">
-        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -327,7 +327,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHuntingSourceValue -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#DoveHuntingSourceValue">
-        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -691,7 +691,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHuntingSourceValue -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#JavelinaHuntingSourceValue">
-        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -1327,7 +1327,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHuntingSourceValue -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#QuailHuntingSourceValue">
-        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -1343,7 +1343,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#RareCharismaticBirdHabitat -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#RareCharismaticBirdHabitat">
-        <rdfs:subClassOf rdf:resource="&habitat;HabitatQuality"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
         <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
@@ -1481,8 +1481,8 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteBirdingQuality -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteBirdingQuality">
-        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1490,8 +1490,8 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDeerHuntingQuality -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDeerHuntingQuality">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1499,16 +1499,8 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDoveHuntingQuality -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteDoveHuntingQuality">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
-    </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality -->
-
-    <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality">
-        <rdfs:subClassOf rdf:resource="&eserv;DestructiveExploitation"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1516,8 +1508,8 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteJavelinaHuntingQuality -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteJavelinaHuntingQuality">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1525,8 +1517,8 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteQuailHuntingQuality -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteQuailHuntingQuality">
-        <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteHuntingQuality"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -1534,8 +1526,8 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteWildlifeQuality -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#SiteWildlifeQuality">
-        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -2044,7 +2036,7 @@
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeSpeciesRichnessClass">
         <rdfs:subClassOf rdf:resource="&habitat;SpeciesRichness"/>
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrdinalRanking"/>
+        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
     </owl:Class>
     
 
@@ -2052,7 +2044,7 @@
     <!-- http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeViewingSourceValue -->
 
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#WildlifeViewingSourceValue">
-        <rdfs:subClassOf rdf:resource="&eserv;Contemplation"/>
+        <rdfs:subClassOf rdf:resource="&habitat;EcosystemQuality"/>
     </owl:Class>
     
 
@@ -2062,14 +2054,6 @@
     <owl:Class rdf:about="http://www.integratedmodelling.org/ks/local/sanPedro.owl#Woodland">
         <rdfs:subClassOf rdf:resource="http://www.integratedmodelling.org/ks/local/sanPedro.owl#ScenicVegetationType"/>
     </owl:Class>
-    
-
-
-    <!-- http://www.integratedmodelling.org/ks/thinklab/thinklab-core.owl#OrderedRangeMapping -->
-
-    <rdf:Description rdf:about="&thinklab-core;OrderedRangeMapping">
-        <rdfs:subClassOf rdf:resource="&thinklab-core;OrderedRangeMapping"/>
-    </rdf:Description>
 </rdf:RDF>
 
 

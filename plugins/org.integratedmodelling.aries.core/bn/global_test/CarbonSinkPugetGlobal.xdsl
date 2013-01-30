@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<smile version="1.0" id="Network1" numsamples="1000" discsamples="10000">
+	<nodes>
+		<cpt id="SummerHighWinterLow">
+			<state id="VeryHighSOL" />
+			<state id="HighSOL" />
+			<state id="ModerateSOL" />
+			<state id="LowSOL" />
+			<state id="VeryLowSOL" />
+			<probabilities>0.01 0.01 0.08 0.4 0.5</probabilities>
+		</cpt>
+		<cpt id="SuccessionalStage">
+			<state id="OldGrowth" />
+			<state id="LateSuccession" />
+			<state id="MidSuccession" />
+			<state id="PoleSuccession" />
+			<state id="EarlySuccession" />
+			<state id="NoSuccession" />
+			<probabilities>0.1 0.15 0.15 0.15 0.05 0.4</probabilities>
+		</cpt>
+		<cpt id="FireThreatClass">
+			<state id="VeryHighFireThreat" />
+			<state id="HighFireThreat" />
+			<state id="ModerateFireThreat" />
+			<state id="LowFireThreat" />
+			<probabilities>0.01 0.29 0.3 0.4</probabilities>
+		</cpt>
+		<cpt id="PercentTreeCanopyCoverClass">
+			<state id="VeryHighCanopyCover" />
+			<state id="HighCanopyCover" />
+			<state id="ModerateCanopyCover" />
+			<state id="LowCanopyCover" />
+			<state id="VeryLowCanopyCover" />
+			<probabilities>0.3003003003003003 0.1331331331331331 0.1331331331331331 0.1331331331331331 0.3003003003003004</probabilities>
+		</cpt>
+		<cpt id="HardwoodSoftwoodRatio">
+			<state id="HighHardness" />
+			<state id="ModerateHardness" />
+			<state id="LowHardness" />
+			<probabilities>0.15 0.275 0.575</probabilities>
+		</cpt>
+		<cpt id="VegetationDensity">
+			<state id="VeryHighVegetationDensity" />
+			<state id="HighVegetationDensity" />
+			<state id="ModerateVegetationDensity" />
+			<state id="LowVegetationDensity" />
+			<state id="VeryLowVegetationDensity" />
+			<state id="NoVegetationDensity" />
+			<parents>PercentTreeCanopyCoverClass SuccessionalStage HardwoodSoftwoodRatio</parents>
+			<probabilities>0.76 0.24 0 0 0 0 0.91 0.09 0 0 0 0 0.99 0.01 0 0 0 0 0 0.55 0.45 0 0 0 0 0.75 0.25 0 0 0 0 0.95 0.05 0 0 0 0 0.15 0.45 0.4 0 0 0 0.35 0.45 0.2 0 0 0 0.55 0.35 0.1 0 0 0 0 0.3 0.4 0.3 0 0 0.05 0.3 0.4 0.25 0 0 0.15 0.4 0.4 0.05 0 0 0 0.05 0.45 0.5 0 0 0 0.05 0.45 0.5 0 0 0 0.05 0.45 0.5 0 0 0 0 0.1 0.5 0.4 0 0 0 0.2 0.5 0.3 0 0 0 0.4 0.5 0.1 0.7 0.25 0.05 0 0 0 0.9 0.1 0 0 0 0 0.98 0.02 0 0 0 0 0 0.5 0.5 0 0 0 0 0.7 0.3 0 0 0 0 0.9 0.1 0 0 0 0 0.1 0.3 0.6 0 0 0 0.3 0.4 0.3 0 0 0 0.5 0.4 0.1 0 0 0 0 0.15 0.35 0.5 0 0 0 0.25 0.45 0.3 0 0 0 0.45 0.45 0.1 0 0 0 0 0.2 0.8 0 0 0 0 0.35 0.65 0 0 0 0 0.55 0.45 0 0 0 0 0.05 0.4 0.55 0 0 0 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0.1 0.4 0.5 0 0 0 0.25 0.4 0.35 0 0 0 0.4 0.3 0.3 0 0 0 0.1 0.3 0.6 0 0 0 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0 0 0 0 0.05 0.3 0.65 0 0 0 0.15 0.4 0.45 0 0 0 0.3 0.45 0.25 0 0 0 0 0.05 0.5 0.45 0 0 0 0.05 0.75 0.2 0 0 0 0.25 0.6 0.15 0 0 0 0 0.1 0.9 0 0 0 0 0.3 0.7 0 0 0 0 0.5 0.5 0 0 0 0 0 0.5 0.5 0 0 0 0.2 0.4 0.4 0 0 0 0.4 0.3 0.3 0.1 0.25 0.3 0.35 0 0 0.15 0.3 0.3 0.25 0 0 0.3 0.3 0.3 0.1 0 0 0.05 0.2 0.3 0.45 0 0 0.1 0.3 0.3 0.3 0 0 0.3 0.3 0.3 0.1 0 0 0 0 0.3 0.4 0.3 0 0 0.05 0.4 0.35 0.2 0 0 0.15 0.45 0.3 0.1 0 0 0 0 0.45 0.55 0 0 0 0.1 0.55 0.35 0 0 0 0.2 0.65 0.15 0 0 0 0 0.05 0.95 0 0 0 0 0.2 0.8 0 0 0 0 0.4 0.6 0 0 0 0 0 0.5 0.5 0 0 0 0.1 0.5 0.4 0 0 0 0.3 0.4 0.3 0 0.1 0.3 0.6 0 0 0 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0 0 0 0.05 0.3 0.65 0 0 0 0.2 0.4 0.4 0 0 0 0.4 0.4 0.2 0 0 0 0 0.1 0.35 0.55 0 0 0 0.1 0.55 0.35 0 0 0 0.3 0.55 0.15 0 0 0 0 0.2 0.8 0 0 0 0 0.35 0.65 0 0 0 0 0.55 0.45 0 0 0 0 0 1 0 0 0 0 0.1 0.9 0 0 0 0 0.3 0.7 0 0 0 0 0 0.3 0.7 0 0 0 0 0.5 0.5 0 0 0 0.2 0.4 0.4</probabilities>
+			<property id="VegetationInfluence">VegetationInfluence=((ObservedCanopyCover/100)/3)+((ObservedSuccessionalStage/MaxSuccessionalStage)/3)+((ObservedSoftwoodPercent/100)/3)</property>
+		</cpt>
+		<cpt id="SoilCNRatio">
+			<state id="VeryHighCNRatio" />
+			<state id="HighCNRatio" />
+			<state id="LowCNRatio" />
+			<state id="VeryLowCNRatio" />
+			<probabilities>0 0 0.8 0.2</probabilities>
+			<property id="SoilInfluence">SoilInfluence=((ObservedSoilTexture/MaxSoilTexture)/2)+((ObservedSoilDepth/MaxSoilDepth)/2)</property>
+		</cpt>
+		<cpt id="SoilOxygenConditions">
+			<state id="AnoxicSoils" />
+			<state id="OxicSoils" />
+			<probabilities>0.05 0.95</probabilities>
+		</cpt>
+		<cpt id="VegetationCarbonStorage">
+			<state id="VeryHighVegetationStorage" />
+			<state id="HighVegetationStorage" />
+			<state id="ModerateVegetationStorage" />
+			<state id="LowVegetationStorage" />
+			<state id="VeryLowVegetationStorage" />
+			<state id="NoVegetationStorage" />
+			<parents>SummerHighWinterLow VegetationDensity</parents>
+			<probabilities>0.05 0.2 0.4 0.25 0.1 0 0 0.25 0.4 0.25 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.05 0.6 0.35 0 0 0 0 0.15 0.85 0 0 0 0 0 0 1 0.2 0.3 0.3 0.15 0.05 0 0.1 0.4 0.3 0.15 0.05 0 0 0.05 0.45 0.3 0.2 0 0 0 0.1 0.55 0.35 0 0 0 0 0.2 0.8 0 0 0 0 0 0 1 0.5 0.3 0.15 0.05 0 0 0.4 0.4 0.15 0.05 0 0 0 0.15 0.5 0.15 0.2 0 0 0 0.2 0.5 0.3 0 0 0 0.05 0.25 0.7 0 0 0 0 0 0 1 0.7 0.15 0.1 0.05 0 0 0.6 0.2 0.15 0.05 0 0 0.1 0.3 0.3 0.2 0.1 0 0 0.05 0.3 0.4 0.25 0 0 0 0.1 0.4 0.5 0 0 0 0 0 0 1 0.8 0.15 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0 0.1 0.35 0.35 0.2 0 0 0 0.2 0.35 0.45 0 0 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="SlopeClass">
+			<state id="Level" />
+			<state id="GentlyUndulating" />
+			<state id="RollingToHilly" />
+			<state id="SteeplyDissectedToMountainous" />
+			<probabilities>0.6 0.225 0.125 0.05</probabilities>
+		</cpt>
+		<cpt id="SoilPh">
+			<state id="HighPh" />
+			<state id="ModeratePh" />
+			<state id="LowPh" />
+			<probabilities>0.05 0.6 0.35</probabilities>
+		</cpt>
+		<cpt id="SoilCarbonStorage">
+			<state id="VeryHighSoilStorage" />
+			<state id="HighSoilStorage" />
+			<state id="ModerateSoilStorage" />
+			<state id="LowSoilStorage" />
+			<state id="VeryLowSoilStorage" />
+			<state id="NoSoilStorage" />
+			<parents>SoilOxygenConditions VegetationDensity SlopeClass SoilCNRatio SoilPh</parents>
+			<probabilities>0.8 0.15 0.05 0 0 0 0.5 0.4 0.1 0 0 0 0.8 0.15 0.05 0 0 0 0.75 0.2 0.05 0 0 0 0.45 0.45 0.1 0 0 0 0.75 0.2 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.4 0.45 0.15 0 0 0 0.7 0.2 0.1 0 0 0 0.5 0.4 0.1 0 0 0 0.25 0.5 0.25 0 0 0 0.5 0.4 0.1 0 0 0 0.6 0.35 0.05 0 0 0 0.3 0.3 0.2 0.2 0 0 0.6 0.35 0.05 0 0 0 0.55 0.35 0.1 0 0 0 0.25 0.25 0.25 0.25 0 0 0.55 0.35 0.1 0 0 0 0.55 0.35 0.1 0 0 0 0.25 0.25 0.25 0.25 0 0 0.55 0.35 0.1 0 0 0 0.4 0.4 0.15 0.05 0 0 0.2 0.25 0.27 0.28 0 0 0.4 0.4 0.15 0.05 0 0 0.3 0.3 0.3 0.1 0 0 0.1 0.2 0.4 0.2 0.1 0 0.3 0.3 0.3 0.1 0 0 0.25 0.3 0.35 0.1 0 0 0.05 0.15 0.4 0.3 0.1 0 0.25 0.3 0.35 0.1 0 0 0.2 0.3 0.3 0.2 0 0 0.05 0.1 0.375 0.375 0.1 0 0.2 0.3 0.3 0.2 0 0 0.15 0.25 0.35 0.25 0 0 0.05 0.05 0.425 0.375 0.1 0 0.15 0.25 0.35 0.25 0 0 0.2 0.2 0.3 0.3 0 0 0 0.1 0.35 0.35 0.2 0 0.2 0.2 0.3 0.3 0 0 0.2 0.2 0.3 0.3 0 0 0 0.1 0.35 0.35 0.2 0 0.2 0.2 0.3 0.3 0 0 0.1 0.2 0.3 0.3 0.1 0 0 0.05 0.35 0.35 0.25 0 0.1 0.2 0.3 0.3 0.1 0 0.1 0.2 0.3 0.3 0.1 0 0 0.05 0.35 0.35 0.25 0 0.1 0.2 0.3 0.3 0.1 0 0.8 0.15 0.05 0 0 0 0.5 0.4 0.1 0 0 0 0.8 0.15 0.05 0 0 0 0.75 0.2 0.05 0 0 0 0.45 0.45 0.1 0 0 0 0.75 0.2 0.05 0 0 0 0.7 0.2 0.1 0 0 0 0.4 0.45 0.15 0 0 0 0.7 0.2 0.1 0 0 0 0.5 0.4 0.1 0 0 0 0.25 0.5 0.25 0 0 0 0.5 0.4 0.1 0 0 0 0.6 0.35 0.05 0 0 0 0.3 0.3 0.2 0.2 0 0 0.6 0.35 0.05 0 0 0 0.55 0.35 0.1 0 0 0 0.25 0.25 0.25 0.25 0 0 0.55 0.35 0.1 0 0 0 0.55 0.35 0.1 0 0 0 0.25 0.25 0.25 0.25 0 0 0.55 0.35 0.1 0 0 0 0.4 0.4 0.15 0.05 0 0 0.2 0.25 0.27 0.28 0 0 0.4 0.4 0.15 0.05 0 0 0.3 0.3 0.3 0.1 0 0 0.1 0.2 0.4 0.2 0.1 0 0.3 0.3 0.3 0.1 0 0 0.25 0.3 0.35 0.1 0 0 0.05 0.15 0.4 0.3 0.1 0 0.25 0.3 0.35 0.1 0 0 0.2 0.3 0.3 0.2 0 0 0.05 0.1 0.375 0.375 0.1 0 0.2 0.3 0.3 0.2 0 0 0.15 0.25 0.35 0.25 0 0 0.05 0.05 0.425 0.375 0.1 0 0.15 0.25 0.35 0.25 0 0 0.2 0.2 0.3 0.3 0 0 0 0.1 0.35 0.35 0.2 0 0.2 0.2 0.3 0.3 0 0 0.2 0.2 0.3 0.3 0 0 0 0.1 0.35 0.35 0.2 0 0.2 0.2 0.3 0.3 0 0 0.1 0.2 0.3 0.3 0.1 0 0 0.05 0.35 0.35 0.25 0 0.1 0.2 0.3 0.3 0.1 0 0.1 0.2 0.3 0.3 0.1 0 0 0.05 0.35 0.35 0.25 0 0.1 0.2 0.3 0.3 0.1 0 0.6 0.3 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.6 0.3 0.1 0 0 0 0.55 0.3 0.1 0.05 0 0 0.25 0.25 0.3 0.2 0 0 0.55 0.3 0.1 0.05 0 0 0.5 0.3 0.15 0.05 0 0 0.2 0.2 0.4 0.2 0 0 0.5 0.3 0.15 0.05 0 0 0.2 0.2 0.4 0.2 0 0 0.1 0.15 0.5 0.2 0.05 0 0.2 0.2 0.4 0.2 0 0 0.5 0.35 0.1 0.05 0 0 0.2 0.3 0.3 0.2 0 0 0.5 0.35 0.1 0.05 0 0 0.45 0.35 0.15 0.05 0 0 0.15 0.325 0.325 0.2 0 0 0.45 0.35 0.15 0.05 0 0 0.4 0.4 0.1 0.1 0 0 0.15 0.3 0.35 0.2 0 0 0.4 0.4 0.1 0.1 0 0 0.3 0.4 0.2 0.1 0 0 0.1 0.3 0.5 0.05 0.05 0 0.3 0.4 0.2 0.1 0 0 0.15 0.15 0.3 0.3 0.1 0 0 0.15 0.4 0.3 0.15 0 0.15 0.15 0.3 0.3 0.1 0 0.1 0.15 0.3 0.35 0.1 0 0 0.15 0.3 0.4 0.15 0 0.1 0.15 0.3 0.35 0.1 0 0.05 0.15 0.25 0.35 0.2 0 0 0.1 0.25 0.325 0.325 0 0.05 0.15 0.25 0.35 0.2 0 0 0.1 0.25 0.4 0.25 0 0 0.05 0.25 0.35 0.35 0 0 0.1 0.25 0.4 0.25 0 0 0.1 0.2 0.3 0.4 0 0 0 0.3 0.4 0.3 0 0 0.1 0.2 0.3 0.4 0 0 0.05 0.15 0.35 0.45 0 0 0 0.3 0.4 0.3 0 0 0.05 0.15 0.35 0.45 0 0 0.05 0.1 0.35 0.5 0 0 0 0.25 0.35 0.4 0 0 0.05 0.1 0.35 0.5 0 0 0.05 0.05 0.25 0.65 0 0 0 0.2 0.3 0.5 0 0 0.05 0.05 0.25 0.65 0 0.4 0.4 0.2 0 0 0 0.2 0.3 0.3 0.2 0 0 0.4 0.4 0.2 0 0 0 0.35 0.35 0.3 0 0 0 0.15 0.35 0.35 0.15 0 0 0.35 0.35 0.3 0 0 0 0.3 0.3 0.3 0.1 0 0 0.1 0.3 0.4 0.2 0 0 0.3 0.3 0.3 0.1 0 0 0.1 0.3 0.3 0.3 0 0 0 0.2 0.4 0.2 0.2 0 0.1 0.3 0.3 0.3 0 0 0.35 0.35 0.2 0.1 0 0 0.15 0.25 0.4 0.2 0 0 0.35 0.35 0.2 0.1 0 0 0.3 0.4 0.2 0.1 0 0 0.1 0.25 0.4 0.25 0 0 0.3 0.4 0.2 0.1 0 0 0.25 0.3 0.3 0.15 0 0 0.05 0.2 0.35 0.3 0.1 0 0.25 0.3 0.3 0.15 0 0 0.2 0.2 0.3 0.2 0.1 0 0 0.15 0.35 0.35 0.15 0 0.2 0.2 0.3 0.2 0.1 0 0 0.1 0.4 0.4 0.1 0 0 0.05 0.25 0.4 0.3 0 0 0.1 0.4 0.4 0.1 0 0 0.05 0.4 0.4 0.15 0 0 0.05 0.25 0.35 0.35 0 0 0.05 0.4 0.4 0.15 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.15 0.45 0.4 0 0 0 0.3 0.4 0.3 0 0 0.05 0.25 0.25 0.45 0 0 0 0.25 0.45 0.3 0 0 0.05 0.25 0.25 0.45 0 0 0 0.2 0.35 0.45 0 0 0 0.2 0.45 0.35 0 0 0 0.2 0.35 0.45 0 0 0 0.15 0.4 0.45 0 0 0 0.1 0.45 0.45 0 0 0 0.15 0.4 0.45 0 0 0 0.1 0.45 0.45 0 0 0 0.05 0.4 0.55 0 0 0 0.1 0.45 0.45 0 0.25 0.3 0.4 0.05 0 0 0.1 0.3 0.4 0.2 0 0 0.25 0.3 0.4 0.05 0 0 0.2 0.3 0.4 0.1 0 0 0.05 0.25 0.4 0.3 0 0 0.2 0.3 0.4 0.1 0 0 0.15 0.3 0.4 0.15 0 0 0 0.25 0.4 0.3 0.05 0 0.15 0.3 0.4 0.15 0 0 0.05 0.2 0.3 0.4 0.05 0 0 0.2 0.4 0.2 0.2 0 0.05 0.2 0.3 0.4 0.05 0 0.2 0.3 0.3 0.2 0 0 0.05 0.2 0.4 0.3 0.05 0 0.2 0.3 0.3 0.2 0 0 0.15 0.25 0.4 0.15 0.05 0 0 0.2 0.45 0.3 0.05 0 0.15 0.25 0.4 0.15 0.05 0 0.1 0.2 0.3 0.3 0.1 0 0 0.1 0.35 0.45 0.1 0 0.1 0.2 0.3 0.3 0.1 0 0.05 0.15 0.3 0.3 0.2 0 0 0.05 0.3 0.4 0.25 0 0.05 0.15 0.3 0.3 0.2 0 0 0.05 0.35 0.4 0.2 0 0 0 0.2 0.4 0.4 0 0 0.05 0.35 0.4 0.2 0 0 0 0.35 0.4 0.25 0 0 0 0.15 0.3 0.55 0 0 0 0.35 0.4 0.25 0 0 0 0.3 0.35 0.35 0 0 0 0.15 0.25 0.6 0 0 0 0.3 0.35 0.35 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.2 0.7 0 0 0 0.2 0.4 0.4 0 0 0 0.2 0.3 0.5 0 0 0 0.15 0.4 0.45 0 0 0 0.2 0.3 0.5 0 0 0 0.15 0.35 0.5 0 0 0 0.15 0.35 0.5 0 0 0 0.15 0.35 0.5 0 0 0 0.1 0.3 0.6 0 0 0 0.05 0.3 0.65 0 0 0 0.1 0.3 0.6 0 0 0 0.05 0.3 0.65 0 0 0 0 0.25 0.75 0 0 0 0.05 0.3 0.65 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0.25 0.25 0.25 0.25 0 0 0 0.2 0.4 0.25 0.15 0 0.25 0.25 0.25 0.25 0 0 0.2 0.3 0.3 0.2 0 0 0 0.15 0.4 0.3 0.15 0 0.2 0.3 0.3 0.2 0 0 0.2 0.2 0.3 0.3 0 0 0 0.1 0.4 0.3 0.2 0 0.2 0.2 0.3 0.3 0 0 0.15 0.15 0.35 0.35 0 0 0 0.05 0.35 0.4 0.2 0 0.15 0.15 0.35 0.35 0 0 0.2 0.3 0.3 0.2 0 0 0 0.15 0.4 0.3 0.15 0 0.2 0.3 0.3 0.2 0 0 0.15 0.35 0.3 0.2 0 0 0 0.1 0.45 0.3 0.15 0 0.15 0.35 0.3 0.2 0 0 0.15 0.3 0.35 0.2 0 0 0 0.05 0.4 0.4 0.15 0 0.15 0.3 0.35 0.2 0 0 0.1 0.3 0.4 0.2 0 0 0 0 0.4 0.4 0.2 0 0.1 0.3 0.4 0.2 0 0 0.15 0.35 0.3 0.2 0 0 0 0.1 0.45 0.3 0.15 0 0.15 0.35 0.3 0.2 0 0 0.1 0.3 0.3 0.3 0 0 0 0.05 0.4 0.35 0.2 0 0.1 0.3 0.3 0.3 0 0 0.05 0.25 0.3 0.3 0.1 0 0 0 0.4 0.4 0.2 0 0.05 0.25 0.3 0.3 0.1 0 0 0.2 0.3 0.3 0.2 0 0 0 0.3 0.4 0.3 0 0 0.2 0.3 0.3 0.2 0 0.1 0.3 0.3 0.3 0 0 0 0.05 0.4 0.35 0.2 0 0.1 0.3 0.3 0.3 0 0 0.05 0.25 0.4 0.3 0 0 0 0 0.4 0.4 0.2 0 0.05 0.25 0.4 0.3 0 0 0 0.2 0.3 0.4 0.1 0 0 0 0.3 0.4 0.3 0 0 0.2 0.3 0.4 0.1 0 0 0.1 0.3 0.3 0.3 0 0 0 0.25 0.35 0.4 0 0 0.1 0.3 0.3 0.3 0 0.1 0.25 0.3 0.25 0.1 0 0 0.05 0.4 0.3 0.25 0 0.1 0.25 0.3 0.25 0.1 0 0.05 0.2 0.4 0.25 0.1 0 0 0 0.4 0.35 0.25 0 0.05 0.2 0.4 0.25 0.1 0 0 0.2 0.4 0.3 0.1 0 0 0 0.4 0.3 0.3 0 0 0.2 0.4 0.3 0.1 0 0 0.15 0.4 0.35 0.1 0 0 0 0.35 0.35 0.3 0 0 0.15 0.4 0.35 0.1 0 0.1 0.25 0.3 0.25 0.1 0 0 0.05 0.4 0.3 0.25 0 0.1 0.25 0.3 0.25 0.1 0 0.05 0.2 0.4 0.25 0.1 0 0 0 0.4 0.35 0.25 0 0.05 0.2 0.4 0.25 0.1 0 0 0.15 0.4 0.35 0.1 0 0 0 0.3 0.4 0.3 0 0 0.15 0.4 0.35 0.1 0 0 0 0.4 0.4 0.2 0 0 0 0.25 0.4 0.35 0 0 0 0.4 0.4 0.2 0 0 0.2 0.3 0.3 0.2 0 0 0 0.4 0.3 0.3 0 0 0.2 0.3 0.3 0.2 0 0 0.15 0.3 0.3 0.25 0 0 0 0.3 0.35 0.35 0 0 0.15 0.3 0.3 0.25 0 0 0.05 0.25 0.4 0.3 0 0 0 0.25 0.375 0.375 0 0 0.05 0.25 0.4 0.3 0 0 0 0.25 0.4 0.35 0 0 0 0.2 0.4 0.4 0 0 0 0.25 0.4 0.35 0 0 0 0.2 0.4 0.4 0 0 0 0.15 0.4 0.45 0 0 0 0.2 0.4 0.4 0 0 0 0.15 0.4 0.45 0 0 0 0.1 0.45 0.45 0 0 0 0.15 0.4 0.45 0 0 0 0.1 0.45 0.45 0 0 0 0.05 0.475 0.475 0 0 0 0.1 0.45 0.45 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.5 0.5 0 0 0.2 0.3 0.3 0.2 0 0 0 0.4 0.3 0.3 0 0 0.2 0.3 0.3 0.2 0 0 0.15 0.35 0.3 0.2 0 0 0 0.35 0.35 0.3 0 0 0.15 0.35 0.3 0.2 0 0 0.1 0.35 0.35 0.2 0 0 0 0.3 0.4 0.3 0 0 0.1 0.35 0.35 0.2 0 0 0 0.35 0.35 0.3 0 0 0 0.3 0.35 0.35 0 0 0 0.35 0.35 0.3 0 0 0.1 0.35 0.35 0.2 0 0 0 0.3 0.4 0.3 0 0 0.1 0.35 0.35 0.2 0 0 0.05 0.35 0.4 0.2 0 0 0 0.3 0.35 0.35 0 0 0.05 0.35 0.4 0.2 0 0 0 0.3 0.4 0.3 0 0 0 0.25 0.4 0.35 0 0 0 0.3 0.4 0.3 0 0 0 0.25 0.35 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0.25 0.35 0.4 0 0 0 0.35 0.35 0.3 0 0 0 0.25 0.4 0.35 0 0 0 0.35 0.35 0.3 0 0 0 0.3 0.35 0.35 0 0 0 0.2 0.4 0.4 0 0 0 0.3 0.35 0.35 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.45 0.45 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.45 0.45 0 0 0 0.05 0.45 0.5 0 0 0 0.1 0.45 0.45 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.45 0.45 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.45 0.45 0 0 0 0 0.5 0.5 0 0 0 0.1 0.45 0.45 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.5 0.5 0 0 0.1 0.3 0.3 0.3 0 0 0 0.3 0.4 0.3 0 0 0.1 0.3 0.3 0.3 0 0 0.05 0.35 0.3 0.3 0 0 0 0.25 0.35 0.4 0 0 0.05 0.35 0.3 0.3 0 0 0 0.3 0.4 0.3 0 0 0 0.2 0.4 0.4 0 0 0 0.3 0.4 0.3 0 0 0 0.3 0.35 0.35 0 0 0 0.15 0.4 0.45 0 0 0 0.3 0.35 0.35 0 0 0.05 0.3 0.25 0.4 0 0 0 0.25 0.4 0.35 0 0 0.05 0.3 0.25 0.4 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0.3 0.3 0.4 0 0 0 0.25 0.35 0.4 0 0 0 0.15 0.425 0.425 0 0 0 0.25 0.35 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.45 0.45 0 0 0 0.2 0.4 0.4 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.4 0.4 0 0 0 0.15 0.425 0.425 0 0 0 0.2 0.4 0.4 0 0 0 0.15 0.4 0.45 0 0 0 0.1 0.45 0.45 0 0 0 0.15 0.4 0.45 0 0 0 0.1 0.45 0.45 0 0 0 0 0.4 0.6 0 0 0 0.1 0.45 0.45 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.45 0.45 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.45 0.45 0 0 0 0.05 0.475 0.475 0 0 0 0.1 0.45 0.45 0 0 0 0.05 0.4 0.55 0 0 0 0 0.45 0.55 0 0 0 0.05 0.4 0.55 0 0 0 0 0.35 0.65 0 0 0 0 0.3 0.7 0 0 0 0 0.35 0.65 0 0 0.05 0.25 0.3 0.4 0 0 0 0.2 0.25 0.55 0 0 0.05 0.25 0.3 0.4 0 0 0 0.2 0.35 0.45 0 0 0 0.15 0.25 0.6 0 0 0 0.2 0.35 0.45 0 0 0 0.2 0.4 0.4 0 0 0 0.1 0.25 0.65 0 0 0 0.2 0.4 0.4 0 0 0 0.15 0.4 0.45 0 0 0 0.05 0.25 0.7 0 0 0 0.15 0.4 0.45 0 0 0 0.25 0.3 0.45 0 0 0 0.15 0.25 0.6 0 0 0 0.25 0.3 0.45 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.25 0.65 0 0 0 0.2 0.3 0.5 0 0 0 0.15 0.3 0.55 0 0 0 0.15 0.3 0.55 0 0 0 0.15 0.3 0.55 0 0 0 0.1 0.3 0.6 0 0 0 0.1 0.3 0.6 0 0 0 0.1 0.3 0.6 0 0 0 0.2 0.3 0.5 0 0 0 0.1 0.25 0.65 0 0 0 0.2 0.3 0.5 0 0 0 0.15 0.3 0.55 0 0 0 0.1 0.3 0.6 0 0 0 0.15 0.3 0.55 0 0 0 0.1 0.3 0.6 0 0 0 0.05 0.3 0.65 0 0 0 0.1 0.3 0.6 0 0 0 0.05 0.3 0.65 0 0 0 0.05 0.25 0.7 0 0 0 0.05 0.3 0.65 0 0 0 0 0.25 0.75 0 0 0 0 0.15 0.85 0 0 0 0 0.25 0.75 0 0 0 0 0.2 0.8 0 0 0 0 0.1 0.9 0 0 0 0 0.2 0.8 0 0 0 0 0.15 0.85 0 0 0 0 0.05 0.95 0 0 0 0 0.15 0.85 0 0 0 0 0.1 0.9 0 0 0 0 0 1 0 0 0 0 0.1 0.9 0 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+		</cpt>
+		<cpt id="VegetationAndSoilCarbonStorageClass">
+			<state id="VeryHighStorage" />
+			<state id="HighStorage" />
+			<state id="ModerateStorage" />
+			<state id="LowStorage" />
+			<state id="VeryLowStorage" />
+			<state id="NoStorage" />
+			<probabilities>0.2 0.2 0.2 0.2 0.18 0.02</probabilities>
+		</cpt>
+		<cpt id="DeforestationRiskClass">
+			<state id="HighDeforestationRisk" />
+			<state id="ModerateDeforestationRisk" />
+			<state id="LowDeforestationRisk" />
+			<state id="NoDeforestationRisk" />
+			<probabilities>0.03303303303303304 0.03303303303303304 0.03303303303303304 0.9009009009009009</probabilities>
+		</cpt>
+		<cpt id="StoredCarbonRelease">
+			<state id="VeryHighRelease" />
+			<state id="HighRelease" />
+			<state id="ModerateRelease" />
+			<state id="LowRelease" />
+			<state id="VeryLowRelease" />
+			<state id="NoRelease" />
+			<parents>VegetationAndSoilCarbonStorageClass DeforestationRiskClass FireThreatClass</parents>
+			<probabilities>0.8 0.15 0.05 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.6 0.3 0.05 0.05 0 0 0.5 0.25 0.15 0.1 0 0 0.75 0.2 0.05 0 0 0 0.65 0.25 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.2 0.4 0.2 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.3 0.3 0.3 0.1 0 0 0.2 0.2 0.2 0.2 0.2 0 0.1 0.15 0.15 0.3 0.3 0 0.15 0.05 0 0 0 0.8 0.015 0.005 0 0 0 0.98 0.004 0.001 0 0 0 0.995 0.002 0.001 0 0 0 0.997 0 0.85 0.1 0.05 0 0 0 0.75 0.15 0.1 0 0 0 0.7000000000000001 0.2000000000000001 0.1 0 0 0 0.6 0.3 0.1 0 0 0 0.8 0.15 0.05 0 0 0 0.7 0.25 0.05 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.25 0.3 0.35 0.1 0 0 0.75 0.15 0.1 0 0 0 0.35 0.3 0.2500000000000001 0.1 0 0 0.25 0.25 0.25 0.25 0 0 0.15 0.2 0.35 0.3 0 0 0.15 0.05 0 0 0.8 0 0.015 0.005 0 0 0.98 0 0.004 0.001 0 0 0.995 0 0.002 0.001 0 0 0.997 0 0 0.95 0.05 0 0 0 0 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.8 0.2 0 0 0 0 0.95 0.05 0 0 0 0 0.8 0.2 0 0 0 0 0.6000000000000001 0.3 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.8 0.15 0.05 0 0 0 0.6000000000000001 0.3 0.1 0 0 0 0.3 0.25 0.25 0.2 0 0 0.2 0.2 0.4 0.2 0 0 0.15 0.05 0 0.8 0 0 0.015 0.005 0 0.98 0 0 0.004 0.001 0 0.995 0 0 0.002 0.001 0 0.997 0 0 0 1 0 0 0 0 0 0.9 0.1 0 0 0 0 0.85 0.15 0 0 0 0 0.75 0.25 0 0 0 0 0.9 0.1 0 0 0 0 0.75 0.2 0.05 0 0 0 0.65 0.25 0.1 0 0 0 0.5 0.3 0.2 0 0 0 0.85 0.15 0 0 0 0 0.65 0.25 0.1 0 0 0 0.3 0.3 0.4 0 0 0 0.2 0.25 0.55 0 0 0 0.15 0.05 0.8 0 0 0 0.015 0.005 0.98 0 0 0 0.004 0.001 0.995 0 0 0 0.002 0.001 0.997 0 0 0 0 0.95 0.05 0 0 0 0 0.9 0.1 0 0 0 0 0.9 0.1 0 0 0 0 0.8 0.2 0 0 0 0 0.9 0.1 0 0 0 0 0.75 0.25 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.9 0.1 0 0 0 0 0.6 0.4 0 0 0 0 0.5 0.5 0 0 0 0 0.4 0.6 0 0 0 0 0.2 0.8 0 0 0 0 0.02 0.98 0 0 0 0 0.005 0.995 0 0 0 0 0.002 0.998 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1</probabilities>
+			<property id="CarbonStorage">CarbonStorage=VegetationCarbonStorage+SoilCarbonStorage</property>
+		</cpt>
+	</nodes>
+	<extensions>
+		<genie version="1.0" app="GeNIe 2.0.3887.0" name="Network1" faultnameformat="nodestate">
+			<node id="StoredCarbonRelease">
+				<name>StoredCarbonRelease</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>398 85 547 110</position>
+				<comment>Agricultural practices are also an influence there, but it&apos;s unlikely we could get a spatial dataset of this (e.g., no-till versus regular plowing)</comment>
+				<barchart active="true" width="177" height="126" />
+			</node>
+			<node id="VegetationCarbonStorage">
+				<name>VegetationCarbonStorage</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>695 410 851 443</position>
+				<barchart active="true" width="288" height="126" />
+			</node>
+			<node id="SoilCarbonStorage">
+				<name>SoilCarbonStorage</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>155 432 271 465</position>
+				<barchart active="true" width="212" height="126" />
+			</node>
+			<node id="SoilOxygenConditions">
+				<name>SoilOxygenConditions</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>48 651 183 681</position>
+				<barchart active="true" width="128" height="54" />
+			</node>
+			<node id="PercentTreeCanopyCoverClass">
+				<name>PercentTreeCanopyCoverClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>994 591 1101 621</position>
+				<barchart active="true" width="260" height="108" />
+			</node>
+			<node id="HardwoodSoftwoodRatio">
+				<name>HardwoodSoftwoodRatio</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>638 714 796 742</position>
+				<barchart active="true" width="262" height="72" />
+			</node>
+			<node id="SuccessionalStage">
+				<name>SuccessionalStage</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>948 713 1073 743</position>
+				<barchart active="true" width="189" height="126" />
+			</node>
+			<node id="SlopeClass">
+				<name>SlopeClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>187 740 232 768</position>
+				<comment>+ aspect (more C on N-NE facing slope)</comment>
+				<barchart active="true" width="193" height="90" />
+			</node>
+			<node id="SummerHighWinterLow">
+				<name>SummerHighWinterLow</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>1030 467 1166 502</position>
+				<comment>The difference between summer high temperature and winter low temperature is also an important climatic predictor of NPP (Auch 2009; Rosenzweig 1968 noted the same for AET).\n\nMEAN TEMPERATURE OF WARMEST MONTH - MEAN TEMPERATURE OF COLDEST MONTH (e.g. Jul/Aug - Jan)\n\nClimate variables have also been aggregated as Weck&apos;s Climatic Index (Iverson et al. 1994).  We have some, but not all, of these data:\n\nWCI = dT(S)(P1 + SQRT(P2))(G)(H)/(100*Tm)\n\nWhere:\ndT (degrees C) = diurnal difference between average min and max temperature during warmest month of the growing season (dT is removed in the tropics, where high max temperature can lead to water stress) (HAVE)\nS (h) = mean daylight length during growing season\nP1 (dm) = avg. annual precipitation up to 20 dm (HAVE)\nP2 (dm) = avg. annual precipitation exceeding 20 dm (HAVE)\nG (months) = duration of growing season (HAVE growing degree days)\nH = avg. annual relative humidity (HAVE)\nTm (degrees C) = mean annual temperature of warmest month of the growing season (HAVE)</comment>
+				<barchart active="true" width="199" height="109" />
+			</node>
+			<node id="VegetationDensity">
+				<name>VegetationDensity</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>444 560 566 589</position>
+				<comment>Use DBHs from IVMP data as values for successional stage - 2.5, 7.5, 15, 25, 45 for early, pole, mid, late, and old growth successional stages respectively.</comment>
+				<barchart active="true" width="271" height="126" />
+			</node>
+			<node id="VegetationAndSoilCarbonStorageClass">
+				<name>VegetationAndSoilCarbonStorageClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>667 221 806 271</position>
+				<comment>VegetationAndSoilCarbonStorage = VegetationCarbonStorage + SoilCarbonStorage</comment>
+				<barchart active="true" width="225" height="126" />
+			</node>
+			<node id="FireThreatClass">
+				<name>FireThreatClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>433 208 523 239</position>
+				<barchart active="true" width="236" height="72" />
+			</node>
+			<node id="DeforestationRiskClass">
+				<name>DeforestationRiskClass</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>135 215 251 242</position>
+				<comment>A function of agricultural/economic factors (likely difficult to find/nonexistent spatially) and population growth.  We have population growth data, but not at the appropriate scale for Puget Sound (national data).</comment>
+				<barchart active="true" width="272" height="90" />
+			</node>
+			<node id="SoilCNRatio">
+				<name>SoilCNRatio</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>354 739 441 771</position>
+				<barchart active="true" width="168" height="90" />
+			</node>
+			<node id="SoilPh">
+				<name>SoilPh</name>
+				<interior color="ffffff" />
+				<outline color="000080" />
+				<font color="000000" name="Arial" size="8" />
+				<position>46 562 104 585</position>
+				<comment>See how the modeling looks if we add pH.</comment>
+				<barchart active="true" width="128" height="72" />
+			</node>
+			<textbox>
+				<caption>Copyright 2011 The ARIES Consortium\n\nThis file is part of ARIES.\n\nARIES is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n\nARIES is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with ARIES.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</caption>
+				<font color="000000" name="Arial" size="8" />
+				<position>939 35 1348 231</position>
+			</textbox>
+		</genie>
+	</extensions>
+</smile>
