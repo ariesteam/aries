@@ -2324,29 +2324,30 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Ranking id="san_pedro_bird_rich">
+  <measurement:Ranking id="bird_rich3">
     <observation:hasObservable>
-      <habitat:AvianRichness />
+      <habitat:AvianRichness/>
     </observation:hasObservable>
     <rdfs:comment>Data source: University of Arizona-USGS Southern Arizona Data Services Program</rdfs:comment>
     <metadata:hasPriority>0</metadata:hasPriority>
     <metadata:hasURL>http://sdrsnet.srnr.arizona.edu/index.php?page=datamenu</metadata:hasURL>
     <observation:hasDataSource>
-      <geospace:WFSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wfs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>san_pedro:bird_rich</geospace:hasCoverageId>
-        <geospace:hasValueAttribute>grid_code</geospace:hasValueAttribute>
-        <geospace:hasValueType>thinklab-core:LongFloatingPoint</geospace:hasValueType>
-      </geospace:WFSDataSource>
+      <geospace:WCSDataSource>
+        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
+        <geospace:hasCoverageId>san_pedro:bird_rich3</geospace:hasCoverageId>
+        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
+      </geospace:WCSDataSource>
     </observation:hasDataSource>
     <observation:hasObservationExtent>
-      <geospace:ArealFeatureSet>
-        <geospace:hasLatLowerBound>3414974.349525294</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>114973.68290087063</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>4106562.7324075284</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>699340.7518807739</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
-      </geospace:ArealFeatureSet>
+      <geospace:RasterGrid>
+        <geospace:hasXRangeMax>7636</geospace:hasXRangeMax>
+        <geospace:hasYRangeMax>7146</geospace:hasYRangeMax>
+        <geospace:hasLatLowerBound>31.319</geospace:hasLatLowerBound>
+        <geospace:hasLonLowerBound>-115.026</geospace:hasLonLowerBound>
+        <geospace:hasLatUpperBound>37.037</geospace:hasLatUpperBound>
+        <geospace:hasLonUpperBound>-108.915</geospace:hasLonUpperBound>
+        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+      </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
