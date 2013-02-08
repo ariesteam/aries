@@ -63,13 +63,13 @@
     #{21 22 23 24 41 42 43 52 71 81 82 90 95} OnLand))
 
 (defmodel successional-stage SuccessionalStage
-  (classification (ranking ecology:SuccessionalStage)
-    #{5 6}                           OldGrowth
-    4                                LateSuccession
-    3                                MidSuccession
-    2                                PoleSuccession
-    1                                EarlySuccession
-    #{21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} NoSuccession))
+ (classification (ranking ecology:SuccessionalStage)
+   #{5 6}                           OldGrowth
+   4                                LateSuccession
+   3                                MidSuccession
+   2                                PoleSuccession
+   1                                EarlySuccession
+   #{21 22 23 24 25 26 27 28 40 41 101 102 103 104 105 106 107 108 109 120 121} NoSuccession))
 
 (defmodel percent-canopy-cover PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover :units "%")
@@ -102,6 +102,14 @@
     [6  8]            LowHardness
     [8 10 :inclusive] VeryLowHardness))
 
+;; To be substituted with the above defmodel statement when using
+;; global data.
+(defmodel hardwood-softwood-ratio-global HardwoodSoftwoodRatio
+  (classification (numeric-coding glc:GlobcoverNumeric)
+    #{40 50 160 170}     HighHardness
+    #{60 90 100 110 120} ModerateHardness
+    #{70}                LowHardness))
+
 ;; Ceiling based off highest local values from MODIS NPP data.
 (defmodel veg-soil-sequestration VegetationAndSoilCarbonSequestration
   (probabilistic-measurement VegetationAndSoilCarbonSequestration "t/ha*year"
@@ -115,9 +123,9 @@
 ;; Bayesian sink model
 (defmodel source CarbonSourceValue   
   (bayesian CarbonSourceValue 
-    :import   "aries.core::CarbonSourcePuget.xdsl"
-    :context  [hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low 
-               percent-canopy-cover successional-stage land-selector]
+    :import   "aries.core::CarbonSourcePuget.xdsl" ; substitute global_test/CarbonSourcePugetGlobal.xdsl for the global data analysis.
+    :context  [hardwood-softwood-ratio soil-cn-ratio summer-high-winter-low
+               successional-stage percent-canopy-cover land-selector]
     :required [LandOrSea]
     :keep     [VegetationAndSoilCarbonSequestration]
     :result   veg-soil-sequestration))
@@ -173,7 +181,7 @@
   (bayesian VegetationCStorage 
     :import   "aries.core::CarbonSinkPuget.xdsl"
     :context  [percent-canopy-cover hardwood-softwood-ratio 
-               successional-stage summer-high-winter-low land-selector]
+                successional-stage summer-high-winter-low land-selector]
     :required [LandOrSea]
     :keep     [VegetationCarbonStorage]
     :result   veg-storage))
@@ -196,7 +204,7 @@
   (bayesian SoilCStorage 
     :import   "aries.core::CarbonSinkPuget.xdsl"
     :context  [soil-ph slope oxygen percent-canopy-cover hardwood-softwood-ratio 
-               successional-stage soil-cn-ratio land-selector]
+                successional-stage soil-cn-ratio land-selector]
     :required [LandOrSea]
     :keep     [SoilCarbonStorage]
     :result   soil-storage))
@@ -322,6 +330,8 @@
       1          PoleSuccession
       :otherwise NoSuccession)))
 
+; IPCC summer high-winter low data have been deactivated in the .xml -
+; may need to reactivate them to get these to work.
 (defscenario ipcc-hadley-a2 
   "This scenario represents the effects of the Hadley A2 IPCC climate
      scenario. A2 represents a very heterogeneous world with

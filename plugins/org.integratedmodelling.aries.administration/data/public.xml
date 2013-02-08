@@ -70,6 +70,10 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
        regions in the Southwest. Journal of Contemporary Water
        Research and Education 114: 60-74.
 
+       Brown, T.C., et al. 2008. Spatial distribution of water supply 
+       in the coterminous United States. Journal of the American Water 
+       Resources Association. 44 (6): 1474-1487.
+
        New, M.G., et al. 1999. Representing 20th century space-time
        climate variability. I: Development of a 1961-1990 mean monthly
        terrestrial climatology. Journal of Climate 12: 829-856.
@@ -81,7 +85,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
        Stromberg, J.C., et al. 2006. Status of the riparian ecosystem
        in the Upper San Pedro River, Arizona: Application of an
        assessment model. Environmental Monitoring and Assessment 115:
-       145-173. 
+       145-173.
 
        Wendland, K.J., et al. In press. Targeting and implementing
        payments for ecosystem services: Opportunities for bundling
@@ -1839,6 +1843,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+<!-- For use in scenarios for Puget carbon.
   <measurement:Ranking id="SumHiWintLowHadleyA2">
     <observation:hasObservable>
       <habitat:SummerHighWinterLow />
@@ -1896,7 +1901,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
-  </measurement:Ranking>
+  </measurement:Ranking> -->
 
   <!-- SWAT model data, uncalibrated, run through AGWA using default
        inputs and a 12-year precipitation record (1960-1972) from 7
@@ -3138,6 +3143,7 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
+<!--
   <measurement:BinaryCoding id="usa_highways">
     <observation:hasObservable>
       <infrastructure:Highway />
@@ -3160,7 +3166,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding>
+  </measurement:BinaryCoding> -->
 
   <measurement:Measurement id="dam_storage_puget">
     <observation:hasObservable>
@@ -7355,32 +7361,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Ranking id="SumHiWintLow">
-    <observation:hasObservable>
-      <ontario:SummerHighWinterLow />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: Derived from WorldClim data</rdfs:comment>
-    <metadata:hasPriority>10</metadata:hasPriority>
-    <metadata:hasURL>http://www.worldclim.org/bioclim</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>global:sum_hi_wint_lo_global</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>43198</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>17998</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>-60.0</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>-180.0</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>90.0</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>180.0</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Ranking>
-
   <measurement:Ranking id="soil_ph1">
     <observation:hasObservable>
       <ontario:SoilPhShallow />
@@ -8429,60 +8409,6 @@ closely.
 
 <!-- These layers are problematic - image mosaics that aren't true
 tiles - they have boundary problems. Zach is reworking them 
-<measurement:Ranking id="KFFACT_TIF">
-  <observation:hasObservable>
-    <habitat:SoilErodibility/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-  <metadata:hasPriority>1</metadata:hasPriority>
-  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>usa:KFFACT_TIF</geospace:hasCoverageId>
-      <geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:Ranking>
-
-<measurement:Measurement id="SOC_TIF">
-  <observation:hasObservable>
-    <carbonService:SoilCarbonStorage/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-  <measurement:unit>kg/m^2</measurement:unit>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>usa:SOC_TIF</geospace:hasCoverageId>
-      <geospace:hasNodataValue>65535.0</geospace:hasNodataValue>
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
-</measurement:Measurement>
 
 <measurement:Ranking id="Clay_TIF">
   <observation:hasObservable>
@@ -8563,33 +8489,6 @@ tiles - they have boundary problems. Zach is reworking them
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:Ranking>
-
-<measurement:Ranking id="HYDRO2_TIF">
-  <observation:hasObservable>
-    <habitat:HydrologicSoilsGroup/>
-  </observation:hasObservable>
-  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-  <metadata:hasPriority>0</metadata:hasPriority>
-  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-  <observation:hasDataSource>
-    <geospace:WCSDataSource>
-      <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-      <geospace:hasCoverageId>usa:HYDRO2_TIF</geospace:hasCoverageId>
-      <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
-    </geospace:WCSDataSource>
-  </observation:hasDataSource>
-  <observation:hasObservationExtent>
-    <geospace:RasterGrid>
-      <geospace:hasXRangeMax>209183</geospace:hasXRangeMax>
-      <geospace:hasYRangeMax>93899</geospace:hasYRangeMax>
-      <geospace:hasLatLowerBound>23.327</geospace:hasLatLowerBound>
-      <geospace:hasLonLowerBound>-126.141</geospace:hasLonLowerBound>
-      <geospace:hasLatUpperBound>50.515</geospace:hasLatUpperBound>
-      <geospace:hasLonUpperBound>-65.576</geospace:hasLonUpperBound>
-      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-    </geospace:RasterGrid>
-  </observation:hasObservationExtent>
 </measurement:Ranking> -->
 
 <!-- Leaving 2001 NLCD commented out until temporal contexts are enabled
@@ -8646,6 +8545,7 @@ tiles - they have boundary problems. Zach is reworking them
   </observation:hasObservationExtent>
 </measurement:NumericCoding> -->
 
+<!--
 <measurement:Ranking id="ARIES:NLCD_US_TC">
   <observation:hasObservable>
     <habitat:PercentTreeCanopyCover/>
@@ -8670,7 +8570,7 @@ tiles - they have boundary problems. Zach is reworking them
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:Ranking>
+</measurement:Ranking> -->
 
 <measurement:Ranking id="ARIES:NLCD06_US_Im">
   <observation:hasObservable>
@@ -8751,5 +8651,229 @@ tiles - they have boundary problems. Zach is reworking them
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
 </measurement:Ranking>
+
+<!-- several layers have not yet had .xml generated for them - AWC,
+     sand/silt/clay.
+It's never been totally clear what the layer below represents. Keep it
+commented out for the meantime and use Hydro_Group1 for SSURGO HSG.
+<measurement:Ranking id="ARIES:Hydro2">
+<observation:hasObservable>
+<representation:GenericQuantifiable/>
+</observation:hasObservable>
+<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+    <metadata:hasPriority>1</metadata:hasPriority>
+    <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+<observation:hasDataSource>
+<geospace:WCSDataSource>
+<geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+<geospace:hasCoverageId>ARIES:Hydro2</geospace:hasCoverageId>
+<geospace:hasNodataValue>256.0</geospace:hasNodataValue>
+</geospace:WCSDataSource>
+</observation:hasDataSource>
+<observation:hasObservationExtent>
+<geospace:RasterGrid>
+<geospace:hasXRangeMax>209184</geospace:hasXRangeMax>
+<geospace:hasYRangeMax>93900</geospace:hasYRangeMax>
+<geospace:hasLatLowerBound>23.327276043765295</geospace:hasLatLowerBound>
+<geospace:hasLonLowerBound>-126.14127685004297</geospace:hasLonLowerBound>
+<geospace:hasLatUpperBound>50.514857429111316</geospace:hasLatUpperBound>
+<geospace:hasLonUpperBound>-65.57535280502803</geospace:hasLonUpperBound>
+<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+</geospace:RasterGrid>
+</observation:hasObservationExtent>
+</measurement:Ranking> -->
+
+<measurement:Ranking id="ARIES:Hydro_Group1">
+  <observation:hasObservable>
+    <habitat:HydrologicSoilsGroup/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>1</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:Hydro_Group1</geospace:hasCoverageId>
+      <geospace:hasNodataValue>0.0</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209184</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93900</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327276043765295</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.14127685004297</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.514857429111316</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.57535280502803</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Ranking id="ARIES:Kffact">
+  <observation:hasObservable>
+    <habitat:SoilErodibility/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>1</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:Kffact</geospace:hasCoverageId>
+      <geospace:hasNodataValue>0.0</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209184</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93900</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327276043765295</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.14127685004297</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.514857429111316</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.57535280502803</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Ranking>
+
+<measurement:Measurement id="ARIES:SOC">
+  <observation:hasObservable>
+    <carbonService:SoilCarbonStorage/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
+  <metadata:hasPriority>1</metadata:hasPriority>
+  <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
+  <measurement:unit>kg/m^2</measurement:unit> <!-- Units are still not
+  totally clear. Could be t/ha. -->
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:SOC</geospace:hasCoverageId>
+      <geospace:hasNodataValue>0.0</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>209184</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>93900</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>23.327276043765295</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-126.14127685004297</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.514857429111316</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.57535280502803</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:Measurement id="ARIES:dem_puget">
+  <observation:hasObservable>
+    <geophysics:Altitude/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: National Elevation Dataset</rdfs:comment>
+  <metadata:hasURL>http://ned.usgs.gov/</metadata:hasURL>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <measurement:unit>m</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:dem_puget</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>32384</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>17996</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>44.9980867</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-127.001667</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.0016667</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-117.998087</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:Measurement id="ARIES:eta_mx">
+  <observation:hasObservable>
+    <habitat:ActualEvapotranspiration/>
+  </observation:hasObservable>
+  <measurement:unit>mm</measurement:unit>
+  <rdfs:comment>Data source: Brown et al. 2008</rdfs:comment>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <metadata:hasURL>http://www.fs.fed.us/rm/value/docs/spatial_distribution_water_supply.pdf</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:eta_mx</geospace:hasCoverageId>
+      <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>1085</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>498</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>22.725053499999998</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-128.15483</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>51.7056476</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.1510184266</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:Measurement id="ARIES:q_project">
+  <observation:hasObservable>
+    <waterSupplyService:WaterYield/>
+  </observation:hasObservable>
+  <measurement:unit>mm</measurement:unit>
+  <rdfs:comment>Data source: Brown et al. 2008 (mixed model)</rdfs:comment>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <metadata:hasURL>http://www.fs.fed.us/rm/value/docs/spatial_distribution_water_supply.pdf</metadata:hasURL>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:q_project</geospace:hasCoverageId>
+      <geospace:hasNodataValue>-3.4028234663852886E38</geospace:hasNodataValue>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>1477</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>677</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>22.907759620100002</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-127.860118</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>51.6133864</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-65.3334287401</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
+
+<measurement:Measurement id="ARIES:slope_puget">
+  <observation:hasObservable>
+    <geophysics:DegreeSlope/>
+  </observation:hasObservable>
+  <rdfs:comment>Data source: Derived from National Elevation Dataset</rdfs:comment>
+  <metadata:hasURL>http://ned.usgs.gov/</metadata:hasURL>
+  <metadata:hasPriority>5</metadata:hasPriority>
+  <measurement:unit>°</measurement:unit>
+  <observation:hasDataSource>
+    <geospace:WCSDataSource>
+      <geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
+      <geospace:hasCoverageId>ARIES:slope_puget</geospace:hasCoverageId>
+    </geospace:WCSDataSource>
+  </observation:hasDataSource>
+  <observation:hasObservationExtent>
+    <geospace:RasterGrid>
+      <geospace:hasXRangeMax>32409</geospace:hasXRangeMax>
+      <geospace:hasYRangeMax>18009</geospace:hasYRangeMax>
+      <geospace:hasLatLowerBound>44.998333333329995</geospace:hasLatLowerBound>
+      <geospace:hasLonLowerBound>-127.0016666667</geospace:hasLonLowerBound>
+      <geospace:hasLatUpperBound>50.001666666664136</geospace:hasLatUpperBound>
+      <geospace:hasLonUpperBound>-117.99833333336588</geospace:hasLonUpperBound>
+      <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
+    </geospace:RasterGrid>
+  </observation:hasObservationExtent>
+</measurement:Measurement>
 
 </kbox>

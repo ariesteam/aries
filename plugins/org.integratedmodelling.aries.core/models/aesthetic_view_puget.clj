@@ -44,15 +44,20 @@
 ;;; Source models
 ;;;-------------------------------------------------------------------
 
+(defmodel ocean Ocean
+  (classification (binary-coding geofeatures:Ocean)
+    1          OceanPresent
+    :otherwise OceanAbsent))
+
 (defmodel lake Lake
   (classification (binary-coding geofeatures:Lake)
     1          LakePresent
     :otherwise LakeAbsent))
 
-(defmodel ocean Ocean
-  (classification (binary-coding geofeatures:Ocean)
-    1          OceanPresent
-    :otherwise OceanAbsent))
+(defmodel lake-global Lake
+  (classification (binary-coding geofeatures:Reservoir)
+    1          LakePresent
+    :otherwise LakeAbsent))
 
 (defmodel mountain Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
@@ -72,7 +77,7 @@
 (defmodel source ViewSource
   (bayesian ViewSource
     :import  "aries.core::ViewSourcePuget.xdsl"
-    :context [mountain lake ocean]
+    :context [mountain lake-global ocean]
     :keep    [TheoreticalNaturalBeauty]
     :result  theoretical-beauty))
 
@@ -91,12 +96,22 @@
     #{23 24}   LowDensityDevelopment
     :otherwise NoDevelopment))
 
+(defmodel developed-land-global DevelopedLand
+  (classification (numeric-coding glc:GlobcoverNumeric)
+    190        HighDensityDevelopment
+    :otherwise NoDevelopment))
+
 ;; The model below is needed to filter out ferry routes, which are
 ;; included in the highways layer and obviously don't act as sinks.
 (defmodel highway Highways
   (classification (numeric-coding recreationService:RoadTravelCapacity)
     #{1 2 3 4 5 6 7 9} HighwaysPresent
     :otherwise         HighwaysAbsent))
+
+(defmodel highway-global Highways
+  (classification (binary-coding infrastructure:Highway)
+    1          HighwaysPresent
+    :otherwise HighwaysAbsent))
 
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
@@ -109,7 +124,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkPuget.xdsl"
-    :context [developed-land clearcut highway]
+    :context [developed-land-global highway-global] ;clearcut
     :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -118,7 +133,7 @@
 ;;;-------------------------------------------------------------------
 
 (defmodel altitude geophysics:Altitude
-  (measurement geophysics:Altitude "m"))  
+  (measurement geophysics:Altitude "m"))
 
 ;; Used to mask out ocean (elevation = 0)
 (defmodel land-selector LandOrSea
@@ -148,7 +163,7 @@
 (defmodel view-use-king HomeownerViewUse
   (classification (binary-coding HomeownerViewUse)
     [0   5] HomeownerViewUsePresent ; Change to "IF ZERO OR GREATER" view use present when using training data, otherwise not.
-    [5 100] HomeownerViewUseAbsent)) 
+    [5 100] HomeownerViewUseAbsent))
 
 ;;undiscretizer for view use
 (defmodel view-use-undiscretizer HomeownerViewUse
@@ -161,7 +176,7 @@
   "Property owners who benefit from high-quality views"
   (bayesian ViewUse 
     :import   "aries.core::ViewUsePuget.xdsl"
-    :context  [property-value housing land-selector]
+    :context  [housing property-value land-selector]
     :required [LandOrSea]
     :keep     [HomeownerViewUse]
     :result   view-use-undiscretizer))
@@ -172,13 +187,22 @@
     1          ScenicDrivesPresent
     :otherwise ScenicDrivesAbsent))
 
+(defmodel view-use-global HomeownerViewUse
+  (classification (numeric-coding glc:GlobcoverNumeric)
+    190        HomeownerViewUsePresent
+    :otherwise HomeownerViewUseAbsent))
+
 ;;;-------------------------------------------------------------------
 ;;; Identification models
 ;;;-------------------------------------------------------------------
 
 (defmodel data LineOfSight
   (identification LineOfSight
-    :context [source homeowners sink altitude])) ; Add scenic-highways when there's time to test
+    :context [source homeowners sink])) ; altitude Add scenic-highways when there's time to test
+
+(defmodel data-global LineOfSight
+  (identification LineOfSight
+    :context [source view-use-global sink]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models
