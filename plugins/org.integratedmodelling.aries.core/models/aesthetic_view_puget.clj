@@ -54,10 +54,22 @@
     1          LakePresent
     :otherwise LakeAbsent))
 
+; A less intellegent way to code lakes using global data, using reservoirs only (i.e., ignores natural lakes).
+;(defmodel lake-global Lake
+;  (classification (binary-coding geofeatures:Reservoir)
+;    1          LakePresent
+;    :otherwise LakeAbsent))
+
+; A smarter way to code lakes using global data, but it produces a few unavoidable data relics on the ocean shoreline.
 (defmodel lake-global Lake
-  (classification (binary-coding geofeatures:Reservoir)
-    1          LakePresent
-    :otherwise LakeAbsent))
+  (classification Lake
+    :context [(binary-coding geofeatures:Ocean)
+              (numeric-coding glc:GlobcoverNumeric)]
+    :state #(let [open-water (== 210 (:globcover-numeric %))
+                  ocean (== 1 (:ocean %))]
+              (if (and open-water (not ocean))
+                (tl/conc 'aestheticService:LakePresent)
+                (tl/conc 'aestheticService:LakeAbsent)))))
 
 (defmodel mountain Mountain
   "Classifies an elevation model into three levels of provision of beautiful mountains"
@@ -77,7 +89,7 @@
 (defmodel source ViewSource
   (bayesian ViewSource
     :import  "aries.core::ViewSourcePuget.xdsl"
-    :context [mountain lake-global ocean]
+    :context [mountain lake ocean]
     :keep    [TheoreticalNaturalBeauty]
     :result  theoretical-beauty))
 
@@ -109,9 +121,9 @@
     :otherwise         HighwaysAbsent))
 
 (defmodel highway-global Highways
-  (classification (binary-coding infrastructure:Highway)
-    1          HighwaysPresent
-    :otherwise HighwaysAbsent))
+  (classification (categorization infrastructure:Highway)
+    #{"Primary Route" "Secondary Route" "Unknown"} HighwaysPresent
+    :otherwise                                     HighwaysAbsent))
 
 (defmodel view-sink-undiscretizer VisualBlight
   (probabilistic-ranking VisualBlight
@@ -124,7 +136,7 @@
   "Landscape features that reduce the quality of scenic views"
   (bayesian ViewSink 
     :import  "aries.core::ViewSinkPuget.xdsl"
-    :context [developed-land-global highway-global] ;clearcut
+    :context [developed-land highway clearcut]
     :keep    [VisualBlight]
     :result  view-sink-undiscretizer))
 
@@ -187,10 +199,10 @@
     1          ScenicDrivesPresent
     :otherwise ScenicDrivesAbsent))
 
-(defmodel view-use-global HomeownerViewUse
-  (classification (numeric-coding glc:GlobcoverNumeric)
-    190        HomeownerViewUsePresent
-    :otherwise HomeownerViewUseAbsent))
+;(defmodel view-use-global HomeownerViewUse
+;  (classification (numeric-coding glc:GlobcoverNumeric)
+;    190        HomeownerViewUsePresent
+;    :otherwise HomeownerViewUseAbsent))
 
 ;;;-------------------------------------------------------------------
 ;;; Identification models
@@ -198,11 +210,11 @@
 
 (defmodel data LineOfSight
   (identification LineOfSight
-    :context [source homeowners sink])) ; altitude Add scenic-highways when there's time to test
+    :context [source homeowners sink altitude])) ; Add scenic-highways when there's time to test
 
-(defmodel data-global LineOfSight
-  (identification LineOfSight
-    :context [source view-use-global sink]))
+;(defmodel data-global LineOfSight
+;  (identification LineOfSight
+;    :context [source view-use-global sink]))
 
 ;;;-------------------------------------------------------------------
 ;;; Flow models

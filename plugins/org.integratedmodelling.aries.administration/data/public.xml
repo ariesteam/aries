@@ -932,33 +932,6 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <measurement:Ranking id="HSG">
-    <observation:hasObservable>
-      <habitat:HydrologicSoilsGroup />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-    <metadata:belongsToDataset>SSURGO_hydrologic_soils_group</metadata:belongsToDataset>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:hsg_puget</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Ranking>
-
   <measurement:Ranking id="hsg">
     <observation:hasObservable>
       <habitat:HydrologicSoilsGroup />
@@ -2129,7 +2102,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <habitat:AnnualPrecipitation2002 />
     </observation:hasObservable>
     <rdfs:comment>Data source: PRISM climate data</rdfs:comment>
-    <metadata:hasPriority>5</metadata:hasPriority>
+    <metadata:hasPriority>6</metadata:hasPriority>
     <metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
     <measurement:unit>mm</measurement:unit>
     <observation:hasDataSource>
@@ -2157,7 +2130,7 @@ along with ARIES.  If not, see <http://www.gnu.org/licenses/>.
       <habitat:AnnualPrecipitation2007 />
     </observation:hasObservable>
     <rdfs:comment>Data source: PRISM climate data</rdfs:comment>
-    <metadata:hasPriority>5</metadata:hasPriority>
+    <metadata:hasPriority>6</metadata:hasPriority>
     <metadata:hasURL>http://www.prism.oregonstate.edu/products/</metadata:hasURL>
     <measurement:unit>mm</measurement:unit>
     <observation:hasDataSource>
@@ -3143,7 +3116,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:BinaryCoding>
 
-<!--
   <measurement:BinaryCoding id="usa_highways">
     <observation:hasObservable>
       <infrastructure:Highway />
@@ -3166,7 +3138,7 @@ could be used in BN training. -->
         <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
       </geospace:ArealFeatureSet>
     </observation:hasObservationExtent>
-  </measurement:BinaryCoding> -->
+  </measurement:BinaryCoding>
 
   <measurement:Measurement id="dam_storage_puget">
     <observation:hasObservable>
@@ -3224,33 +3196,6 @@ could be used in BN training. -->
     </observation:hasObservationExtent>
   </measurement:Measurement>
 
-  <measurement:Ranking id="oc_hsg">
-    <observation:hasObservable>
-      <habitat:HydrologicSoilsGroup />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-    <metadata:belongsToDataset>SSURGO_hydrologic_soils_group</metadata:belongsToDataset>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>california:hsg_ca</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>2531</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>2074</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>3694351.02</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>386509.0</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>3769127.0</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>472571.821</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26911</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Ranking>
-
   <measurement:Ranking id="hsg_statsgo">
     <observation:hasObservable>
       <habitat:HydrologicSoilsGroup/>
@@ -3273,33 +3218,6 @@ could be used in BN training. -->
         <geospace:hasLatUpperBound>49.385</geospace:hasLatUpperBound>
         <geospace:hasLonUpperBound>-66.949</geospace:hasLonUpperBound>
         <geospace:hasCoordinateReferenceSystem>EPSG:4269</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Ranking>
-
-  <measurement:Ranking id="san_pedro_hsg">
-    <observation:hasObservable>
-      <habitat:HydrologicSoilsGroup />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-    <metadata:belongsToDataset>SSURGO_hydrologic_soils_group</metadata:belongsToDataset>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>san_pedro:hsg_san_pedro</geospace:hasCoverageId>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>8712</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>9186</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>3415000.0</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>424094.614</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>3742078.5</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>685514.614</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26912</geospace:hasCoordinateReferenceSystem>
       </geospace:RasterGrid>
     </observation:hasObservationExtent>
   </measurement:Ranking>
@@ -8545,7 +8463,6 @@ tiles - they have boundary problems. Zach is reworking them
   </observation:hasObservationExtent>
 </measurement:NumericCoding> -->
 
-<!--
 <measurement:Ranking id="ARIES:NLCD_US_TC">
   <observation:hasObservable>
     <habitat:PercentTreeCanopyCover/>
@@ -8570,7 +8487,7 @@ tiles - they have boundary problems. Zach is reworking them
       <geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
     </geospace:RasterGrid>
   </observation:hasObservationExtent>
-</measurement:Ranking> -->
+</measurement:Ranking>
 
 <measurement:Ranking id="ARIES:NLCD06_US_Im">
   <observation:hasObservable>
@@ -8653,35 +8570,7 @@ tiles - they have boundary problems. Zach is reworking them
 </measurement:Ranking>
 
 <!-- several layers have not yet had .xml generated for them - AWC,
-     sand/silt/clay.
-It's never been totally clear what the layer below represents. Keep it
-commented out for the meantime and use Hydro_Group1 for SSURGO HSG.
-<measurement:Ranking id="ARIES:Hydro2">
-<observation:hasObservable>
-<representation:GenericQuantifiable/>
-</observation:hasObservable>
-<rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-    <metadata:hasPriority>1</metadata:hasPriority>
-    <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-<observation:hasDataSource>
-<geospace:WCSDataSource>
-<geospace:hasServiceUrl>https://www.sciencebase.gov/geoserver/ARIES/wcs</geospace:hasServiceUrl>
-<geospace:hasCoverageId>ARIES:Hydro2</geospace:hasCoverageId>
-<geospace:hasNodataValue>256.0</geospace:hasNodataValue>
-</geospace:WCSDataSource>
-</observation:hasDataSource>
-<observation:hasObservationExtent>
-<geospace:RasterGrid>
-<geospace:hasXRangeMax>209184</geospace:hasXRangeMax>
-<geospace:hasYRangeMax>93900</geospace:hasYRangeMax>
-<geospace:hasLatLowerBound>23.327276043765295</geospace:hasLatLowerBound>
-<geospace:hasLonLowerBound>-126.14127685004297</geospace:hasLonLowerBound>
-<geospace:hasLatUpperBound>50.514857429111316</geospace:hasLatUpperBound>
-<geospace:hasLonUpperBound>-65.57535280502803</geospace:hasLonUpperBound>
-<geospace:hasCoordinateReferenceSystem>EPSG:4326</geospace:hasCoordinateReferenceSystem>
-</geospace:RasterGrid>
-</observation:hasObservationExtent>
-</measurement:Ranking> -->
+     sand/silt/clay.-->
 
 <measurement:Ranking id="ARIES:Hydro_Group1">
   <observation:hasObservable>

@@ -53,19 +53,17 @@
   (binary-coding geofeatures:River))
 
 (defmodel soil-group-puget puget:HydrologicSoilsGroup
-  "Relevant soil group"
   (classification (ranking habitat:HydrologicSoilsGroup)
-    1 puget:SoilGroupA
-    2 puget:SoilGroupB
-    3 puget:SoilGroupC
-    4 puget:SoilGroupD))
+    1      puget:SoilGroupA ;1, then 2, 3, 4 when using reclassed STATSGO/local SSURGO.
+    #{2 5} puget:SoilGroupB
+    #{3 6} puget:SoilGroupC
+    #{4 7} puget:SoilGroupD))
 
 ;; This layer has problems for now (see .xml) but not currently used.
 ;;(defmodel precipitation-monthly Precipitation
 ;;  (measurement habitat:JanuaryPrecipitation "mm"))
 
 (defmodel land-use LandUseLandCover
-  "Just a reclass of the NLCD land use layer"
   (classification (numeric-coding nlcd:NLCDNumeric)
     82             Agriculture
     #{11 90 95 12} WetlandsOpenWater
@@ -168,20 +166,24 @@
     [16.70    :>] puget:SteeplyDissectedToMountainous))
 
 (defmodel vegetation-type puget:FloodVegetationType
-  "Just a reclass of the NLCD land use layer"
   (classification (numeric-coding nlcd:NLCDNumeric)
     #{90 95}             puget:Wetland
     #{41 42 43 52 71 81} puget:ForestGrasslandShrubland
     #{21 22 23 24 31 82} puget:DevelopedCultivated))
 
-;; Re-enable with LandFire canopy height data
-;;(defmodel vegetation-height puget:VegetationHeight
-;;  (classification (measurement habitat:VegetationHeight "ft")
-;;    [120  :>] puget:VeryHighVegetationHeight
-;;    [ 80 120] puget:HighVegetationHeight
-;;    [ 50  80] puget:ModerateVegetationHeight
-;;    [ 20  50] puget:LowVegetationHeight
-;;    [ :<  20] puget:VeryLowVegetationHeight))
+(defmodel vegetation-type-global puget:FloodVegetationType
+  (classification (numeric-coding glc:GlobcoverNumeric)
+    #{160 170 180}                        puget:Wetland
+    #{40 50 60 70 90 110 120 130 140 150} puget:ForestGrasslandShrubland
+    #{11 14 20 30 190 200}                puget:DevelopedCultivated))
+
+(defmodel vegetation-height puget:VegetationHeight
+  (classification (measurement habitat:VegetationHeight "ft")
+    [374 501] puget:VeryHighVegetationHeight
+    [174 374] puget:HighVegetationHeight
+    [ 74 174] puget:ModerateVegetationHeight
+    [ 24  74] puget:LowVegetationHeight
+    [  0  24] puget:VeryLowVegetationHeight))
 
 (defmodel percent-canopy-cover puget:PercentTreeCanopyCoverClass
   (classification (ranking habitat:PercentTreeCanopyCover)
@@ -494,7 +496,7 @@ be added to this list if desired."
 
 (defmodel data-residents-100 AvoidedDamageToResidents100 
   (identification AvoidedDamageToResidents100 
-    :context [source-annual sink-annual residents-use-100 flood-flow-data100]))
+    :context [source-annual sink-annual residents-use-100])) ; flood-flow-data100
 
 (defmodel data-residents-500 AvoidedDamageToResidents500 
   (identification AvoidedDamageToResidents500 

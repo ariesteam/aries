@@ -123,12 +123,11 @@
     [16.70    :>] colorado:SteeplyDissectedToMountainous))
 
 (defmodel soil-group colorado:HydrologicSoilsGroup
-  "Relevant soil group"
   (classification (ranking habitat:HydrologicSoilsGroup)
-    1 colorado:SoilGroupA
-    2 colorado:SoilGroupB
-    3 colorado:SoilGroupC
-    4 colorado:SoilGroupD))
+    1      colorado:SoilGroupA ;1, then 2, 3, 4 when using reclassed STATSGO/local SSURGO.
+    #{2 5} colorado:SoilGroupB
+    #{3 6} colorado:SoilGroupC
+    #{4 7} colorado:SoilGroupD))
 
 (defmodel imperviousness colorado:PercentImperviousCoverClass
   (classification (ranking habitat:PercentImperviousSurface)

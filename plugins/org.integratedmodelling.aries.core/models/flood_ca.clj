@@ -130,10 +130,10 @@
 (defmodel soil-group california:HydrologicSoilsGroup
   "Relevant soil group"
   (classification (ranking habitat:HydrologicSoilsGroup)
-    1 california:SoilGroupA
-    2 california:SoilGroupB
-    3 california:SoilGroupC
-    4 california:SoilGroupD))
+    1      california:SoilGroupA ;1, then 2, 3, 4 when using reclassed STATSGO/local SSURGO.
+    #{2 5} california:SoilGroupB
+    #{3 6} california:SoilGroupC
+    #{4 7} california:SoilGroupD))
 
 (defmodel slope california:SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")

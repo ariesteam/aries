@@ -56,6 +56,24 @@
    "500 m"
    "EPSG:4326 POLYGON((41 14, 45 14, 45 10, 41 10, 41 14))"))
 
+(defcontext cass-nd
+  ""
+  (grid
+   "30 m"
+   "EPSG:4326 POLYGON((-97.75 47.3, -96.75 47.3, -96.75 46.6, -97.75 46.6, -97.75 47.3))"))
+
+(defcontext ri
+  ""
+  (grid
+   "30 m"
+   "EPSG:4326 POLYGON((-71.25 41.69, -71.1 41.69, -71.1 41.43, -71.25 41.43, -71.25 41.69))"))
+
+(defcontext rouge
+  ""
+  (grid
+   "30 m"
+   "EPSG:4326 POLYGON((-83.73 42.65, -82.9 42.65, -82.9 42.05, -83.73 42.05, -83.73 42.65))"))
+
 (defcontext globcover-test-sulawesi
   ""
   (grid

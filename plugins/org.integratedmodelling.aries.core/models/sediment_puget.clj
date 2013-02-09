@@ -48,10 +48,10 @@
 (defmodel soil-group puget:HydrologicSoilsGroup
   "Relevant soil group"
   (classification (ranking habitat:HydrologicSoilsGroup)
-    1 puget:SoilGroupA
-    2 puget:SoilGroupB
-    3 puget:SoilGroupC
-    4 puget:SoilGroupD))
+    1      puget:SoilGroupA ;1, then 2, 3, 4 when using reclassed STATSGO/local SSURGO.
+    #{2 5} puget:SoilGroupB
+    #{3 6} puget:SoilGroupC
+    #{4 7} puget:SoilGroupD))
 
 (defmodel slope puget:SlopeClass
   (classification (measurement geophysics:DegreeSlope "\u00b0")
