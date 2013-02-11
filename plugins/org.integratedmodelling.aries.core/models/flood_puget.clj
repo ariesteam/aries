@@ -54,10 +54,10 @@
 
 (defmodel soil-group-puget puget:HydrologicSoilsGroup
   (classification (ranking habitat:HydrologicSoilsGroup)
-    1      puget:SoilGroupA ;1, then 2, 3, 4 when using reclassed STATSGO/local SSURGO.
-    #{2 5} puget:SoilGroupB
-    #{3 6} puget:SoilGroupC
-    #{4 7} puget:SoilGroupD))
+    1      puget:SoilGroupA   ;1, then 2, 3, 4 when using reclassed STATSGO/global data.
+    #{2 5} puget:SoilGroupB   ;2
+    #{3 6} puget:SoilGroupC   ;3
+    #{4 7} puget:SoilGroupD)) ;4
 
 ;; This layer has problems for now (see .xml) but not currently used.
 ;;(defmodel precipitation-monthly Precipitation
@@ -173,9 +173,9 @@
 
 (defmodel vegetation-type-global puget:FloodVegetationType
   (classification (numeric-coding glc:GlobcoverNumeric)
-    #{160 170 180}                        puget:Wetland
-    #{40 50 60 70 90 110 120 130 140 150} puget:ForestGrasslandShrubland
-    #{11 14 20 30 190 200}                puget:DevelopedCultivated))
+    #{160 170 180}                            puget:Wetland
+    #{40 50 60 70 90 100 110 120 130 140 150} puget:ForestGrasslandShrubland
+    #{11 14 20 30 190 200}                    puget:DevelopedCultivated))
 
 (defmodel vegetation-height puget:VegetationHeight
   (classification (measurement habitat:VegetationHeight "ft")
@@ -276,6 +276,12 @@
 (defmodel dam-storage DamStorage
   (measurement DamStorage "mm"))
 
+; Reservoirs using global data; sink value is the median for reservoir storage in the Puget Sound region.
+;(defmodel dam-storage DamStorage
+;  (measurement DamStorage "mm"
+;    :context [(binary-coding geofeatures:Reservoir)]
+;    :state   #(if (== (:reservoir %) 1) 1741 0)))
+
 (defmodel gray-infrastructure-sink GrayInfrastructureSink 
   (measurement GrayInfrastructureSink "mm"
     :context [dam-storage detention-basin-storage]
@@ -301,19 +307,18 @@
 (defmodel green-infrastructure-sink puget:GreenInfrastructureSink 
   (bayesian puget:GreenInfrastructureSink
     :import  "aries.core::FloodSinkPugetAnnual.xdsl"
-    :context  [soil-group-puget vegetation-type slope ; vegetation-height
-               successional-stage imperviousness percent-canopy-cover 
-               mean-days-precipitation-annual land-selector]
+    :context  [soil-group-puget vegetation-type slope vegetation-height mean-days-precipitation-annual successional-stage
+                imperviousness percent-canopy-cover land-selector]
     :required [LandOrSea]
     :keep     [puget:GreenInfrastructureStorage]
     :result   green-infrastructure-storage))
 
 (defmodel sink-annual puget:FloodSink
   (measurement puget:FloodSink "mm"
-    :context [green-infrastructure-sink gray-infrastructure-sink]
+    :context [green-infrastructure-sink gray-infrastructure-sink] ;dam-storage
     :state   #(+ 
                (if (nil? (:green-infrastructure-sink %)) 0.0 (.getMean (:green-infrastructure-sink %)))
-               (or       (:gray-infrastructure-sink %)   0.0))))
+               (or       (:gray-infrastructure-sink %)   0.0)))) ;dam-storage
 
 ;;;-------------------------------------------------------------------
 ;;; Use models
@@ -354,10 +359,15 @@
   (classification (ranking aestheticService:PresenceOfHousing)
     [1 :>]     aestheticService:HousingPresent  
     :otherwise aestheticService:HousingAbsent)
-  ;; Uses NLCD where parcel data are unavailable. Assumes (incorrectly) that all developed land is housing.
+ ;; Uses NLCD where parcel data are unavailable. Assumes (incorrectly) that all developed land is housing.
   (classification (numeric-coding nlcd:NLCDNumeric)
     [22 23 24] aestheticService:HousingPresent
     :otherwise aestheticService:HousingAbsent))
+
+;(defmodel housing aestheticService:PresenceOfHousing
+;  (classification (numeric-coding glc:GlobcoverNumeric)
+;    190        aestheticService:HousingPresent  
+;    :otherwise aestheticService:HousingAbsent))
 
 (defmodel public-asset PublicAsset
   "Public assets are defined as presence of highways, railways or both. Other classes of public infrastructure could

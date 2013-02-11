@@ -4910,63 +4910,6 @@ global data. -->
     </observation:hasObservationExtent>
   </measurement:Ranking>
 
-  <!--
-  <measurement:Ranking id="SoilErodibilty">
-    <observation:hasObservable>
-      <habitat:SoilErodibility />
-    </observation:hasObservable>
-    <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:soil_erodibility_puget</geospace:hasCoverageId>
-        <geospace:hasNodataValue>255.0</geospace:hasNodataValue>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Ranking>
-  -->
-
-  <!-- Check to see if hasNodataValue = 255.0 still needs to be included 
-  <measurement:Ranking id="soil_erodibility_puget">
-    <observation:hasObservable>
-      <habitat:SoilErodibility/>
-    </observation:hasObservable>
-    <rdfs:comment>Data source: USDA-NRCS SSURGO soils data</rdfs:comment>
-    <metadata:hasPriority>0</metadata:hasPriority>
-    <metadata:hasURL>http://soils.usda.gov/survey/geography/ssurgo/description.html</metadata:hasURL>
-    <observation:hasDataSource>
-      <geospace:WCSDataSource>
-        <geospace:hasServiceUrl>http://ecoinformatics.uvm.edu/geoserver/wcs</geospace:hasServiceUrl>
-        <geospace:hasCoverageId>puget:soil_erodibility_puget</geospace:hasCoverageId>
-        <geospace:hasTransformation>self * 0.01</geospace:hasTransformation>
-      </geospace:WCSDataSource>
-    </observation:hasDataSource>
-    <observation:hasObservationExtent>
-      <geospace:RasterGrid>
-        <geospace:hasXRangeMax>14406</geospace:hasXRangeMax>
-        <geospace:hasYRangeMax>11943</geospace:hasYRangeMax>
-        <geospace:hasLatLowerBound>5077470.87</geospace:hasLatLowerBound>
-        <geospace:hasLonLowerBound>374335.998</geospace:hasLonLowerBound>
-        <geospace:hasLatUpperBound>5435820.87</geospace:hasLatUpperBound>
-        <geospace:hasLonUpperBound>806575.998</geospace:hasLonUpperBound>
-        <geospace:hasCoordinateReferenceSystem>EPSG:26910</geospace:hasCoordinateReferenceSystem>
-      </geospace:RasterGrid>
-    </observation:hasObservationExtent>
-  </measurement:Ranking> -->
-
   <measurement:Ranking id="soil_erodibility_statsgo">
     <observation:hasObservable>
       <habitat:SoilErodibility/>
@@ -8570,7 +8513,7 @@ tiles - they have boundary problems. Zach is reworking them
 </measurement:Ranking>
 
 <!-- several layers have not yet had .xml generated for them - AWC,
-     sand/silt/clay.-->
+     sand/silt/clay. -->
 
 <measurement:Ranking id="ARIES:Hydro_Group1">
   <observation:hasObservable>
