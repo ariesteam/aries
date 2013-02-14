@@ -145,9 +145,9 @@
 ;  :otherwise HousingAbsent))
 
 (defmodel housing PresenceOfHousing
-  (classification (numeric-coding sanPedro:SouthwestRegionalGapAnalysisLULC) ;Use NLCD classes 22-24 once a seamless CO version is available.
-    111        HousingPresent
-    :otherwise HousingAbsent))
+  (classification (numeric-coding nlcd:NLCDNumeric)
+    #{22 23 24} HousingPresent
+    :otherwise  HousingAbsent))
 
 (defmodel property-value HousingValue
   (classification (ranking aestheticService:HousingValue)
