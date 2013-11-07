@@ -29,6 +29,6 @@
   :geoserver-rest-uri    "http://ecoinformatics.uvm.edu/geoserver/rest"
   :geoserver-username    "admin"
   :geoserver-password    "rnbh304"
-  :geoserver-data-dir    "/raid/geodata/"
+  :geoserver-data-dir    "/opt/geoserver-2.4.1/data_dir/"
   :postgis-user          "aries"
 }
